@@ -33,10 +33,11 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 .toast.info .toast-title{color:#3D6DB5}
 .toast .toast-close{position:absolute;top:8px;right:10px;background:none;border:none;font-size:16px;cursor:pointer;color:#999;font-family:inherit}
 .auth-footer{background:#e8e8e8;border-top:1px solid #ccc;padding:10px 15px;margin:0 -15px -15px -15px;text-align:right}
-.pmabtn{display:inline-block;padding:3px 10px;border:1px solid #aaa;background:linear-gradient(to bottom,#fefefe,#eeeeee);color:#333;font-size:12px;cursor:pointer;text-decoration:none;font-family:inherit}
+.pmabtn{display:inline-block;padding:3px 10px;border:1px solid #aaa;background:linear-gradient(to bottom,#fefefe,#eeeeee);color:#333;font-size:12px;cursor:pointer;text-decoration:none;font-family:inherit;white-space:nowrap}
 .pmabtn:hover{background:linear-gradient(to bottom,#f0f6fc,#dce8f5);border-color:#3D6DB5}
-.menu-screen,.trades-screen,.admin-screen{display:none;width:100%;min-height:100vh;flex-direction:column;background:#f4f6f9;position:relative}
-.menu-screen.active,.trades-screen.active,.admin-screen.active{display:flex}
+.pmabtn:active{background:linear-gradient(to bottom,#d0dce8,#b8c8d8);box-shadow:inset 0 1px 2px rgba(0,0,0,0.15)}
+.menu-screen,.section-screen,.admin-screen{display:none;width:100%;min-height:100vh;flex-direction:column;background:#f4f6f9;position:relative}
+.menu-screen.active,.section-screen.active,.admin-screen.active{display:flex}
 .menu-header{background:linear-gradient(135deg,#3D6DB5,#2c4f8a);color:#fff;padding:14px 25px;display:flex;justify-content:space-between;align-items:center}
 .brand{display:flex;align-items:center;gap:12px;font-size:17px;font-weight:bold;font-style:italic}
 .user-info{display:flex;align-items:center;gap:12px;font-size:13px}
@@ -45,16 +46,17 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 .menu-title-plain{color:#000;font-size:16px;font-weight:bold;padding:20px 25px 0;margin:0;text-align:left}
 .menu-content{flex:1;padding:20px 20px 120px 20px}
 .bottom-bar{position:fixed;bottom:0;left:0;right:0;background:#f4f4f4;border-top:1px solid #ccc;padding:10px 20px;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;z-index:100}
-.trades-container,.admin-container{flex:1;padding:20px 25px 120px 25px;max-width:1200px;margin:0 auto;width:100%}
-.trades-title,.admin-title{color:#000;font-size:18px;font-weight:bold;margin-bottom:15px;text-align:left}
+.section-container,.admin-container{flex:1;padding:20px 25px 120px 25px;max-width:1400px;margin:0 auto;width:100%}
+.section-title,.admin-title{color:#000;font-size:18px;font-weight:bold;margin-bottom:15px;text-align:left}
+.section-actions{margin-bottom:15px;display:flex;gap:8px;flex-wrap:wrap}
 .server-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:15px}
 .server-filter{padding:4px 14px;border:1px solid #aaa;background:linear-gradient(to bottom,#fefefe,#eeeeee);cursor:pointer;font-size:12px;font-family:inherit}
 .server-filter.active{background:linear-gradient(to bottom,#3D6DB5,#2c4f8a);color:#fff;font-weight:bold}
-.trades-table,.admin-table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff;border:1px solid #ccc}
-.trades-table th,.admin-table th{background:linear-gradient(to bottom,#f0f0f0,#dcdcdc);border:1px solid #ccc;padding:6px 8px;text-align:left}
-.trades-table td,.admin-table td{border:1px solid #e0e0e0;padding:5px 8px}
-.trades-table tbody tr:nth-child(even),.admin-table tbody tr:nth-child(even){background:#fafafa}
-.trades-table tbody tr:hover,.admin-table tbody tr:hover{background:#eef4fb}
+.data-table,.admin-table{width:100%;border-collapse:collapse;font-size:12.5px;background:#fff;border:1px solid #ccc}
+.data-table th,.admin-table th{background:linear-gradient(to bottom,#f0f0f0,#dcdcdc);border:1px solid #ccc;padding:6px 8px;text-align:left;white-space:nowrap}
+.data-table td,.admin-table td{border:1px solid #e0e0e0;padding:5px 8px}
+.data-table tbody tr:nth-child(even),.admin-table tbody tr:nth-child(even){background:#fafafa}
+.data-table tbody tr:hover,.admin-table tbody tr:hover{background:#eef4fb}
 .status-badge{display:inline-block;padding:3px 10px;font-size:11px;font-weight:bold;border:1px solid}
 .status-badge.pending{background:#e9ecef;color:#495057}
 .status-badge.clear{background:#d4edda;color:#155724}
@@ -83,6 +85,15 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 .token-status{font-size:11px;color:#888;margin-top:5px}
 .token-status.ok{color:#28a745}
 .token-status.err{color:#dc3545}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:10001;display:none;justify-content:center;align-items:center}
+.modal.open{display:flex}
+.modal-content{background:#fff;padding:20px;min-width:500px;max-width:800px;width:90%;box-shadow:0 10px 40px rgba(0,0,0,0.3)}
+.modal-title{font-size:16px;font-weight:bold;margin-bottom:12px;color:#2c4f8a}
+.modal-hint{font-size:12px;color:#666;margin-bottom:10px}
+.modal textarea{width:100%;min-height:250px;padding:8px;border:1px solid #aaa;font-family:Consolas,monospace;font-size:12px;resize:vertical}
+.modal-actions{margin-top:12px;text-align:right;display:flex;justify-content:flex-end;gap:8px}
+.money-cell{text-align:right;font-family:Consolas,monospace;font-weight:bold;white-space:nowrap}
+.server-cell{text-align:center;font-weight:bold;color:#3D6DB5}
 </style>
 </head>
 <body>
@@ -120,7 +131,7 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 <td class="label-cell"><label for="password">Пароль:</label></td>
 <td>
 <input type="password" id="password" autocomplete="off">
-<div class="token-status" id="tokenStatus">Токен для записи не установлен</div>
+<div class="token-status" id="tokenStatus">Токен не установлен</div>
 </td>
 </tr>
 </table>
@@ -143,24 +154,29 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 <div class="menu-title-plain">Главное меню</div>
 <div class="menu-content"></div>
 <div class="bottom-bar">
-<button class="pmabtn" data-section="Трейды">Трейды</button>
-<button class="pmabtn" data-section="Уникальная">Уникальная</button>
-<button class="pmabtn" data-section="Уровни работ">Уровень 3,4,5 работы</button>
-<button class="pmabtn" data-section="/pay">/pay</button>
-<button class="pmabtn" data-section="Админ-панель" id="adminBtn" style="display:none;">Админ-панель</button>
+<button class="pmabtn" data-section="trades">Трейды</button>
+<button class="pmabtn" data-section="unique">Уникальная</button>
+<button class="pmabtn" data-section="levels">Уровень 3,4,5 работы</button>
+<button class="pmabtn" data-section="works">Работы</button>
+<button class="pmabtn" data-section="pays">/pay</button>
+<button class="pmabtn" data-section="admin" id="adminBtn" style="display:none;">Админ-панель</button>
 </div>
 </div>
 
-<div class="trades-screen" id="tradesScreen">
+<div class="section-screen" id="sectionScreen">
 <div class="menu-header">
 <div class="brand"><span>⛵</span> Массовая выгрузка 61-65</div>
 <div class="user-info">
-<span class="user-badge" id="currentUserTrades">—</span>
-<button class="logout-btn" id="logoutBtnTrades">Выход</button>
+<span class="user-badge" id="currentUserSection">—</span>
+<button class="logout-btn" id="logoutBtnSection">Выход</button>
 </div>
 </div>
-<div class="trades-container">
-<div class="trades-title">Трейды</div>
+<div class="section-container">
+<div class="section-title" id="sectionTitle">—</div>
+<div class="section-actions">
+<button class="pmabtn" id="uploadBtn">Загрузить данные</button>
+<button class="pmabtn" id="clearSectionBtn">Очистить раздел</button>
+</div>
 <div class="server-filters" id="serverFilters">
 <button class="server-filter active" data-server="all">Все серверы</button>
 <button class="server-filter" data-server="61">Сервер 61</button>
@@ -169,15 +185,15 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 <button class="server-filter" data-server="64">Сервер 64</button>
 <button class="server-filter" data-server="65">Сервер 65</button>
 </div>
-<div id="tradesCounter" style="font-size:12px;color:#666;margin-bottom:10px;"></div>
+<div id="sectionCounter" style="font-size:12px;color:#666;margin-bottom:10px;"></div>
 <div style="overflow-x:auto">
-<table class="trades-table">
-<thead><tr><th>Сервер</th><th>Продавец (ID)</th><th>Имя продавца</th><th>Ур.</th><th>Покупатель (ID)</th><th>Имя покупателя</th><th>Ур.</th><th>Сумма</th><th>Статус</th></tr></thead>
-<tbody id="tradesBody"></tbody>
+<table class="data-table">
+<thead id="dataHead"></thead>
+<tbody id="dataBody"></tbody>
 </table>
 </div>
 </div>
-<div class="bottom-bar"><button class="pmabtn" id="backFromTrades">Назад</button></div>
+<div class="bottom-bar"><button class="pmabtn" id="backFromSection">Назад</button></div>
 </div>
 
 <div class="admin-screen" id="adminScreen">
@@ -200,6 +216,18 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 <div class="bottom-bar"><button class="pmabtn" id="backFromAdmin">Назад</button></div>
 </div>
 
+<div class="modal" id="uploadModal">
+<div class="modal-content">
+<div class="modal-title" id="uploadModalTitle">Загрузка данных</div>
+<div class="modal-hint" id="uploadModalHint">Вставь строки из файла (разделитель — таб). Каждая строка — новая запись.</div>
+<textarea id="uploadTextarea" placeholder="Строки..."></textarea>
+<div class="modal-actions">
+<button class="pmabtn" id="uploadCancel">Отмена</button>
+<button class="pmabtn" id="uploadConfirm">Загрузить</button>
+</div>
+</div>
+</div>
+
 <div class="toast" id="toast">
 <button class="toast-close" onclick="document.getElementById('toast').classList.remove('show')">×</button>
 <div class="toast-title" id="toastTitle"></div>
@@ -212,127 +240,199 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 (function(){
 'use strict';
 
-// ═══════════════ НАСТРОЙКИ ═══════════════
 const GITHUB_USER = 'STKILL823';
 const GITHUB_REPO = 'msvg6165';
-const BRANCH      = 'main';
-// Токен НЕ хранится в файле. Он вводится через кнопку "Установить токен"
-// и сохраняется в localStorage браузера.
-// ══════════════════════════════════════════
+const BRANCH = 'main';
+const API_BASE = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/';
 
-const API_BASE   = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/';
-const USERS_API  = API_BASE + 'users.json';
-const TRADES_API = API_BASE + 'trades.json';
+const STATUS_LABELS = { pending: 'Ожидание', clear: 'Нету нарушений', blocked: 'Заблокирован' };
 
-// ─── Состояние ───
-let trades = [];
-let users = {};
-let currentUser = '';
-let currentServer = '';
-let currentRole = '';
-let revealedPasswords = {};
-let currentFilter = 'all';
-let openMenuEl = null;
+// ═══════════ КОНФИГ РАЗДЕЛОВ ═══════════
+const SECTIONS = {
+    trades: {
+        file: 'trades.json',
+        title: 'Трейды',
+        headers: ['Сервер','Продавец (ID)','Имя продавца','Ур.','Покупатель (ID)','Имя покупателя','Ур.','Сумма','Статус'],
+        parse: function(line) {
+            var p = line.split('\t').map(function(s){return s.trim()});
+            if (p.length < 8) return null;
+            return [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7].replace(/\s/g,''), 'pending'];
+        },
+        getServer: function(r){return r[0];},
+        getAmount: function(r){return r[7];},
+        getNames: function(r){return r[2] + ' → ' + r[5];},
+        statusIdx: 8
+    },
+    unique: {
+        file: 'unique.json',
+        title: 'Уникальная',
+        headers: ['Сервер','ID','Имя','Ур.','Знач.1','Знач.2','Сумма','Статус'],
+        parse: function(line) {
+            var p = line.split('\t').map(function(s){return s.trim()});
+            if (p.length < 7) return null;
+            return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g,''), 'pending'];
+        },
+        getServer: function(r){return r[0];},
+        getAmount: function(r){return r[6];},
+        getNames: function(r){return r[2];},
+        statusIdx: 7
+    },
+    levels: {
+        file: 'levels.json',
+        title: 'Уровень 3,4,5 работы',
+        headers: ['Сервер','ID','Имя','Ур.','Знач.1','Знач.2','Сумма','Статус'],
+        parse: function(line) {
+            var p = line.split('\t').map(function(s){return s.trim()});
+            if (p.length < 7) return null;
+            return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g,''), 'pending'];
+        },
+        getServer: function(r){return r[0];},
+        getAmount: function(r){return r[6];},
+        getNames: function(r){return r[2];},
+        statusIdx: 7
+    },
+    works: {
+        file: 'works.json',
+        title: 'Работы',
+        headers: ['Сервер','Имя','Сумма','Статус'],
+        parse: function(line) {
+            var p = line.split('\t').map(function(s){return s.trim()});
+            if (p.length < 3) return null;
+            return [p[0], p[1], p[2].replace(/\s/g,''), 'pending'];
+        },
+        getServer: function(r){return r[0];},
+        getAmount: function(r){return r[2];},
+        getNames: function(r){return r[1];},
+        statusIdx: 3
+    },
+    pays: {
+        file: 'pays.json',
+        title: '/pay',
+        headers: ['Сервер','Отправитель (ID)','Имя','Получатель (ID)','Имя','Сумма','Статус'],
+        parse: function(line) {
+            var p = line.split('\t').map(function(s){return s.trim()});
+            if (p.length < 6) return null;
+            return [p[0], p[1], p[2], p[3], p[4], p[5].replace(/\s/g,''), 'pending'];
+        },
+        getServer: function(r){return r[0];},
+        getAmount: function(r){return r[5];},
+        getNames: function(r){return r[2] + ' → ' + r[4];},
+        statusIdx: 6
+    }
+};
 
-const $ = id => document.getElementById(id);
+// ═══════════ СОСТОЯНИЕ ═══════════
+var data = { trades: [], unique: [], levels: [], works: [], pays: [] };
+var users = {};
+var currentUser = '';
+var currentServer = '';
+var currentRole = '';
+var currentSectionKey = '';
+var currentFilter = 'all';
+var revealedPasswords = {};
+var openMenuEl = null;
 
-function getToken() {
-    return localStorage.getItem('gh_token') || '';
-}
+var $ = function(id){return document.getElementById(id)};
 
+function getToken() { return localStorage.getItem('gh_token') || ''; }
 function setToken(t) {
     if (t) localStorage.setItem('gh_token', t);
     else localStorage.removeItem('gh_token');
     updateTokenStatus();
 }
-
 function updateTokenStatus() {
-    const t = getToken();
-    const el = $('tokenStatus');
-    if (t) {
-        el.textContent = 'Токен установлен (запись разрешена)';
-        el.className = 'token-status ok';
-    } else {
-        el.textContent = 'Токен не установлен — можно только просматривать';
-        el.className = 'token-status err';
-    }
+    var t = getToken();
+    var el = $('tokenStatus');
+    if (t) { el.textContent = 'Токен установлен (запись разрешена)'; el.className = 'token-status ok'; }
+    else { el.textContent = 'Токен не установлен — только чтение'; el.className = 'token-status err'; }
 }
 
 function showToast(type, title, msg) {
-    const el = $('toast');
+    var el = $('toast');
     el.className = 'toast ' + type;
     $('toastTitle').textContent = title;
     $('toastMsg').textContent = msg;
     void el.offsetWidth;
-    requestAnimationFrame(() => el.classList.add('show'));
+    requestAnimationFrame(function(){el.classList.add('show')});
     clearTimeout(el._timer);
-    el._timer = setTimeout(() => el.classList.remove('show'), 5000);
+    el._timer = setTimeout(function(){el.classList.remove('show')}, 5000);
 }
-
-function showLoading(t) {
-    $('loadingOverlay').style.display = 'flex';
-    $('loadingOverlay').textContent = t || 'Загрузка...';
-}
-function hideLoading() { $('loadingOverlay').style.display = 'none'; }
-
+function showLoading(t) {$('loadingOverlay').style.display='flex';$('loadingOverlay').textContent=t||'Загрузка...';}
+function hideLoading() {$('loadingOverlay').style.display='none';}
 function formatMoney(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
 
-const STATUS_LABELS = { pending: 'Ожидание', clear: 'Нету нарушений', blocked: 'Заблокирован' };
-
-// ─── ЧТЕНИЕ (без токена, публично) ───
-async function readFile(apiUrl) {
-    const url = apiUrl + '?ref=' + BRANCH + '&t=' + Date.now();
-    console.log('[GET]', url);
-    const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
-    console.log('[GET]', res.status, apiUrl);
+// ═══════════ GITHUB ═══════════
+async function readFile(fileName) {
+    var url = API_BASE + fileName + '?ref=' + BRANCH + '&t=' + Date.now();
+    var res = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
+    console.log('[GET]', fileName, res.status);
     if (res.status === 404) return null;
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const info = await res.json();
-    const decoded = decodeURIComponent(escape(atob(info.content.replace(/\s/g, ''))));
+    var info = await res.json();
+    var decoded = decodeURIComponent(escape(atob(info.content.replace(/\s/g, ''))));
     return JSON.parse(decoded);
 }
 
-// ─── ЗАПИСЬ (с токеном из localStorage) ───
-async function writeFile(apiUrl, data, message) {
-    const token = getToken();
-    if (!token) {
-        throw new Error('Токен не установлен. Нажми "Установить токен".');
-    }
-    // SHA
-    const getRes = await fetch(apiUrl + '?ref=' + BRANCH + '&t=' + Date.now(), {
+async function writeFile(fileName, fileData, message) {
+    var token = getToken();
+    if (!token) throw new Error('Токен не установлен. Нажми "Установить токен".');
+    var url = API_BASE + fileName;
+
+    // SHA (если файл существует)
+    var sha = null;
+    var getRes = await fetch(url + '?ref=' + BRANCH + '&t=' + Date.now(), {
         headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' }
     });
-    if (getRes.status === 401) throw new Error('Токен невалидный (401). Создай новый.');
-    if (!getRes.ok) throw new Error('GET SHA: ' + getRes.status);
-    const info = await getRes.json();
+    if (getRes.status === 401) throw new Error('Токен невалидный (401)');
+    if (getRes.ok) {
+        var info = await getRes.json();
+        sha = info.sha;
+    } else if (getRes.status !== 404) {
+        throw new Error('GET SHA: ' + getRes.status);
+    }
 
-    const json = JSON.stringify(data, null, 2);
-    const content = btoa(unescape(encodeURIComponent(json)));
+    var json = JSON.stringify(fileData, null, 2);
+    var content = btoa(unescape(encodeURIComponent(json)));
+    var body = { message: message, content: content, branch: BRANCH };
+    if (sha) body.sha = sha;
 
-    const putRes = await fetch(apiUrl, {
+    var putRes = await fetch(url, {
         method: 'PUT',
         headers: {
             'Authorization': 'Bearer ' + token,
             'Accept': 'application/vnd.github.v3+json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message: message, content: content, sha: info.sha, branch: BRANCH })
+        body: JSON.stringify(body)
     });
     if (putRes.status === 401) throw new Error('Токен невалидный (401)');
     if (putRes.status === 403) throw new Error('Нет прав на запись (403). Нужно Contents: Read and write');
     if (!putRes.ok) {
-        const err = await putRes.text();
+        var err = await putRes.text();
         console.error('[PUT]', putRes.status, err);
         throw new Error('PUT ' + putRes.status);
     }
     return true;
 }
 
+// ═══════════ ЗАГРУЗКА ДАННЫХ ═══════════
+async function loadAllData() {
+    for (var key in SECTIONS) {
+        try {
+            var result = await readFile(SECTIONS[key].file);
+            data[key] = Array.isArray(result) ? result : [];
+        } catch (e) {
+            console.error('load ' + key + ':', e);
+            data[key] = [];
+        }
+    }
+}
+
 async function loadUsers() {
     try {
-        const data = await readFile(USERS_API);
-        if (!data) { users = {}; return false; }
-        users = data;
+        var result = await readFile('users.json');
+        if (!result) { users = {}; return false; }
+        users = result;
         console.log('[Users]', users);
         return true;
     } catch (e) {
@@ -342,51 +442,63 @@ async function loadUsers() {
     }
 }
 
-async function loadTrades() {
-    try {
-        const data = await readFile(TRADES_API);
-        trades = Array.isArray(data) ? data : [];
-        console.log('[Trades]', trades.length, 'records');
-    } catch (e) {
-        console.error('[loadTrades]', e);
-        trades = [];
-    }
-}
-
+// ═══════════ ОТОБРАЖЕНИЕ РАЗДЕЛА ═══════════
 function canEditServer(srv) {
     if (currentRole === 'admin') return true;
     return currentServer !== '' && String(srv) === String(currentServer);
 }
 
-function renderTrades() {
-    const tbody = $('tradesBody');
-    tbody.innerHTML = '';
-    let count = 0;
+function renderSection() {
+    var cfg = SECTIONS[currentSectionKey];
+    if (!cfg) return;
 
-    trades.forEach(function(row, idx) {
-        const srv = row[0], sid = row[1], sname = row[2], slvl = row[3],
-              bid = row[4], bname = row[5], blvl = row[6],
-              amount = row[7], status = row[8] || 'pending';
+    $('sectionTitle').textContent = cfg.title;
+
+    // Шапка таблицы
+    var headHtml = '<tr>';
+    cfg.headers.forEach(function(h){ headHtml += '<th>' + h + '</th>'; });
+    headHtml += '</tr>';
+    $('dataHead').innerHTML = headHtml;
+
+    // Тело таблицы
+    var tbody = $('dataBody');
+    tbody.innerHTML = '';
+    var count = 0;
+    var rows = data[currentSectionKey];
+
+    rows.forEach(function(row, idx) {
+        var srv = cfg.getServer(row);
         if (currentFilter !== 'all' && String(srv) !== currentFilter) return;
         count++;
-        const editable = canEditServer(srv);
-        const tr = document.createElement('tr');
-        tr.innerHTML =
-            '<td style="text-align:center;font-weight:bold;color:#3D6DB5">' + srv + '</td>' +
-            '<td>' + sid + '</td><td>' + sname + '</td><td>' + slvl + '</td>' +
-            '<td>' + bid + '</td><td>' + bname + '</td><td>' + blvl + '</td>' +
-            '<td style="text-align:right;font-family:Consolas,monospace;font-weight:bold">' + formatMoney(amount) + '</td>' +
-            '<td style="white-space:nowrap">' +
-                '<span class="status-badge ' + status + '">' + (STATUS_LABELS[status] || status) + '</span>' +
-                '<button class="gear-btn ' + (editable ? '' : 'disabled') + '" data-idx="' + idx + '">' +
-                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>' +
-                '</button>' +
-            '</td>';
+        var editable = canEditServer(srv);
+        var status = row[cfg.statusIdx] || 'pending';
+
+        var tr = document.createElement('tr');
+        var cells = '';
+        for (var i = 0; i < cfg.headers.length; i++) {
+            if (i === cfg.statusIdx) {
+                cells += '<td style="white-space:nowrap">' +
+                    '<span class="status-badge ' + status + '">' + (STATUS_LABELS[status] || status) + '</span>' +
+                    '<button class="gear-btn ' + (editable ? '' : 'disabled') + '" data-idx="' + idx + '">' +
+                        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>' +
+                    '</button>' +
+                '</td>';
+            } else if (i === 0) {
+                cells += '<td class="server-cell">' + row[i] + '</td>';
+            } else if (cfg.headers[i] === 'Сумма') {
+                cells += '<td class="money-cell">' + formatMoney(row[i]) + '</td>';
+            } else {
+                cells += '<td>' + row[i] + '</td>';
+            }
+        }
+        tr.innerHTML = cells;
         tbody.appendChild(tr);
     });
-    $('tradesCounter').textContent = 'Найдено записей: ' + count;
+
+    $('sectionCounter').textContent = 'Найдено записей: ' + count;
 }
 
+// ═══════════ МЕНЮ СТАТУСА ═══════════
 function closeAllMenus() {
     if (openMenuEl) { openMenuEl.remove(); openMenuEl = null; }
 }
@@ -394,40 +506,42 @@ function closeAllMenus() {
 function openStatusMenu(gearBtn, idx) {
     if (openMenuEl && openMenuEl.dataset.idx == idx) { closeAllMenus(); return; }
     closeAllMenus();
+    var cfg = SECTIONS[currentSectionKey];
+    var row = data[currentSectionKey][idx];
 
-    const rect = gearBtn.getBoundingClientRect();
-    const menu = document.createElement('div');
+    var rect = gearBtn.getBoundingClientRect();
+    var menu = document.createElement('div');
     menu.className = 'status-menu open';
     menu.dataset.idx = idx;
 
-    ['pending', 'clear', 'blocked'].forEach(function(key) {
-        const item = document.createElement('div');
+    ['pending','clear','blocked'].forEach(function(key){
+        var item = document.createElement('div');
         item.className = 'status-menu-item';
         item.innerHTML = '<span class="dot ' + key + '"></span><span>' + STATUS_LABELS[key] + '</span>';
-        item.addEventListener('click', async function(ev) {
+        item.addEventListener('click', async function(ev){
             ev.stopPropagation();
-            if (!canEditServer(trades[idx][0])) {
+            if (!canEditServer(cfg.getServer(row))) {
                 closeAllMenus();
-                showToast('error', 'Нет прав', 'Вы не можете менять статусы на чужом сервере.');
+                showToast('error','Нет прав','Вы не можете менять статусы на чужом сервере.');
                 return;
             }
-            const oldStatus = trades[idx][8];
-            trades[idx][8] = key;
-            const badge = gearBtn.closest('tr').querySelector('.status-badge');
+            var oldStatus = row[cfg.statusIdx];
+            row[cfg.statusIdx] = key;
+            var badge = gearBtn.closest('tr').querySelector('.status-badge');
             badge.className = 'status-badge ' + key;
             badge.textContent = STATUS_LABELS[key];
             closeAllMenus();
 
             showLoading('Сохранение...');
             try {
-                await writeFile(TRADES_API, trades, 'Update trade status');
-                showToast('success', 'Статус изменён', trades[idx][2] + ' → ' + trades[idx][5]);
+                await writeFile(cfg.file, data[currentSectionKey], 'Update ' + currentSectionKey);
+                showToast('success','Статус изменён', cfg.getNames(row));
             } catch (e) {
                 console.error(e);
-                trades[idx][8] = oldStatus;
+                row[cfg.statusIdx] = oldStatus;
                 badge.className = 'status-badge ' + oldStatus;
                 badge.textContent = STATUS_LABELS[oldStatus];
-                showToast('error', 'Ошибка сохранения', e.message);
+                showToast('error','Ошибка сохранения', e.message);
             } finally {
                 hideLoading();
             }
@@ -441,15 +555,83 @@ function openStatusMenu(gearBtn, idx) {
     openMenuEl = menu;
 }
 
+// ═══════════ МОДАЛКА ЗАГРУЗКИ ═══════════
+function openUploadModal() {
+    var cfg = SECTIONS[currentSectionKey];
+    $('uploadModalTitle').textContent = 'Загрузка данных: ' + cfg.title;
+    var hint = '';
+    if (currentSectionKey === 'trades') hint = 'Формат: Сервер → ID → Имя → Ур → ID → Имя → Ур → Сумма';
+    else if (currentSectionKey === 'unique') hint = 'Формат: Сервер → ID → Имя → Ур → Знач1 → Знач2 → Сумма';
+    else if (currentSectionKey === 'levels') hint = 'Формат: Сервер → ID → Имя → Ур → Знач1 → Знач2 → Сумма';
+    else if (currentSectionKey === 'works') hint = 'Формат: Сервер → Имя → Сумма';
+    else if (currentSectionKey === 'pays') hint = 'Формат: Сервер → ID → Имя → ID → Имя → Сумма';
+    $('uploadModalHint').textContent = hint + ' (разделитель — таб). Каждая строка — новая запись.';
+    $('uploadTextarea').value = '';
+    $('uploadModal').classList.add('open');
+}
+
+async function confirmUpload() {
+    var cfg = SECTIONS[currentSectionKey];
+    var text = $('uploadTextarea').value.trim();
+    if (!text) { showToast('error','Ошибка','Вставь данные'); return; }
+
+    var lines = text.split('\n');
+    var added = 0;
+    var skipped = 0;
+    var existing = data[currentSectionKey];
+
+    lines.forEach(function(line){
+        line = line.trim();
+        if (!line) return;
+        var parsed = cfg.parse(line);
+        if (!parsed) { skipped++; return; }
+        existing.push(parsed);
+        added++;
+    });
+
+    if (added === 0) { showToast('error','Ошибка','Не удалось распарсить ни одной строки'); return; }
+
+    $('uploadModal').classList.remove('open');
+    showLoading('Сохранение в GitHub...');
+    try {
+        await writeFile(cfg.file, existing, 'Upload ' + currentSectionKey);
+        showToast('success','Загружено', 'Добавлено: ' + added + (skipped > 0 ? ', пропущено: ' + skipped : ''));
+        renderSection();
+    } catch (e) {
+        console.error(e);
+        showToast('error','Ошибка', e.message);
+    } finally {
+        hideLoading();
+    }
+}
+
+// ═══════════ ОЧИСТКА РАЗДЕЛА ═══════════
+async function clearSection() {
+    if (!confirm('Точно очистить раздел "' + SECTIONS[currentSectionKey].title + '"? Все данные будут удалены.')) return;
+    var cfg = SECTIONS[currentSectionKey];
+    data[currentSectionKey] = [];
+    showLoading('Сохранение...');
+    try {
+        await writeFile(cfg.file, [], 'Clear ' + currentSectionKey);
+        showToast('success','Очищено', 'Раздел пуст');
+        renderSection();
+    } catch (e) {
+        showToast('error','Ошибка', e.message);
+    } finally {
+        hideLoading();
+    }
+}
+
+// ═══════════ АДМИН ═══════════
 function renderAdminUsers() {
-    const tbody = $('adminBody');
+    var tbody = $('adminBody');
     tbody.innerHTML = '';
-    Object.keys(users).forEach(function(uname) {
-        const u = users[uname];
-        const isSelf = uname === currentUser;
-        const isAdmin = u.role === 'admin';
-        const revealed = revealedPasswords[uname] === true;
-        const tr = document.createElement('tr');
+    Object.keys(users).forEach(function(uname){
+        var u = users[uname];
+        var isSelf = uname === currentUser;
+        var isAdmin = u.role === 'admin';
+        var revealed = revealedPasswords[uname] === true;
+        var tr = document.createElement('tr');
         tr.innerHTML =
             '<td style="font-weight:bold;color:#2c4f8a">' + uname + (isSelf ? ' <span style="color:#888;font-weight:normal">(это вы)</span>' : '') + '</td>' +
             '<td style="text-align:center"><span class="role-badge ' + (isAdmin ? 'admin' : 'tech') + '">' + (isAdmin ? 'Админ' : 'Тех') + '</span></td>' +
@@ -464,9 +646,9 @@ function renderAdminUsers() {
 }
 
 async function handleAdminClick(e) {
-    const btn = e.target.closest('button[data-act]');
+    var btn = e.target.closest('button[data-act]');
     if (!btn) return;
-    const act = btn.dataset.act, uname = btn.dataset.user;
+    var act = btn.dataset.act, uname = btn.dataset.user;
 
     if (act === 'toggle') {
         revealedPasswords[uname] = !revealedPasswords[uname];
@@ -474,23 +656,22 @@ async function handleAdminClick(e) {
         return;
     }
     if (act === 'change') {
-        if (users[uname].role === 'admin') { adminMsg('Нельзя менять пароль админа', 'err'); return; }
-        const np = prompt('Новый пароль для ' + uname + ' (мин. 4 символа):', '');
+        if (users[uname].role === 'admin') { adminMsg('Нельзя менять пароль админа','err'); return; }
+        var np = prompt('Новый пароль для ' + uname + ' (мин. 4 символа):', '');
         if (np === null) return;
-        if (np.length < 4) { adminMsg('Пароль слишком короткий', 'err'); return; }
-        const oldPass = users[uname].password;
+        if (np.length < 4) { adminMsg('Пароль слишком короткий','err'); return; }
+        var oldPass = users[uname].password;
         users[uname].password = np;
         showLoading('Сохранение...');
         try {
-            await writeFile(USERS_API, users, 'Update user password');
-            adminMsg('Пароль для ' + uname + ' сохранён', 'ok');
-            showToast('success', 'Пароль изменён', uname + ' → ' + np);
+            await writeFile('users.json', users, 'Update user password');
+            adminMsg('Пароль для ' + uname + ' сохранён','ok');
+            showToast('success','Пароль изменён', uname + ' → ' + np);
             renderAdminUsers();
         } catch (err) {
-            console.error(err);
             users[uname].password = oldPass;
-            adminMsg('Ошибка: ' + err.message, 'err');
-            showToast('error', 'Ошибка', err.message);
+            adminMsg('Ошибка: ' + err.message,'err');
+            showToast('error','Ошибка', err.message);
         } finally {
             hideLoading();
         }
@@ -498,48 +679,43 @@ async function handleAdminClick(e) {
 }
 
 function adminMsg(text, type) {
-    const el = $('adminInlineMsg');
+    var el = $('adminInlineMsg');
     el.textContent = text;
     el.className = 'admin-inline-msg show ' + type;
-    setTimeout(() => el.classList.remove('show'), 4000);
+    setTimeout(function(){el.classList.remove('show')}, 4000);
 }
 
+// ═══════════ ЛОГИН/ВЫХОД ═══════════
 async function handleLogin(e) {
     e.preventDefault();
-    const uname = $('username').value.trim();
-    const pass  = $('password').value;
-
-    if (!uname || !pass) { showToast('error', 'Ошибка', 'Заполните все поля'); return; }
+    var uname = $('username').value.trim();
+    var pass = $('password').value;
+    if (!uname || !pass) { showToast('error','Ошибка','Заполните все поля'); return; }
 
     showLoading('Проверка...');
-    const loaded = await loadUsers();
+    var loaded = await loadUsers();
     hideLoading();
 
-    if (!loaded) {
-        showToast('error', 'Ошибка', 'Не удалось загрузить users.json (F12 → Console)');
-        return;
-    }
-
-    const user = users[uname];
-    if (!user) { showToast('error', 'Ошибка', 'Пользователь "' + uname + '" не найден'); return; }
-    if (user.password !== pass) { showToast('error', 'Ошибка', 'Неверный пароль'); return; }
+    if (!loaded) { showToast('error','Ошибка','Не удалось загрузить users.json'); return; }
+    var user = users[uname];
+    if (!user) { showToast('error','Ошибка','Пользователь "' + uname + '" не найден'); return; }
+    if (user.password !== pass) { showToast('error','Ошибка','Неверный пароль'); return; }
 
     currentUser = uname;
     currentServer = user.server;
     currentRole = user.role;
 
     $('currentUser').textContent = uname;
-    $('currentUserTrades').textContent = uname + (currentRole === 'admin' ? ' (Admin)' : ' (Сервер ' + currentServer + ')');
+    $('currentUserSection').textContent = uname + (currentRole === 'admin' ? ' (Admin)' : ' (Сервер ' + currentServer + ')');
     $('currentUserAdmin').textContent = uname;
     $('adminBtn').style.display = currentRole === 'admin' ? 'inline-block' : 'none';
 
-    showLoading('Загрузка трейдов...');
-    await loadTrades();
+    showLoading('Загрузка данных...');
+    await loadAllData();
     hideLoading();
-    renderTrades();
 
-    showToast('success', 'Успешно', 'Добро пожаловать, ' + uname + '!');
-    setTimeout(function() {
+    showToast('success','Успешно','Добро пожаловать, ' + uname + '!');
+    setTimeout(function(){
         $('loginScreen').classList.add('hidden');
         $('menuScreen').classList.add('active');
     }, 300);
@@ -547,103 +723,110 @@ async function handleLogin(e) {
 
 function doLogout() {
     $('menuScreen').classList.remove('active');
-    $('tradesScreen').classList.remove('active');
+    $('sectionScreen').classList.remove('active');
     $('adminScreen').classList.remove('active');
     $('loginScreen').classList.remove('hidden');
     $('username').value = '';
     $('password').value = '';
     currentUser = ''; currentServer = ''; currentRole = '';
-    revealedPasswords = {};
-    closeAllMenus();
-    showToast('info', 'Выход', 'Вы вышли из системы');
+    revealedPasswords = {}; closeAllMenus();
+    showToast('info','Выход','Вы вышли из системы');
 }
 
+// ═══════════ ИНИЦИАЛИЗАЦИЯ ═══════════
 document.addEventListener('DOMContentLoaded', function() {
     updateTokenStatus();
 
-    // Кнопка установки токена
-    $('setTokenBtn').addEventListener('click', function() {
-        const current = getToken();
-        const val = prompt(
-            'Вставь Personal Access Token (github_pat_...).\n\n' +
-            'Токен хранится ТОЛЬКО в твоём браузере (localStorage), на GitHub не отправляется.\n\n' +
-            'Текущий токен: ' + (current ? current.slice(0, 20) + '...' : 'не установлен') + '\n\n' +
-            'Оставь пустым и нажми OK, чтобы удалить токен.',
-            current ? '' : ''
-        );
+    $('setTokenBtn').addEventListener('click', function(){
+        var current = getToken();
+        var val = prompt('Вставь Personal Access Token (github_pat_...).\n\nТокен хранится только в твоём браузере.\n\nОставь пустым и нажми OK, чтобы удалить токен.', '');
         if (val === null) return;
-        if (val.trim() === '') { setToken(''); showToast('info', 'Токен', 'Токен удалён'); return; }
+        if (val.trim() === '') { setToken(''); showToast('info','Токен','Удалён'); return; }
         setToken(val.trim());
-        showToast('success', 'Токен', 'Токен сохранён в браузере');
+        showToast('success','Токен','Сохранён в браузере');
     });
 
     $('loginForm').addEventListener('submit', handleLogin);
 
     $('logoutBtn').addEventListener('click', doLogout);
-    $('logoutBtnTrades').addEventListener('click', doLogout);
+    $('logoutBtnSection').addEventListener('click', doLogout);
     $('logoutBtnAdmin').addEventListener('click', doLogout);
 
-    $('backFromTrades').addEventListener('click', function() {
-        $('tradesScreen').classList.remove('active');
+    $('backFromSection').addEventListener('click', function(){
+        $('sectionScreen').classList.remove('active');
         $('menuScreen').classList.add('active');
         closeAllMenus();
     });
-    $('backFromAdmin').addEventListener('click', function() {
+    $('backFromAdmin').addEventListener('click', function(){
         $('adminScreen').classList.remove('active');
         $('menuScreen').classList.add('active');
     });
 
-    $('serverFilters').addEventListener('click', function(e) {
-        const btn = e.target.closest('.server-filter');
+    // Открыть раздел
+    document.querySelectorAll('[data-section]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            var section = this.dataset.section;
+            if (section === 'admin') {
+                $('menuScreen').classList.remove('active');
+                $('adminScreen').classList.add('active');
+                renderAdminUsers();
+                return;
+            }
+            if (!SECTIONS[section]) return;
+            currentSectionKey = section;
+            currentFilter = 'all';
+            document.querySelectorAll('.server-filter').forEach(function(b){b.classList.remove('active')});
+            document.querySelector('.server-filter[data-server="all"]').classList.add('active');
+            $('menuScreen').classList.remove('active');
+            $('sectionScreen').classList.add('active');
+            renderSection();
+        });
+    });
+
+    // Фильтры
+    $('serverFilters').addEventListener('click', function(e){
+        var btn = e.target.closest('.server-filter');
         if (!btn) return;
-        document.querySelectorAll('.server-filter').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.server-filter').forEach(function(b){b.classList.remove('active')});
         btn.classList.add('active');
         currentFilter = btn.dataset.server;
         closeAllMenus();
-        renderTrades();
+        renderSection();
     });
 
-    $('tradesBody').addEventListener('click', function(e) {
-        const gear = e.target.closest('.gear-btn');
+    // Клик по шестерёнке
+    $('dataBody').addEventListener('click', function(e){
+        var gear = e.target.closest('.gear-btn');
         if (!gear) return;
         e.stopPropagation();
-        const idx = parseInt(gear.dataset.idx, 10);
+        var idx = parseInt(gear.dataset.idx, 10);
         if (isNaN(idx)) return;
-        if (!canEditServer(trades[idx][0])) {
-            showToast('error', 'Нет прав', 'Вы не можете менять статусы на чужом сервере.');
+        var cfg = SECTIONS[currentSectionKey];
+        if (!canEditServer(cfg.getServer(data[currentSectionKey][idx]))) {
+            showToast('error','Нет прав','Вы не можете менять статусы на чужом сервере.');
             return;
         }
         openStatusMenu(gear, idx);
     });
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function(e){
         if (!e.target.closest('.status-menu') && !e.target.closest('.gear-btn')) closeAllMenus();
     });
     window.addEventListener('scroll', closeAllMenus, true);
     window.addEventListener('resize', closeAllMenus);
 
+    // Модалка загрузки
+    $('uploadBtn').addEventListener('click', openUploadModal);
+    $('uploadCancel').addEventListener('click', function(){ $('uploadModal').classList.remove('open'); });
+    $('uploadConfirm').addEventListener('click', confirmUpload);
+    $('clearSectionBtn').addEventListener('click', clearSection);
+
+    // Админ
     $('adminBody').addEventListener('click', handleAdminClick);
 
-    document.querySelectorAll('[data-section]').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            const s = this.dataset.section;
-            if (s === 'Трейды') {
-                $('menuScreen').classList.remove('active');
-                $('tradesScreen').classList.add('active');
-                renderTrades();
-            } else if (s === 'Админ-панель') {
-                $('menuScreen').classList.remove('active');
-                $('adminScreen').classList.add('active');
-                renderAdminUsers();
-            } else {
-                showToast('info', 'Раздел', 'Открытие раздела: ' + s);
-            }
-        });
-    });
-
-    console.log('%c⛵ Сайт загружен', 'color:#3D6DB5;font-weight:bold;font-size:14px');
+    console.log('%c⛵ Сайт загружен','color:#3D6DB5;font-weight:bold;font-size:14px');
     console.log('Repo:', GITHUB_USER + '/' + GITHUB_REPO);
-    console.log('Токен для записи:', getToken() ? 'установлен' : 'НЕ установлен');
+    console.log('Токен:', getToken() ? 'установлен' : 'НЕ установлен');
 });
 })();
 </script>
