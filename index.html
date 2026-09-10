@@ -80,6 +80,9 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 .admin-inline-msg.show{display:block}
 .admin-inline-msg.ok{background:#d4edda;color:#155724}
 .admin-inline-msg.err{background:#f8d7da;color:#721c24}
+.token-status{font-size:11px;color:#888;margin-top:5px}
+.token-status.ok{color:#28a745}
+.token-status.err{color:#dc3545}
 </style>
 </head>
 <body>
@@ -115,10 +118,16 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 </tr>
 <tr>
 <td class="label-cell"><label for="password">Пароль:</label></td>
-<td><input type="password" id="password" autocomplete="off"></td>
+<td>
+<input type="password" id="password" autocomplete="off">
+<div class="token-status" id="tokenStatus">Токен для записи не установлен</div>
+</td>
 </tr>
 </table>
-<div class="auth-footer"><button type="submit" class="pmabtn" id="authBtn">Авторизация</button></div>
+<div class="auth-footer">
+<button type="button" class="pmabtn" id="setTokenBtn" style="margin-right:5px;">Установить токен</button>
+<button type="submit" class="pmabtn" id="authBtn">Авторизация</button>
+</div>
 </fieldset>
 </form>
 </div>
@@ -203,16 +212,17 @@ legend{background:#fff;border:1px solid #ccc;padding:2px 8px;font-size:13px;font
 (function(){
 'use strict';
 
-// ═══════════════ НАСТРОЙКИ GITHUB ═══════════════
-const GITHUB_USER  = 'STKILL823';
-const GITHUB_REPO  = 'msvg6165';
-const GITHUB_TOKEN = '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';
-const BRANCH       = 'main';
+// ═══════════════ НАСТРОЙКИ ═══════════════
+const GITHUB_USER = 'STKILL823';
+const GITHUB_REPO = 'msvg6165';
+const BRANCH      = 'main';
+// Токен НЕ хранится в файле. Он вводится через кнопку "Установить токен"
+// и сохраняется в localStorage браузера.
+// ══════════════════════════════════════════
 
 const API_BASE   = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/';
 const USERS_API  = API_BASE + 'users.json';
 const TRADES_API = API_BASE + 'trades.json';
-// ═════════════════════════════════════════════════
 
 // ─── Состояние ───
 let trades = [];
@@ -224,8 +234,29 @@ let revealedPasswords = {};
 let currentFilter = 'all';
 let openMenuEl = null;
 
-// ─── Хелперы ───
 const $ = id => document.getElementById(id);
+
+function getToken() {
+    return localStorage.getItem('gh_token') || '';
+}
+
+function setToken(t) {
+    if (t) localStorage.setItem('gh_token', t);
+    else localStorage.removeItem('gh_token');
+    updateTokenStatus();
+}
+
+function updateTokenStatus() {
+    const t = getToken();
+    const el = $('tokenStatus');
+    if (t) {
+        el.textContent = 'Токен установлен (запись разрешена)';
+        el.className = 'token-status ok';
+    } else {
+        el.textContent = 'Токен не установлен — можно только просматривать';
+        el.className = 'token-status err';
+    }
+}
 
 function showToast(type, title, msg) {
     const el = $('toast');
@@ -238,114 +269,90 @@ function showToast(type, title, msg) {
     el._timer = setTimeout(() => el.classList.remove('show'), 5000);
 }
 
-function showLoading(text) {
+function showLoading(t) {
     $('loadingOverlay').style.display = 'flex';
-    $('loadingOverlay').textContent = text || 'Загрузка...';
+    $('loadingOverlay').textContent = t || 'Загрузка...';
 }
-function hideLoading() {
-    $('loadingOverlay').style.display = 'none';
-}
+function hideLoading() { $('loadingOverlay').style.display = 'none'; }
 
-function formatMoney(n) {
-    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-}
+function formatMoney(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
 
-const STATUS_LABELS = {
-    pending: 'Ожидание',
-    clear:   'Нету нарушений',
-    blocked: 'Заблокирован'
-};
+const STATUS_LABELS = { pending: 'Ожидание', clear: 'Нету нарушений', blocked: 'Заблокирован' };
 
-// ─── GitHub API: чтение файла (без кэша) ───
+// ─── ЧТЕНИЕ (без токена, публично) ───
 async function readFile(apiUrl) {
-    console.log('[GitHub] GET', apiUrl);
-    const res = await fetch(apiUrl + '?ref=' + BRANCH + '&t=' + Date.now(), {
-        headers: {
-            'Authorization': 'Bearer ' + GITHUB_TOKEN,
-            'Accept': 'application/vnd.github.v3+json'
-        }
-    });
-    console.log('[GitHub] status', res.status);
+    const url = apiUrl + '?ref=' + BRANCH + '&t=' + Date.now();
+    console.log('[GET]', url);
+    const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3+json' } });
+    console.log('[GET]', res.status, apiUrl);
     if (res.status === 404) return null;
-    if (!res.ok) {
-        const errText = await res.text();
-        console.error('[GitHub] error:', res.status, errText);
-        throw new Error('HTTP ' + res.status);
-    }
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     const info = await res.json();
-    // Декодируем base64 → utf8
     const decoded = decodeURIComponent(escape(atob(info.content.replace(/\s/g, ''))));
     return JSON.parse(decoded);
 }
 
-// ─── GitHub API: запись файла ───
+// ─── ЗАПИСЬ (с токеном из localStorage) ───
 async function writeFile(apiUrl, data, message) {
-    // 1. Получаем текущий SHA
+    const token = getToken();
+    if (!token) {
+        throw new Error('Токен не установлен. Нажми "Установить токен".');
+    }
+    // SHA
     const getRes = await fetch(apiUrl + '?ref=' + BRANCH + '&t=' + Date.now(), {
-        headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github.v3+json' }
+        headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' }
     });
-    if (!getRes.ok) throw new Error('GET SHA failed: ' + getRes.status);
+    if (getRes.status === 401) throw new Error('Токен невалидный (401). Создай новый.');
+    if (!getRes.ok) throw new Error('GET SHA: ' + getRes.status);
     const info = await getRes.json();
 
-    // 2. Кодируем данные
     const json = JSON.stringify(data, null, 2);
     const content = btoa(unescape(encodeURIComponent(json)));
 
-    // 3. PUT-запрос
     const putRes = await fetch(apiUrl, {
         method: 'PUT',
         headers: {
-            'Authorization': 'Bearer ' + GITHUB_TOKEN,
+            'Authorization': 'Bearer ' + token,
             'Accept': 'application/vnd.github.v3+json',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({ message: message, content: content, sha: info.sha, branch: BRANCH })
     });
+    if (putRes.status === 401) throw new Error('Токен невалидный (401)');
+    if (putRes.status === 403) throw new Error('Нет прав на запись (403). Нужно Contents: Read and write');
     if (!putRes.ok) {
         const err = await putRes.text();
-        console.error('[GitHub] PUT error:', putRes.status, err);
+        console.error('[PUT]', putRes.status, err);
         throw new Error('PUT ' + putRes.status);
     }
     return true;
 }
 
-// ─── Загрузка данных ───
 async function loadUsers() {
-    showLoading('Загрузка пользователей...');
     try {
         const data = await readFile(USERS_API);
-        if (!data) {
-            console.warn('[Auth] users.json not found');
-            users = {};
-            return false;
-        }
+        if (!data) { users = {}; return false; }
         users = data;
-        console.log('[Auth] Users loaded:', users);
+        console.log('[Users]', users);
         return true;
     } catch (e) {
-        console.error('[Auth] loadUsers error:', e);
+        console.error('[loadUsers]', e);
         users = {};
         return false;
-    } finally {
-        hideLoading();
     }
 }
 
 async function loadTrades() {
-    showLoading('Загрузка трейдов...');
     try {
         const data = await readFile(TRADES_API);
         trades = Array.isArray(data) ? data : [];
-        console.log('[Trades] Loaded:', trades.length, 'records');
+        console.log('[Trades]', trades.length, 'records');
     } catch (e) {
-        console.error('[Trades] loadTrades error:', e);
+        console.error('[loadTrades]', e);
         trades = [];
-    } finally {
-        hideLoading();
     }
 }
 
-// ─── Рендер таблицы трейдов ───
 function canEditServer(srv) {
     if (currentRole === 'admin') return true;
     return currentServer !== '' && String(srv) === String(currentServer);
@@ -360,20 +367,14 @@ function renderTrades() {
         const srv = row[0], sid = row[1], sname = row[2], slvl = row[3],
               bid = row[4], bname = row[5], blvl = row[6],
               amount = row[7], status = row[8] || 'pending';
-
         if (currentFilter !== 'all' && String(srv) !== currentFilter) return;
         count++;
-
         const editable = canEditServer(srv);
         const tr = document.createElement('tr');
         tr.innerHTML =
             '<td style="text-align:center;font-weight:bold;color:#3D6DB5">' + srv + '</td>' +
-            '<td>' + sid + '</td>' +
-            '<td>' + sname + '</td>' +
-            '<td>' + slvl + '</td>' +
-            '<td>' + bid + '</td>' +
-            '<td>' + bname + '</td>' +
-            '<td>' + blvl + '</td>' +
+            '<td>' + sid + '</td><td>' + sname + '</td><td>' + slvl + '</td>' +
+            '<td>' + bid + '</td><td>' + bname + '</td><td>' + blvl + '</td>' +
             '<td style="text-align:right;font-family:Consolas,monospace;font-weight:bold">' + formatMoney(amount) + '</td>' +
             '<td style="white-space:nowrap">' +
                 '<span class="status-badge ' + status + '">' + (STATUS_LABELS[status] || status) + '</span>' +
@@ -383,11 +384,9 @@ function renderTrades() {
             '</td>';
         tbody.appendChild(tr);
     });
-
     $('tradesCounter').textContent = 'Найдено записей: ' + count;
 }
 
-// ─── Меню статусов ───
 function closeAllMenus() {
     if (openMenuEl) { openMenuEl.remove(); openMenuEl = null; }
 }
@@ -414,12 +413,9 @@ function openStatusMenu(gearBtn, idx) {
             }
             const oldStatus = trades[idx][8];
             trades[idx][8] = key;
-
-            // Обновляем бейдж
             const badge = gearBtn.closest('tr').querySelector('.status-badge');
             badge.className = 'status-badge ' + key;
             badge.textContent = STATUS_LABELS[key];
-
             closeAllMenus();
 
             showLoading('Сохранение...');
@@ -427,8 +423,7 @@ function openStatusMenu(gearBtn, idx) {
                 await writeFile(TRADES_API, trades, 'Update trade status');
                 showToast('success', 'Статус изменён', trades[idx][2] + ' → ' + trades[idx][5]);
             } catch (e) {
-                console.error('[Trades] save error:', e);
-                // Откат
+                console.error(e);
                 trades[idx][8] = oldStatus;
                 badge.className = 'status-badge ' + oldStatus;
                 badge.textContent = STATUS_LABELS[oldStatus];
@@ -446,7 +441,6 @@ function openStatusMenu(gearBtn, idx) {
     openMenuEl = menu;
 }
 
-// ─── Админ-панель ───
 function renderAdminUsers() {
     const tbody = $('adminBody');
     tbody.innerHTML = '';
@@ -455,20 +449,15 @@ function renderAdminUsers() {
         const isSelf = uname === currentUser;
         const isAdmin = u.role === 'admin';
         const revealed = revealedPasswords[uname] === true;
-
         const tr = document.createElement('tr');
         tr.innerHTML =
-            '<td style="font-weight:bold;color:#2c4f8a">' + uname +
-                (isSelf ? ' <span style="color:#888;font-weight:normal">(это вы)</span>' : '') + '</td>' +
-            '<td style="text-align:center"><span class="role-badge ' + (isAdmin ? 'admin' : 'tech') + '">' +
-                (isAdmin ? 'Админ' : 'Тех') + '</span></td>' +
+            '<td style="font-weight:bold;color:#2c4f8a">' + uname + (isSelf ? ' <span style="color:#888;font-weight:normal">(это вы)</span>' : '') + '</td>' +
+            '<td style="text-align:center"><span class="role-badge ' + (isAdmin ? 'admin' : 'tech') + '">' + (isAdmin ? 'Админ' : 'Тех') + '</span></td>' +
             '<td style="text-align:center">' + u.server + '</td>' +
             '<td style="font-family:Consolas,monospace">' + (revealed ? u.password : '••••••••') + '</td>' +
             '<td>' +
-                '<button class="pmabtn" data-act="toggle" data-user="' + uname + '">' +
-                    (revealed ? 'Скрыть' : 'Показать') + '</button> ' +
-                '<button class="pmabtn" data-act="change" data-user="' + uname + '" ' +
-                    (isAdmin ? 'disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>Изменить</button>' +
+                '<button class="pmabtn" data-act="toggle" data-user="' + uname + '">' + (revealed ? 'Скрыть' : 'Показать') + '</button> ' +
+                '<button class="pmabtn" data-act="change" data-user="' + uname + '" ' + (isAdmin ? 'disabled style="opacity:0.5;cursor:not-allowed"' : '') + '>Изменить</button>' +
             '</td>';
         tbody.appendChild(tr);
     });
@@ -477,27 +466,20 @@ function renderAdminUsers() {
 async function handleAdminClick(e) {
     const btn = e.target.closest('button[data-act]');
     if (!btn) return;
-    const act = btn.dataset.act;
-    const uname = btn.dataset.user;
+    const act = btn.dataset.act, uname = btn.dataset.user;
 
     if (act === 'toggle') {
         revealedPasswords[uname] = !revealedPasswords[uname];
         renderAdminUsers();
         return;
     }
-
     if (act === 'change') {
-        if (users[uname].role === 'admin') {
-            adminMsg('Нельзя менять пароль админа', 'err');
-            return;
-        }
+        if (users[uname].role === 'admin') { adminMsg('Нельзя менять пароль админа', 'err'); return; }
         const np = prompt('Новый пароль для ' + uname + ' (мин. 4 символа):', '');
         if (np === null) return;
         if (np.length < 4) { adminMsg('Пароль слишком короткий', 'err'); return; }
-
         const oldPass = users[uname].password;
         users[uname].password = np;
-
         showLoading('Сохранение...');
         try {
             await writeFile(USERS_API, users, 'Update user password');
@@ -505,9 +487,9 @@ async function handleAdminClick(e) {
             showToast('success', 'Пароль изменён', uname + ' → ' + np);
             renderAdminUsers();
         } catch (err) {
-            console.error('[Admin] save error:', err);
+            console.error(err);
             users[uname].password = oldPass;
-            adminMsg('Ошибка сохранения: ' + err.message, 'err');
+            adminMsg('Ошибка: ' + err.message, 'err');
             showToast('error', 'Ошибка', err.message);
         } finally {
             hideLoading();
@@ -522,38 +504,26 @@ function adminMsg(text, type) {
     setTimeout(() => el.classList.remove('show'), 4000);
 }
 
-// ─── Логин ───
 async function handleLogin(e) {
     e.preventDefault();
     const uname = $('username').value.trim();
     const pass  = $('password').value;
 
-    if (!uname || !pass) {
-        showToast('error', 'Ошибка', 'Заполните все поля');
-        return;
-    }
+    if (!uname || !pass) { showToast('error', 'Ошибка', 'Заполните все поля'); return; }
 
-    // Загружаем юзеров через API
     showLoading('Проверка...');
     const loaded = await loadUsers();
     hideLoading();
 
     if (!loaded) {
-        showToast('error', 'Ошибка', 'Не удалось загрузить users.json (проверь F12 → Console)');
+        showToast('error', 'Ошибка', 'Не удалось загрузить users.json (F12 → Console)');
         return;
     }
 
     const user = users[uname];
-    if (!user) {
-        showToast('error', 'Ошибка', 'Пользователь "' + uname + '" не найден в users.json');
-        return;
-    }
-    if (user.password !== pass) {
-        showToast('error', 'Ошибка', 'Неверный пароль');
-        return;
-    }
+    if (!user) { showToast('error', 'Ошибка', 'Пользователь "' + uname + '" не найден'); return; }
+    if (user.password !== pass) { showToast('error', 'Ошибка', 'Неверный пароль'); return; }
 
-    // Успех
     currentUser = uname;
     currentServer = user.server;
     currentRole = user.role;
@@ -563,8 +533,9 @@ async function handleLogin(e) {
     $('currentUserAdmin').textContent = uname;
     $('adminBtn').style.display = currentRole === 'admin' ? 'inline-block' : 'none';
 
-    // Загружаем трейды
+    showLoading('Загрузка трейдов...');
     await loadTrades();
+    hideLoading();
     renderTrades();
 
     showToast('success', 'Успешно', 'Добро пожаловать, ' + uname + '!');
@@ -574,7 +545,6 @@ async function handleLogin(e) {
     }, 300);
 }
 
-// ─── Выход ───
 function doLogout() {
     $('menuScreen').classList.remove('active');
     $('tradesScreen').classList.remove('active');
@@ -588,18 +558,31 @@ function doLogout() {
     showToast('info', 'Выход', 'Вы вышли из системы');
 }
 
-// ═══════════════ ИНИЦИАЛИЗАЦИЯ ═══════════════
 document.addEventListener('DOMContentLoaded', function() {
+    updateTokenStatus();
 
-    // Логин
+    // Кнопка установки токена
+    $('setTokenBtn').addEventListener('click', function() {
+        const current = getToken();
+        const val = prompt(
+            'Вставь Personal Access Token (github_pat_...).\n\n' +
+            'Токен хранится ТОЛЬКО в твоём браузере (localStorage), на GitHub не отправляется.\n\n' +
+            'Текущий токен: ' + (current ? current.slice(0, 20) + '...' : 'не установлен') + '\n\n' +
+            'Оставь пустым и нажми OK, чтобы удалить токен.',
+            current ? '' : ''
+        );
+        if (val === null) return;
+        if (val.trim() === '') { setToken(''); showToast('info', 'Токен', 'Токен удалён'); return; }
+        setToken(val.trim());
+        showToast('success', 'Токен', 'Токен сохранён в браузере');
+    });
+
     $('loginForm').addEventListener('submit', handleLogin);
 
-    // Выход
     $('logoutBtn').addEventListener('click', doLogout);
     $('logoutBtnTrades').addEventListener('click', doLogout);
     $('logoutBtnAdmin').addEventListener('click', doLogout);
 
-    // Навигация: назад
     $('backFromTrades').addEventListener('click', function() {
         $('tradesScreen').classList.remove('active');
         $('menuScreen').classList.add('active');
@@ -610,7 +593,6 @@ document.addEventListener('DOMContentLoaded', function() {
         $('menuScreen').classList.add('active');
     });
 
-    // Фильтры серверов
     $('serverFilters').addEventListener('click', function(e) {
         const btn = e.target.closest('.server-filter');
         if (!btn) return;
@@ -621,14 +603,12 @@ document.addEventListener('DOMContentLoaded', function() {
         renderTrades();
     });
 
-    // Клик по шестерёнке
     $('tradesBody').addEventListener('click', function(e) {
         const gear = e.target.closest('.gear-btn');
         if (!gear) return;
         e.stopPropagation();
         const idx = parseInt(gear.dataset.idx, 10);
         if (isNaN(idx)) return;
-
         if (!canEditServer(trades[idx][0])) {
             showToast('error', 'Нет прав', 'Вы не можете менять статусы на чужом сервере.');
             return;
@@ -636,39 +616,34 @@ document.addEventListener('DOMContentLoaded', function() {
         openStatusMenu(gear, idx);
     });
 
-    // Клик вне меню — закрыть
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.status-menu') && !e.target.closest('.gear-btn')) {
-            closeAllMenus();
-        }
+        if (!e.target.closest('.status-menu') && !e.target.closest('.gear-btn')) closeAllMenus();
     });
     window.addEventListener('scroll', closeAllMenus, true);
     window.addEventListener('resize', closeAllMenus);
 
-    // Админ-панель
     $('adminBody').addEventListener('click', handleAdminClick);
 
-    // Кнопки меню
     document.querySelectorAll('[data-section]').forEach(function(btn) {
         btn.addEventListener('click', function() {
-            const section = this.dataset.section;
-            if (section === 'Трейды') {
+            const s = this.dataset.section;
+            if (s === 'Трейды') {
                 $('menuScreen').classList.remove('active');
                 $('tradesScreen').classList.add('active');
                 renderTrades();
-            } else if (section === 'Админ-панель') {
+            } else if (s === 'Админ-панель') {
                 $('menuScreen').classList.remove('active');
                 $('adminScreen').classList.add('active');
                 renderAdminUsers();
             } else {
-                showToast('info', 'Раздел', 'Открытие раздела: ' + section);
+                showToast('info', 'Раздел', 'Открытие раздела: ' + s);
             }
         });
     });
 
     console.log('%c⛵ Сайт загружен', 'color:#3D6DB5;font-weight:bold;font-size:14px');
     console.log('Repo:', GITHUB_USER + '/' + GITHUB_REPO);
-    console.log('Если что-то не работает — смотри ошибки выше ↓');
+    console.log('Токен для записи:', getToken() ? 'установлен' : 'НЕ установлен');
 });
 })();
 </script>
