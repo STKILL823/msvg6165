@@ -2,105 +2,108 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Массовая выгрузка 61-65</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛵</text></svg>">
 <style>
-* { box-sizing: border-box; }
-body { font-family: Arial, sans-serif; background: #fff; margin: 0; padding: 0; color: #000; min-height: 100vh; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; background: #fff; color: #000; min-height: 100vh; font-size: 14px; }
 
-.login-container { width: 100%; max-width: 450px; padding: 20px; margin: 0 auto; text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.login-container { width: 100%; max-width: 450px; padding: 20px; margin: 0 auto; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
 .login-container.hidden { display: none; }
-.logo-ship { font-size: 64px; line-height: 1; display: block; margin-bottom: 5px; }
-.logo-text { font-size: 22px; font-weight: bold; font-style: italic; margin: 5px 0; color: #3D6DB5; }
-.welcome-text { font-size: 16px; font-weight: bold; margin-bottom: 25px; color: #333; }
+.logo-ship { font-size: 56px; line-height: 1; display: block; margin-bottom: 5px; }
+.logo-text { font-size: 20px; font-weight: bold; font-style: italic; margin: 5px 0; color: #3D6DB5; }
+.welcome-text { font-size: 14px; font-weight: bold; margin-bottom: 20px; color: #333; }
 
-fieldset { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; background: #f9f9f9; text-align: left; }
+fieldset { border: 1px solid #ccc; padding: 12px; margin-bottom: 15px; background: #f9f9f9; text-align: left; }
 legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 13px; font-weight: bold; color: #333; margin-left: 10px; }
-.lang-select { width: 100%; padding: 4px; border: 1px solid #aaa; font-size: 13px; font-family: inherit; background: #fff; cursor: pointer; }
+.lang-select { width: 100%; padding: 8px; border: 1px solid #aaa; font-size: 14px; font-family: inherit; background: #fff; cursor: pointer; border-radius: 0; }
 
 .auth-table { width: 100%; border-collapse: collapse; }
-.auth-table td { padding-bottom: 15px; vertical-align: top; }
-.auth-table .label-cell { width: 110px; padding-top: 6px; font-size: 13px; color: #333; }
-.auth-table input, .auth-table select { width: 100%; padding: 4px 6px; border: 1px solid #aaa; font-size: 13px; font-family: inherit; }
+.auth-table td { padding-bottom: 12px; vertical-align: top; }
+.auth-table .label-cell { width: 100px; padding-top: 8px; font-size: 13px; color: #333; }
+.auth-table input, .auth-table select { width: 100%; padding: 8px; border: 1px solid #aaa; font-size: 14px; font-family: inherit; border-radius: 0; }
 .auth-table input:focus, .auth-table select:focus { outline: none; border-color: #3D6DB5; box-shadow: 0 0 0 2px rgba(61,109,181,0.15); }
 
-.captcha-row { display: flex; align-items: center; gap: 8px; }
-.captcha-q { font-family: Consolas, monospace; font-size: 14px; font-weight: bold; color: #2c4f8a; padding: 4px 10px; background: #e7f0fa; border: 1px solid #b8c8d8; white-space: nowrap; }
-.captcha-refresh { padding: 4px 8px; border: 1px solid #aaa; background: #fff; cursor: pointer; font-size: 12px; }
+.captcha-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.captcha-q { font-family: Consolas, monospace; font-size: 15px; font-weight: bold; color: #2c4f8a; padding: 6px 12px; background: #e7f0fa; border: 1px solid #b8c8d8; white-space: nowrap; }
+.captcha-refresh { padding: 6px 12px; border: 1px solid #aaa; background: #fff; cursor: pointer; font-size: 14px; }
+.captcha-row input { flex: 1; min-width: 80px; }
 
 .token-status { font-size: 11px; color: #888; margin-top: 5px; }
 .token-status.ok { color: #28a745; }
 .token-status.err { color: #dc3545; }
 
-.auth-footer { background: #e8e8e8; border-top: 1px solid #ccc; padding: 10px 15px; margin: 0 -15px -15px -15px; text-align: right; }
+.auth-footer { background: #e8e8e8; border-top: 1px solid #ccc; padding: 10px 12px; margin: 0 -12px -12px -12px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
 
-.pmabtn { display: inline-block; padding: 3px 10px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 12px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.5; }
+.pmabtn { display: inline-block; padding: 8px 14px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 13px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.4; border-radius: 0; }
 .pmabtn:hover { background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%); border-color: #3D6DB5; color: #1a3d6e; }
-.pmabtn:active { background: linear-gradient(to bottom, #d0dce8 0%, #b8c8d8 100%); box-shadow: inset 0 1px 2px rgba(0,0,0,0.15); }
+.pmabtn:active { background: linear-gradient(to bottom, #d0dce8 0%, #b8c8d8 100%); }
 .pmabtn:disabled { opacity: 0.4; cursor: not-allowed; }
 .pmabtn.ban { background: linear-gradient(to bottom, #dc3545, #b02a37); color: #fff; border-color: #a52834; }
 
 .screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
 .screen.active { display: flex; }
 
-.menu-header { background: linear-gradient(135deg, #3D6DB5 0%, #2c4f8a 100%); color: #fff; padding: 14px 25px; display: flex; justify-content: space-between; align-items: center; }
-.brand { display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: bold; font-style: italic; }
-.brand-ship { font-size: 28px; line-height: 1; }
-.user-info { display: flex; align-items: center; gap: 12px; font-size: 13px; }
-.user-badge { background: rgba(255,255,255,0.2); padding: 5px 12px; font-weight: bold; }
-.logout-btn { padding: 4px 14px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; }
+.menu-header { background: linear-gradient(135deg, #3D6DB5 0%, #2c4f8a 100%); color: #fff; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: bold; font-style: italic; }
+.brand-ship { font-size: 22px; line-height: 1; }
+.user-info { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.user-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; font-weight: bold; }
+.logout-btn { padding: 5px 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; border-radius: 0; }
 .logout-btn:hover { background: rgba(255,255,255,0.25); }
 
-.menu-title { color: #000; font-size: 16px; font-weight: bold; padding: 20px 25px 0; margin: 0; text-align: left; }
-.menu-content { flex: 1; padding: 20px 20px 120px 20px; }
+.menu-title { color: #000; font-size: 15px; font-weight: bold; padding: 15px 15px 0; margin: 0; text-align: left; }
+.menu-content { flex: 1; padding: 15px 15px 140px 15px; }
 
-.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #f4f4f4; border-top: 1px solid #ccc; padding: 10px 20px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; z-index: 100; }
-.bottom-bar .pmabtn { padding: 4px 14px; font-size: 12px; }
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #f4f4f4; border-top: 1px solid #ccc; padding: 8px; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; z-index: 100; }
+.bottom-bar .pmabtn { padding: 8px 12px; font-size: 12px; }
 
-.section-container, .admin-container { flex: 1; padding: 20px 25px 120px 25px; max-width: 1400px; margin: 0 auto; width: 100%; }
-.section-title, .admin-title { color: #000; font-size: 18px; font-weight: bold; margin: 0 0 15px 0; text-align: left; }
-.section-actions { margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
+.section-container, .admin-container { flex: 1; padding: 15px 15px 140px 15px; max-width: 1400px; margin: 0 auto; width: 100%; }
+.section-title, .admin-title { color: #000; font-size: 16px; font-weight: bold; margin: 0 0 12px 0; text-align: left; }
+.section-actions { margin-bottom: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+.section-actions .pmabtn { flex: 1; text-align: center; }
 
-.server-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 15px; }
-.server-filter { padding: 4px 14px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe, #eeeeee); color: #333; font-size: 12px; font-family: inherit; cursor: pointer; }
+.server-filters { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.server-filter { padding: 6px 10px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe, #eeeeee); color: #333; font-size: 12px; font-family: inherit; cursor: pointer; border-radius: 0; }
 .server-filter:hover { background: linear-gradient(to bottom, #f0f6fc, #dce8f5); border-color: #3D6DB5; }
 .server-filter.active { background: linear-gradient(to bottom, #3D6DB5, #2c4f8a); color: #fff; border-color: #2c4f8a; font-weight: bold; }
 
-.counter { font-size: 12px; color: #666; margin-bottom: 10px; text-align: left; }
+.counter { font-size: 12px; color: #666; margin-bottom: 8px; text-align: left; }
 
-.table-wrap { background: #fff; border: 1px solid #ccc; overflow-x: auto; }
-.data-table, .admin-table { width: 100%; border-collapse: collapse; font-size: 12.5px; background: #fff; }
-.data-table th, .admin-table th { background: linear-gradient(to bottom, #f0f0f0 0%, #dcdcdc 100%); border: 1px solid #ccc; padding: 6px 8px; text-align: left; font-weight: bold; color: #333; white-space: nowrap; position: sticky; top: 0; }
-.data-table td, .admin-table td { border: 1px solid #e0e0e0; padding: 5px 8px; color: #333; }
+.table-wrap { background: #fff; border: 1px solid #ccc; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.data-table, .admin-table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
+.data-table th, .admin-table th { background: linear-gradient(to bottom, #f0f0f0 0%, #dcdcdc 100%); border: 1px solid #ccc; padding: 5px 6px; text-align: left; font-weight: bold; color: #333; white-space: nowrap; position: sticky; top: 0; }
+.data-table td, .admin-table td { border: 1px solid #e0e0e0; padding: 4px 6px; color: #333; white-space: nowrap; }
 .data-table tbody tr:nth-child(even), .admin-table tbody tr:nth-child(even) { background: #fafafa; }
 .data-table tbody tr:hover, .admin-table tbody tr:hover { background: #eef4fb; }
 
 .server-cell { text-align: center; font-weight: bold; color: #3D6DB5; }
 .money-cell { text-align: right; font-family: Consolas, monospace; font-weight: bold; white-space: nowrap; }
 
-.status-badge { display: inline-block; padding: 3px 10px; font-size: 11px; font-weight: bold; border: 1px solid; white-space: nowrap; }
+.status-badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; white-space: nowrap; }
 .status-badge.pending { background: #e9ecef; color: #495057; border-color: #ced4da; }
 .status-badge.clear { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .status-badge.blocked { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
 
-.gear-btn { background: transparent; border: 1px solid #ccc; padding: 2px 4px; margin-left: 5px; cursor: pointer; color: #666; vertical-align: middle; display: inline-flex; align-items: center; justify-content: center; }
+.gear-btn { background: transparent; border: 1px solid #ccc; padding: 4px 6px; margin-left: 5px; cursor: pointer; color: #666; vertical-align: middle; display: inline-flex; align-items: center; justify-content: center; border-radius: 0; }
 .gear-btn:hover { background: #f0f6fc; border-color: #3D6DB5; color: #3D6DB5; }
 .gear-btn.disabled { opacity: 0.35; cursor: not-allowed; background: #f0f0f0; color: #999; }
 .gear-btn svg { width: 14px; height: 14px; display: block; }
 
-.status-menu { position: fixed; background: #fff; border: 1px solid #999; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10000; min-width: 170px; display: none; }
+.status-menu { position: fixed; background: #fff; border: 1px solid #999; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 10000; min-width: 180px; display: none; }
 .status-menu.open { display: block; }
-.status-menu-item { padding: 8px 12px; font-size: 12px; cursor: pointer; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 8px; color: #333; }
+.status-menu-item { padding: 12px 15px; font-size: 14px; cursor: pointer; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; color: #333; }
 .status-menu-item:last-child { border-bottom: none; }
-.status-menu-item:hover { background: #f0f6fc; }
+.status-menu-item:hover, .status-menu-item:active { background: #f0f6fc; }
 .status-menu-item.active { background: #e7f0fa; font-weight: bold; }
-.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
 .dot.pending { background: #adb5bd; }
 .dot.clear { background: #28a745; }
 .dot.blocked { background: #dc3545; }
 
-.role-badge { padding: 2px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; }
+.role-badge { padding: 2px 6px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; }
 .role-badge.admin { background: #fff3cd; color: #856404; border-color: #ffeeba; }
 .role-badge.tech { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
 .admin-hint { font-size: 12px; color: #888; margin-bottom: 12px; font-style: italic; }
@@ -109,19 +112,25 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .admin-msg.ok { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .admin-msg.err { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 
-.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 10001; display: none; justify-content: center; align-items: center; }
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10001; display: none; justify-content: center; align-items: center; padding: 15px; }
 .modal.open { display: flex; }
-.modal-content { background: #fff; padding: 20px; width: 90%; max-width: 500px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+.modal-content { background: #fff; padding: 18px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
 .modal-content.wide { max-width: 800px; }
 .modal-title { font-size: 16px; font-weight: bold; color: #2c4f8a; margin-bottom: 12px; }
 .modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; }
-.modal textarea { width: 100%; min-height: 250px; padding: 8px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 12px; resize: vertical; }
-.modal label { display: block; font-size: 13px; color: #333; margin-bottom: 5px; margin-top: 10px; }
-.modal input[type="text"], .modal select { width: 100%; padding: 6px 8px; border: 1px solid #aaa; font-size: 13px; font-family: inherit; }
-.modal-actions { margin-top: 15px; display: flex; justify-content: flex-end; gap: 8px; }
+.modal textarea { width: 100%; min-height: 200px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 13px; resize: vertical; border-radius: 0; }
+.modal label { display: block; font-size: 13px; color: #333; margin-bottom: 5px; margin-top: 10px; font-weight: bold; }
+.modal input[type="text"], .modal input[type="password"], .modal select { width: 100%; padding: 10px; border: 1px solid #aaa; font-size: 14px; font-family: inherit; border-radius: 0; }
+.modal-actions { margin-top: 15px; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.modal-actions .pmabtn { flex: 1; text-align: center; min-width: 120px; }
 
-.toast { position: fixed; top: 20px; right: 20px; min-width: 280px; max-width: 380px; padding: 14px 40px 14px 22px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); font-size: 13px; color: #333; z-index: 9999; overflow: hidden; opacity: 0; transform: translateX(120%); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; }
-.toast.show { opacity: 1; transform: translateX(0); pointer-events: auto; }
+/* Токен-модалка */
+.token-modal-textarea { width: 100%; min-height: 100px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 12px; word-break: break-all; resize: vertical; border-radius: 0; }
+.token-modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
+.token-current { background: #f0f6fc; padding: 8px 10px; border: 1px solid #b8c8d8; font-size: 11px; color: #2c4f8a; font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; }
+
+.toast { position: fixed; top: 15px; right: 15px; left: 15px; max-width: 400px; margin-left: auto; padding: 12px 40px 12px 18px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); font-size: 13px; color: #333; z-index: 9999; overflow: hidden; opacity: 0; transform: translateY(-120%); transition: opacity 0.35s ease, transform 0.35s ease; pointer-events: none; }
+.toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .toast::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
 .toast.error::before { background: #dc3545; }
 .toast.success::before { background: #28a745; }
@@ -133,11 +142,31 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .toast.info .toast-title { color: #3D6DB5; }
 .toast.warning .toast-title { color: #fd7e14; }
 .toast-msg { color: #555; font-size: 12.5px; white-space: pre-line; }
-.toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 16px; color: #999; cursor: pointer; padding: 2px 6px; font-family: inherit; }
+.toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 2px 6px; font-family: inherit; }
 .toast-close:hover { color: #333; }
 
-.loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.85); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 16px; color: #3D6DB5; font-weight: bold; }
+.loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 15px; color: #3D6DB5; font-weight: bold; }
 .loading-overlay.show { display: flex; }
+
+/* Мобильная адаптация */
+@media (max-width: 600px) {
+    .login-container { padding: 15px; }
+    .logo-ship { font-size: 48px; }
+    .logo-text { font-size: 18px; }
+    .auth-table .label-cell { width: 85px; font-size: 12px; }
+    .auth-table input, .auth-table select { padding: 10px 8px; font-size: 14px; }
+    .pmabtn { padding: 10px 14px; font-size: 13px; }
+    .bottom-bar .pmabtn { padding: 10px 12px; font-size: 12px; flex: 1; text-align: center; min-width: 0; }
+    .menu-header { padding: 10px 12px; }
+    .brand { font-size: 13px; }
+    .brand-ship { font-size: 20px; }
+    .user-info { font-size: 11px; gap: 5px; }
+    .user-badge { padding: 3px 8px; }
+    .logout-btn { padding: 4px 8px; font-size: 11px; }
+    .section-container, .admin-container { padding: 12px 12px 140px 12px; }
+    .modal-content { padding: 15px; }
+    .modal-actions .pmabtn { padding: 10px 14px; }
+}
 </style>
 </head>
 <body>
@@ -161,7 +190,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                     <td class="label-cell"><label for="username">Пользователь:</label></td>
                     <td>
                         <select id="username">
-                            <option value="">-- Выберите пользователя --</option>
+                            <option value="">-- Выберите --</option>
                             <option value="Admin">Admin</option>
                             <option value="Tech_61">Tech_61</option>
                             <option value="Tech_62">Tech_62</option>
@@ -183,14 +212,14 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                     <td>
                         <div class="captcha-row">
                             <span class="captcha-q" id="captchaQuestion">0 + 0 = ?</span>
-                            <button type="button" class="captcha-refresh" id="captchaRefresh" title="Обновить">↻</button>
-                            <input type="text" id="captchaAnswer" placeholder="Ответ" style="width:80px;" autocomplete="off">
+                            <button type="button" class="captcha-refresh" id="captchaRefresh">↻</button>
+                            <input type="text" id="captchaAnswer" placeholder="Ответ" inputmode="numeric" pattern="[0-9]*">
                         </div>
                     </td>
                 </tr>
             </table>
             <div class="auth-footer">
-                <button type="button" class="pmabtn" id="setTokenBtn" style="margin-right:5px;">Установить токен</button>
+                <button type="button" class="pmabtn" id="setTokenBtn">Установить токен</button>
                 <button type="submit" class="pmabtn">Авторизация</button>
             </div>
         </fieldset>
@@ -210,10 +239,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     <div class="bottom-bar">
         <button class="pmabtn" data-section="trades">Трейды</button>
         <button class="pmabtn" data-section="unique">Уникальная</button>
-        <button class="pmabtn" data-section="levels">Уровень 3,4,5 работы</button>
+        <button class="pmabtn" data-section="levels">Уровни 3,4,5</button>
         <button class="pmabtn" data-section="works">Работы</button>
         <button class="pmabtn" data-section="pays">/pay</button>
-        <button class="pmabtn" data-section="admin" id="adminBtn" style="display:none;">Админ-панель</button>
+        <button class="pmabtn" data-section="admin" id="adminBtn" style="display:none;">Админ</button>
     </div>
 </div>
 
@@ -229,15 +258,15 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         <div class="section-title" id="sectionTitle">—</div>
         <div class="section-actions" id="sectionActions">
             <button class="pmabtn" id="uploadBtn">Загрузить данные</button>
-            <button class="pmabtn" id="clearBtn">Очистить раздел</button>
+            <button class="pmabtn" id="clearBtn">Очистить</button>
         </div>
         <div class="server-filters" id="serverFilters">
-            <button class="server-filter active" data-server="all">Все серверы</button>
-            <button class="server-filter" data-server="61">Сервер 61</button>
-            <button class="server-filter" data-server="62">Сервер 62</button>
-            <button class="server-filter" data-server="63">Сервер 63</button>
-            <button class="server-filter" data-server="64">Сервер 64</button>
-            <button class="server-filter" data-server="65">Сервер 65</button>
+            <button class="server-filter active" data-server="all">Все</button>
+            <button class="server-filter" data-server="61">61</button>
+            <button class="server-filter" data-server="62">62</button>
+            <button class="server-filter" data-server="63">63</button>
+            <button class="server-filter" data-server="64">64</button>
+            <button class="server-filter" data-server="65">65</button>
         </div>
         <div class="counter" id="sectionCounter"></div>
         <div class="table-wrap">
@@ -268,7 +297,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <table class="admin-table">
                 <thead>
                     <tr>
-                        <th>Пользователь</th>
+                        <th>Логин</th>
                         <th>Роль</th>
                         <th>Сервер</th>
                         <th>Пароль</th>
@@ -284,6 +313,26 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
 </div>
 
+<!-- Токен-модалка -->
+<div class="modal" id="tokenModal">
+    <div class="modal-content">
+        <div class="modal-title">🔑 Установка токена</div>
+        <div class="token-modal-hint">
+            Вставь Personal Access Token (начинается с <b>github_pat_</b>).<br>
+            Токен хранится только в твоём браузере и никуда не отправляется.
+        </div>
+        <div class="token-current" id="tokenCurrent">Текущий токен: не установлен</div>
+        <label for="tokenInput">Токен:</label>
+        <textarea id="tokenInput" class="token-modal-textarea" placeholder="github_pat_..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <div class="modal-actions">
+            <button class="pmabtn" id="tokenClear">🗑 Удалить</button>
+            <button class="pmabtn" id="tokenCancel">Отмена</button>
+            <button class="pmabtn" id="tokenSave">💾 Сохранить</button>
+        </div>
+    </div>
+</div>
+
+<!-- Модалка загрузки -->
 <div class="modal" id="uploadModal">
     <div class="modal-content wide">
         <div class="modal-title" id="uploadModalTitle">Загрузка данных</div>
@@ -296,6 +345,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
 </div>
 
+<!-- Модалка бана -->
 <div class="modal" id="banModal">
     <div class="modal-content">
         <div class="modal-title">🚫 Блокировка</div>
@@ -338,8 +388,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     const SECTIONS = {
         trades: {
-            file: 'trades.json',
-            title: 'Трейды',
+            file: 'trades.json', title: 'Трейды',
             headers: ['Сервер','Продавец (ID)','Имя продавца','Ур.','Покупатель (ID)','Имя покупателя','Ур.','Сумма','Статус'],
             statusIdx: 8,
             parse(line) {
@@ -351,8 +400,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             getSummary: r => `${r[2]} → ${r[5]}`
         },
         unique: {
-            file: 'unique.json',
-            title: 'Уникальная',
+            file: 'unique.json', title: 'Уникальная',
             headers: ['Сервер','ID','Имя','Ур.','Знач.1','Знач.2','Сумма','Статус'],
             statusIdx: 7,
             parse(line) {
@@ -360,12 +408,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 if (p.length < 7) return null;
                 return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending', '', 0];
             },
-            getServer: r => r[0],
-            getSummary: r => r[2]
+            getServer: r => r[0], getSummary: r => r[2]
         },
         levels: {
-            file: 'levels.json',
-            title: 'Уровень 3,4,5 работы',
+            file: 'levels.json', title: 'Уровень 3,4,5 работы',
             headers: ['Сервер','ID','Имя','Ур.','Знач.1','Знач.2','Сумма','Статус'],
             statusIdx: 7,
             parse(line) {
@@ -373,12 +419,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 if (p.length < 7) return null;
                 return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending', '', 0];
             },
-            getServer: r => r[0],
-            getSummary: r => r[2]
+            getServer: r => r[0], getSummary: r => r[2]
         },
         works: {
-            file: 'works.json',
-            title: 'Работы',
+            file: 'works.json', title: 'Работы',
             headers: ['Сервер','Имя','Сумма','Статус'],
             statusIdx: 3,
             parse(line) {
@@ -386,12 +430,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 if (p.length < 3) return null;
                 return [p[0], p[1], p[2].replace(/\s/g, ''), 'pending', '', 0];
             },
-            getServer: r => r[0],
-            getSummary: r => r[1]
+            getServer: r => r[0], getSummary: r => r[1]
         },
         pays: {
-            file: 'pays.json',
-            title: '/pay',
+            file: 'pays.json', title: '/pay',
             headers: ['Сервер','Отправитель (ID)','Имя','Получатель (ID)','Имя','Сумма','Статус'],
             statusIdx: 6,
             parse(line) {
@@ -399,8 +441,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 if (p.length < 6) return null;
                 return [p[0], p[1], p[2], p[3], p[4], p[5].replace(/\s/g, ''), 'pending', '', 0];
             },
-            getServer: r => r[0],
-            getSummary: r => `${r[2]} → ${r[4]}`
+            getServer: r => r[0], getSummary: r => `${r[2]} → ${r[4]}`
         }
     };
 
@@ -409,15 +450,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const state = {
         data: { trades: [], unique: [], levels: [], works: [], pays: [] },
         users: {},
-        currentUser: '',
-        currentServer: '',
-        currentRole: '',
-        currentSection: '',
-        filter: 'all',
-        revealed: {},
-        openMenu: null,
-        pendingBan: null,
-        captchaAnswer: 0
+        currentUser: '', currentServer: '', currentRole: '', currentSection: '',
+        filter: 'all', revealed: {}, openMenu: null, pendingBan: null, captchaAnswer: 0
     };
 
     const $ = id => document.getElementById(id);
@@ -464,7 +498,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('captchaAnswer').value = '';
     }
 
-    // ═══════════ GITHUB ═══════════
     async function readFile(fileName) {
         const token = getToken();
         const apiUrl = `${API_BASE}${fileName}?ref=${BRANCH}&t=${Date.now()}`;
@@ -483,8 +516,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         } catch (e) {
             console.warn('[GET API] exception', e.message, '→ fallback to raw');
         }
-
-        // Fallback: raw.githubusercontent.com (без лимитов GitHub API)
         const rawUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}/${fileName}?t=${Date.now()}`;
         const rawRes = await fetch(rawUrl);
         console.log('[GET RAW]', fileName, rawRes.status);
@@ -563,9 +594,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function formatBanTitle(row, cfg) {
         const info = getBanInfo(row, cfg);
         if (!info) return '';
-        const untilText = info.until === 0
-            ? 'навсегда'
-            : new Date(info.until).toLocaleString('ru-RU');
+        const untilText = info.until === 0 ? 'навсегда' : new Date(info.until).toLocaleString('ru-RU');
         return `Причина: ${info.reason}\nЗаблокирован до: ${untilText}`;
     }
 
@@ -616,17 +645,11 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     }
 
     function closeAllMenus() {
-        if (state.openMenu) {
-            state.openMenu.remove();
-            state.openMenu = null;
-        }
+        if (state.openMenu) { state.openMenu.remove(); state.openMenu = null; }
     }
 
     function openStatusMenu(gearBtn, idx) {
-        if (state.openMenu && state.openMenu.dataset.idx == idx) {
-            closeAllMenus();
-            return;
-        }
+        if (state.openMenu && state.openMenu.dataset.idx == idx) { closeAllMenus(); return; }
         closeAllMenus();
 
         const cfg = SECTIONS[state.currentSection];
@@ -689,8 +712,19 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             menu.appendChild(item);
         });
 
-        menu.style.top = (rect.bottom + 4) + 'px';
-        menu.style.left = Math.max(8, rect.right - 170) + 'px';
+        // Позиционирование с учётом мобилки
+        const menuWidth = 180;
+        const menuHeight = 150;
+        let top = rect.bottom + 4;
+        let left = rect.right - menuWidth;
+
+        if (left < 8) left = 8;
+        if (left + menuWidth > window.innerWidth - 8) left = window.innerWidth - menuWidth - 8;
+        if (top + menuHeight > window.innerHeight - 8) top = rect.top - menuHeight - 4;
+        if (top < 8) top = 8;
+
+        menu.style.top = top + 'px';
+        menu.style.left = left + 'px';
         document.body.appendChild(menu);
         state.openMenu = menu;
     }
@@ -701,7 +735,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('banReason').value = '';
         $('banDuration').value = '24';
         $('banModal').classList.add('open');
-        setTimeout(() => $('banReason').focus(), 100);
     }
 
     async function confirmBan() {
@@ -709,10 +742,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const { row, cfg, gearBtn } = state.pendingBan;
 
         const reason = $('banReason').value.trim();
-        if (!reason) {
-            toast('error', 'Ошибка', 'Укажи причину бана');
-            return;
-        }
+        if (!reason) { toast('error', 'Ошибка', 'Укажи причину бана'); return; }
 
         const hours = parseInt($('banDuration').value, 10);
         const until = hours === 0 ? 0 : Date.now() + hours * 3600 * 1000;
@@ -753,10 +783,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     }
 
     function openUploadModal() {
-        if (!isAdmin()) {
-            toast('error', 'Нет прав', 'Загружать данные может только Admin.');
-            return;
-        }
+        if (!isAdmin()) { toast('error', 'Нет прав', 'Загружать данные может только Admin.'); return; }
         const cfg = SECTIONS[state.currentSection];
         $('uploadModalTitle').textContent = 'Загрузка: ' + cfg.title;
         const hints = {
@@ -772,19 +799,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     }
 
     async function confirmUpload() {
-        if (!isAdmin()) {
-            $('uploadModal').classList.remove('open');
-            toast('error', 'Нет прав', 'Только Admin');
-            return;
-        }
+        if (!isAdmin()) { $('uploadModal').classList.remove('open'); toast('error', 'Нет прав', 'Только Admin'); return; }
         const cfg = SECTIONS[state.currentSection];
         const text = $('uploadTextarea').value.trim();
-        if (!text) {
-            toast('error', 'Ошибка', 'Вставь данные');
-            return;
-        }
-        let added = 0;
-        let skipped = 0;
+        if (!text) { toast('error', 'Ошибка', 'Вставь данные'); return; }
+
+        let added = 0, skipped = 0;
         const existing = state.data[state.currentSection];
 
         text.split('\n').forEach(line => {
@@ -796,10 +816,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             added++;
         });
 
-        if (added === 0) {
-            toast('error', 'Ошибка', 'Не удалось распарсить ни одной строки');
-            return;
-        }
+        if (added === 0) { toast('error', 'Ошибка', 'Не удалось распарсить ни одной строки'); return; }
+
         $('uploadModal').classList.remove('open');
         showLoading('Сохранение в GitHub...');
         try {
@@ -814,10 +832,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     }
 
     async function clearSection() {
-        if (!isAdmin()) {
-            toast('error', 'Нет прав', 'Очищать данные может только Admin.');
-            return;
-        }
+        if (!isAdmin()) { toast('error', 'Нет прав', 'Очищать данные может только Admin.'); return; }
         if (!confirm(`Точно очистить раздел «${SECTIONS[state.currentSection].title}»?`)) return;
         const cfg = SECTIONS[state.currentSection];
         state.data[state.currentSection] = [];
@@ -836,7 +851,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function renderAdminUsers() {
         const body = $('adminBody');
         if (!isAdmin()) {
-            body.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#dc3545;padding:20px;">Нет доступа. Только Admin.</td></tr>';
+            body.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#dc3545;padding:20px;">Нет доступа.</td></tr>';
             return;
         }
         body.innerHTML = '';
@@ -847,23 +862,20 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             const revealed = state.revealed[uname] === true;
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td style="font-weight:bold;color:#2c4f8a">${uname}${isSelf ? ' <span style="color:#888;font-weight:normal">(это вы)</span>' : ''}</td>
+                <td style="font-weight:bold;color:#2c4f8a">${uname}${isSelf ? ' (вы)' : ''}</td>
                 <td style="text-align:center"><span class="role-badge ${isAdminRow ? 'admin' : 'tech'}">${isAdminRow ? 'Админ' : 'Тех'}</span></td>
                 <td style="text-align:center">${u.server}</td>
-                <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••••'}</td>
+                <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••'}</td>
                 <td>
-                    <button class="pmabtn" data-act="toggle" data-user="${uname}">${revealed ? 'Скрыть' : 'Показать'}</button>
-                    <button class="pmabtn" data-act="change" data-user="${uname}" ${isAdminRow ? 'disabled' : ''}>Изменить</button>
+                    <button class="pmabtn" data-act="toggle" data-user="${uname}">${revealed ? '👁' : '👁'}</button>
+                    <button class="pmabtn" data-act="change" data-user="${uname}" ${isAdminRow ? 'disabled' : ''}>✏</button>
                 </td>`;
             body.appendChild(tr);
         });
     }
 
     async function handleAdminClick(e) {
-        if (!isAdmin()) {
-            toast('error', 'Нет прав', 'Только Admin');
-            return;
-        }
+        if (!isAdmin()) { toast('error', 'Нет прав', 'Только Admin'); return; }
         const btn = e.target.closest('button[data-act]');
         if (!btn) return;
         const act = btn.dataset.act;
@@ -875,16 +887,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             return;
         }
         if (act === 'change') {
-            if (state.users[uname].role === 'admin') {
-                adminMsg('Нельзя менять пароль админа', 'err');
-                return;
-            }
+            if (state.users[uname].role === 'admin') { adminMsg('Нельзя менять пароль админа', 'err'); return; }
             const np = prompt(`Новый пароль для ${uname} (мин. 4 символа):`, '');
             if (np === null) return;
-            if (np.length < 4) {
-                adminMsg('Пароль слишком короткий', 'err');
-                return;
-            }
+            if (np.length < 4) { adminMsg('Пароль слишком короткий', 'err'); return; }
             const oldPass = state.users[uname].password;
             state.users[uname].password = np;
             showLoading('Сохранение...');
@@ -912,15 +918,11 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     async function handleLogin(e) {
         e.preventDefault();
-
         const uname = $('username').value.trim();
         const pass = $('password').value;
         const captchaInput = $('captchaAnswer').value.trim();
 
-        if (!uname || !pass) {
-            toast('error', 'Ошибка', 'Заполните все поля');
-            return;
-        }
+        if (!uname || !pass) { toast('error', 'Ошибка', 'Заполните все поля'); return; }
 
         if (!captchaInput || parseInt(captchaInput, 10) !== state.captchaAnswer) {
             generateCaptcha();
@@ -970,9 +972,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     }
 
     function doLogout() {
-        state.currentUser = '';
-        state.currentServer = '';
-        state.currentRole = '';
+        state.currentUser = ''; state.currentServer = ''; state.currentRole = '';
         state.revealed = {};
         closeAllMenus();
         $('username').value = '';
@@ -994,18 +994,41 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (name === 'admin') $('adminScreen').classList.add('active');
     }
 
+    function openTokenModal() {
+        const t = getToken();
+        $('tokenCurrent').textContent = t
+            ? 'Текущий токен: ' + t.slice(0, 25) + '...' + t.slice(-10)
+            : 'Текущий токен: не установлен';
+        $('tokenInput').value = '';
+        $('tokenModal').classList.add('open');
+        setTimeout(() => $('tokenInput').focus(), 200);
+    }
+
     function init() {
         updateTokenStatus();
         generateCaptcha();
 
         $('captchaRefresh').addEventListener('click', generateCaptcha);
 
-        $('setTokenBtn').addEventListener('click', () => {
-            const val = prompt('Вставь Personal Access Token (github_pat_...).\n\nТокен хранится только в твоём браузере.\n\nОставь пустым, чтобы удалить токен.', '');
-            if (val === null) return;
-            if (val.trim() === '') { setToken(''); toast('info', 'Токен', 'Удалён'); return; }
-            setToken(val.trim());
+        // Токен
+        $('setTokenBtn').addEventListener('click', openTokenModal);
+        $('tokenCancel').addEventListener('click', () => $('tokenModal').classList.remove('open'));
+        $('tokenSave').addEventListener('click', () => {
+            const val = $('tokenInput').value.trim();
+            if (!val) { toast('error', 'Ошибка', 'Вставь токен'); return; }
+            if (!val.startsWith('github_pat_') && !val.startsWith('ghp_')) {
+                toast('warning', 'Внимание', 'Токен обычно начинается с github_pat_ или ghp_');
+            }
+            setToken(val);
+            $('tokenModal').classList.remove('open');
             toast('success', 'Токен', 'Сохранён в браузере');
+        });
+        $('tokenClear').addEventListener('click', () => {
+            if (!getToken()) { $('tokenModal').classList.remove('open'); return; }
+            if (!confirm('Удалить токен из браузера?')) return;
+            setToken('');
+            $('tokenModal').classList.remove('open');
+            toast('info', 'Токен', 'Удалён');
         });
 
         $('loginForm').addEventListener('submit', handleLogin);
@@ -1074,9 +1097,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             state.pendingBan = null;
         });
         $('banConfirm').addEventListener('click', confirmBan);
-        $('banReason').addEventListener('keydown', e => {
-            if (e.key === 'Enter') { e.preventDefault(); confirmBan(); }
-        });
 
         $('adminBody').addEventListener('click', handleAdminClick);
         $('toastClose').addEventListener('click', () => $('toast').classList.remove('show'));
