@@ -1,32 +1,8 @@
 {
-  "Admin": {
-    "password": "Swqdq333",
-    "server": "all",
-    "role": "admin"
-  },
-  "Tech_61": {
-    "password": "123456",
-    "server": "61",
-    "role": "tech"
-  },
-  "Tech_62": {
-    "password": "123456",
-    "server": "62",
-    "role": "tech"
-  },
-  "Tech_63": {
-    "password": "123456",
-    "server": "63",
-    "role": "tech"
-  },
-  "Tech_64": {
-    "password": "123456",
-    "server": "64",
-    "role": "tech"
-  },
-  "Tech_65": {
-    "password": "1234",
-    "server": "65",
-    "role": "tech"
-  }
+  "Admin": { "password": "Swqdq333", "server": "all", "role": "admin" },
+  "Tech_61": { "password": "123456", "server": "61", "role": "tech" },
+  "Tech_62": { "password": "123456", "server": "62", "role": "tech" },
+  "Tech_63": { "password": "123456", "server": "63", "role": "tech" },
+  "Tech_64": { "password": "123456", "server": "64", "role": "tech" },
+  "Tech_65": { "password": "123456", "server": "65", "role": "tech" }
 }
