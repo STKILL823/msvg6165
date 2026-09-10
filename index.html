@@ -41,7 +41,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .pmabtn:hover { background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%); border-color: #3D6DB5; color: #1a3d6e; }
 .pmabtn:active { background: linear-gradient(to bottom, #d0dce8 0%, #b8c8d8 100%); }
 .pmabtn:disabled { opacity: 0.4; cursor: not-allowed; }
-.pmabtn.ban { background: linear-gradient(to bottom, #dc3545, #b02a37); color: #fff; border-color: #a52834; }
+.pmabtn.ban { background: linear-gradient(to bottom, #dc3545, #b02a37); color: #fff; border-color: #a52834; font-weight: bold; }
+.pmabtn.ban:hover { background: linear-gradient(to bottom, #c82333, #8e2027); }
+.pmabtn.unban { background: linear-gradient(to bottom, #28a745, #1e7e34); color: #fff; border-color: #1c7430; font-weight: bold; }
+.pmabtn.unban:hover { background: linear-gradient(to bottom, #218838, #186f2b); }
 
 .screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
 .screen.active { display: flex; }
@@ -79,13 +82,16 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .data-table tbody tr:nth-child(even), .admin-table tbody tr:nth-child(even) { background: #fafafa; }
 .data-table tbody tr:hover, .admin-table tbody tr:hover { background: #eef4fb; }
 
+.admin-table tbody tr.banned-row { background: #f8d7da !important; }
+.admin-table tbody tr.banned-row:hover { background: #f5c6cb !important; }
+
 .server-cell { text-align: center; font-weight: bold; color: #3D6DB5; }
 .money-cell { text-align: right; font-family: Consolas, monospace; font-weight: bold; white-space: nowrap; }
 
 .status-badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; white-space: nowrap; }
 .status-badge.pending { background: #e9ecef; color: #495057; border-color: #ced4da; }
 .status-badge.clear { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.status-badge.blocked { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
+.status-badge.blocked { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 
 .gear-btn { background: transparent; border: 1px solid #ccc; padding: 4px 6px; margin-left: 5px; cursor: pointer; color: #666; vertical-align: middle; display: inline-flex; align-items: center; justify-content: center; border-radius: 0; }
 .gear-btn:hover { background: #f0f6fc; border-color: #3D6DB5; color: #3D6DB5; }
@@ -106,6 +112,11 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .role-badge { padding: 2px 6px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; }
 .role-badge.admin { background: #fff3cd; color: #856404; border-color: #ffeeba; }
 .role-badge.tech { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+
+.user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; white-space: nowrap; }
+.user-status.active { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+.user-status.banned { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
+
 .admin-hint { font-size: 12px; color: #888; margin-bottom: 12px; font-style: italic; }
 .admin-msg { padding: 8px 12px; margin-bottom: 12px; font-size: 12px; border: 1px solid; display: none; }
 .admin-msg.show { display: block; }
@@ -117,6 +128,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .modal-content { background: #fff; padding: 18px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
 .modal-content.wide { max-width: 800px; }
 .modal-title { font-size: 16px; font-weight: bold; color: #2c4f8a; margin-bottom: 12px; }
+.modal-title.danger { color: #dc3545; }
 .modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; }
 .modal textarea { width: 100%; min-height: 200px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 13px; resize: vertical; border-radius: 0; }
 .modal label { display: block; font-size: 13px; color: #333; margin-bottom: 5px; margin-top: 10px; font-weight: bold; }
@@ -124,7 +136,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .modal-actions { margin-top: 15px; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
 .modal-actions .pmabtn { flex: 1; text-align: center; min-width: 120px; }
 
-/* Токен-модалка */
 .token-modal-textarea { width: 100%; min-height: 100px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 12px; word-break: break-all; resize: vertical; border-radius: 0; }
 .token-modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
 .token-current { background: #f0f6fc; padding: 8px 10px; border: 1px solid #b8c8d8; font-size: 11px; color: #2c4f8a; font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; }
@@ -143,12 +154,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .toast.warning .toast-title { color: #fd7e14; }
 .toast-msg { color: #555; font-size: 12.5px; white-space: pre-line; }
 .toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 2px 6px; font-family: inherit; }
-.toast-close:hover { color: #333; }
 
 .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 15px; color: #3D6DB5; font-weight: bold; }
 .loading-overlay.show { display: flex; }
 
-/* Мобильная адаптация */
 @media (max-width: 600px) {
     .login-container { padding: 15px; }
     .logo-ship { font-size: 48px; }
@@ -291,7 +300,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
     <div class="admin-container">
         <div class="admin-title">Управление пользователями</div>
-        <div class="admin-hint">Только Admin может менять пароли техов</div>
+        <div class="admin-hint">Только Admin может менять пароли и блокировать техов</div>
         <div class="admin-msg" id="adminMsg"></div>
         <div class="table-wrap">
             <table class="admin-table">
@@ -301,6 +310,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                         <th>Роль</th>
                         <th>Сервер</th>
                         <th>Пароль</th>
+                        <th>Статус</th>
                         <th>Действия</th>
                     </tr>
                 </thead>
@@ -313,7 +323,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
 </div>
 
-<!-- Токен-модалка -->
 <div class="modal" id="tokenModal">
     <div class="modal-content">
         <div class="modal-title">🔑 Установка токена</div>
@@ -332,7 +341,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
 </div>
 
-<!-- Модалка загрузки -->
 <div class="modal" id="uploadModal">
     <div class="modal-content wide">
         <div class="modal-title" id="uploadModalTitle">Загрузка данных</div>
@@ -345,15 +353,15 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
 </div>
 
-<!-- Модалка бана -->
-<div class="modal" id="banModal">
+<!-- Модалка БАНА пользователя -->
+<div class="modal" id="userBanModal">
     <div class="modal-content">
-        <div class="modal-title">🚫 Блокировка</div>
-        <div class="modal-hint" id="banTarget"></div>
-        <label for="banReason">Причина бана:</label>
-        <input type="text" id="banReason" placeholder="Например: обман / подозрительный трейд" maxlength="200">
-        <label for="banDuration">Длительность:</label>
-        <select id="banDuration">
+        <div class="modal-title danger">🚫 Блокировка техника</div>
+        <div class="modal-hint" id="userBanTarget"></div>
+        <label for="userBanReason">Причина бана:</label>
+        <input type="text" id="userBanReason" placeholder="Например: нарушение правил / обман" maxlength="200">
+        <label for="userBanDuration">Срок блокировки:</label>
+        <select id="userBanDuration">
             <option value="1">1 час</option>
             <option value="6">6 часов</option>
             <option value="24" selected>1 день</option>
@@ -363,8 +371,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <option value="0">Навсегда</option>
         </select>
         <div class="modal-actions">
-            <button class="pmabtn" id="banCancel">Отмена</button>
-            <button class="pmabtn ban" id="banConfirm">Заблокировать</button>
+            <button class="pmabtn" id="userBanCancel">Отмена</button>
+            <button class="pmabtn ban" id="userBanConfirm">Заблокировать</button>
         </div>
     </div>
 </div>
@@ -394,7 +402,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 8) return null;
-                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7].replace(/\s/g, ''), 'pending', '', 0];
+                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7].replace(/\s/g, ''), 'pending'];
             },
             getServer: r => r[0],
             getSummary: r => `${r[2]} → ${r[5]}`
@@ -406,7 +414,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 7) return null;
-                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending', '', 0];
+                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending'];
             },
             getServer: r => r[0], getSummary: r => r[2]
         },
@@ -417,7 +425,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 7) return null;
-                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending', '', 0];
+                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending'];
             },
             getServer: r => r[0], getSummary: r => r[2]
         },
@@ -428,7 +436,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 3) return null;
-                return [p[0], p[1], p[2].replace(/\s/g, ''), 'pending', '', 0];
+                return [p[0], p[1], p[2].replace(/\s/g, ''), 'pending'];
             },
             getServer: r => r[0], getSummary: r => r[1]
         },
@@ -439,7 +447,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 6) return null;
-                return [p[0], p[1], p[2], p[3], p[4], p[5].replace(/\s/g, ''), 'pending', '', 0];
+                return [p[0], p[1], p[2], p[3], p[4], p[5].replace(/\s/g, ''), 'pending'];
             },
             getServer: r => r[0], getSummary: r => `${r[2]} → ${r[4]}`
         }
@@ -451,7 +459,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         data: { trades: [], unique: [], levels: [], works: [], pays: [] },
         users: {},
         currentUser: '', currentServer: '', currentRole: '', currentSection: '',
-        filter: 'all', revealed: {}, openMenu: null, pendingBan: null, captchaAnswer: 0
+        filter: 'all', revealed: {}, openMenu: null, pendingUserBan: null, captchaAnswer: 0
     };
 
     const $ = id => document.getElementById(id);
@@ -584,20 +592,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const isAdmin = () => state.currentRole === 'admin';
     const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
 
-    function getBanInfo(row, cfg) {
-        const reason = row[cfg.statusIdx + 1];
-        const until = row[cfg.statusIdx + 2];
-        if (!reason && !until) return null;
-        return { reason: reason || '—', until: until || 0 };
-    }
-
-    function formatBanTitle(row, cfg) {
-        const info = getBanInfo(row, cfg);
-        if (!info) return '';
-        const untilText = info.until === 0 ? 'навсегда' : new Date(info.until).toLocaleString('ru-RU');
-        return `Причина: ${info.reason}\nЗаблокирован до: ${untilText}`;
-    }
-
     function renderSection() {
         const cfg = SECTIONS[state.currentSection];
         if (!cfg) return;
@@ -621,10 +615,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
             for (let i = 0; i < cfg.headers.length; i++) {
                 if (i === cfg.statusIdx) {
-                    const banTitle = status === 'blocked' ? formatBanTitle(row, cfg) : '';
-                    const titleAttr = banTitle ? `title="${banTitle.replace(/"/g, '&quot;')}"` : '';
                     html += `<td style="white-space:nowrap">
-                        <span class="status-badge ${status}" ${titleAttr}>${STATUS_LABELS[status] || status}</span>
+                        <span class="status-badge ${status}">${STATUS_LABELS[status] || status}</span>
                         <button class="gear-btn ${editable ? '' : 'disabled'}" data-idx="${idx}">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                         </button>
@@ -667,32 +659,17 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
             item.addEventListener('click', async ev => {
                 ev.stopPropagation();
-
                 if (!canEditServer(cfg.getServer(row))) {
                     closeAllMenus();
                     toast('error', 'Нет прав', 'Вы не можете менять статусы на чужом сервере.');
                     return;
                 }
-
-                if (key === 'blocked') {
-                    closeAllMenus();
-                    openBanModal(row, cfg, gearBtn);
-                    return;
-                }
-
                 const oldStatus = row[cfg.statusIdx];
-                const oldReason = row[cfg.statusIdx + 1];
-                const oldUntil = row[cfg.statusIdx + 2];
-
                 row[cfg.statusIdx] = key;
-                row[cfg.statusIdx + 1] = '';
-                row[cfg.statusIdx + 2] = 0;
-
                 const badge = gearBtn.closest('tr').querySelector('.status-badge');
                 badge.className = 'status-badge ' + key;
                 badge.textContent = STATUS_LABELS[key];
-                badge.removeAttribute('title');
-
+                closeAllMenus();
                 showLoading('Сохранение...');
                 try {
                     await writeFile(cfg.file, state.data[state.currentSection], 'Update ' + state.currentSection);
@@ -700,8 +677,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 } catch (e) {
                     console.error(e);
                     row[cfg.statusIdx] = oldStatus;
-                    row[cfg.statusIdx + 1] = oldReason;
-                    row[cfg.statusIdx + 2] = oldUntil;
                     badge.className = 'status-badge ' + oldStatus;
                     badge.textContent = STATUS_LABELS[oldStatus];
                     toast('error', 'Ошибка сохранения', e.message);
@@ -712,74 +687,18 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             menu.appendChild(item);
         });
 
-        // Позиционирование с учётом мобилки
         const menuWidth = 180;
         const menuHeight = 150;
         let top = rect.bottom + 4;
         let left = rect.right - menuWidth;
-
         if (left < 8) left = 8;
         if (left + menuWidth > window.innerWidth - 8) left = window.innerWidth - menuWidth - 8;
         if (top + menuHeight > window.innerHeight - 8) top = rect.top - menuHeight - 4;
         if (top < 8) top = 8;
-
         menu.style.top = top + 'px';
         menu.style.left = left + 'px';
         document.body.appendChild(menu);
         state.openMenu = menu;
-    }
-
-    function openBanModal(row, cfg, gearBtn) {
-        state.pendingBan = { row, cfg, gearBtn };
-        $('banTarget').textContent = 'Объект: ' + cfg.getSummary(row);
-        $('banReason').value = '';
-        $('banDuration').value = '24';
-        $('banModal').classList.add('open');
-    }
-
-    async function confirmBan() {
-        if (!state.pendingBan) return;
-        const { row, cfg, gearBtn } = state.pendingBan;
-
-        const reason = $('banReason').value.trim();
-        if (!reason) { toast('error', 'Ошибка', 'Укажи причину бана'); return; }
-
-        const hours = parseInt($('banDuration').value, 10);
-        const until = hours === 0 ? 0 : Date.now() + hours * 3600 * 1000;
-
-        const oldStatus = row[cfg.statusIdx];
-        const oldReason = row[cfg.statusIdx + 1];
-        const oldUntil = row[cfg.statusIdx + 2];
-
-        row[cfg.statusIdx] = 'blocked';
-        row[cfg.statusIdx + 1] = reason;
-        row[cfg.statusIdx + 2] = until;
-
-        const badge = gearBtn.closest('tr').querySelector('.status-badge');
-        badge.className = 'status-badge blocked';
-        badge.textContent = STATUS_LABELS.blocked;
-        badge.title = formatBanTitle(row, cfg);
-
-        $('banModal').classList.remove('open');
-        state.pendingBan = null;
-
-        showLoading('Сохранение бана...');
-        try {
-            await writeFile(cfg.file, state.data[state.currentSection], 'Ban ' + state.currentSection);
-            const untilText = until === 0 ? 'навсегда' : new Date(until).toLocaleString('ru-RU');
-            toast('warning', 'Заблокирован', `${cfg.getSummary(row)}\nПричина: ${reason}\nДо: ${untilText}`);
-        } catch (e) {
-            console.error(e);
-            row[cfg.statusIdx] = oldStatus;
-            row[cfg.statusIdx + 1] = oldReason;
-            row[cfg.statusIdx + 2] = oldUntil;
-            badge.className = 'status-badge ' + oldStatus;
-            badge.textContent = STATUS_LABELS[oldStatus];
-            badge.removeAttribute('title');
-            toast('error', 'Ошибка', e.message);
-        } finally {
-            hideLoading();
-        }
     }
 
     function openUploadModal() {
@@ -848,10 +767,89 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         }
     }
 
+    // ═══════════ БАН ПОЛЬЗОВАТЕЛЯ (ТЕХА) ═══════════
+    function isUserBanned(user) {
+        if (!user || !user.banned) return false;
+        if (typeof user.banned !== 'object') return false;
+        if (user.banned.until === 0) return true;
+        if (user.banned.until > Date.now()) return true;
+        return false;
+    }
+
+    function formatBanInfo(user) {
+        if (!user.banned || typeof user.banned !== 'object') return '';
+        const until = user.banned.until === 0
+            ? 'навсегда'
+            : new Date(user.banned.until).toLocaleString('ru-RU');
+        return `Причина: ${user.banned.reason}\nЗаблокирован до: ${until}`;
+    }
+
+    function openUserBanModal(uname) {
+        const u = state.users[uname];
+        if (!u) return;
+        if (u.role === 'admin') {
+            adminMsg('Нельзя забанить админа', 'err');
+            return;
+        }
+        state.pendingUserBan = uname;
+        $('userBanTarget').textContent = 'Техник: ' + uname + ' (Сервер ' + u.server + ')';
+        $('userBanReason').value = '';
+        $('userBanDuration').value = '24';
+        $('userBanModal').classList.add('open');
+        setTimeout(() => $('userBanReason').focus(), 100);
+    }
+
+    async function confirmUserBan() {
+        if (!state.pendingUserBan) return;
+        const uname = state.pendingUserBan;
+        const reason = $('userBanReason').value.trim();
+        if (!reason) { toast('error', 'Ошибка', 'Укажи причину бана'); return; }
+
+        const hours = parseInt($('userBanDuration').value, 10);
+        const until = hours === 0 ? 0 : Date.now() + hours * 3600 * 1000;
+
+        const oldBanned = state.users[uname].banned;
+        state.users[uname].banned = { reason, until };
+
+        $('userBanModal').classList.remove('open');
+        state.pendingUserBan = null;
+
+        showLoading('Сохранение бана...');
+        try {
+            await writeFile('users.json', state.users, 'Ban user ' + uname);
+            const untilText = until === 0 ? 'навсегда' : new Date(until).toLocaleString('ru-RU');
+            toast('warning', 'Тех заблокирован', `${uname}\nПричина: ${reason}\nДо: ${untilText}`);
+            renderAdminUsers();
+        } catch (e) {
+            console.error(e);
+            state.users[uname].banned = oldBanned;
+            toast('error', 'Ошибка', e.message);
+        } finally {
+            hideLoading();
+        }
+    }
+
+    async function unbanUser(uname) {
+        if (!confirm(`Разблокировать техника ${uname}?`)) return;
+        const oldBanned = state.users[uname].banned;
+        delete state.users[uname].banned;
+        showLoading('Сохранение...');
+        try {
+            await writeFile('users.json', state.users, 'Unban user ' + uname);
+            toast('success', 'Разблокирован', uname + ' может снова войти');
+            renderAdminUsers();
+        } catch (e) {
+            state.users[uname].banned = oldBanned;
+            toast('error', 'Ошибка', e.message);
+        } finally {
+            hideLoading();
+        }
+    }
+
     function renderAdminUsers() {
         const body = $('adminBody');
         if (!isAdmin()) {
-            body.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#dc3545;padding:20px;">Нет доступа.</td></tr>';
+            body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#dc3545;padding:20px;">Нет доступа.</td></tr>';
             return;
         }
         body.innerHTML = '';
@@ -860,15 +858,31 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             const isSelf = uname === state.currentUser;
             const isAdminRow = u.role === 'admin';
             const revealed = state.revealed[uname] === true;
+            const banned = isUserBanned(u);
+
+            const banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
+            const statusHtml = banned
+                ? `<span class="user-status banned" title="${banTitle}">🚫 Забанен</span>`
+                : `<span class="user-status active">✅ Активен</span>`;
+
+            const banBtn = isAdminRow
+                ? ''
+                : (banned
+                    ? `<button class="pmabtn unban" data-act="unban" data-user="${uname}">🔓 Разблокировать</button>`
+                    : `<button class="pmabtn ban" data-act="ban" data-user="${uname}">🚫 Заблокировать</button>`);
+
             const tr = document.createElement('tr');
+            if (banned) tr.className = 'banned-row';
             tr.innerHTML = `
                 <td style="font-weight:bold;color:#2c4f8a">${uname}${isSelf ? ' (вы)' : ''}</td>
                 <td style="text-align:center"><span class="role-badge ${isAdminRow ? 'admin' : 'tech'}">${isAdminRow ? 'Админ' : 'Тех'}</span></td>
                 <td style="text-align:center">${u.server}</td>
                 <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••'}</td>
-                <td>
-                    <button class="pmabtn" data-act="toggle" data-user="${uname}">${revealed ? '👁' : '👁'}</button>
+                <td style="text-align:center">${statusHtml}</td>
+                <td style="white-space:nowrap">
+                    <button class="pmabtn" data-act="toggle" data-user="${uname}">👁</button>
                     <button class="pmabtn" data-act="change" data-user="${uname}" ${isAdminRow ? 'disabled' : ''}>✏</button>
+                    ${banBtn}
                 </td>`;
             body.appendChild(tr);
         });
@@ -906,6 +920,15 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             } finally {
                 hideLoading();
             }
+            return;
+        }
+        if (act === 'ban') {
+            openUserBanModal(uname);
+            return;
+        }
+        if (act === 'unban') {
+            unbanUser(uname);
+            return;
         }
     }
 
@@ -948,6 +971,22 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             generateCaptcha();
             toast('error', 'Ошибка', 'Неверный пароль');
             return;
+        }
+
+        // ПРОВЕРКА БАНА
+        if (isUserBanned(user)) {
+            const info = user.banned;
+            const untilText = info.until === 0 ? 'навсегда' : new Date(info.until).toLocaleString('ru-RU');
+            generateCaptcha();
+            toast('error', '🚫 Вы заблокированы', `Причина: ${info.reason}\nЗаблокирован до: ${untilText}`);
+            return;
+        }
+
+        // Если бан истёк — снимаем
+        if (user.banned && typeof user.banned === 'object' && user.banned.until !== 0 && user.banned.until <= Date.now()) {
+            delete user.banned;
+            // тихо сохраняем в фоне
+            writeFile('users.json', state.users, 'Auto-unban expired').catch(() => {});
         }
 
         state.currentUser = uname;
@@ -1010,7 +1049,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
         $('captchaRefresh').addEventListener('click', generateCaptcha);
 
-        // Токен
         $('setTokenBtn').addEventListener('click', openTokenModal);
         $('tokenCancel').addEventListener('click', () => $('tokenModal').classList.remove('open'));
         $('tokenSave').addEventListener('click', () => {
@@ -1092,11 +1130,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('uploadConfirm').addEventListener('click', confirmUpload);
         $('clearBtn').addEventListener('click', clearSection);
 
-        $('banCancel').addEventListener('click', () => {
-            $('banModal').classList.remove('open');
-            state.pendingBan = null;
+        // Модалка бана юзера
+        $('userBanCancel').addEventListener('click', () => {
+            $('userBanModal').classList.remove('open');
+            state.pendingUserBan = null;
         });
-        $('banConfirm').addEventListener('click', confirmBan);
+        $('userBanConfirm').addEventListener('click', confirmUserBan);
 
         $('adminBody').addEventListener('click', handleAdminClick);
         $('toastClose').addEventListener('click', () => $('toast').classList.remove('show'));
@@ -1110,4 +1149,4 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 })();
 </script>
 </body>
-</html>
+                                      </html>
