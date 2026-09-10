@@ -345,7 +345,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 8) return null;
-                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7].replace(/\s/g, ''), 'pending'];
+                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7].replace(/\s/g, ''), 'pending', '', 0];
             },
             getServer: r => r[0],
             getSummary: r => `${r[2]} → ${r[5]}`
@@ -358,7 +358,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 7) return null;
-                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending'];
+                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending', '', 0];
             },
             getServer: r => r[0],
             getSummary: r => r[2]
@@ -371,7 +371,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 7) return null;
-                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending'];
+                return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending', '', 0];
             },
             getServer: r => r[0],
             getSummary: r => r[2]
@@ -384,7 +384,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 3) return null;
-                return [p[0], p[1], p[2].replace(/\s/g, ''), 'pending'];
+                return [p[0], p[1], p[2].replace(/\s/g, ''), 'pending', '', 0];
             },
             getServer: r => r[0],
             getSummary: r => r[1]
@@ -397,7 +397,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             parse(line) {
                 const p = line.split('\t').map(s => s.trim());
                 if (p.length < 6) return null;
-                return [p[0], p[1], p[2], p[3], p[4], p[5].replace(/\s/g, ''), 'pending'];
+                return [p[0], p[1], p[2], p[3], p[4], p[5].replace(/\s/g, ''), 'pending', '', 0];
             },
             getServer: r => r[0],
             getSummary: r => `${r[2]} → ${r[4]}`
@@ -456,7 +456,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function showLoading(t) { $('loadingOverlay').textContent = t || 'Загрузка...'; $('loadingOverlay').classList.add('show'); }
     function hideLoading() { $('loadingOverlay').classList.remove('show'); }
 
-    // ═══════════ КАПЧА ═══════════
     function generateCaptcha() {
         const a = Math.floor(Math.random() * 9) + 1;
         const b = Math.floor(Math.random() * 9) + 1;
@@ -467,14 +466,31 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     // ═══════════ GITHUB ═══════════
     async function readFile(fileName) {
-        const url = `${API_BASE}${fileName}?ref=${BRANCH}&t=${Date.now()}`;
-        const res = await fetch(url, { headers: { Accept: 'application/vnd.github.v3+json' } });
-        console.log('[GET]', fileName, res.status);
-        if (res.status === 404) return null;
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const info = await res.json();
-        const decoded = decodeURIComponent(escape(atob(info.content.replace(/\s/g, ''))));
-        return JSON.parse(decoded);
+        const token = getToken();
+        const apiUrl = `${API_BASE}${fileName}?ref=${BRANCH}&t=${Date.now()}`;
+        try {
+            const headers = { Accept: 'application/vnd.github.v3+json' };
+            if (token) headers.Authorization = 'Bearer ' + token;
+            const res = await fetch(apiUrl, { headers });
+            console.log('[GET API]', fileName, res.status);
+            if (res.status === 404) return null;
+            if (res.ok) {
+                const info = await res.json();
+                const decoded = decodeURIComponent(escape(atob(info.content.replace(/\s/g, ''))));
+                return JSON.parse(decoded);
+            }
+            console.warn('[GET API] failed', res.status, '→ fallback to raw');
+        } catch (e) {
+            console.warn('[GET API] exception', e.message, '→ fallback to raw');
+        }
+
+        // Fallback: raw.githubusercontent.com (без лимитов GitHub API)
+        const rawUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}/${fileName}?t=${Date.now()}`;
+        const rawRes = await fetch(rawUrl);
+        console.log('[GET RAW]', fileName, rawRes.status);
+        if (rawRes.status === 404) return null;
+        if (!rawRes.ok) throw new Error('HTTP ' + rawRes.status);
+        return await rawRes.json();
     }
 
     async function writeFile(fileName, data, message) {
@@ -537,7 +553,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const isAdmin = () => state.currentRole === 'admin';
     const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
 
-    // ═══════════ БАН ═══════════
     function getBanInfo(row, cfg) {
         const reason = row[cfg.statusIdx + 1];
         const until = row[cfg.statusIdx + 2];
@@ -554,7 +569,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         return `Причина: ${info.reason}\nЗаблокирован до: ${untilText}`;
     }
 
-    // ═══════════ РЕНДЕР РАЗДЕЛА ═══════════
     function renderSection() {
         const cfg = SECTIONS[state.currentSection];
         if (!cfg) return;
@@ -637,21 +651,19 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                     return;
                 }
 
-                // Если выбрали БАН — открываем модалку с причиной и сроком
                 if (key === 'blocked') {
                     closeAllMenus();
                     openBanModal(row, cfg, gearBtn);
                     return;
                 }
 
-                // Обычная смена статуса (pending/clear)
                 const oldStatus = row[cfg.statusIdx];
                 const oldReason = row[cfg.statusIdx + 1];
                 const oldUntil = row[cfg.statusIdx + 2];
 
                 row[cfg.statusIdx] = key;
                 row[cfg.statusIdx + 1] = '';
-                row[cfg.statusIdx + 2] = '';
+                row[cfg.statusIdx + 2] = 0;
 
                 const badge = gearBtn.closest('tr').querySelector('.status-badge');
                 badge.className = 'status-badge ' + key;
@@ -683,7 +695,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         state.openMenu = menu;
     }
 
-    // ═══════════ МОДАЛКА БАНА ═══════════
     function openBanModal(row, cfg, gearBtn) {
         state.pendingBan = { row, cfg, gearBtn };
         $('banTarget').textContent = 'Объект: ' + cfg.getSummary(row);
@@ -706,7 +717,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const hours = parseInt($('banDuration').value, 10);
         const until = hours === 0 ? 0 : Date.now() + hours * 3600 * 1000;
 
-        // Бэкап для отката
         const oldStatus = row[cfg.statusIdx];
         const oldReason = row[cfg.statusIdx + 1];
         const oldUntil = row[cfg.statusIdx + 2];
@@ -715,7 +725,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         row[cfg.statusIdx + 1] = reason;
         row[cfg.statusIdx + 2] = until;
 
-        // Обновляем бейдж
         const badge = gearBtn.closest('tr').querySelector('.status-badge');
         badge.className = 'status-badge blocked';
         badge.textContent = STATUS_LABELS.blocked;
@@ -743,7 +752,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         }
     }
 
-    // ═══════════ ЗАГРУЗКА ═══════════
     function openUploadModal() {
         if (!isAdmin()) {
             toast('error', 'Нет прав', 'Загружать данные может только Admin.');
@@ -825,7 +833,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         }
     }
 
-    // ═══════════ АДМИН-ПАНЕЛЬ ═══════════
     function renderAdminUsers() {
         const body = $('adminBody');
         if (!isAdmin()) {
@@ -903,7 +910,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         setTimeout(() => el.classList.remove('show'), 4000);
     }
 
-    // ═══════════ ЛОГИН/ВЫХОД ═══════════
     async function handleLogin(e) {
         e.preventDefault();
 
@@ -916,7 +922,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             return;
         }
 
-        // Проверка капчи
         if (!captchaInput || parseInt(captchaInput, 10) !== state.captchaAnswer) {
             generateCaptcha();
             toast('error', 'Капча', 'Неверный ответ. Попробуй снова.');
@@ -951,8 +956,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('userBadgeSection').textContent = uname + (isAdmin() ? ' (Admin)' : ' (Сервер ' + state.currentServer + ')');
         $('userBadgeAdmin').textContent = uname;
         $('adminBtn').style.display = isAdmin() ? 'inline-block' : 'none';
-
-        // Скрываем кнопки загрузки/очистки для техов
         $('sectionActions').style.display = isAdmin() ? 'flex' : 'none';
 
         showLoading('Загрузка данных...');
@@ -1061,19 +1064,16 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         window.addEventListener('scroll', closeAllMenus, true);
         window.addEventListener('resize', closeAllMenus);
 
-        // Модалка загрузки
         $('uploadBtn').addEventListener('click', openUploadModal);
         $('uploadCancel').addEventListener('click', () => $('uploadModal').classList.remove('open'));
         $('uploadConfirm').addEventListener('click', confirmUpload);
         $('clearBtn').addEventListener('click', clearSection);
 
-        // Модалка бана
         $('banCancel').addEventListener('click', () => {
             $('banModal').classList.remove('open');
             state.pendingBan = null;
         });
         $('banConfirm').addEventListener('click', confirmBan);
-        // Enter в поле причины — подтвердить бан
         $('banReason').addEventListener('keydown', e => {
             if (e.key === 'Enter') { e.preventDefault(); confirmBan(); }
         });
