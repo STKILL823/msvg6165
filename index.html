@@ -188,16 +188,14 @@ const GITHUB_REPO = 'msvg6165';
 const GITHUB_TOKEN = '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';
 
 const TRADES_API = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/trades.json';
-const TRADES_RAW = 'https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/main/trades.json';
 const USERS_API = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/users.json';
-const USERS_RAW = 'https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/main/users.json';
 
 let trades = [], users = {}, currentUsername = '', currentServer = '', currentRole = '', revealedPasswords = {};
 let currentServerFilter = 'all', openMenuEl = null, lang = 'ru';
 
 const i18n = {
-ru:{welcome:'Добро пожаловать технический специалист!',legendLang:'Язык (Language)',legendAuth:'Авторизация',labelUser:'Пользователь:',labelPass:'Пароль:',selectPlaceholder:'-- Выберите пользователя --',authBtn:'Авторизация',mainMenu:'Главное меню',trades:'Трейды',unique:'Уникальная',levels:'Уровень 3,4,5 работы',logout:'Выход',back:'Назад',serverN:'Сервер',found:'Найдено записей: ',pending:'Ожидание',clear:'Нету нарушений',blocked:'Заблокирован',errTitle:'Ошибка',okTitle:'Успешно',okAuth:'Авторизация пройдена. Добро пожаловать, ',infoExit:'Вы вышли из системы.',exitTitle:'Выход',noRights:'Нет прав',noRightsMsg:'Вы не можете менять статусы на чужом сервере.',loading:'Загрузка...',saving:'Сохранение...',saveError:'Ошибка сохранения',loadError:'Ошибка загрузки',adminTitle:'Управление пользователями',adminHint:'Только Admin может менять пароли техов',roleAdmin:'Админ',roleTech:'Тех',show:'Показать',hide:'Скрыть',change:'Изменить',newPassPrompt:'Новый пароль (мин. 4 символа):',passChanged:'Пароль изменён',passTooShort:'Пароль слишком короткий',passSaved:'Новый пароль сохранён',adminBtn:'Админ-панель',cannotEditAdmin:'Нельзя менять пароль админа',yourAccount:'Это вы',statusChanged:'Статус изменён',errBadUser:'Неверный пользователь или пароль',allServers:'Все серверы'},
-en:{welcome:'Welcome, technical specialist!',legendLang:'Language',legendAuth:'Authorization',labelUser:'Username:',labelPass:'Password:',selectPlaceholder:'-- Select user --',authBtn:'Login',mainMenu:'Main menu',trades:'Trades',unique:'Unique',levels:'Level 3,4,5 work',logout:'Logout',back:'Back',serverN:'Server',found:'Found: ',pending:'Pending',clear:'No violations',blocked:'Blocked',errTitle:'Error',okTitle:'Success',okAuth:'Login successful. Welcome, ',infoExit:'You have logged out.',exitTitle:'Logout',noRights:'No permission',noRightsMsg:'You cannot change statuses on another server.',loading:'Loading...',saving:'Saving...',saveError:'Save error',loadError:'Load error',adminTitle:'User management',adminHint:'Only Admin can change tech passwords',roleAdmin:'Admin',roleTech:'Tech',show:'Show',hide:'Hide',change:'Change',newPassPrompt:'New password (min. 4 chars):',passChanged:'Password changed',passTooShort:'Password too short',passSaved:'New password saved',adminBtn:'Admin panel',cannotEditAdmin:'Cannot change admin password',yourAccount:'This is you',statusChanged:'Status changed',errBadUser:'Invalid user or password',allServers:'All servers'}
+ru:{welcome:'Добро пожаловать технический специалист!',legendLang:'Язык (Language)',legendAuth:'Авторизация',labelUser:'Пользователь:',labelPass:'Пароль:',selectPlaceholder:'-- Выберите пользователя --',authBtn:'Авторизация',mainMenu:'Главное меню',trades:'Трейды',unique:'Уникальная',levels:'Уровень 3,4,5 работы',logout:'Выход',back:'Назад',serverN:'Сервер',found:'Найдено записей: ',pending:'Ожидание',clear:'Нету нарушений',blocked:'Заблокирован',errTitle:'Ошибка',okTitle:'Успешно',okAuth:'Авторизация пройдена. Добро пожаловать, ',infoExit:'Вы вышли из системы.',exitTitle:'Выход',noRights:'Нет прав',noRightsMsg:'Вы не можете менять статусы на чужом сервере.',loading:'Загрузка...',saving:'Сохранение...',saveError:'Ошибка сохранения',loadError:'Ошибка загрузки',adminTitle:'Управление пользователями',adminHint:'Только Admin может менять пароли техов',roleAdmin:'Админ',roleTech:'Тех',show:'Показать',hide:'Скрыть',change:'Изменить',newPassPrompt:'Новый пароль (мин. 4 символа):',passChanged:'Пароль изменён',passTooShort:'Пароль слишком короткий',passSaved:'Новый пароль сохранён',adminBtn:'Админ-панель',cannotEditAdmin:'Нельзя менять пароль админа',yourAccount:'Это вы',statusChanged:'Статус изменён',errBadUser:'Неверный пользователь или пароль',allServers:'Все серверы',errLoadUsers:'Не удалось загрузить users.json',errLoadTrades:'Не удалось загрузить trades.json',errFillAll:'Заполните все поля',errNoTradesFile:'Файл trades.json не найден'},
+en:{welcome:'Welcome, technical specialist!',legendLang:'Language',legendAuth:'Authorization',labelUser:'Username:',labelPass:'Password:',selectPlaceholder:'-- Select user --',authBtn:'Login',mainMenu:'Main menu',trades:'Trades',unique:'Unique',levels:'Level 3,4,5 work',logout:'Logout',back:'Back',serverN:'Server',found:'Found: ',pending:'Pending',clear:'No violations',blocked:'Blocked',errTitle:'Error',okTitle:'Success',okAuth:'Login successful. Welcome, ',infoExit:'You have logged out.',exitTitle:'Logout',noRights:'No permission',noRightsMsg:'You cannot change statuses on another server.',loading:'Loading...',saving:'Saving...',saveError:'Save error',loadError:'Load error',adminTitle:'User management',adminHint:'Only Admin can change tech passwords',roleAdmin:'Admin',roleTech:'Tech',show:'Show',hide:'Hide',change:'Change',newPassPrompt:'New password (min. 4 chars):',passChanged:'Password changed',passTooShort:'Password too short',passSaved:'New password saved',adminBtn:'Admin panel',cannotEditAdmin:'Cannot change admin password',yourAccount:'This is you',statusChanged:'Status changed',errBadUser:'Invalid user or password',allServers:'All servers',errLoadUsers:'Failed to load users.json',errLoadTrades:'Failed to load trades.json',errFillAll:'Fill in all fields',errNoTradesFile:'trades.json not found'}
 };
 function t(k){return i18n[lang][k]||k}
 function formatMoney(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
@@ -229,21 +227,83 @@ if(currentRole==='admin')renderAdminUsers();
 }
 $('langSelect').addEventListener('change',function(){lang=this.value;applyLanguage()});
 
-async function loadJSON(url){var r=await fetch(url+'?t='+Date.now());if(!r.ok)throw new Error('HTTP '+r.status);return await r.json()}
-async function loadTradesFromGitHub(){$('loadingOverlay').style.display='flex';$('loadingOverlay').textContent=t('loading');try{trades=await loadJSON(TRADES_RAW)}catch(e){console.error(e);showToast('error',t('errTitle'),t('loadError'));trades=[]}finally{$('loadingOverlay').style.display='none'}}
-async function loadUsersFromGitHub(){$('loadingOverlay').style.display='flex';$('loadingOverlay').textContent=t('loading');try{users=await loadJSON(USERS_RAW)}catch(e){console.error(e);showToast('error',t('errTitle'),t('loadError'));users={}}finally{$('loadingOverlay').style.display='none'}}
-
-async function saveJSON(apiUrl,data,msg){
-var g=await fetch(apiUrl,{headers:{'Authorization':'token '+GITHUB_TOKEN}});
-if(!g.ok)throw new Error('GET '+g.status);
-var info=await g.json();
-var b64=btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2))));
-var p=await fetch(apiUrl,{method:'PUT',headers:{'Authorization':'token '+GITHUB_TOKEN,'Content-Type':'application/json'},body:JSON.stringify({message:msg,content:b64,sha:info.sha})});
-if(!p.ok)throw new Error('PUT '+p.status);
-return true;
+// === ЧТЕНИЕ ФАЙЛА ЧЕРЕЗ GITHUB API (без кэша) ===
+async function readGitHubFile(apiUrl) {
+    const res = await fetch(apiUrl, {
+        headers: { 'Authorization': 'token ' + GITHUB_TOKEN }
+    });
+    if (res.status === 404) {
+        // Файла нет — возвращаем null
+        return null;
+    }
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const info = await res.json();
+    // Декодируем base64 → utf8
+    const content = decodeURIComponent(escape(atob(info.content.replace(/\n/g, ''))));
+    return JSON.parse(content);
 }
-async function saveTradesToGitHub(){$('loadingOverlay').style.display='flex';$('loadingOverlay').textContent=t('saving');try{await saveJSON(TRADES_API,trades,'Update trades');return true}catch(e){console.error(e);showToast('error',t('saveError'),e.message);return false}finally{$('loadingOverlay').style.display='none'}}
-async function saveUsersToGitHub(){$('loadingOverlay').style.display='flex';$('loadingOverlay').textContent=t('saving');try{await saveJSON(USERS_API,users,'Update users');return true}catch(e){console.error(e);showToast('error',t('saveError'),e.message);return false}finally{$('loadingOverlay').style.display='none'}}
+
+async function loadTradesFromGitHub() {
+    $('loadingOverlay').style.display = 'flex';
+    $('loadingOverlay').textContent = t('loading');
+    try {
+        const data = await readGitHubFile(TRADES_API);
+        trades = data || [];
+    } catch (e) {
+        console.error('loadTrades error:', e);
+        showToast('error', t('errTitle'), t('loadError') + ': ' + e.message);
+        trades = [];
+    } finally {
+        $('loadingOverlay').style.display = 'none';
+    }
+}
+
+async function loadUsersFromGitHub() {
+    $('loadingOverlay').style.display = 'flex';
+    $('loadingOverlay').textContent = t('loading');
+    try {
+        const data = await readGitHubFile(USERS_API);
+        if (!data) {
+            showToast('error', t('errTitle'), t('errLoadUsers') + ' (404)');
+            users = {};
+        } else {
+            users = data;
+        }
+    } catch (e) {
+        console.error('loadUsers error:', e);
+        showToast('error', t('errTitle'), t('errLoadUsers') + ': ' + e.message);
+        users = {};
+    } finally {
+        $('loadingOverlay').style.display = 'none';
+    }
+}
+
+// === СОХРАНЕНИЕ (PUT) ===
+async function saveJSON(apiUrl, data, msg) {
+    const g = await fetch(apiUrl, { headers: { 'Authorization': 'token ' + GITHUB_TOKEN } });
+    if (!g.ok) throw new Error('GET ' + g.status);
+    const info = await g.json();
+    const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+    const p = await fetch(apiUrl, {
+        method: 'PUT',
+        headers: { 'Authorization': 'token ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg, content: b64, sha: info.sha })
+    });
+    if (!p.ok) throw new Error('PUT ' + p.status);
+    return true;
+}
+async function saveTradesToGitHub() {
+    $('loadingOverlay').style.display = 'flex'; $('loadingOverlay').textContent = t('saving');
+    try { await saveJSON(TRADES_API, trades, 'Update trades'); return true; }
+    catch (e) { console.error(e); showToast('error', t('saveError'), e.message); return false; }
+    finally { $('loadingOverlay').style.display = 'none'; }
+}
+async function saveUsersToGitHub() {
+    $('loadingOverlay').style.display = 'flex'; $('loadingOverlay').textContent = t('saving');
+    try { await saveJSON(USERS_API, users, 'Update users'); return true; }
+    catch (e) { console.error(e); showToast('error', t('saveError'), e.message); return false; }
+    finally { $('loadingOverlay').style.display = 'none'; }
+}
 
 var GEAR_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>';
 
@@ -345,8 +405,9 @@ toastTimer=setTimeout(function(){to.classList.remove('show')},5000);
 $('loginForm').addEventListener('submit',async function(e){
 e.preventDefault();
 var u=$('username').value,p=$('password').value;
-if(!u||!p){showToast('error',t('errTitle'),'Заполните все поля');return}
+if(!u||!p){showToast('error',t('errTitle'),t('errFillAll'));return}
 await loadUsersFromGitHub();
+console.log('Users loaded:', users);
 var user=users[u];
 if(!user||user.password!==p){showToast('error',t('errTitle'),t('errBadUser'));return}
 currentUsername=u;currentServer=user.server;currentRole=user.role;
