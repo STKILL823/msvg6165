@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Массовая выгрузка 61-65</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛵</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%233D6DB5'/><text x='50' y='65' font-family='Arial' font-size='50' font-weight='bold' fill='white' text-anchor='middle'>M</text></svg>">
 <style>
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+* { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
     font-family: Arial, Helvetica, sans-serif;
@@ -17,18 +17,15 @@ body {
     line-height: 1.4;
 }
 
-/* ═══════════ ЛОГИН phpMyAdmin ═══════════ */
+/* ═══════════ ЛОГИН ═══════════ */
 .login-wrap {
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
     padding: 40px 20px;
     text-align: center;
-    animation: fadeIn 0.4s ease;
 }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* Логотип */
 .pma-logo {
     margin-bottom: 5px;
     display: inline-block;
@@ -45,9 +42,8 @@ body {
     font-style: italic;
     margin: 0 0 5px 0;
     line-height: 1.1;
+    color: #3D6DB5;
 }
-.pma-title .php { color: #F89C0E; }
-.pma-title .myadmin { color: #3D6DB5; }
 .pma-welcome {
     font-size: 15px;
     font-weight: bold;
@@ -55,7 +51,6 @@ body {
     margin: 0 0 20px 0;
 }
 
-/* Fieldset */
 .pma-fieldset {
     border: 1px solid #ccc;
     background: #f9f9f9;
@@ -64,7 +59,6 @@ body {
     text-align: left;
     width: 100%;
     position: relative;
-    border-radius: 0;
 }
 .pma-fieldset legend {
     background: #fff;
@@ -75,26 +69,8 @@ body {
     color: #333;
     margin-left: 8px;
     border-radius: 3px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-.pma-fieldset legend .help-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-    background: #3D6DB5;
-    color: #fff;
-    border-radius: 50%;
-    font-size: 10px;
-    font-weight: bold;
-    cursor: help;
-    font-style: normal;
 }
 
-/* Таблица полей */
 .pma-form-table {
     width: 100%;
     border-collapse: collapse;
@@ -104,13 +80,10 @@ body {
     vertical-align: middle;
 }
 .pma-form-table td.label-cell {
-    width: 110px;
+    width: 120px;
     font-size: 13px;
     color: #000;
     padding-right: 10px;
-}
-.pma-form-table td.input-cell {
-    /* никаких лишних отступов */
 }
 .pma-form-table input,
 .pma-form-table select {
@@ -133,17 +106,8 @@ body {
 .pma-form-table input.error {
     border-color: #dc3545;
     box-shadow: 0 0 0 2px rgba(220,53,69,0.2);
-    animation: shake 0.35s ease;
-}
-@keyframes shake {
-    0%,100% { transform: translateX(0); }
-    20% { transform: translateX(-4px); }
-    40% { transform: translateX(4px); }
-    60% { transform: translateX(-3px); }
-    80% { transform: translateX(3px); }
 }
 
-/* Шкала пароля */
 .pma-strength {
     height: 4px;
     background: #e0e0e0;
@@ -161,12 +125,10 @@ body {
     margin-top: 3px;
 }
 
-/* КАПЧА */
 .pma-captcha-row {
     display: flex;
     align-items: center;
     gap: 6px;
-    flex-wrap: nowrap;
 }
 .pma-captcha-canvas {
     display: block;
@@ -177,19 +139,20 @@ body {
     flex-shrink: 0;
 }
 .pma-captcha-refresh {
-    width: 26px;
+    width: 28px;
     height: 36px;
     border: 1px solid #aaa;
     background: linear-gradient(to bottom, #fefefe, #eeeeee);
     color: #333;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-family: inherit;
     padding: 0;
     flex-shrink: 0;
+    border-radius: 0;
 }
 .pma-captcha-refresh:hover {
     background: linear-gradient(to bottom, #f0f6fc, #dce8f5);
@@ -209,7 +172,6 @@ body {
     border-radius: 0;
 }
 
-/* Footer с кнопкой */
 .pma-footer {
     background: #d8dde3;
     border-top: 1px solid #ccc;
@@ -218,7 +180,6 @@ body {
     text-align: right;
 }
 
-/* Кнопка phpMyAdmin */
 .pma-btn {
     display: inline-block;
     padding: 3px 12px;
@@ -247,7 +208,6 @@ body {
     cursor: not-allowed;
 }
 
-/* Кнопки Токен + Авторизация рядом */
 .pma-footer-btns {
     display: flex;
     justify-content: space-between;
@@ -258,7 +218,7 @@ body {
 
 /* ═══════════ ЭКРАНЫ ═══════════ */
 .screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
-.screen.active { display: flex; animation: fadeIn 0.3s ease; }
+.screen.active { display: flex; }
 
 .menu-header {
     background: linear-gradient(135deg, #3D6DB5 0%, #2c4f8a 100%);
@@ -283,9 +243,7 @@ body {
     font-weight: bold;
     color: #fff;
     border-radius: 3px;
-    transition: background 0.15s;
 }
-.user-badge:hover { background: rgba(255,255,255,0.35); }
 .header-btn {
     padding: 5px 12px;
     border: 1px solid rgba(255,255,255,0.5);
@@ -447,7 +405,6 @@ body {
 .admin-tools { padding: 12px; background: #fff; border: 1px solid #ccc; margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
 .admin-tools .pma-btn { flex: 1; text-align: center; min-width: 140px; }
 
-/* Модалки */
 .modal {
     position: fixed; inset: 0;
     background: rgba(0,0,0,0.5);
@@ -457,7 +414,7 @@ body {
     align-items: center;
     padding: 15px;
 }
-.modal.open { display: flex; animation: fadeIn 0.2s ease; }
+.modal.open { display: flex; }
 .modal-content {
     background: #fff;
     padding: 20px;
@@ -491,12 +448,10 @@ body {
 .modal-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
 .modal-actions .pma-btn { flex: 1; text-align: center; min-width: 100px; }
 
-/* Token */
 .token-modal-textarea { width: 100%; min-height: 100px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 12px; word-break: break-all; }
 .token-modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; }
 .token-current { background: #f0f6fc; padding: 10px; border: 1px solid #b8c8d8; font-size: 11px; color: #3D6DB5; font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; }
 
-/* Профиль */
 .profile-avatar-big {
     width: 80px;
     height: 80px;
@@ -524,7 +479,6 @@ body {
 .profile-field .pf-value.accent { color: #3D6DB5; }
 .profile-field .pf-value.success { color: #27ae60; }
 
-/* Логи */
 .logs-toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
 .logs-toolbar input {
     flex: 1;
@@ -593,7 +547,6 @@ body {
 .logs-row.type-ban .logs-action-text { color: #dc3545; font-weight: bold; }
 .logs-empty { text-align: center; padding: 60px 20px; color: #999; font-size: 13px; }
 
-/* Toast */
 .toast {
     position: fixed;
     top: 15px;
@@ -610,8 +563,8 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
     opacity: 0;
-    transform: translateY(-120%);
-    transition: opacity 0.35s, transform 0.35s;
+    transform: translateY(-20px);
+    transition: opacity 0.25s, transform 0.25s;
     pointer-events: none;
 }
 .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
@@ -678,48 +631,41 @@ body {
 </head>
 <body>
 
-<!-- ═══════════ ЛОГИН phpMyAdmin ═══════════ -->
+<!-- ═══════════ ЛОГИН ═══════════ -->
 <div class="login-wrap" id="loginScreen">
-    <!-- SVG логотип phpMyAdmin - парусник -->
     <div class="pma-logo">
         <svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
             <g fill="#B8B8B8">
-                <path d="M100 10 L90 15 L85 30 L100 25 L115 30 L110 15 Z" opacity="0.6"/>
                 <path d="M100 30 L60 90 L100 80 Z" opacity="0.7"/>
                 <path d="M100 30 L140 90 L100 80 Z" opacity="0.5"/>
                 <path d="M100 85 L50 155 L100 145 Z" opacity="0.7"/>
                 <path d="M100 85 L150 155 L100 145 Z" opacity="0.5"/>
                 <path d="M40 155 L160 155 L100 170 Z" opacity="0.8"/>
-                <path d="M60 20 Q80 15 100 18 Q120 15 140 20 Q120 22 100 20 Q80 22 60 20 Z" opacity="0.4"/>
             </g>
         </svg>
     </div>
-    <div class="pma-title">
-        <span class="php">php</span><span class="myadmin">MyAdmin</span>
-    </div>
-    <div class="pma-welcome">Добро пожаловать в phpMyAdmin</div>
+    <div class="pma-title">Массовая выгрузка 61-65</div>
+    <div class="pma-welcome">Добро пожаловать технический специалист!</div>
 
     <form id="loginForm" novalidate>
-        <!-- Язык -->
         <fieldset class="pma-fieldset">
             <legend>Язык (Language)</legend>
-            <select class="lang-select" id="langSelect" style="width:100%;padding:4px 6px;border:1px solid #aaa;background:#fff;font-size:13px;font-family:inherit;">
+            <select id="langSelect" style="width:100%;padding:4px 6px;border:1px solid #aaa;background:#fff;font-size:13px;font-family:inherit;">
                 <option value="ru">Русский - Russian</option>
                 <option value="en">English</option>
             </select>
         </fieldset>
 
-        <!-- Авторизация -->
         <fieldset class="pma-fieldset" style="padding-bottom:0;">
-            <legend>Авторизация <span class="help-icon">?</span></legend>
+            <legend>Авторизация</legend>
             <table class="pma-form-table">
                 <tr>
                     <td class="label-cell"><label for="username">Пользователь:</label></td>
-                    <td class="input-cell"><input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
+                    <td><input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
                 </tr>
                 <tr>
                     <td class="label-cell"><label for="password">Пароль:</label></td>
-                    <td class="input-cell">
+                    <td>
                         <input type="password" id="password" autocomplete="off">
                         <div class="pma-strength"><div class="pma-strength-fill" id="strengthFill"></div></div>
                         <div class="pma-strength-text" id="strengthText"></div>
@@ -727,10 +673,10 @@ body {
                 </tr>
                 <tr>
                     <td class="label-cell"><label for="captchaInput">Капча:</label></td>
-                    <td class="input-cell">
+                    <td>
                         <div class="pma-captcha-row">
                             <canvas class="pma-captcha-canvas" id="captchaCanvas" width="130" height="36" title="Нажми, чтобы обновить"></canvas>
-                            <button type="button" class="pma-captcha-refresh" id="captchaRefresh" title="Обновить">↻</button>
+                            <button type="button" class="pma-captcha-refresh" id="captchaRefresh" title="Обновить">R</button>
                             <input type="text" id="captchaInput" class="pma-captcha-input" placeholder="Код" maxlength="6" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         </div>
                     </td>
@@ -951,7 +897,7 @@ body {
 </div>
 
 <div class="toast" id="toast">
-    <button class="toast-close" id="toastClose">×</button>
+    <button class="toast-close" id="toastClose">x</button>
     <div class="toast-title" id="toastTitle"></div>
     <div class="toast-msg" id="toastMsg"></div>
 </div>
@@ -965,7 +911,7 @@ body {
     const GITHUB_USER = 'STKILL823';
     const GITHUB_REPO = 'msvg6165';
     const BRANCH = 'main';
-    const API_BASE = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`;
+    const API_BASE = 'https://api.github.com/repos/' + GITHUB_USER + '/' + GITHUB_REPO + '/contents/';
     const MAX_LOGS = 500;
 
     const SECTIONS = {
@@ -973,36 +919,36 @@ body {
             file: 'trades.json', title: 'Трейды',
             headers: ['Сервер','Продавец (ID)','Имя продавца','Ур.','Покупатель (ID)','Имя покупателя','Ур.','Сумма','Статус'],
             statusIdx: 8,
-            parse(line) { const p = line.split('\t').map(s => s.trim()); if (p.length < 8) return null; return [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7].replace(/\s/g, ''), 'pending']; },
-            getServer: r => r[0], getSummary: r => `${r[2]} → ${r[5]}`
+            parse: function(line) { var p = line.split('\t').map(function(s){return s.trim()}); if (p.length < 8) return null; return [p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7].replace(/\s/g, ''), 'pending']; },
+            getServer: function(r){return r[0]}, getSummary: function(r){return r[2] + ' ' + String.fromCharCode(8594) + ' ' + r[5]}
         },
         unique: {
             file: 'unique.json', title: 'Уникальная',
             headers: ['Сервер','ID','Имя','Ур.','Знач.1','Знач.2','Сумма','Статус'],
             statusIdx: 7,
-            parse(line) { const p = line.split('\t').map(s => s.trim()); if (p.length < 7) return null; return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending']; },
-            getServer: r => r[0], getSummary: r => r[2]
+            parse: function(line) { var p = line.split('\t').map(function(s){return s.trim()}); if (p.length < 7) return null; return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending']; },
+            getServer: function(r){return r[0]}, getSummary: function(r){return r[2]}
         },
         levels: {
             file: 'levels.json', title: 'Уровень 3,4,5 работы',
             headers: ['Сервер','ID','Имя','Ур.','Знач.1','Знач.2','Сумма','Статус'],
             statusIdx: 7,
-            parse(line) { const p = line.split('\t').map(s => s.trim()); if (p.length < 7) return null; return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending']; },
-            getServer: r => r[0], getSummary: r => r[2]
+            parse: function(line) { var p = line.split('\t').map(function(s){return s.trim()}); if (p.length < 7) return null; return [p[0], p[1], p[2], p[3], p[4], p[5], p[6].replace(/\s/g, ''), 'pending']; },
+            getServer: function(r){return r[0]}, getSummary: function(r){return r[2]}
         },
         works: {
             file: 'works.json', title: 'Работы',
             headers: ['Сервер','Имя','Сумма','Статус'],
             statusIdx: 3,
-            parse(line) { const p = line.split('\t').map(s => s.trim()); if (p.length < 3) return null; return [p[0], p[1], p[2].replace(/\s/g, ''), 'pending']; },
-            getServer: r => r[0], getSummary: r => r[1]
+            parse: function(line) { var p = line.split('\t').map(function(s){return s.trim()}); if (p.length < 3) return null; return [p[0], p[1], p[2].replace(/\s/g, ''), 'pending']; },
+            getServer: function(r){return r[0]}, getSummary: function(r){return r[1]}
         },
         pays: {
             file: 'pays.json', title: '/pay',
             headers: ['Сервер','Отправитель (ID)','Имя','Получатель (ID)','Имя','Сумма','Статус'],
             statusIdx: 6,
-            parse(line) { const p = line.split('\t').map(s => s.trim()); if (p.length < 6) return null; return [p[0], p[1], p[2], p[3], p[4], p[5].replace(/\s/g, ''), 'pending']; },
-            getServer: r => r[0], getSummary: r => `${r[2]} → ${r[4]}`
+            parse: function(line) { var p = line.split('\t').map(function(s){return s.trim()}); if (p.length < 6) return null; return [p[0], p[1], p[2], p[3], p[4], p[5].replace(/\s/g, ''), 'pending']; },
+            getServer: function(r){return r[0]}, getSummary: function(r){return r[2] + ' ' + String.fromCharCode(8594) + ' ' + r[4]}
         }
     };
 
@@ -1020,37 +966,35 @@ body {
         users: {},
         currentUser: '', currentServer: '', currentRole: '', currentSection: '',
         filter: 'all', revealed: {}, pendingUserBan: null,
-        captchaCode: '', userIp: '—', timerInterval: null, lastTick: 0
+        captchaCode: '', userIp: '-', timerInterval: null, lastTick: 0
     };
 
-    const $ = id => document.getElementById(id);
-    const formatMoney = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    const $ = function(id){return document.getElementById(id)};
+    const formatMoney = function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')};
 
     function getToken() { return localStorage.getItem('gh_token') || ''; }
     function setToken(tk) { if (tk) localStorage.setItem('gh_token', tk); else localStorage.removeItem('gh_token'); }
 
-    // ═══════════ КАПЧА ═══════════
+    // КАПЧА
     function generateCaptcha() {
-        const canvas = $('captchaCanvas');
-        const ctx = canvas.getContext('2d');
-        const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-        let code = '';
-        for (let i = 0; i < 5; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
+        var canvas = $('captchaCanvas');
+        var ctx = canvas.getContext('2d');
+        var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        var code = '';
+        for (var i = 0; i < 5; i++) code += chars.charAt(Math.floor(Math.random() * chars.length));
         state.captchaCode = code;
 
-        const w = canvas.width, h = canvas.height;
+        var w = canvas.width, h = canvas.height;
         ctx.clearRect(0, 0, w, h);
 
-        // Фон
-        const gradient = ctx.createLinearGradient(0, 0, w, h);
+        var gradient = ctx.createLinearGradient(0, 0, w, h);
         gradient.addColorStop(0, '#f0f0f0');
         gradient.addColorStop(1, '#e0e8f0');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, 0, w, h);
 
-        // Шум — линии
-        for (let i = 0; i < 6; i++) {
-            ctx.strokeStyle = `rgba(${Math.random()*150},${Math.random()*150},${Math.random()*200},0.5)`;
+        for (var i = 0; i < 6; i++) {
+            ctx.strokeStyle = 'rgba(' + Math.floor(Math.random()*150) + ',' + Math.floor(Math.random()*150) + ',' + Math.floor(Math.random()*200) + ',0.5)';
             ctx.lineWidth = Math.random() * 2 + 0.5;
             ctx.beginPath();
             ctx.moveTo(Math.random() * w, Math.random() * h);
@@ -1058,23 +1002,21 @@ body {
             ctx.stroke();
         }
 
-        // Шум — точки
-        for (let i = 0; i < 40; i++) {
-            ctx.fillStyle = `rgba(${Math.random()*150},${Math.random()*150},${Math.random()*200},0.6)`;
+        for (var i = 0; i < 40; i++) {
+            ctx.fillStyle = 'rgba(' + Math.floor(Math.random()*150) + ',' + Math.floor(Math.random()*150) + ',' + Math.floor(Math.random()*200) + ',0.6)';
             ctx.beginPath();
             ctx.arc(Math.random() * w, Math.random() * h, Math.random() * 1.5, 0, Math.PI * 2);
             ctx.fill();
         }
 
-        // Буквы
-        const colors = ['#1a3d6e', '#2c4f8a', '#3D6DB5', '#c0392b', '#27ae60', '#8e44ad'];
-        for (let i = 0; i < code.length; i++) {
-            const fontSize = 20 + Math.random() * 6;
-            ctx.font = `bold ${fontSize}px Arial`;
+        var colors = ['#1a3d6e', '#2c4f8a', '#3D6DB5', '#c0392b', '#27ae60', '#8e44ad'];
+        for (var i = 0; i < code.length; i++) {
+            var fontSize = 20 + Math.random() * 6;
+            ctx.font = 'bold ' + fontSize + 'px Arial';
             ctx.textBaseline = 'middle';
             ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-            const x = 12 + i * ((w - 24) / code.length);
-            const y = h / 2 + (Math.random() * 6 - 3);
+            var x = 12 + i * ((w - 24) / code.length);
+            var y = h / 2 + (Math.random() * 6 - 3);
             ctx.save();
             ctx.translate(x, y);
             ctx.rotate((Math.random() - 0.5) * 0.5);
@@ -1092,34 +1034,34 @@ body {
     }
 
     function checkCaptcha() {
-        const input = ($('captchaInput').value || '').trim().toUpperCase();
+        var input = ($('captchaInput').value || '').trim().toUpperCase();
         return input === state.captchaCode;
     }
 
-    // ═══════════ TOAST ═══════════
-    let toastTimer = null;
+    // TOAST
+    var toastTimer = null;
     function toast(type, title, msg) {
-        const el = $('toast');
+        var el = $('toast');
         if (toastTimer) clearTimeout(toastTimer);
         el.className = 'toast ' + type;
         $('toastTitle').textContent = title;
         $('toastMsg').textContent = msg;
         void el.offsetWidth;
-        requestAnimationFrame(() => el.classList.add('show'));
-        toastTimer = setTimeout(() => el.classList.remove('show'), 6000);
+        requestAnimationFrame(function(){el.classList.add('show')});
+        toastTimer = setTimeout(function(){el.classList.remove('show')}, 5000);
     }
     function showLoading(txt) { $('loadingOverlay').textContent = txt || 'Загрузка...'; $('loadingOverlay').classList.add('show'); }
     function hideLoading() { $('loadingOverlay').classList.remove('show'); }
 
-    // ═══════════ ТРЕКЕР ВРЕМЕНИ ═══════════
+    // ТРЕКЕР ВРЕМЕНИ
     function timeKey(uname) { return 'profile_time_' + uname; }
     function getSavedTime(uname) { return parseInt(localStorage.getItem(timeKey(uname)) || '0', 10) || 0; }
     function flushTime() {
         if (!state.currentUser || !state.lastTick) return;
-        const now = Date.now();
-        const elapsed = Math.floor((now - state.lastTick) / 1000);
+        var now = Date.now();
+        var elapsed = Math.floor((now - state.lastTick) / 1000);
         if (elapsed <= 0) return;
-        const total = getSavedTime(state.currentUser) + elapsed;
+        var total = getSavedTime(state.currentUser) + elapsed;
         localStorage.setItem(timeKey(state.currentUser), String(total));
         state.lastTick = now;
     }
@@ -1134,36 +1076,36 @@ body {
         if (state.timerInterval) { clearInterval(state.timerInterval); state.timerInterval = null; }
     }
     window.addEventListener('beforeunload', flushTime);
-    document.addEventListener('visibilitychange', () => {
+    document.addEventListener('visibilitychange', function() {
         if (document.hidden) flushTime();
         else if (state.currentUser) state.lastTick = Date.now();
     });
 
     function formatDuration(seconds) {
         if (seconds < 60) return seconds + ' сек';
-        const d = Math.floor(seconds / 86400);
-        const h = Math.floor((seconds % 86400) / 3600);
-        const m = Math.floor((seconds % 3600) / 60);
-        const parts = [];
+        var d = Math.floor(seconds / 86400);
+        var h = Math.floor((seconds % 86400) / 3600);
+        var m = Math.floor((seconds % 3600) / 60);
+        var parts = [];
         if (d > 0) parts.push(d + ' д');
         if (h > 0) parts.push(h + ' ч');
         if (m > 0 || parts.length === 0) parts.push(m + ' мин');
         return parts.join(' ');
     }
     function formatDate(ts) {
-        if (!ts) return '—';
-        const d = new Date(ts);
-        const p = n => String(n).padStart(2, '0');
-        return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()}`;
+        if (!ts) return '-';
+        var d = new Date(ts);
+        var p = function(n){return String(n).padStart(2, '0')};
+        return p(d.getDate()) + '.' + p(d.getMonth()+1) + '.' + d.getFullYear();
     }
 
     function openProfileModal() {
         if (!state.currentUser) return;
-        const user = state.users[state.currentUser];
+        var user = state.users[state.currentUser];
         if (!user) return;
-        const display = getUserDisplay(user);
-        const initials = state.currentUser.substring(0, 2).toUpperCase();
-        $('profileAvatar').innerHTML = initials;
+        var display = getUserDisplay(user);
+        var initials = state.currentUser.substring(0, 2).toUpperCase();
+        $('profileAvatar').textContent = initials;
         $('profileName').textContent = state.currentUser;
         $('profileRoleText').textContent = display;
         $('profileRegistered').textContent = formatDate(user.registered);
@@ -1173,13 +1115,13 @@ body {
     }
 
     function updateStrength() {
-        const input = $('password'), fill = $('strengthFill'), textEl = $('strengthText');
+        var input = $('password'), fill = $('strengthFill'), textEl = $('strengthText');
         if (!input || !fill || !textEl) return;
-        const val = input.value;
-        let color = '#e0e0e0', width = '0', text = '';
+        var val = input.value;
+        var color = '#e0e0e0', width = '0', text = '';
         if (val.length > 0) {
-            const hasDigits = /\d/.test(val), hasLetters = /[a-zA-Zа-яА-Я]/.test(val);
-            const uniqueCount = new Set(val).size;
+            var hasDigits = /\d/.test(val), hasLetters = /[a-zA-Zа-яА-Я]/.test(val);
+            var uniqueCount = new Set(val).size;
             if (val.length < 4) { color = '#dc3545'; width = '25%'; text = 'Очень слабый'; }
             else if (val.length < 6 || uniqueCount < 3) { color = '#dc3545'; width = '33%'; text = 'Очень слабый'; }
             else if (val.length >= 8 && hasDigits && hasLetters && uniqueCount >= 4) { color = '#28a745'; width = '100%'; text = 'Надёжный'; }
@@ -1192,53 +1134,53 @@ body {
 
     async function fetchIP() {
         try {
-            const res = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
+            var res = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
             if (!res.ok) throw new Error('fail');
-            const data = await res.json();
-            state.userIp = data.ip || '—';
+            var data = await res.json();
+            state.userIp = data.ip || '-';
             return state.userIp;
         } catch (e) {
             try {
-                const res2 = await fetch('https://api64.ipify.org?format=json', { cache: 'no-store' });
-                const data2 = await res2.json();
-                state.userIp = data2.ip || '—';
+                var res2 = await fetch('https://api64.ipify.org?format=json', { cache: 'no-store' });
+                var data2 = await res2.json();
+                state.userIp = data2.ip || '-';
                 return state.userIp;
-            } catch (e2) { state.userIp = '—'; return '—'; }
+            } catch (e2) { state.userIp = '-'; return '-'; }
         }
     }
 
     async function readFile(fileName) {
-        const token = getToken();
-        const apiUrl = `${API_BASE}${fileName}?ref=${BRANCH}&t=${Date.now()}`;
+        var token = getToken();
+        var apiUrl = API_BASE + fileName + '?ref=' + BRANCH + '&t=' + Date.now();
         try {
-            const headers = { Accept: 'application/vnd.github.v3+json' };
+            var headers = { Accept: 'application/vnd.github.v3+json' };
             if (token) headers.Authorization = 'Bearer ' + token;
-            const res = await fetch(apiUrl, { headers });
+            var res = await fetch(apiUrl, { headers: headers });
             if (res.status === 404) return null;
             if (res.ok) {
-                const info = await res.json();
+                var info = await res.json();
                 return JSON.parse(decodeURIComponent(escape(atob(info.content.replace(/\s/g, '')))));
             }
         } catch (e) {}
-        const rawRes = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}/${fileName}?t=${Date.now()}`);
+        var rawRes = await fetch('https://raw.githubusercontent.com/' + GITHUB_USER + '/' + GITHUB_REPO + '/' + BRANCH + '/' + fileName + '?t=' + Date.now());
         if (rawRes.status === 404) return null;
         if (!rawRes.ok) throw new Error('HTTP ' + rawRes.status);
         return await rawRes.json();
     }
 
     async function writeFile(fileName, data, message) {
-        const token = getToken();
-        if (!token) throw new Error('Токен не установлен. Нажми «Ввести токен».');
-        const url = `${API_BASE}${fileName}`;
-        let sha = null;
-        const getRes = await fetch(`${url}?ref=${BRANCH}&t=${Date.now()}`, { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json' } });
+        var token = getToken();
+        if (!token) throw new Error('Токен не установлен');
+        var url = API_BASE + fileName;
+        var sha = null;
+        var getRes = await fetch(url + '?ref=' + BRANCH + '&t=' + Date.now(), { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json' } });
         if (getRes.status === 401) throw new Error('401');
         if (getRes.ok) sha = (await getRes.json()).sha;
         else if (getRes.status !== 404) throw new Error('GET SHA: ' + getRes.status);
-        const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
-        const body = { message, content, branch: BRANCH };
+        var content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+        var body = { message: message, content: content, branch: BRANCH };
         if (sha) body.sha = sha;
-        const putRes = await fetch(url, { method: 'PUT', headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        var putRes = await fetch(url, { method: 'PUT', headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
         if (putRes.status === 401) throw new Error('401');
         if (putRes.status === 403) throw new Error('403');
         if (!putRes.ok) throw new Error('PUT ' + putRes.status);
@@ -1246,18 +1188,18 @@ body {
     }
 
     function nowStr() {
-        const d = new Date();
-        const p = n => String(n).padStart(2, '0');
-        return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+        var d = new Date();
+        var p = function(n){return String(n).padStart(2, '0')};
+        return p(d.getDate()) + '.' + p(d.getMonth()+1) + '.' + d.getFullYear() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
     }
-    function dateOnly(d) { const p = n => String(n).padStart(2, '0'); return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()}`; }
-    function timeOnly(d) { const p = n => String(n).padStart(2, '0'); return `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`; }
+    function dateOnly(d) { var p = function(n){return String(n).padStart(2, '0')}; return p(d.getDate()) + '.' + p(d.getMonth()+1) + '.' + d.getFullYear(); }
+    function timeOnly(d) { var p = function(n){return String(n).padStart(2, '0')}; return p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds()); }
 
     async function addLog(actionType, actionLabel, details) {
-        const logEntry = {
+        var logEntry = {
             t: Date.now(), time: nowStr(),
-            user: state.currentUser || '—', role: state.currentRole || '—',
-            ip: state.userIp || '—', type: actionType,
+            user: state.currentUser || '-', role: state.currentRole || '-',
+            ip: state.userIp || '-', type: actionType,
             action: actionLabel, details: details || ''
         };
         state.logs.push(logEntry);
@@ -1268,33 +1210,33 @@ body {
 
     async function loadLogs() {
         try {
-            const result = await readFile('logs.json');
+            var result = await readFile('logs.json');
             state.logs = Array.isArray(result) ? result : [];
-            state.logs = state.logs.map(l => {
-                if (typeof l === 'string') return { t: 0, time: '—', user: '—', role: '—', ip: '—', type: 'info', action: l, details: '' };
+            state.logs = state.logs.map(function(l) {
+                if (typeof l === 'string') return { t: 0, time: '-', user: '-', role: '-', ip: '-', type: 'info', action: l, details: '' };
                 return l;
             });
         } catch (e) { state.logs = []; }
     }
 
     function renderLogs() {
-        const list = $('logsList');
-        const search = ($('logsSearch').value || '').toLowerCase().trim();
-        const filter = $('logsActionFilter').value;
+        var list = $('logsList');
+        var search = ($('logsSearch').value || '').toLowerCase().trim();
+        var filter = $('logsActionFilter').value;
 
-        let filtered = state.logs.slice();
-        if (filter !== 'all') filtered = filtered.filter(l => l.type === filter);
-        if (search) filtered = filtered.filter(l =>
-            (l.user || '').toLowerCase().includes(search) ||
-            (l.ip || '').toLowerCase().includes(search) ||
-            (l.action || '').toLowerCase().includes(search) ||
-            (l.details || '').toLowerCase().includes(search)
-        );
+        var filtered = state.logs.slice();
+        if (filter !== 'all') filtered = filtered.filter(function(l){return l.type === filter});
+        if (search) filtered = filtered.filter(function(l) {
+            return (l.user || '').toLowerCase().indexOf(search) !== -1 ||
+                   (l.ip || '').toLowerCase().indexOf(search) !== -1 ||
+                   (l.action || '').toLowerCase().indexOf(search) !== -1 ||
+                   (l.details || '').toLowerCase().indexOf(search) !== -1;
+        });
 
-        const todayStart = new Date(); todayStart.setHours(0,0,0,0);
-        const todayTs = todayStart.getTime();
-        const loginsToday = state.logs.filter(l => l.type === 'login' && l.t >= todayTs).length;
-        const actionsToday = state.logs.filter(l => l.t >= todayTs).length;
+        var todayStart = new Date(); todayStart.setHours(0,0,0,0);
+        var todayTs = todayStart.getTime();
+        var loginsToday = state.logs.filter(function(l){return l.type === 'login' && l.t >= todayTs}).length;
+        var actionsToday = state.logs.filter(function(l){return l.t >= todayTs}).length;
         $('statTotal').textContent = state.logs.length;
         $('statLogins').textContent = loginsToday;
         $('statActions').textContent = actionsToday;
@@ -1304,39 +1246,41 @@ body {
             return;
         }
 
-        filtered.sort((a, b) => (b.t || 0) - (a.t || 0));
+        filtered.sort(function(a, b){return (b.t || 0) - (a.t || 0)});
 
-        let html = '';
-        let lastDate = '';
-        filtered.forEach(l => {
-            const dt = new Date(l.t || Date.now());
-            const dateStr = dateOnly(dt);
+        var html = '';
+        var lastDate = '';
+        filtered.forEach(function(l) {
+            var dt = new Date(l.t || Date.now());
+            var dateStr = dateOnly(dt);
             if (dateStr !== lastDate) {
                 lastDate = dateStr;
                 html += '<div class="logs-date-header">' + dateStr + '</div>';
             }
-            const timeStr = timeOnly(dt);
-            const roleCls = 'role-' + (l.role || 'tech');
-            const action = l.action || '';
-            const details = l.details ? '<span class="logs-action-details">' + escapeHtml(l.details) + '</span>' : '';
-            const initials = (l.user || '?').substring(0, 2).toUpperCase();
+            var timeStr = timeOnly(dt);
+            var roleCls = 'role-' + (l.role || 'tech');
+            var action = l.action || '';
+            var details = l.details ? '<span class="logs-action-details">' + escapeHtml(l.details) + '</span>' : '';
+            var initials = (l.user || '?').substring(0, 2).toUpperCase();
             html +=
                 '<div class="logs-row type-' + (l.type || 'info') + '">' +
                     '<div class="logs-time">' + timeStr + '</div>' +
-                    '<div class="logs-user ' + roleCls + '"><span class="logs-user-avatar">' + initials + '</span>' + escapeHtml(l.user || '—') + '</div>' +
-                    '<div class="logs-ip">' + escapeHtml(l.ip || '—') + '</div>' +
+                    '<div class="logs-user ' + roleCls + '"><span class="logs-user-avatar">' + initials + '</span>' + escapeHtml(l.user || '-') + '</div>' +
+                    '<div class="logs-ip">' + escapeHtml(l.ip || '-') + '</div>' +
                     '<div class="logs-action"><span class="logs-action-icon"></span><span class="logs-action-text">' + escapeHtml(action) + details + '</span></div>' +
                 '</div>';
         });
         list.innerHTML = html;
     }
 
-    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
+    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]}); }
 
     async function loadAllData() {
-        for (const key of Object.keys(SECTIONS)) {
+        var keys = Object.keys(SECTIONS);
+        for (var i = 0; i < keys.length; i++) {
+            var key = keys[i];
             try {
-                const result = await readFile(SECTIONS[key].file);
+                var result = await readFile(SECTIONS[key].file);
                 state.data[key] = Array.isArray(result) ? result : [];
             } catch (e) { state.data[key] = []; }
         }
@@ -1344,21 +1288,21 @@ body {
 
     async function loadUsers() {
         try {
-            const result = await readFile('users.json');
+            var result = await readFile('users.json');
             state.users = result || {};
             return !!result;
         } catch (e) { state.users = {}; return false; }
     }
 
-    const isAdmin = () => state.currentRole === 'admin1' || state.currentRole === 'admin2' || state.currentRole === 'admin3';
-    const isDev = () => state.currentRole === 'admin3';
-    const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
+    function isAdmin() { return state.currentRole === 'admin1' || state.currentRole === 'admin2' || state.currentRole === 'admin3'; }
+    function isDev() { return state.currentRole === 'admin3'; }
+    function canEditServer(srv) { return isAdmin() || (state.currentServer && String(srv) === String(state.currentServer)); }
 
     function updateUserBadges() {
         if (!state.currentUser) {
-            $('userBadgeMenu').textContent = '—';
-            $('userBadgeSection').textContent = '—';
-            $('userBadgeAdmin').textContent = '—';
+            $('userBadgeMenu').textContent = '-';
+            $('userBadgeSection').textContent = '-';
+            $('userBadgeAdmin').textContent = '-';
             return;
         }
         $('userBadgeMenu').textContent = state.currentUser;
@@ -1367,40 +1311,43 @@ body {
     }
 
     function getUserDisplay(user) {
-        const role = user.role;
+        var role = user.role;
         if (role === 'tech') return ROLE_LABELS.tech + ' | Сервер ' + user.server;
         return ROLE_LABELS[role] || role;
     }
 
     function renderSection() {
-        const cfg = SECTIONS[state.currentSection];
+        var cfg = SECTIONS[state.currentSection];
         if (!cfg) return;
         $('sectionTitle').textContent = cfg.title;
-        $('dataHead').innerHTML = '<tr>' + cfg.headers.map(h => `<th>${h}</th>`).join('') + '</tr>';
-        const body = $('dataBody'); body.innerHTML = '';
-        let count = 0;
-        state.data[state.currentSection].forEach((row, idx) => {
-            const srv = cfg.getServer(row);
+        var headHtml = '<tr>';
+        cfg.headers.forEach(function(h){headHtml += '<th>' + h + '</th>'});
+        headHtml += '</tr>';
+        $('dataHead').innerHTML = headHtml;
+        var body = $('dataBody'); body.innerHTML = '';
+        var count = 0;
+        state.data[state.currentSection].forEach(function(row, idx) {
+            var srv = cfg.getServer(row);
             if (state.filter !== 'all' && String(srv) !== state.filter) return;
             count++;
-            const editable = canEditServer(srv);
-            const status = row[cfg.statusIdx] || 'pending';
-            const tr = document.createElement('tr');
-            let html = '';
-            for (let i = 0; i < cfg.headers.length; i++) {
+            var editable = canEditServer(srv);
+            var status = row[cfg.statusIdx] || 'pending';
+            var tr = document.createElement('tr');
+            var html = '';
+            for (var i = 0; i < cfg.headers.length; i++) {
                 if (i === cfg.statusIdx) {
-                    const selClass = 'status-select sel-' + status;
-                    const disabled = editable ? '' : 'disabled';
-                    html += `<td style="white-space:nowrap">
-                        <select class="${selClass}" data-idx="${idx}" ${disabled}>
-                            <option value="pending" ${status === 'pending' ? 'selected' : ''}>${STATUS_LABELS.pending}</option>
-                            <option value="clear" ${status === 'clear' ? 'selected' : ''}>${STATUS_LABELS.clear}</option>
-                            <option value="blocked" ${status === 'blocked' ? 'selected' : ''}>${STATUS_LABELS.blocked}</option>
-                        </select>
-                    </td>`;
-                } else if (i === 0) { html += `<td class="server-cell">${row[i]}</td>`; }
-                else if (cfg.headers[i] === 'Сумма') { html += `<td class="money-cell">${formatMoney(row[i])}</td>`; }
-                else { html += `<td>${row[i]}</td>`; }
+                    var selClass = 'status-select sel-' + status;
+                    var disabled = editable ? '' : 'disabled';
+                    html += '<td style="white-space:nowrap">' +
+                        '<select class="' + selClass + '" data-idx="' + idx + '" ' + disabled + '>' +
+                            '<option value="pending" ' + (status === 'pending' ? 'selected' : '') + '>' + STATUS_LABELS.pending + '</option>' +
+                            '<option value="clear" ' + (status === 'clear' ? 'selected' : '') + '>' + STATUS_LABELS.clear + '</option>' +
+                            '<option value="blocked" ' + (status === 'blocked' ? 'selected' : '') + '>' + STATUS_LABELS.blocked + '</option>' +
+                        '</select>' +
+                    '</td>';
+                } else if (i === 0) { html += '<td class="server-cell">' + row[i] + '</td>'; }
+                else if (cfg.headers[i] === 'Сумма') { html += '<td class="money-cell">' + formatMoney(row[i]) + '</td>'; }
+                else { html += '<td>' + row[i] + '</td>'; }
             }
             tr.innerHTML = html;
             body.appendChild(tr);
@@ -1409,22 +1356,22 @@ body {
     }
 
     async function handleStatusChange(e) {
-        const sel = e.target.closest('.status-select');
+        var sel = e.target.closest('.status-select');
         if (!sel) return;
-        const idx = parseInt(sel.dataset.idx, 10);
+        var idx = parseInt(sel.dataset.idx, 10);
         if (isNaN(idx)) return;
-        const cfg = SECTIONS[state.currentSection];
-        const row = state.data[state.currentSection][idx];
+        var cfg = SECTIONS[state.currentSection];
+        var row = state.data[state.currentSection][idx];
         if (!row) return;
         if (!canEditServer(cfg.getServer(row))) {
             toast('error', 'Нет прав', 'Вы не можете менять статусы на чужом сервере.');
-            const cur = row[cfg.statusIdx] || 'pending';
+            var cur = row[cfg.statusIdx] || 'pending';
             sel.value = cur;
             sel.className = 'status-select sel-' + cur;
             return;
         }
-        const newStatus = sel.value;
-        const oldStatus = row[cfg.statusIdx] || 'pending';
+        var newStatus = sel.value;
+        var oldStatus = row[cfg.statusIdx] || 'pending';
         if (newStatus === oldStatus) return;
 
         sel.className = 'status-select sel-' + newStatus;
@@ -1432,8 +1379,8 @@ body {
         showLoading('Сохранение...');
         try {
             await writeFile(cfg.file, state.data[state.currentSection], 'Update ' + state.currentSection);
-            toast('success', 'Статус изменён', cfg.getSummary(row) + ' → ' + STATUS_LABELS[newStatus]);
-            await addLog('status', 'Смена статуса', cfg.title + ' | ' + cfg.getSummary(row) + ': ' + STATUS_LABELS[oldStatus] + ' → ' + STATUS_LABELS[newStatus]);
+            toast('success', 'Статус изменён', cfg.getSummary(row) + ' -> ' + STATUS_LABELS[newStatus]);
+            await addLog('status', 'Смена статуса', cfg.title + ' | ' + cfg.getSummary(row) + ': ' + STATUS_LABELS[oldStatus] + ' -> ' + STATUS_LABELS[newStatus]);
         } catch (err) {
             row[cfg.statusIdx] = oldStatus;
             sel.value = oldStatus;
@@ -1444,30 +1391,30 @@ body {
 
     function openUploadModal() {
         if (!isAdmin()) { toast('error', 'Нет прав', 'Только админы'); return; }
-        const cfg = SECTIONS[state.currentSection];
+        var cfg = SECTIONS[state.currentSection];
         $('uploadModalTitle').textContent = 'Загрузка: ' + cfg.title;
-        const hints = {
-            trades: 'Формат: Сервер → ID → Имя → Ур → ID → Имя → Ур → Сумма',
-            unique: 'Формат: Сервер → ID → Имя → Ур → Знач1 → Знач2 → Сумма',
-            levels: 'Формат: Сервер → ID → Имя → Ур → Знач1 → Знач2 → Сумма',
-            works: 'Формат: Сервер → Имя → Сумма',
-            pays: 'Формат: Сервер → ID → Имя → ID → Имя → Сумма'
+        var hints = {
+            trades: 'Формат: Сервер -> ID -> Имя -> Ур -> ID -> Имя -> Ур -> Сумма',
+            unique: 'Формат: Сервер -> ID -> Имя -> Ур -> Знач1 -> Знач2 -> Сумма',
+            levels: 'Формат: Сервер -> ID -> Имя -> Ур -> Знач1 -> Знач2 -> Сумма',
+            works: 'Формат: Сервер -> Имя -> Сумма',
+            pays: 'Формат: Сервер -> ID -> Имя -> ID -> Имя -> Сумма'
         };
-        $('uploadModalHint').textContent = (hints[state.currentSection] || '') + ' (разделитель — Tab)';
+        $('uploadModalHint').textContent = (hints[state.currentSection] || '') + ' (разделитель - Tab)';
         $('uploadTextarea').value = '';
         $('uploadModal').classList.add('open');
     }
 
     async function confirmUpload() {
         if (!isAdmin()) { $('uploadModal').classList.remove('open'); return; }
-        const cfg = SECTIONS[state.currentSection];
-        const text = $('uploadTextarea').value.trim();
-        if (!text) { toast('error', 'Ошибка', '—'); return; }
-        let added = 0, skipped = 0;
-        const existing = state.data[state.currentSection];
-        text.split('\n').forEach(line => {
+        var cfg = SECTIONS[state.currentSection];
+        var text = $('uploadTextarea').value.trim();
+        if (!text) { toast('error', 'Ошибка', '-'); return; }
+        var added = 0, skipped = 0;
+        var existing = state.data[state.currentSection];
+        text.split('\n').forEach(function(line) {
             line = line.trim(); if (!line) return;
-            const parsed = cfg.parse(line);
+            var parsed = cfg.parse(line);
             if (!parsed) { skipped++; return; }
             existing.push(parsed); added++;
         });
@@ -1476,7 +1423,7 @@ body {
         showLoading('Сохранение...');
         try {
             await writeFile(cfg.file, existing, 'Upload ' + state.currentSection);
-            toast('success', 'Загружено', `Добавлено: ${added}${skipped > 0 ? ', пропущено: ' + skipped : ''}`);
+            toast('success', 'Загружено', 'Добавлено: ' + added + (skipped > 0 ? ', пропущено: ' + skipped : ''));
             await addLog('upload', 'Загрузка данных', cfg.title + ': +' + added);
             renderSection();
         } catch (e) { toast('error', 'Ошибка', e.message); }
@@ -1486,12 +1433,12 @@ body {
     async function clearSection() {
         if (!isAdmin()) { toast('error', 'Нет прав', 'Только админы'); return; }
         if (!confirm('Точно очистить раздел?')) return;
-        const cfg = SECTIONS[state.currentSection];
+        var cfg = SECTIONS[state.currentSection];
         state.data[state.currentSection] = [];
         showLoading('Сохранение...');
         try {
             await writeFile(cfg.file, [], 'Clear ' + state.currentSection);
-            toast('success', 'Очищено', '—');
+            toast('success', 'Очищено', '-');
             await addLog('clear', 'Очистка раздела', cfg.title);
             renderSection();
         } catch (e) { toast('error', 'Ошибка', e.message); }
@@ -1503,14 +1450,15 @@ body {
         if (!confirm('Точно очистить ВСЕ разделы?')) return;
         showLoading('Сохранение...');
         try {
-            const promises = [];
-            for (const key of Object.keys(SECTIONS)) {
-                state.data[key] = [];
-                promises.push(writeFile(SECTIONS[key].file, [], 'Clear ' + key));
+            var promises = [];
+            var keys = Object.keys(SECTIONS);
+            for (var i = 0; i < keys.length; i++) {
+                state.data[keys[i]] = [];
+                promises.push(writeFile(SECTIONS[keys[i]].file, [], 'Clear ' + keys[i]));
             }
             await Promise.all(promises);
             toast('success', 'Очищено', 'Все разделы очищены');
-            await addLog('clear', 'Очистка всех разделов', '—');
+            await addLog('clear', 'Очистка всех разделов', '-');
         } catch (e) { toast('error', 'Ошибка', e.message); }
         finally { hideLoading(); }
     }
@@ -1524,18 +1472,18 @@ body {
     }
     function formatBanInfo(user) {
         if (!user.banned || typeof user.banned !== 'object') return '';
-        const until = user.banned.until === 0 ? 'навсегда' : new Date(user.banned.until).toLocaleString('ru-RU');
-        return `Причина: ${user.banned.reason}\nЗаблокирован до: ${until}`;
+        var until = user.banned.until === 0 ? 'навсегда' : new Date(user.banned.until).toLocaleString('ru-RU');
+        return 'Причина: ' + user.banned.reason + '\nЗаблокирован до: ' + until;
     }
 
-    const isProtectedUser = (uname, u) => u && u.role === 'admin3';
-    const isHiddenFromMe = (uname, u) => {
+    function isProtectedUser(uname, u) { return u && u.role === 'admin3'; }
+    function isHiddenFromMe(uname, u) {
         if (isDev()) return false;
         return u && u.role === 'admin3';
-    };
+    }
 
     function openUserBanModal(uname) {
-        const u = state.users[uname];
+        var u = state.users[uname];
         if (!u) return;
         if (isProtectedUser(uname, u)) { adminMsg('Разработчик защищён. Действия недоступны.', 'err'); return; }
         state.pendingUserBan = uname;
@@ -1543,26 +1491,26 @@ body {
         $('userBanReason').value = '';
         $('userBanDuration').value = '24';
         $('userBanModal').classList.add('open');
-        setTimeout(() => $('userBanReason').focus(), 100);
+        setTimeout(function(){$('userBanReason').focus()}, 100);
     }
 
     async function confirmUserBan() {
         if (!state.pendingUserBan) return;
-        const uname = state.pendingUserBan;
+        var uname = state.pendingUserBan;
         if (isProtectedUser(uname, state.users[uname])) { $('userBanModal').classList.remove('open'); state.pendingUserBan = null; return; }
-        const reason = $('userBanReason').value.trim();
+        var reason = $('userBanReason').value.trim();
         if (!reason) { toast('error', 'Ошибка', 'Укажи причину бана'); return; }
-        const hours = parseInt($('userBanDuration').value, 10);
-        const until = hours === 0 ? 0 : Date.now() + hours * 3600 * 1000;
-        const oldBanned = state.users[uname].banned;
-        state.users[uname].banned = { reason, until };
+        var hours = parseInt($('userBanDuration').value, 10);
+        var until = hours === 0 ? 0 : Date.now() + hours * 3600 * 1000;
+        var oldBanned = state.users[uname].banned;
+        state.users[uname].banned = { reason: reason, until: until };
         $('userBanModal').classList.remove('open');
         state.pendingUserBan = null;
         showLoading('Сохранение...');
         try {
             await writeFile('users.json', state.users, 'Ban user ' + uname);
-            const untilText = until === 0 ? 'навсегда' : new Date(until).toLocaleString('ru-RU');
-            toast('warning', 'Пользователь заблокирован', `${uname}\nПричина: ${reason}\nДо: ${untilText}`);
+            var untilText = until === 0 ? 'навсегда' : new Date(until).toLocaleString('ru-RU');
+            toast('warning', 'Пользователь заблокирован', uname + '\nПричина: ' + reason + '\nДо: ' + untilText);
             await addLog('ban', 'Блокировка пользователя', uname + ' | ' + reason + ' | ' + (until === 0 ? 'навсегда' : hours + 'ч'));
             renderAdminUsers();
         } catch (e) {
@@ -1572,10 +1520,10 @@ body {
     }
 
     async function unbanUser(uname) {
-        const u = state.users[uname];
+        var u = state.users[uname];
         if (isProtectedUser(uname, u)) { adminMsg('Разработчик защищён. Действия недоступны.', 'err'); return; }
         if (!confirm('Разблокировать ' + uname + '?')) return;
-        const oldBanned = state.users[uname].banned;
+        var oldBanned = state.users[uname].banned;
         delete state.users[uname].banned;
         showLoading('Сохранение...');
         try {
@@ -1590,86 +1538,86 @@ body {
     }
 
     function renderAdminUsers() {
-        const body = $('adminBody');
-        if (!isAdmin()) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#dc3545;padding:20px;">—</td></tr>'; return; }
+        var body = $('adminBody');
+        if (!isAdmin()) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#dc3545;padding:20px;">-</td></tr>'; return; }
         body.innerHTML = '';
 
-        const sortedNames = Object.keys(state.users).sort((a, b) => {
-            const ra = state.users[a].role, rb = state.users[b].role;
-            const rank = r => r === 'admin3' ? 0 : (r === 'admin1' ? 1 : (r === 'admin2' ? 2 : 3));
+        var sortedNames = Object.keys(state.users).sort(function(a, b) {
+            var ra = state.users[a].role, rb = state.users[b].role;
+            var rank = function(r){return r === 'admin3' ? 0 : (r === 'admin1' ? 1 : (r === 'admin2' ? 2 : 3))};
             return rank(ra) - rank(rb);
         });
 
-        sortedNames.forEach(uname => {
-            const u = state.users[uname];
+        sortedNames.forEach(function(uname) {
+            var u = state.users[uname];
             if (isHiddenFromMe(uname, u)) return;
 
-            const isSelf = uname === state.currentUser;
-            const isProtected = isProtectedUser(uname, u);
-            const isAdminRow = u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3';
-            const revealed = !isProtected && state.revealed[uname] === true;
-            const banned = isUserBanned(u);
-            const banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
+            var isSelf = uname === state.currentUser;
+            var isProtected = isProtectedUser(uname, u);
+            var isAdminRow = u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3';
+            var revealed = !isProtected && state.revealed[uname] === true;
+            var banned = isUserBanned(u);
+            var banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
 
-            let statusHtml;
+            var statusHtml;
             if (banned && !isProtected) {
-                statusHtml = `<span class="user-status banned" title="${banTitle}">Забанен</span>`;
+                statusHtml = '<span class="user-status banned" title="' + banTitle + '">Забанен</span>';
             } else {
-                statusHtml = `<span class="user-status active">Активен</span>`;
+                statusHtml = '<span class="user-status active">Активен</span>';
             }
 
-            const canChangePass = !isProtected;
-            const canBan = !isProtected && !isAdminRow;
-            const canToggle = !isProtected;
+            var canChangePass = !isProtected;
+            var canBan = !isProtected && !isAdminRow;
+            var canToggle = !isProtected;
 
-            let banBtn = '';
+            var banBtn = '';
             if (canBan) {
                 banBtn = banned
-                    ? `<button class="pma-btn" data-act="unban" data-user="${uname}">Разблокировать</button>`
-                    : `<button class="pma-btn" data-act="ban" data-user="${uname}">Заблокировать</button>`;
+                    ? '<button class="pma-btn" data-act="unban" data-user="' + uname + '">Разблокировать</button>'
+                    : '<button class="pma-btn" data-act="ban" data-user="' + uname + '">Заблокировать</button>';
             }
 
-            const roleClass = u.role === 'admin1' ? 'admin1' : (u.role === 'admin2' ? 'admin2' : (u.role === 'admin3' ? 'admin3' : 'tech'));
-            const tr = document.createElement('tr');
+            var roleClass = u.role === 'admin1' ? 'admin1' : (u.role === 'admin2' ? 'admin2' : (u.role === 'admin3' ? 'admin3' : 'tech'));
+            var tr = document.createElement('tr');
             if (banned && !isProtected) tr.className = 'banned-row';
             if (isProtected) tr.className = 'admin3-row';
 
-            tr.innerHTML = `
-                <td style="font-weight:bold;color:#3D6DB5">${uname}${isSelf ? ' *' : ''}</td>
-                <td style="text-align:center"><span class="role-badge ${roleClass}">${ROLE_LABELS[u.role] || u.role}</span></td>
-                <td style="text-align:center">${u.server}</td>
-                <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••'}</td>
-                <td style="text-align:center">${statusHtml}</td>
-                <td style="white-space:nowrap">
-                    <button class="pma-btn" data-act="toggle" data-user="${uname}" ${canToggle ? '' : 'disabled'}>Показать</button>
-                    <button class="pma-btn" data-act="change" data-user="${uname}" ${canChangePass ? '' : 'disabled'}>Пароль</button>
-                    ${banBtn}
-                </td>`;
+            tr.innerHTML =
+                '<td style="font-weight:bold;color:#3D6DB5">' + uname + (isSelf ? ' *' : '') + '</td>' +
+                '<td style="text-align:center"><span class="role-badge ' + roleClass + '">' + (ROLE_LABELS[u.role] || u.role) + '</span></td>' +
+                '<td style="text-align:center">' + u.server + '</td>' +
+                '<td style="font-family:Consolas,monospace">' + (revealed ? u.password : '......') + '</td>' +
+                '<td style="text-align:center">' + statusHtml + '</td>' +
+                '<td style="white-space:nowrap">' +
+                    '<button class="pma-btn" data-act="toggle" data-user="' + uname + '" ' + (canToggle ? '' : 'disabled') + '>Показать</button>' +
+                    '<button class="pma-btn" data-act="change" data-user="' + uname + '" ' + (canChangePass ? '' : 'disabled') + '>Пароль</button>' +
+                    banBtn +
+                '</td>';
             body.appendChild(tr);
         });
     }
 
     async function handleAdminClick(e) {
         if (!isAdmin()) { toast('error', 'Нет прав', 'Только админы'); return; }
-        const btn = e.target.closest('button[data-act]');
+        var btn = e.target.closest('button[data-act]');
         if (!btn) return;
-        const act = btn.dataset.act, uname = btn.dataset.user;
-        const u = state.users[uname];
+        var act = btn.dataset.act, uname = btn.dataset.user;
+        var u = state.users[uname];
 
         if (isProtectedUser(uname, u)) { adminMsg('Разработчик защищён. Действия недоступны.', 'err'); return; }
 
         if (act === 'toggle') { state.revealed[uname] = !state.revealed[uname]; renderAdminUsers(); return; }
         if (act === 'change') {
-            const np = prompt('Новый пароль для ' + uname + ':', '');
+            var np = prompt('Новый пароль для ' + uname + ':', '');
             if (np === null) return;
             if (np.length < 4) { adminMsg('Пароль слишком короткий', 'err'); return; }
-            const oldPass = u.password;
+            var oldPass = u.password;
             u.password = np;
             showLoading('Сохранение...');
             try {
                 await writeFile('users.json', state.users, 'Update user password');
                 adminMsg('Пароль сохранён: ' + uname, 'ok');
-                toast('success', 'Пароль изменён', uname + ' → ' + np);
+                toast('success', 'Пароль изменён', uname + ' -> ' + np);
                 await addLog('pass', 'Смена пароля', uname);
                 renderAdminUsers();
             } catch (err) {
@@ -1683,20 +1631,20 @@ body {
         if (act === 'unban') { unbanUser(uname); return; }
     }
 
-    function adminMsg(text, type) { const el = $('adminMsg'); el.textContent = text; el.className = 'admin-msg show ' + type; setTimeout(() => el.classList.remove('show'), 4000); }
+    function adminMsg(text, type) { var el = $('adminMsg'); el.textContent = text; el.className = 'admin-msg show ' + type; setTimeout(function(){el.classList.remove('show')}, 4000); }
 
     function saveSession(uname) { localStorage.setItem('session_user', uname); }
     function clearSession() { localStorage.removeItem('session_user'); }
 
     async function restoreSession() {
-        const savedUser = localStorage.getItem('session_user');
+        var savedUser = localStorage.getItem('session_user');
         if (!savedUser) return false;
         try {
             showLoading('Проверка...');
             await fetchIP();
-            const loaded = await loadUsers();
+            var loaded = await loadUsers();
             if (!loaded) { hideLoading(); clearSession(); return false; }
-            const user = state.users[savedUser];
+            var user = state.users[savedUser];
             if (!user) { hideLoading(); clearSession(); return false; }
             if (isUserBanned(user) && user.role !== 'admin3') { hideLoading(); clearSession(); return false; }
             state.currentUser = savedUser;
@@ -1721,19 +1669,19 @@ body {
 
     async function handleLogin(e) {
         e.preventDefault();
-        const uname = $('username').value.trim();
-        const pass = $('password').value;
+        var uname = $('username').value.trim();
+        var pass = $('password').value;
 
         if (!uname || !pass) {
             $('username').classList.add('error'); $('password').classList.add('error');
-            setTimeout(() => { $('username').classList.remove('error'); $('password').classList.remove('error'); }, 600);
+            setTimeout(function(){$('username').classList.remove('error'); $('password').classList.remove('error')}, 600);
             toast('error', 'Ошибка', 'Заполните все поля');
             return;
         }
 
         if (!checkCaptcha()) {
             $('captchaInput').classList.add('error');
-            setTimeout(() => $('captchaInput').classList.remove('error'), 600);
+            setTimeout(function(){$('captchaInput').classList.remove('error')}, 600);
             generateCaptcha();
             toast('error', 'Ошибка', 'Неверный код с картинки');
             return;
@@ -1741,43 +1689,43 @@ body {
 
         showLoading('Проверка...');
         fetchIP();
-        const loaded = await loadUsers();
+        var loaded = await loadUsers();
         hideLoading();
         if (!loaded) { generateCaptcha(); toast('error', 'Ошибка', 'users.json'); return; }
-        const user = state.users[uname];
+        var user = state.users[uname];
         if (!user) {
             $('username').classList.add('error');
-            setTimeout(() => $('username').classList.remove('error'), 600);
+            setTimeout(function(){$('username').classList.remove('error')}, 600);
             generateCaptcha();
             toast('error', 'Ошибка', 'Пользователь не найден');
             return;
         }
         if (user.password !== pass) {
             $('password').classList.add('error');
-            setTimeout(() => $('password').classList.remove('error'), 600);
+            setTimeout(function(){$('password').classList.remove('error')}, 600);
             generateCaptcha();
             toast('error', 'Ошибка', 'Неверный пароль');
             return;
         }
         if (isUserBanned(user) && user.role !== 'admin3') {
-            const info = user.banned;
-            const untilText = info.until === 0 ? 'навсегда' : new Date(info.until).toLocaleString('ru-RU');
+            var info = user.banned;
+            var untilText = info.until === 0 ? 'навсегда' : new Date(info.until).toLocaleString('ru-RU');
             generateCaptcha();
-            toast('error', '🚫 Вы заблокированы', `Причина: ${info.reason}\nЗаблокирован до: ${untilText}`);
+            toast('error', 'Вы заблокированы', 'Причина: ' + info.reason + '\nЗаблокирован до: ' + untilText);
             return;
         }
         if (user.banned && typeof user.banned === 'object' && user.banned.until !== 0 && user.banned.until <= Date.now()) {
             delete user.banned;
-            writeFile('users.json', state.users, 'Auto-unban').catch(() => {});
+            writeFile('users.json', state.users, 'Auto-unban').catch(function(){});
         }
         if (!user.registered) {
             user.registered = Date.now();
-            writeFile('users.json', state.users, 'Set user registered').catch(() => {});
+            writeFile('users.json', state.users, 'Set user registered').catch(function(){});
         }
         state.currentUser = uname;
         state.currentServer = user.server;
         state.currentRole = user.role;
-        if (state.userIp === '—') await fetchIP();
+        if (state.userIp === '-') await fetchIP();
         updateUserBadges();
         $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
         $('sectionActions').style.display = isAdmin() ? 'grid' : 'none';
@@ -1788,11 +1736,11 @@ body {
         hideLoading();
         toast('success', 'Успешно', 'Добро пожаловать, ' + uname + '!');
         await addLog('login', 'Вход в систему', uname + ' | ' + (ROLE_LABELS[user.role] || user.role) + ' | IP: ' + state.userIp);
-        setTimeout(() => { $('loginScreen').classList.add('hidden'); showScreen('menu'); startTimer(); }, 300);
+        setTimeout(function(){ $('loginScreen').classList.add('hidden'); showScreen('menu'); startTimer(); }, 300);
     }
 
     function doLogout() {
-        addLog('logout', 'Выход из системы', state.currentUser || '—').catch(() => {});
+        addLog('logout', 'Выход из системы', state.currentUser || '-').catch(function(){});
         stopTimer();
         clearSession();
         state.currentUser = ''; state.currentServer = ''; state.currentRole = '';
@@ -1805,7 +1753,7 @@ body {
         toast('info', 'Выход', 'Вы вышли из системы');
     }
 
-    function hideAllScreens() { ['menuScreen', 'sectionScreen', 'adminScreen'].forEach(id => $(id).classList.remove('active')); }
+    function hideAllScreens() { ['menuScreen', 'sectionScreen', 'adminScreen'].forEach(function(id){$(id).classList.remove('active')}); }
     function showScreen(name) {
         hideAllScreens();
         if (name === 'menu') $('menuScreen').classList.add('active');
@@ -1814,11 +1762,11 @@ body {
     }
 
     function openTokenModal() {
-        const tk = getToken();
+        var tk = getToken();
         $('tokenCurrent').textContent = tk ? 'Текущий токен: ' + tk.slice(0, 25) + '...' + tk.slice(-10) : 'Текущий токен: не установлен';
         $('tokenInput').value = '';
         $('tokenModal').classList.add('open');
-        setTimeout(() => $('tokenInput').focus(), 200);
+        setTimeout(function(){$('tokenInput').focus()}, 200);
     }
 
     function init() {
@@ -1830,25 +1778,25 @@ body {
         $('password').addEventListener('input', function () { this.classList.remove('error'); });
         $('captchaInput').addEventListener('input', function () { this.classList.remove('error'); });
 
-        $('logsBtn').addEventListener('click', () => {
+        $('logsBtn').addEventListener('click', function() {
             if (!isAdmin()) { toast('error', 'Нет прав', 'Только админы'); return; }
             renderLogs();
             $('logsModal').classList.add('open');
         });
-        $('logsClose').addEventListener('click', () => $('logsModal').classList.remove('open'));
+        $('logsClose').addEventListener('click', function(){$('logsModal').classList.remove('open')});
         $('logsSearch').addEventListener('input', renderLogs);
         $('logsActionFilter').addEventListener('change', renderLogs);
 
         $('setTokenBtn').addEventListener('click', openTokenModal);
-        $('tokenCancel').addEventListener('click', () => $('tokenModal').classList.remove('open'));
-        $('tokenSave').addEventListener('click', () => {
-            const val = $('tokenInput').value.trim();
+        $('tokenCancel').addEventListener('click', function(){$('tokenModal').classList.remove('open')});
+        $('tokenSave').addEventListener('click', function() {
+            var val = $('tokenInput').value.trim();
             if (!val) { toast('error', 'Ошибка', 'Вставь токен'); return; }
             setToken(val);
             $('tokenModal').classList.remove('open');
             toast('success', 'Успешно', 'Токен сохранён');
         });
-        $('tokenClear').addEventListener('click', () => {
+        $('tokenClear').addEventListener('click', function() {
             if (!getToken()) { $('tokenModal').classList.remove('open'); return; }
             if (!confirm('Удалить токен?')) return;
             setToken('');
@@ -1859,17 +1807,17 @@ body {
         $('profileBtn').addEventListener('click', openProfileModal);
         $('profileBtnSection').addEventListener('click', openProfileModal);
         $('profileBtnAdmin').addEventListener('click', openProfileModal);
-        $('profileClose').addEventListener('click', () => $('profileModal').classList.remove('open'));
+        $('profileClose').addEventListener('click', function(){$('profileModal').classList.remove('open')});
 
         $('loginForm').addEventListener('submit', handleLogin);
-        document.querySelectorAll('[data-logout]').forEach(btn => btn.addEventListener('click', doLogout));
+        document.querySelectorAll('[data-logout]').forEach(function(btn){btn.addEventListener('click', doLogout)});
 
-        $('backFromSection').addEventListener('click', () => { showScreen('menu'); });
-        $('backFromAdmin').addEventListener('click', () => showScreen('menu'));
+        $('backFromSection').addEventListener('click', function(){ showScreen('menu'); });
+        $('backFromAdmin').addEventListener('click', function(){ showScreen('menu'); });
 
-        document.querySelectorAll('[data-section]').forEach(btn => {
+        document.querySelectorAll('[data-section]').forEach(function(btn) {
             btn.addEventListener('click', function () {
-                const section = this.dataset.section;
+                var section = this.dataset.section;
                 if (section === 'admin') {
                     if (!isAdmin()) { toast('error', 'Нет прав', 'Только админы'); return; }
                     showScreen('admin'); renderAdminUsers(); return;
@@ -1877,15 +1825,15 @@ body {
                 if (!SECTIONS[section]) return;
                 state.currentSection = section;
                 state.filter = 'all';
-                document.querySelectorAll('.server-filter').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.server-filter').forEach(function(b){b.classList.remove('active')});
                 document.querySelector('.server-filter[data-server="all"]').classList.add('active');
                 showScreen('section'); renderSection();
             });
         });
 
-        $('serverFilters').addEventListener('click', e => {
-            const btn = e.target.closest('.server-filter'); if (!btn) return;
-            document.querySelectorAll('.server-filter').forEach(b => b.classList.remove('active'));
+        $('serverFilters').addEventListener('click', function(e) {
+            var btn = e.target.closest('.server-filter'); if (!btn) return;
+            document.querySelectorAll('.server-filter').forEach(function(b){b.classList.remove('active')});
             btn.classList.add('active');
             state.filter = btn.dataset.server;
             renderSection();
@@ -1894,18 +1842,18 @@ body {
         $('dataBody').addEventListener('change', handleStatusChange);
 
         $('uploadBtn').addEventListener('click', openUploadModal);
-        $('uploadCancel').addEventListener('click', () => $('uploadModal').classList.remove('open'));
+        $('uploadCancel').addEventListener('click', function(){$('uploadModal').classList.remove('open')});
         $('uploadConfirm').addEventListener('click', confirmUpload);
         $('clearBtn').addEventListener('click', clearSection);
 
-        $('userBanCancel').addEventListener('click', () => { $('userBanModal').classList.remove('open'); state.pendingUserBan = null; });
+        $('userBanCancel').addEventListener('click', function(){ $('userBanModal').classList.remove('open'); state.pendingUserBan = null; });
         $('userBanConfirm').addEventListener('click', confirmUserBan);
 
         $('adminBody').addEventListener('click', handleAdminClick);
         $('clearAllBtn').addEventListener('click', clearAllSections);
-        $('toastClose').addEventListener('click', () => $('toast').classList.remove('show'));
+        $('toastClose').addEventListener('click', function(){$('toast').classList.remove('show')});
 
-        setTimeout(() => { restoreSession(); }, 100);
+        setTimeout(function(){ restoreSession(); }, 100);
     }
 
     document.addEventListener('DOMContentLoaded', init);
