@@ -2,7 +2,8 @@
   "Admin1": {
     "password": "curator123",
     "server": "all",
-    "role": "admin1"
+    "role": "admin1",
+    "registered": 1789138705179
   },
   "Admin2": {
     "password": "deputy123",
