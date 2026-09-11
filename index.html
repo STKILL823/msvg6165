@@ -1,1 +1,1238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Технический отдел 61-65</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='18' rx='9' ry='8' fill='%234a7fb5'/%3E%3Cellipse cx='7' cy='16' rx='3.5' ry='5' fill='%234a7fb5'/%3E%3Cellipse cx='25' cy='16' rx='3.5' ry='5' fill='%234a7fb5'/%3E%3Cpath d='M14 23 Q16 31 18 23 Z' fill='%234a7fb5'/%3E%3Ccircle cx='12' cy='16' r='1' fill='%23fff'/%3E%3Ccircle cx='20' cy='16' r='1' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f2f2f2; --panel:#fff; --panel-alt:#f5f5f5; --panel-head:#e8eef2;
+  --accent:#235a81; --accent-light:#3d7ba8; --accent-dark:#1a4460;
+  --orange:#f7b42c; --orange-dark:#d68910;
+  --text:#333; --text-dim:#666; --text-mute:#999;
+  --border:#c9c9c9; --border-light:#dedede;
+  --success:#2e8b57; --danger:#c0392b; --warning:#d68910;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:13px}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{0%{opacity:0;transform:scale(.85)}60%{opacity:1;transform:scale(1.04)}100%{opacity:1;transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rowAppear{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
 
+/* ============ КНОПКИ в стиле phpMyAdmin ============ */
+.pmabtn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  padding:4px 10px 4px 6px;
+  border:1px solid #a0a0a0;
+  background:linear-gradient(to bottom,#fefefe,#d8d8d8);
+  color:#333;
+  font-size:12px;
+  font-family:Arial,Helvetica,sans-serif;
+  font-weight:normal;
+  cursor:pointer;
+  text-decoration:none;
+  white-space:nowrap;
+  line-height:1.4;
+  border-radius:2px;
+  transition:background .12s;
+  box-shadow:inset 0 1px 0 #fff;
+}
+.pmabtn:hover{background:linear-gradient(to bottom,#f0f0f0,#c8c8c8);color:#000}
+.pmabtn:active{background:linear-gradient(to bottom,#c8c8c8,#e0e0e0)}
+.pmabtn:disabled{opacity:.5;cursor:not-allowed}
+.pmabtn .ico{width:16px;height:16px;flex-shrink:0;display:block}
+
+.pmabtn.primary{background:linear-gradient(to bottom,#5a97c8,#2c6d99);color:#fff;border-color:#1a4d70;text-shadow:0 1px 1px rgba(0,0,0,.25)}
+.pmabtn.primary:hover{background:linear-gradient(to bottom,#4d8cbd,#256089);color:#fff}
+.pmabtn.primary .ico{filter:brightness(0) invert(1)}
+
+.pmabtn.danger{background:linear-gradient(to bottom,#e08a80,#c0392b);color:#fff;border-color:#8f2a1f;text-shadow:0 1px 1px rgba(0,0,0,.2)}
+.pmabtn.danger:hover{background:linear-gradient(to bottom,#d97a6e,#a83224);color:#fff}
+.pmabtn.danger .ico{filter:brightness(0) invert(1)}
+
+.pmabtn.success{background:linear-gradient(to bottom,#5bb87f,#2e8b57);color:#fff;border-color:#1f6a40;text-shadow:0 1px 1px rgba(0,0,0,.2)}
+.pmabtn.success:hover{background:linear-gradient(to bottom,#4ea972,#266f47);color:#fff}
+.pmabtn.success .ico{filter:brightness(0) invert(1)}
+
+/* ЛОГОТИП phpMyAdmin-style */
+.pmalogo{display:inline-block;vertical-align:middle}
+.pmalogo-lg{width:72px;height:72px}
+.pmalogo-md{width:34px;height:34px}
+.pmalogo-sm{width:26px;height:26px}
+
+/* ЛОГИН */
+.login-container{width:100%;max-width:460px;padding:20px;margin:0 auto;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center;animation:fadeInUp .4s ease}
+.login-container.hidden{display:none}
+.logo-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:10px;animation:popIn .5s ease}
+.logo-text{font-size:20px;font-weight:bold;font-style:italic;margin:4px 0 0;color:var(--accent)}
+.logo-sub{font-size:11px;color:var(--text-mute);letter-spacing:1.5px;text-transform:uppercase}
+.welcome-text{font-size:13px;font-weight:bold;margin-bottom:18px;color:var(--text-dim);animation:fadeIn .5s ease .2s backwards}
+fieldset{border:1px solid var(--border);padding:12px;margin-bottom:14px;background:var(--panel);text-align:left;animation:fadeInUp .5s ease .2s backwards;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 12px;font-size:12px;font-weight:bold;color:var(--accent-dark);margin-left:8px;border-radius:3px}
+.auth-table{width:100%;border-collapse:collapse}
+.auth-table td{padding-bottom:12px;vertical-align:top}
+.auth-table .label-cell{width:110px;padding-top:9px;font-size:12px;color:var(--text-dim);font-weight:bold}
+.auth-table input,.auth-table select{width:100%;padding:8px 10px;border:1px solid var(--border);background:#fff;color:var(--text);font-size:13px;font-family:inherit;border-radius:3px;transition:border-color .15s,box-shadow .15s}
+.auth-table input::placeholder{color:var(--text-mute)}
+.auth-table input:focus,.auth-table select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(35,90,129,.18)}
+.auth-table input.error{border-color:var(--danger);box-shadow:0 0 0 2px rgba(192,57,43,.18);animation:shake .4s ease}
+.strength-meter{height:4px;background:#e5e5e5;margin-top:6px;overflow:hidden;border-radius:2px}
+.strength-fill{height:100%;width:0;transition:all .35s ease;border-radius:2px}
+.strength-text{font-size:11px;margin-top:4px;color:var(--text-dim)}
+.captcha-box{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);background:#fafafa;cursor:pointer;user-select:none;width:100%;border-radius:3px;transition:border-color .15s}
+.captcha-box:hover{border-color:var(--accent-light)}
+.captcha-box.error{animation:shake .4s ease;border-color:var(--danger)}
+.captcha-checkbox{width:22px;height:22px;border:2px solid #999;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s ease;border-radius:3px}
+.captcha-box.checked .captcha-checkbox{border-color:var(--success);background:var(--success);animation:popIn .3s ease}
+.captcha-checkbox svg{width:14px;height:14px;display:none}
+.captcha-box.checked .captcha-checkbox svg{display:block}
+.captcha-box.loading .captcha-checkbox{border-color:var(--accent)}
+.captcha-spinner{width:14px;height:14px;border:2px solid #ddd;border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;display:none}
+.captcha-box.loading .captcha-spinner{display:block}
+.captcha-box.loading .captcha-checkbox svg{display:none}
+.captcha-label{font-size:12px;color:var(--text);flex:1;text-align:left}
+.captcha-brand{font-size:10px;color:var(--text-mute)}
+.auth-footer{background:var(--panel-alt);border-top:1px solid var(--border);padding:10px 12px;margin:0 -12px -12px -12px;display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap;border-radius:0 0 4px 4px}
+.login-license{position:fixed;bottom:12px;left:0;right:0;text-align:center;font-size:11px;color:var(--text-mute);padding:0 20px;line-height:1.4;pointer-events:none}
+
+/* ЭКРАНЫ */
+.screen{display:none;width:100%;min-height:100vh;flex-direction:column;background:var(--bg)}
+.screen.active{display:flex;animation:fadeIn .3s ease}
+.menu-header{background:linear-gradient(to bottom,#3d7ba8,#235a81);color:#fff;padding:0;display:flex;flex-direction:column;box-shadow:0 2px 6px rgba(0,0,0,.25);border-bottom:3px solid var(--orange)}
+.header-main{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;gap:8px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:bold;font-style:italic;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.3)}
+.brand .brand-sub{font-weight:normal;font-style:normal;font-size:11px;opacity:.85;letter-spacing:1px;text-transform:uppercase;margin-left:2px}
+.user-info{display:flex;align-items:center;gap:8px;font-size:12px}
+.user-badge{background:rgba(255,255,255,.18);padding:4px 10px;font-weight:bold;display:inline-flex;align-items:center;gap:6px;border-radius:3px;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.user-badge .badge-check{width:14px;height:14px;border-radius:50%;background:var(--success);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.user-badge .badge-check svg{width:8px;height:8px;display:block}
+.admin-top-bar{padding:6px 16px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.1)}
+.admin-top-bar .pmabtn{background:linear-gradient(to bottom,rgba(255,255,255,.9),rgba(220,230,240,.85));color:#1a4460;border-color:rgba(0,0,0,.2)}
+.admin-top-bar .pmabtn:hover{background:linear-gradient(to bottom,#fff,#d8e4ec);color:#000}
+
+.menu-title{color:var(--accent-dark);font-size:15px;font-weight:bold;padding:18px 20px 0;margin:0;text-align:left}
+.menu-content{flex:1;padding:15px 20px 140px 20px}
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:linear-gradient(to bottom,#f0f0f0,#e2e2e2);border-top:1px solid #b8b8b8;padding:8px 12px;display:flex;justify-content:center;gap:6px;flex-wrap:wrap;z-index:100;box-shadow:0 -2px 8px rgba(0,0,0,.12)}
+.section-container,.admin-container{flex:1;padding:20px;max-width:1400px;margin:0 auto;width:100%}
+.section-title,.admin-title{color:var(--accent-dark);font-size:16px;font-weight:bold;margin:0 0 4px 0;text-align:left;padding-bottom:8px;border-bottom:2px solid var(--panel-head)}
+.section-actions{margin:12px 0;display:flex;gap:8px;flex-wrap:wrap}
+.server-filters{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.server-filter{padding:5px 14px;border:1px solid #a0a0a0;background:linear-gradient(to bottom,#fefefe,#d8d8d8);color:#333;font-size:12px;font-family:inherit;cursor:pointer;white-space:nowrap;border-radius:2px;box-shadow:inset 0 1px 0 #fff}
+.server-filter:hover{background:linear-gradient(to bottom,#f0f0f0,#c8c8c8);color:#000}
+.server-filter.active{background:linear-gradient(to bottom,#5a97c8,#2c6d99);color:#fff;border-color:#1a4d70;text-shadow:0 1px 1px rgba(0,0,0,.25)}
+.counter{font-size:12px;color:var(--text-dim);margin-bottom:10px;text-align:left;padding:6px 10px;background:var(--panel-head);border:1px solid #b8c8d0;border-radius:3px;display:inline-block;font-weight:bold}
+
+.table-wrap{background:var(--panel);border:1px solid #a8bcc8;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.data-table,.admin-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff}
+.data-table th,.admin-table th{background:linear-gradient(to bottom,#eef3f6,#d0dce0);border:1px solid #a8bcc8;padding:8px;text-align:left;font-weight:bold;color:#1a4460;white-space:nowrap;position:sticky;top:0;text-transform:uppercase;font-size:10.5px;letter-spacing:.4px}
+.data-table td,.admin-table td{border:1px solid #d8d8d8;padding:5px 8px;color:var(--text);white-space:nowrap;background:#fff}
+.data-table tbody tr,.admin-table tbody tr{animation:rowAppear .2s ease backwards}
+.data-table tbody tr:nth-child(even) td,.admin-table tbody tr:nth-child(even) td{background:#f7f9fa}
+.data-table tbody tr:hover td,.admin-table tbody tr:hover td{background:#eaf2f8}
+.admin-table tbody tr.banned-row td{background:#fdecea !important}
+.admin-table tbody tr.admin3-row td{background:#eafaf1 !important}
+.server-cell{text-align:center;font-weight:bold;color:var(--accent)}
+.money-cell{text-align:right;font-family:Consolas,"Courier New",monospace;font-weight:bold;white-space:nowrap;color:var(--accent-dark)}
+
+.status-select{appearance:none;-webkit-appearance:none;border:1px solid transparent;padding:5px 30px 5px 10px;font-size:11.5px;font-family:inherit;font-weight:bold;cursor:pointer;border-radius:3px;min-width:155px;transition:all .2s ease;background-repeat:no-repeat;background-position:right 8px center;background-size:13px;color:#fff;text-shadow:0 1px 1px rgba(0,0,0,.25)}
+.status-select:hover:not(:disabled){transform:scale(1.02)}
+.status-select:focus{outline:none;box-shadow:0 0 0 2px rgba(35,90,129,.35)}
+.status-select.sel-pending{background-color:#8a8a8a;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");border-color:#6a6a6a}
+.status-select.sel-pending:hover:not(:disabled){background-color:#9a9a9a}
+.status-select.sel-clear{background-color:#2e8b57;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");border-color:#256b43}
+.status-select.sel-clear:hover:not(:disabled){background-color:#369a63}
+.status-select.sel-blocked{background-color:#c0392b;background-image:url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e");border-color:#992d22}
+.status-select.sel-blocked:hover:not(:disabled){background-color:#cf4436}
+.status-select:disabled{opacity:.5;cursor:not-allowed;filter:grayscale(.4)}
+.status-select.changed{animation:pulse .5s ease}
+.status-select option{background:#fff;color:#333;font-weight:bold}
+
+.role-badge{padding:2px 8px;font-size:10.5px;font-weight:bold;border:1px solid;display:inline-block;border-radius:3px;white-space:nowrap}
+.role-badge.admin1{background:#d5f5e3;color:#1e6b41;border-color:#7fcf9d}
+.role-badge.admin2{background:#d6e8f5;color:#1a4460;border-color:#8dbdd8}
+.role-badge.admin3{background:#d5f5e3;color:#145c37;border-color:#2e8b57}
+.role-badge.tech{background:#ececec;color:#555;border-color:#bdbdbd}
+.user-status{padding:2px 8px;font-size:10.5px;font-weight:bold;border:1px solid;display:inline-block;white-space:nowrap;border-radius:3px}
+.user-status.active{background:#d5f5e3;color:#1e6b41;border-color:#7fcf9d}
+.user-status.banned{background:#fadbd8;color:#922b21;border-color:#e6a09a;cursor:help}
+.admin-hint{font-size:12px;color:var(--text-mute);margin:8px 0 14px;font-style:italic}
+.admin-msg{padding:10px 14px;margin-bottom:12px;font-size:12px;border:1px solid;display:none;border-radius:3px}
+.admin-msg.show{display:block;animation:fadeInUp .25s ease}
+.admin-msg.ok{background:#eafaf1;color:#1e6b41;border-color:#7fcf9d}
+.admin-msg.err{background:#fdecea;color:#922b21;border-color:#e6a09a}
+.admin-tools{padding:12px;background:var(--panel);border:1px solid var(--border);margin-bottom:14px;display:flex;gap:8px;flex-wrap:wrap;border-radius:4px}
+.admin-tools .pmabtn{flex:1;min-width:140px}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:10001;display:none;justify-content:center;align-items:center;padding:15px;animation:fadeIn .15s ease}
+.modal.open{display:flex}
+.modal-content{background:var(--panel);padding:0;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 10px 40px rgba(0,0,0,.35);border:1px solid #a8bcc8;border-radius:4px}
+.modal-content.wide{max-width:920px}
+.modal-title{font-size:15px;font-weight:bold;color:#fff;background:linear-gradient(to bottom,#3d7ba8,#235a81);padding:12px 18px;margin:0;border-bottom:3px solid var(--orange);border-radius:3px 3px 0 0;display:flex;align-items:center;gap:8px}
+.modal-title.danger{background:linear-gradient(to bottom,#d9685c,#c0392b);border-bottom-color:#7f1d15}
+.modal-hint{font-size:12px;color:var(--text-dim);margin:14px 18px 8px;line-height:1.5}
+.modal-content>label{display:block;font-size:12px;color:var(--text-dim);margin:12px 18px 5px;font-weight:bold}
+.modal-content>input[type="text"],.modal-content>input[type="password"],.modal-content>select{width:calc(100% - 36px);margin:0 18px;padding:8px 10px;border:1px solid var(--border);background:#fff;color:var(--text);font-size:13px;font-family:inherit;border-radius:3px}
+.modal-content>input:focus,.modal-content>select:focus,.modal textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 2px rgba(35,90,129,.18)}
+.modal textarea{width:calc(100% - 36px);margin:0 18px;min-height:200px;padding:10px;border:1px solid var(--border);background:#fbfbfb;color:var(--text);font-family:Consolas,monospace;font-size:12.5px;resize:vertical;border-radius:3px}
+.modal-actions{margin-top:18px;padding:14px 18px;background:var(--panel-alt);border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;border-radius:0 0 3px 3px}
+.token-modal-textarea{width:calc(100% - 36px);margin:0 18px;min-height:90px;padding:10px;border:1px solid var(--border);background:#fbfbfb;color:var(--text);font-family:Consolas,monospace;font-size:12px;word-break:break-all;resize:vertical;border-radius:3px}
+.token-modal-hint{font-size:12px;color:var(--text-dim);margin:14px 18px 8px;line-height:1.5}
+.token-current{background:var(--panel-head);margin:0 18px;padding:10px 12px;border:1px solid #b8c8d0;font-size:11px;color:var(--accent-dark);font-family:Consolas,monospace;word-break:break-all;border-radius:3px;font-weight:bold}
+
+.toast{position:fixed;top:15px;right:15px;left:15px;max-width:400px;margin-left:auto;padding:12px 38px 12px 16px;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.2);font-size:13px;color:var(--text);z-index:9999;overflow:hidden;opacity:0;transform:translateY(-120%);transition:opacity .3s ease,transform .3s cubic-bezier(.22,1,.36,1);pointer-events:none;border:1px solid var(--border);border-radius:4px}
+.toast.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.toast::before{content:'';position:absolute;top:0;left:0;bottom:0;width:5px}
+.toast.error::before{background:var(--danger)}
+.toast.success::before{background:var(--success)}
+.toast.info::before{background:var(--accent)}
+.toast.warning::before{background:var(--orange)}
+.toast-title{font-weight:bold;margin-bottom:3px}
+.toast.error .toast-title{color:var(--danger)}
+.toast.success .toast-title{color:var(--success)}
+.toast.info .toast-title{color:var(--accent)}
+.toast.warning .toast-title{color:var(--orange-dark)}
+.toast-msg{color:var(--text-dim);font-size:12px;white-space:pre-line}
+.toast-close{position:absolute;top:6px;right:8px;background:none;border:none;font-size:18px;color:var(--text-mute);cursor:pointer;padding:2px 6px;font-family:inherit}
+.toast-close:hover{color:var(--text)}
+.loading-overlay{position:fixed;inset:0;background:rgba(255,255,255,.88);display:none;justify-content:center;align-items:center;z-index:99999;font-size:14px;color:var(--accent-dark);font-weight:bold}
+.loading-overlay.show{display:flex}
+.loading-overlay::after{content:'';width:22px;height:22px;border:3px solid #d0dce0;border-top-color:var(--accent);border-radius:50%;margin-left:12px;animation:spin .8s linear infinite}
+
+@media (max-width:700px){
+  body{font-size:12.5px}
+  .login-container{padding:12px}
+  .pmalogo-lg{width:56px;height:56px}
+  .logo-text{font-size:17px}
+  .auth-table .label-cell{width:88px;font-size:11.5px}
+  .auth-table input,.auth-table select{padding:9px 10px;font-size:14px}
+  .pmabtn{padding:6px 10px;font-size:12px}
+  .auth-footer{flex-direction:column}
+  .auth-footer .pmabtn{width:100%}
+  .captcha-box{padding:12px}
+  .captcha-checkbox{width:26px;height:26px}
+  .header-main{padding:6px 10px}
+  .brand{font-size:13px;gap:6px}
+  .brand .brand-sub{display:none}
+  .pmalogo-md{width:28px;height:28px}
+  .user-info{font-size:11px;gap:6px}
+  .user-badge{padding:3px 8px;font-size:11px;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .admin-top-bar{padding:6px 10px;gap:5px}
+  .menu-title{font-size:14px;padding:14px 12px 0}
+  .bottom-bar{padding:6px;gap:5px;display:grid;grid-template-columns:repeat(3,1fr)}
+  .bottom-bar .pmabtn{padding:8px 4px;font-size:11px;width:100%;min-width:0;white-space:normal;line-height:1.2;flex-direction:column;gap:2px}
+  .section-container,.admin-container{padding:14px 10px 160px 10px}
+  .section-title,.admin-title{font-size:14px}
+  .section-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .section-actions .pmabtn{width:100%;min-width:0}
+  .server-filters{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+  .server-filter{padding:7px 4px;font-size:11.5px;text-align:center}
+  .modal{padding:8px}
+  .modal-title{padding:10px 14px;font-size:14px}
+  .modal-hint,.modal-content>label{margin-left:14px;margin-right:14px}
+  .modal textarea,.modal-content>input,.modal-content>select,.token-modal-textarea,.token-current{width:calc(100% - 28px);margin-left:14px;margin-right:14px}
+  .modal-actions{flex-direction:column;padding:12px 14px}
+  .modal-actions .pmabtn{width:100%}
+  .admin-tools{display:grid;grid-template-columns:1fr;padding:10px}
+  .admin-tools .pmabtn{width:100%}
+  .toast{top:10px;right:10px;left:10px;padding:11px 34px 11px 14px;font-size:12px}
+  .data-table,.admin-table{font-size:11px}
+  .data-table th,.admin-table th{padding:5px;font-size:10px}
+  .data-table td,.admin-table td{padding:4px 5px}
+  .status-select{min-width:128px;font-size:11px;padding:5px 24px 5px 8px;background-size:11px}
+}
+@media (max-width:400px){
+  .bottom-bar{grid-template-columns:repeat(2,1fr)}
+  .server-filters{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG-спрайт с иконками (по мотивам phpMyAdmin) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-elephant" viewBox="0 0 32 32">
+    <ellipse cx="16" cy="18" rx="9" ry="8" fill="#4a7fb5"/>
+    <ellipse cx="7" cy="16" rx="3.5" ry="5" fill="#4a7fb5"/>
+    <ellipse cx="25" cy="16" rx="3.5" ry="5" fill="#4a7fb5"/>
+    <path d="M14 23 Q16 31 18 23 Z" fill="#4a7fb5"/>
+    <circle cx="12" cy="16" r="1" fill="#fff"/>
+    <circle cx="20" cy="16" r="1" fill="#fff"/>
+    <path d="M6 11 Q2 7 7 6 Q9 9 12 9 Z" fill="#fff" stroke="#4a7fb5" stroke-width=".8"/>
+    <path d="M26 11 Q30 7 25 6 Q23 9 20 9 Z" fill="#fff" stroke="#4a7fb5" stroke-width=".8"/>
+  </symbol>
+  <symbol id="i-browse" viewBox="0 0 16 16">
+    <path d="M1 2h6l1 2h7v10H1z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M1 5h14" stroke="currentColor" stroke-width="1.2"/>
+  </symbol>
+  <symbol id="i-insert" viewBox="0 0 16 16">
+    <rect x="2" y="2" width="12" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-delete" viewBox="0 0 16 16">
+    <path d="M3 4h10M6 4V3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v1M5 4l1 9h4l1-9" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7 7v4M9 7v4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-login" viewBox="0 0 16 16">
+    <path d="M9 2H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M11 5l3 3-3 3M14 8H7" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-logout" viewBox="0 0 16 16">
+    <path d="M7 2H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <path d="M10 5l3 3-3 3M13 8H6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-back" viewBox="0 0 16 16">
+    <path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-key" viewBox="0 0 16 16">
+    <circle cx="5" cy="11" r="2.5" fill="none" stroke="currentColor" stroke-width="1.3"/>
+    <path d="M6.8 9.2L12 4M10 4l2 2M12 2l2 2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-users" viewBox="0 0 16 16">
+    <circle cx="6" cy="5" r="2.5" fill="none" stroke="currentColor" stroke-width="1.3"/>
+    <path d="M1.5 14c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <circle cx="12" cy="5" r="2" fill="none" stroke="currentColor" stroke-width="1.3"/>
+    <path d="M11 10.2c1.8.3 3.5 1.5 3.5 3.8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-ban" viewBox="0 0 16 16">
+    <circle cx="8" cy="8" r="6" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M4 12L12 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-ok" viewBox="0 0 16 16">
+    <path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="i-eye" viewBox="0 0 16 16">
+    <path d="M1 8s2.5-5 7-5 7 5 7 5-2.5 5-7 5-7-5-7-5z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <circle cx="8" cy="8" r="2" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  </symbol>
+  <symbol id="i-eye-off" viewBox="0 0 16 16">
+    <path d="M1 8s2.5-5 7-5c1.5 0 2.8.5 3.9 1.2M15 8s-2.5 5-7 5c-1.5 0-2.8-.5-3.9-1.2" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M2 2l12 12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<div class="login-container" id="loginScreen">
+    <div class="logo-wrap">
+        <svg class="pmalogo pmalogo-lg"><use href="#i-elephant"/></svg>
+        <div class="logo-text">Массовая выгрузка 61-65</div>
+        <div class="logo-sub">powered by phpMyAdmin style</div>
+    </div>
+    <div class="welcome-text">Добро пожаловать, технический специалист!</div>
+    <form id="loginForm" novalidate>
+        <fieldset>
+            <legend>Авторизация</legend>
+            <table class="auth-table">
+                <tr>
+                    <td class="label-cell"><label>Пользователь:</label></td>
+                    <td><input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
+                </tr>
+                <tr>
+                    <td class="label-cell"><label>Пароль:</label></td>
+                    <td>
+                        <input type="password" id="password" autocomplete="off">
+                        <div class="strength-meter"><div class="strength-fill" id="strengthFill"></div></div>
+                        <div class="strength-text" id="strengthText"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label-cell"><label>Капча:</label></td>
+                    <td>
+                        <div class="captcha-box" id="captchaBox">
+                            <div class="captcha-checkbox">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                <div class="captcha-spinner"></div>
+                            </div>
+                            <div class="captcha-label">Я не робот</div>
+                            <div class="captcha-brand">reCAPTCHA</div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div class="auth-footer">
+                <button type="button" class="pmabtn" id="setTokenBtn"><svg class="ico"><use href="#i-key"/></svg>Ввести токен</button>
+                <button type="submit" class="pmabtn primary"><svg class="ico"><use href="#i-login"/></svg>Войти в систему</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="login-license" id="loginLicense">© 2026 Массовая выгрузка 61-65. Все права защищены.</div>
+
+<div class="screen" id="menuScreen">
+    <div class="menu-header">
+        <div class="header-main">
+            <div class="brand">
+                <svg class="pmalogo pmalogo-md"><use href="#i-elephant"/></svg>
+                Массовая выгрузка 61-65
+                <span class="brand-sub">phpMyAdmin style</span>
+            </div>
+            <div class="user-info">
+                <span class="user-badge" id="userBadgeMenu">—</span>
+                <button class="pmabtn" data-logout><svg class="ico"><use href="#i-logout"/></svg>Выход</button>
+            </div>
+        </div>
+        <div class="admin-top-bar" id="adminTopBar" style="display:none;">
+            <button class="pmabtn" data-section="admin" id="adminBtn"><svg class="ico"><use href="#i-users"/></svg>Панель управления</button>
+        </div>
+    </div>
+    <div class="menu-title">Главное меню</div>
+    <div class="menu-content"></div>
+    <div class="bottom-bar">
+        <button class="pmabtn" data-section="trades"><svg class="ico"><use href="#i-browse"/></svg>Трейды</button>
+        <button class="pmabtn" data-section="unique"><svg class="ico"><use href="#i-browse"/></svg>Уникальная</button>
+        <button class="pmabtn" data-section="levels"><svg class="ico"><use href="#i-browse"/></svg>Уровни 3,4,5</button>
+        <button class="pmabtn" data-section="works"><svg class="ico"><use href="#i-browse"/></svg>Работы</button>
+        <button class="pmabtn" data-section="pays"><svg class="ico"><use href="#i-browse"/></svg>/pay</button>
+    </div>
+</div>
+
+<div class="screen" id="sectionScreen">
+    <div class="menu-header">
+        <div class="header-main">
+            <div class="brand">
+                <svg class="pmalogo pmalogo-md"><use href="#i-elephant"/></svg>
+                Массовая выгрузка 61-65
+                <span class="brand-sub">phpMyAdmin style</span>
+            </div>
+            <div class="user-info">
+                <span class="user-badge" id="userBadgeSection">—</span>
+                <button class="pmabtn" data-logout><svg class="ico"><use href="#i-logout"/></svg>Выход</button>
+            </div>
+        </div>
+    </div>
+    <div class="section-container">
+        <div class="section-title" id="sectionTitle">—</div>
+        <div class="section-actions" id="sectionActions">
+            <button class="pmabtn" id="uploadBtn"><svg class="ico"><use href="#i-insert"/></svg>Загрузить данные</button>
+            <button class="pmabtn danger" id="clearBtn"><svg class="ico"><use href="#i-delete"/></svg>Очистить</button>
+        </div>
+        <div class="server-filters" id="serverFilters">
+            <button class="server-filter active" data-server="all">Все</button>
+            <button class="server-filter" data-server="61">Сервер 61</button>
+            <button class="server-filter" data-server="62">Сервер 62</button>
+            <button class="server-filter" data-server="63">Сервер 63</button>
+            <button class="server-filter" data-server="64">Сервер 64</button>
+            <button class="server-filter" data-server="65">Сервер 65</button>
+        </div>
+        <div class="counter" id="sectionCounter"></div>
+        <div class="table-wrap">
+            <table class="data-table"><thead id="dataHead"></thead><tbody id="dataBody"></tbody></table>
+        </div>
+    </div>
+    <div class="bottom-bar">
+        <button class="pmabtn" id="backFromSection"><svg class="ico"><use href="#i-back"/></svg>Назад</button>
+    </div>
+</div>
+
+<div class="screen" id="adminScreen">
+    <div class="menu-header">
+        <div class="header-main">
+            <div class="brand">
+                <svg class="pmalogo pmalogo-md"><use href="#i-elephant"/></svg>
+                Массовая выгрузка 61-65
+                <span class="brand-sub">phpMyAdmin style</span>
+            </div>
+            <div class="user-info">
+                <span class="user-badge" id="userBadgeAdmin">—</span>
+                <button class="pmabtn" data-logout><svg class="ico"><use href="#i-logout"/></svg>Выход</button>
+            </div>
+        </div>
+    </div>
+    <div class="admin-container">
+        <div class="admin-title">Управление пользователями</div>
+        <div class="admin-hint">Разработчик защищён, остальные админы не могут взаимодействовать</div>
+        <div class="admin-msg" id="adminMsg"></div>
+        <div class="admin-tools">
+            <button class="pmabtn danger" id="clearAllBtn"><svg class="ico"><use href="#i-delete"/></svg>Очистить все разделы</button>
+        </div>
+        <div class="table-wrap">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Логин</th><th>Роль</th><th>Сервер</th>
+                        <th>Пароль</th><th>Статус</th><th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody id="adminBody"></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="bottom-bar">
+        <button class="pmabtn" id="backFromAdmin"><svg class="ico"><use href="#i-back"/></svg>Назад</button>
+    </div>
+</div>
+
+<div class="modal" id="tokenModal">
+    <div class="modal-content">
+        <div class="modal-title"><svg class="pmalogo pmalogo-sm"><use href="#i-elephant"/></svg>Установка токена</div>
+        <div class="token-modal-hint">Вставь Personal Access Token (начинается с github_pat_). Токен хранится только в браузере.</div>
+        <div class="token-current" id="tokenCurrent">Текущий токен: не установлен</div>
+        <label>Токен:</label>
+        <textarea id="tokenInput" class="token-modal-textarea" placeholder="github_pat_..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+        <div class="modal-actions">
+            <button class="pmabtn danger" id="tokenClear"><svg class="ico"><use href="#i-delete"/></svg>Удалить</button>
+            <button class="pmabtn" id="tokenCancel"><svg class="ico"><use href="#i-back"/></svg>Отмена</button>
+            <button class="pmabtn primary" id="tokenSave"><svg class="ico"><use href="#i-ok"/></svg>Сохранить</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="uploadModal">
+    <div class="modal-content wide">
+        <div class="modal-title" id="uploadModalTitle"><svg class="pmalogo pmalogo-sm"><use href="#i-elephant"/></svg>Загрузка данных</div>
+        <div class="modal-hint" id="uploadModalHint"></div>
+        <textarea id="uploadTextarea" placeholder="..."></textarea>
+        <div class="modal-actions">
+            <button class="pmabtn" id="uploadCancel"><svg class="ico"><use href="#i-back"/></svg>Отмена</button>
+            <button class="pmabtn primary" id="uploadConfirm"><svg class="ico"><use href="#i-insert"/></svg>Загрузить</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="userBanModal">
+    <div class="modal-content">
+        <div class="modal-title danger"><svg class="pmalogo pmalogo-sm"><use href="#i-elephant"/></svg>Блокировка пользователя</div>
+        <div class="modal-hint" id="userBanTarget"></div>
+        <label>Причина бана:</label>
+        <input type="text" id="userBanReason" placeholder="..." maxlength="200">
+        <label>Срок блокировки:</label>
+        <select id="userBanDuration">
+            <option value="1">1 час</option>
+            <option value="6">6 часов</option>
+            <option value="24" selected>1 день</option>
+            <option value="72">3 дня</option>
+            <option value="168">7 дней</option>
+            <option value="720">30 дней</option>
+            <option value="0">Навсегда</option>
+        </select>
+        <div class="modal-actions">
+            <button class="pmabtn" id="userBanCancel"><svg class="ico"><use href="#i-back"/></svg>Отмена</button>
+            <button class="pmabtn danger" id="userBanConfirm"><svg class="ico"><use href="#i-ban"/></svg>Заблокировать</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast">
+    <button class="toast-close" id="toastClose">×</button>
+    <div class="toast-title" id="toastTitle"></div>
+    <div class="toast-msg" id="toastMsg"></div>
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">Загрузка...</div>
+
+<script>
+(function () {
+    'use strict';
+
+    const GITHUB_USER = 'STKILL823';
+    const GITHUB_REPO = 'msvg6165';
+    const BRANCH = 'main';
+    const API_BASE = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`;
+    const SESSION_KEY = 'msvg_session_v1';
+
+    const SECTIONS = {
+        trades: {
+            file: 'trades.json', title: 'Трейды',
+            headers: ['Сервер','Продавец (ID)','Имя продавца','Ур.','Покупатель (ID)','Имя покупателя','Ур.','Сумма','Статус'],
+            statusIdx: 8, sumIdx: 7,
+            parse(line){const p=line.split('\t').map(s=>s.trim());if(p.length<8)return null;return[p[0],p[1],p[2],p[3],p[4],p[5],p[6],p[7].replace(/\s/g,''),'pending'];},
+            getServer: r=>r[0], getSummary: r=>`${r[2]} → ${r[5]}`
+        },
+        unique: {
+            file: 'unique.json', title: 'Уникальная',
+            headers: ['Сервер','ID','Имя','Ур.','Знач.1','Знач.2','Сумма','Статус'],
+            statusIdx: 7, sumIdx: 6,
+            parse(line){const p=line.split('\t').map(s=>s.trim());if(p.length<7)return null;return[p[0],p[1],p[2],p[3],p[4],p[5],p[6].replace(/\s/g,''),'pending'];},
+            getServer: r=>r[0], getSummary: r=>r[2]
+        },
+        levels: {
+            file: 'levels.json', title: 'Уровень 3,4,5 работы',
+            headers: ['Сервер','ID','Имя','Ур.','Знач.1','Знач.2','Сумма','Статус'],
+            statusIdx: 7, sumIdx: 6,
+            parse(line){const p=line.split('\t').map(s=>s.trim());if(p.length<7)return null;return[p[0],p[1],p[2],p[3],p[4],p[5],p[6].replace(/\s/g,''),'pending'];},
+            getServer: r=>r[0], getSummary: r=>r[2]
+        },
+        works: {
+            file: 'works.json', title: 'Работы',
+            headers: ['Сервер','Имя','Сумма','Статус'],
+            statusIdx: 3, sumIdx: 2,
+            parse(line){const p=line.split('\t').map(s=>s.trim());if(p.length<3)return null;return[p[0],p[1],p[2].replace(/\s/g,''),'pending'];},
+            getServer: r=>r[0], getSummary: r=>r[1]
+        },
+        pays: {
+            file: 'pays.json', title: '/pay',
+            headers: ['Сервер','Отправитель (ID)','Имя','Получатель (ID)','Имя','Сумма','Статус'],
+            statusIdx: 6, sumIdx: 5,
+            parse(line){const p=line.split('\t').map(s=>s.trim());if(p.length<6)return null;return[p[0],p[1],p[2],p[3],p[4],p[5].replace(/\s/g,''),'pending'];},
+            getServer: r=>r[0], getSummary: r=>`${r[2]} → ${r[4]}`
+        }
+    };
+
+    const STATUS_LABELS = { pending:'Ожидание', clear:'Нету нарушений', blocked:'Заблокирован' };
+    const ROLE_LABELS = {
+        admin1:'Куратор технических специалистов',
+        admin2:'Зам. куратора технических специалистов',
+        admin3:'Разработчик',
+        tech:'Технический специалист'
+    };
+
+    const state = {
+        data: { trades:[], unique:[], levels:[], works:[], pays:[] },
+        users: {},
+        currentUser:'', currentServer:'', currentRole:'', currentSection:'',
+        filter:'all', revealed:{}, pendingUserBan:null, captchaVerified:false,
+        userIp:'—'
+    };
+
+    const $ = id => document.getElementById(id);
+    const formatMoney = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    const escapeHtml = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+
+    /* ================= СЕССИЯ (автологин при F5) ================= */
+    function saveSession() {
+        if (!state.currentUser) return;
+        try {
+            localStorage.setItem(SESSION_KEY, JSON.stringify({
+                user: state.currentUser,
+                role: state.currentRole,
+                server: state.currentServer,
+                ts: Date.now()
+            }));
+        } catch (e) {}
+    }
+    function clearSession() {
+        try { localStorage.removeItem(SESSION_KEY); } catch (e) {}
+    }
+    async function tryRestoreSession() {
+        let raw;
+        try { raw = localStorage.getItem(SESSION_KEY); } catch (e) { return false; }
+        if (!raw) return false;
+        let session;
+        try { session = JSON.parse(raw); } catch (e) { clearSession(); return false; }
+        if (!session || !session.user) { clearSession(); return false; }
+
+        const ok = await loadUsers();
+        if (!ok) return false;
+
+        const user = state.users[session.user];
+        if (!user) { clearSession(); return false; }
+        if (isUserBanned(user)) { clearSession(); return false; }
+
+        state.currentUser = session.user;
+        state.currentRole = user.role || 'tech';
+        state.currentServer = user.server || '';
+        return true;
+    }
+
+    /* ---------- Токен ---------- */
+    function getToken(){ return localStorage.getItem('gh_token') || ''; }
+    function setToken(tk){ if(tk) localStorage.setItem('gh_token', tk); else localStorage.removeItem('gh_token'); }
+
+    /* ---------- UI helpers ---------- */
+    let toastTimer = null;
+    function toast(type, title, msg) {
+        const el = $('toast');
+        if (toastTimer) clearTimeout(toastTimer);
+        el.className = 'toast ' + type;
+        $('toastTitle').textContent = title;
+        $('toastMsg').textContent = msg;
+        void el.offsetWidth;
+        requestAnimationFrame(() => el.classList.add('show'));
+        toastTimer = setTimeout(() => el.classList.remove('show'), 6000);
+    }
+    function showLoading(txt){ $('loadingOverlay').textContent = txt || 'Загрузка...'; $('loadingOverlay').classList.add('show'); }
+    function hideLoading(){ $('loadingOverlay').classList.remove('show'); }
+    function adminMsg(text, kind) {
+        const el = $('adminMsg');
+        el.textContent = text;
+        el.className = 'admin-msg show ' + (kind || 'ok');
+        setTimeout(() => el.classList.remove('show'), 5000);
+    }
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        const scr = $(id);
+        if (scr) scr.classList.add('active');
+    }
+
+    /* ---------- Пароль / капча ---------- */
+    function updateStrength() {
+        const input = $('password'), fill = $('strengthFill'), textEl = $('strengthText');
+        if (!input || !fill || !textEl) return;
+        const val = input.value;
+        let color = '#ccc', width = '0', text = '';
+        if (val.length > 0) {
+            const hasDigits = /\d/.test(val), hasLetters = /[a-zA-Zа-яА-Я]/.test(val), hasSpecial = /[^a-zA-Zа-яА-Я0-9]/.test(val);
+            const uniqueCount = new Set(val).size;
+            if (val.length < 4) { color = '#c0392b'; width = '25%'; text = 'Очень слабый пароль'; }
+            else if (val.length < 6 || uniqueCount < 3) { color = '#c0392b'; width = '33%'; text = 'Очень слабый пароль'; }
+            else if (val.length >= 8 && hasDigits && hasLetters && uniqueCount >= 4) { color = '#2e8b57'; width = '100%'; text = 'Надёжный пароль'; }
+            else if (val.length < 8 && hasDigits && (hasLetters || hasSpecial)) { color = '#d68910'; width = '66%'; text = 'Средний пароль'; }
+            else if (val.length >= 6 && uniqueCount >= 3) { color = '#d68910'; width = '66%'; text = 'Средний пароль'; }
+            else { color = '#d68910'; width = '50%'; text = 'Средний пароль'; }
+        }
+        fill.style.backgroundColor = color; fill.style.width = width;
+        textEl.textContent = text; textEl.style.color = color;
+    }
+    function resetCaptcha(){ state.captchaVerified = false; $('captchaBox').classList.remove('checked','loading','error'); }
+    function initCaptcha() {
+        const box = $('captchaBox');
+        box.addEventListener('click', () => {
+            if (state.captchaVerified || box.classList.contains('loading')) return;
+            box.classList.remove('error');
+            box.classList.add('loading');
+            setTimeout(() => { box.classList.remove('loading'); box.classList.add('checked'); state.captchaVerified = true; }, 800 + Math.random()*600);
+        });
+    }
+
+    /* ---------- IP ---------- */
+    async function fetchIP() {
+        try {
+            const res = await fetch('https://api.ipify.org?format=json', { cache:'no-store' });
+            if (!res.ok) throw new Error('fail');
+            const data = await res.json();
+            state.userIp = data.ip || '—';
+            return state.userIp;
+        } catch (e) {
+            try {
+                const res2 = await fetch('https://api64.ipify.org?format=json', { cache:'no-store' });
+                const data2 = await res2.json();
+                state.userIp = data2.ip || '—';
+                return state.userIp;
+            } catch (e2) { state.userIp = '—'; return '—'; }
+        }
+    }
+
+    /* ---------- GitHub API ---------- */
+    async function readFile(fileName) {
+        const token = getToken();
+        const apiUrl = `${API_BASE}${fileName}?ref=${BRANCH}&t=${Date.now()}`;
+        try {
+            const headers = { Accept:'application/vnd.github.v3+json' };
+            if (token) headers.Authorization = 'Bearer ' + token;
+            const res = await fetch(apiUrl, { headers });
+            if (res.status === 404) return null;
+            if (res.ok) {
+                const info = await res.json();
+                return JSON.parse(decodeURIComponent(escape(atob(info.content.replace(/\s/g,'')))));
+            }
+        } catch (e) {}
+        const rawRes = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}/${fileName}?t=${Date.now()}`);
+        if (rawRes.status === 404) return null;
+        if (!rawRes.ok) throw new Error('HTTP ' + rawRes.status);
+        return await rawRes.json();
+    }
+    async function writeFile(fileName, data, message) {
+        const token = getToken();
+        if (!token) throw new Error('Токен не установлен. Нажми «Ввести токен».');
+        const url = `${API_BASE}${fileName}`;
+        let sha = null;
+        const getRes = await fetch(`${url}?ref=${BRANCH}&t=${Date.now()}`, { headers: { Authorization:'Bearer ' + token, Accept:'application/vnd.github.v3+json' } });
+        if (getRes.status === 401) throw new Error('401 — неверный токен');
+        if (getRes.ok) sha = (await getRes.json()).sha;
+        else if (getRes.status !== 404) throw new Error('GET SHA: ' + getRes.status);
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+        const body = { message, content, branch: BRANCH };
+        if (sha) body.sha = sha;
+        const putRes = await fetch(url, { method:'PUT', headers:{ Authorization:'Bearer ' + token, Accept:'application/vnd.github.v3+json', 'Content-Type':'application/json' }, body: JSON.stringify(body) });
+        if (putRes.status === 401) throw new Error('401 — неверный токен');
+        if (putRes.status === 403) throw new Error('403 — нет прав на запись');
+        if (!putRes.ok) throw new Error('PUT ' + putRes.status);
+        return true;
+    }
+
+    /* ---------- Данные ---------- */
+    async function loadAllData() {
+        for (const key of Object.keys(SECTIONS)) {
+            try {
+                const result = await readFile(SECTIONS[key].file);
+                state.data[key] = Array.isArray(result) ? result : [];
+            } catch (e) { state.data[key] = []; }
+        }
+    }
+    async function loadUsers() {
+        try {
+            const result = await readFile('users.json');
+            state.users = result || {};
+            return !!result;
+        } catch (e) { state.users = {}; return false; }
+    }
+
+    /* ---------- Роли ---------- */
+    const isAdmin = () => state.currentRole==='admin1' || state.currentRole==='admin2' || state.currentRole==='admin3';
+    const isDev = () => state.currentRole === 'admin3';
+    const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
+
+    function updateUserBadges() {
+        if (!state.currentUser) {
+            $('userBadgeMenu').textContent = '—';
+            $('userBadgeSection').textContent = '—';
+            $('userBadgeAdmin').textContent = '—';
+            return;
+        }
+        const user = state.users[state.currentUser];
+        if (!user) return;
+        const display = getUserDisplay(user);
+        const isDevRole = user.role === 'admin3';
+        const html = isDevRole
+            ? escapeHtml(display) + '<span class="badge-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>'
+            : escapeHtml(display);
+        $('userBadgeMenu').innerHTML = html;
+        $('userBadgeSection').innerHTML = html;
+        $('userBadgeAdmin').innerHTML = html;
+    }
+    function getUserDisplay(user) {
+        const role = user.role;
+        if (role === 'tech') return ROLE_LABELS.tech + ' | ' + user.server;
+        return ROLE_LABELS[role] || role;
+    }
+
+    /* ---------- Разделы ---------- */
+    function openSection(key) {
+        if (key === 'admin') { openAdmin(); return; }
+        state.currentSection = key;
+        state.filter = 'all';
+        state.revealed = {};
+        document.querySelectorAll('#serverFilters .server-filter').forEach(b => b.classList.toggle('active', b.dataset.server === 'all'));
+        renderSection();
+        showScreen('sectionScreen');
+    }
+
+    function renderSection() {
+        const cfg = SECTIONS[state.currentSection];
+        if (!cfg) return;
+        $('sectionTitle').textContent = cfg.title;
+        $('dataHead').innerHTML = '<tr>' + cfg.headers.map(h => `<th>${h}</th>`).join('') + '</tr>';
+        const body = $('dataBody'); body.innerHTML = '';
+        let count = 0;
+        state.data[state.currentSection].forEach((row, idx) => {
+            const srv = cfg.getServer(row);
+            if (state.filter !== 'all' && String(srv) !== state.filter) return;
+            count++;
+            const editable = canEditServer(srv);
+            const status = row[cfg.statusIdx] || 'pending';
+            const tr = document.createElement('tr');
+            let html = '';
+            for (let i = 0; i < cfg.headers.length; i++) {
+                if (i === cfg.statusIdx) {
+                    const selClass = 'status-select sel-' + status;
+                    const disabled = editable ? '' : 'disabled';
+                    html += `<td style="white-space:nowrap">
+                        <select class="${selClass}" data-idx="${idx}" ${disabled}>
+                            <option value="pending" ${status==='pending'?'selected':''}>${STATUS_LABELS.pending}</option>
+                            <option value="clear" ${status==='clear'?'selected':''}>${STATUS_LABELS.clear}</option>
+                            <option value="blocked" ${status==='blocked'?'selected':''}>${STATUS_LABELS.blocked}</option>
+                        </select>
+                    </td>`;
+                } else if (i === 0) { html += `<td class="server-cell">${escapeHtml(row[i])}</td>`; }
+                else if (i === cfg.sumIdx) { html += `<td class="money-cell">${formatMoney(row[i])}</td>`; }
+                else { html += `<td>${escapeHtml(row[i])}</td>`; }
+            }
+            tr.innerHTML = html;
+            body.appendChild(tr);
+        });
+        $('sectionCounter').textContent = 'Найдено записей: ' + count;
+    }
+
+    async function handleStatusChange(e) {
+        const sel = e.target.closest('.status-select');
+        if (!sel) return;
+        const idx = parseInt(sel.dataset.idx, 10);
+        if (isNaN(idx)) return;
+        const cfg = SECTIONS[state.currentSection];
+        const row = state.data[state.currentSection][idx];
+        if (!row) return;
+        if (!canEditServer(cfg.getServer(row))) {
+            toast('error', 'Нет прав', 'Вы не можете менять статусы на чужом сервере.');
+            const cur = row[cfg.statusIdx] || 'pending';
+            sel.value = cur; sel.className = 'status-select sel-' + cur;
+            return;
+        }
+        const newStatus = sel.value;
+        const oldStatus = row[cfg.statusIdx] || 'pending';
+        if (newStatus === oldStatus) return;
+        sel.className = 'status-select sel-' + newStatus + ' changed';
+        setTimeout(() => sel.classList.remove('changed'), 500);
+        row[cfg.statusIdx] = newStatus;
+        showLoading('Сохранение...');
+        try {
+            await writeFile(cfg.file, state.data[state.currentSection], 'Update ' + state.currentSection);
+            toast('success', 'Статус изменён', cfg.getSummary(row) + ' → ' + STATUS_LABELS[newStatus]);
+        } catch (err) {
+            row[cfg.statusIdx] = oldStatus;
+            sel.value = oldStatus;
+            sel.className = 'status-select sel-' + oldStatus;
+            toast('error', 'Ошибка', err.message);
+        } finally { hideLoading(); }
+    }
+
+    function openUploadModal() {
+        if (!isAdmin()) { toast('error','Нет прав','Только админы'); return; }
+        const cfg = SECTIONS[state.currentSection];
+        $('uploadModalTitle').innerHTML = '<svg class="pmalogo pmalogo-sm"><use href="#i-elephant"/></svg>Загрузка: ' + escapeHtml(cfg.title);
+        const hints = {
+            trades:'Формат: Сервер → ID → Имя → Ур → ID → Имя → Ур → Сумма',
+            unique:'Формат: Сервер → ID → Имя → Ур → Знач1 → Знач2 → Сумма',
+            levels:'Формат: Сервер → ID → Имя → Ур → Знач1 → Знач2 → Сумма',
+            works:'Формат: Сервер → Имя → Сумма',
+            pays:'Формат: Сервер → ID → Имя → ID → Имя → Сумма'
+        };
+        $('uploadModalHint').textContent = (hints[state.currentSection] || '') + ' (разделитель — Tab)';
+        $('uploadTextarea').value = '';
+        $('uploadModal').classList.add('open');
+    }
+    async function confirmUpload() {
+        if (!isAdmin()) { $('uploadModal').classList.remove('open'); return; }
+        const cfg = SECTIONS[state.currentSection];
+        const text = $('uploadTextarea').value.trim();
+        if (!text) { toast('error','Ошибка','Пустое поле'); return; }
+        let added = 0, skipped = 0;
+        const existing = state.data[state.currentSection];
+        text.split('\n').forEach(line => {
+            line = line.trim(); if (!line) return;
+            const parsed = cfg.parse(line);
+            if (!parsed) { skipped++; return; }
+            existing.push(parsed); added++;
+        });
+        if (added === 0) { toast('error','Ошибка','Не удалось распарсить ни одной строки'); return; }
+        $('uploadModal').classList.remove('open');
+        showLoading('Сохранение...');
+        try {
+            await writeFile(cfg.file, existing, 'Upload ' + state.currentSection);
+            toast('success', 'Загружено', `Добавлено: ${added}${skipped>0?', пропущено: '+skipped:''}`);
+            renderSection();
+        } catch (e) { toast('error','Ошибка', e.message); }
+        finally { hideLoading(); }
+    }
+
+    async function clearSection() {
+        if (!isAdmin()) { toast('error','Нет прав','Только админы'); return; }
+        if (!confirm('Точно очистить раздел?')) return;
+        const cfg = SECTIONS[state.currentSection];
+        state.data[state.currentSection] = [];
+        showLoading('Сохранение...');
+        try {
+            await writeFile(cfg.file, [], 'Clear ' + state.currentSection);
+            toast('success','Очищено', cfg.title);
+            renderSection();
+        } catch (e) { toast('error','Ошибка', e.message); }
+        finally { hideLoading(); }
+    }
+    async function clearAllSections() {
+        if (!isAdmin()) { toast('error','Нет прав','Только админы'); return; }
+        if (!confirm('Точно очистить ВСЕ разделы?')) return;
+        showLoading('Сохранение...');
+        try {
+            const promises = [];
+            for (const key of Object.keys(SECTIONS)) {
+                state.data[key] = [];
+                promises.push(writeFile(SECTIONS[key].file, [], 'Clear ' + key));
+            }
+            await Promise.all(promises);
+            toast('success','Очищено','Все разделы очищены');
+        } catch (e) { toast('error','Ошибка', e.message); }
+        finally { hideLoading(); }
+    }
+
+    /* ---------- Баны ---------- */
+    function isUserBanned(user) {
+        if (!user || !user.banned) return false;
+        if (typeof user.banned !== 'object') return false;
+        if (user.banned.until === 0) return true;
+        if (user.banned.until > Date.now()) return true;
+        return false;
+    }
+    function formatBanInfo(user) {
+        if (!user.banned || typeof user.banned !== 'object') return '';
+        const until = user.banned.until === 0 ? 'навсегда' : new Date(user.banned.until).toLocaleString('ru-RU');
+        return `Причина: ${user.banned.reason}\nЗаблокирован до: ${until}`;
+    }
+    const isProtectedUser = (uname, u) => u && u.role === 'admin3';
+    const isHiddenFromMe = (uname, u) => { if (isDev()) return false; return u && u.role === 'admin3'; };
+
+    function openUserBanModal(uname) {
+        const u = state.users[uname];
+        if (!u) return;
+        if (isProtectedUser(uname, u)) { adminMsg('Разработчик защищён. Действия недоступны.','err'); return; }
+        state.pendingUserBan = uname;
+        $('userBanTarget').textContent = uname + ' (Сервер ' + (u.server||'—') + ')';
+        $('userBanReason').value = '';
+        $('userBanDuration').value = '24';
+        $('userBanModal').classList.add('open');
+        setTimeout(() => $('userBanReason').focus(), 100);
+    }
+    async function confirmUserBan() {
+        if (!state.pendingUserBan) return;
+        const uname = state.pendingUserBan;
+        if (isProtectedUser(uname, state.users[uname])) { $('userBanModal').classList.remove('open'); state.pendingUserBan = null; return; }
+        const reason = $('userBanReason').value.trim();
+        if (!reason) { toast('error','Ошибка','Укажи причину бана'); return; }
+        const hours = parseInt($('userBanDuration').value, 10);
+        const until = hours === 0 ? 0 : Date.now() + hours*3600*1000;
+        const oldBanned = state.users[uname].banned;
+        state.users[uname].banned = { reason, until };
+        $('userBanModal').classList.remove('open');
+        state.pendingUserBan = null;
+        showLoading('Сохранение...');
+        try {
+            await writeFile('users.json', state.users, 'Ban user ' + uname);
+            const untilText = until === 0 ? 'навсегда' : new Date(until).toLocaleString('ru-RU');
+            toast('warning','Пользователь заблокирован', `${uname}\nПричина: ${reason}\nДо: ${untilText}`);
+            renderAdminUsers();
+        } catch (e) {
+            state.users[uname].banned = oldBanned;
+            toast('error','Ошибка', e.message);
+        } finally { hideLoading(); }
+    }
+    async function unbanUser(uname) {
+        const u = state.users[uname];
+        if (isProtectedUser(uname, u)) { adminMsg('Разработчик защищён. Действия недоступны.','err'); return; }
+        if (!confirm('Разблокировать ' + uname + '?')) return;
+        const oldBanned = state.users[uname].banned;
+        delete state.users[uname].banned;
+        showLoading('Сохранение...');
+        try {
+            await writeFile('users.json', state.users, 'Unban user ' + uname);
+            toast('success','Пользователь разблокирован', uname);
+            renderAdminUsers();
+        } catch (e) {
+            state.users[uname].banned = oldBanned;
+            toast('error','Ошибка', e.message);
+        } finally { hideLoading(); }
+    }
+
+    /* ---------- Админка ---------- */
+    function openAdmin() {
+        if (!isAdmin()) { toast('error','Нет прав','Только админы'); return; }
+        renderAdminUsers();
+        showScreen('adminScreen');
+    }
+    function renderAdminUsers() {
+        const body = $('adminBody');
+        body.innerHTML = '';
+        const names = Object.keys(state.users).sort();
+        names.forEach(uname => {
+            const u = state.users[uname];
+            if (isHiddenFromMe(uname, u)) return;
+            const tr = document.createElement('tr');
+            const role = u.role || 'tech';
+            const banned = isUserBanned(u);
+            if (banned) tr.classList.add('banned-row');
+            if (role === 'admin3') tr.classList.add('admin3-row');
+            const isRevealed = !!state.revealed[uname];
+            const passDisplay = isRevealed ? escapeHtml(u.password || '—') : '••••••••';
+            const passBtn = isRevealed
+                ? `<button class="pmabtn" data-pass-toggle="${escapeHtml(uname)}" style="padding:3px 8px;font-size:11px;"><svg class="ico"><use href="#i-eye-off"/></svg>Скрыть</button>`
+                : `<button class="pmabtn" data-pass-toggle="${escapeHtml(uname)}" style="padding:3px 8px;font-size:11px;"><svg class="ico"><use href="#i-eye"/></svg>Показать</button>`;
+            const statusHtml = banned
+                ? `<span class="user-status banned" title="${escapeHtml(formatBanInfo(u))}">Забанен</span>`
+                : `<span class="user-status active">Активен</span>`;
+            let actionsHtml;
+            if (isProtectedUser(uname, u)) {
+                actionsHtml = `<span style="font-size:11px;color:#999;font-style:italic;">Защищён</span>`;
+            } else if (banned) {
+                actionsHtml = `<button class="pmabtn success" data-unban="${escapeHtml(uname)}" style="padding:3px 10px;font-size:11px;"><svg class="ico"><use href="#i-ok"/></svg>Разбанить</button>`;
+            } else {
+                actionsHtml = `<button class="pmabtn danger" data-ban="${escapeHtml(uname)}" style="padding:3px 10px;font-size:11px;"><svg class="ico"><use href="#i-ban"/></svg>Забанить</button>`;
+            }
+            tr.innerHTML = `
+                <td><b>${escapeHtml(uname)}</b></td>
+                <td><span class="role-badge ${role}">${escapeHtml(ROLE_LABELS[role] || role)}</span></td>
+                <td class="server-cell">${escapeHtml(u.server||'—')}</td>
+                <td style="font-family:Consolas,monospace;font-size:11.5px;"><span>${passDisplay}</span> ${passBtn}</td>
+                <td>${statusHtml}</td>
+                <td>${actionsHtml}</td>
+            `;
+            body.appendChild(tr);
+        });
+    }
+
+    /* ---------- Токен ---------- */
+    function openTokenModal() {
+        const tk = getToken();
+        $('tokenCurrent').textContent = tk
+            ? 'Текущий токен: ' + tk.substring(0,20) + '…' + tk.slice(-6)
+            : 'Текущий токен: не установлен';
+        $('tokenInput').value = tk;
+        $('tokenModal').classList.add('open');
+    }
+    function saveToken() {
+        const tk = $('tokenInput').value.trim();
+        if (tk && !/^github_pat_|^ghp_/.test(tk)) toast('warning','Внимание','Токен не похож на GitHub PAT');
+        setToken(tk);
+        toast('success','Токен сохранён', tk ? 'Токен установлен в localStorage' : 'Токен удалён');
+        $('tokenModal').classList.remove('open');
+    }
+    function clearToken() {
+        setToken('');
+        toast('info','Токен удалён','Токен очищен из localStorage');
+        $('tokenModal').classList.remove('open');
+    }
+
+    /* ---------- Логин/логаут ---------- */
+    async function handleLogin(e) {
+        e.preventDefault();
+        const uname = $('username').value.trim();
+        const pass = $('password').value;
+        if (!uname) { $('username').classList.add('error'); setTimeout(()=>$('username').classList.remove('error'),600); toast('error','Ошибка','Введите логин'); return; }
+        if (!pass)   { $('password').classList.add('error'); setTimeout(()=>$('password').classList.remove('error'),600); toast('error','Ошибка','Введите пароль'); return; }
+        if (!state.captchaVerified) {
+            $('captchaBox').classList.add('error');
+            setTimeout(()=>$('captchaBox').classList.remove('error'),600);
+            toast('error','Капча','Подтвердите, что вы не робот');
+            return;
+        }
+        showLoading('Авторизация...');
+        try {
+            const ok = await loadUsers();
+            if (!ok || !state.users[uname]) throw new Error('Неверный логин или пароль');
+            const user = state.users[uname];
+            if (user.password !== pass) throw new Error('Неверный логин или пароль');
+            if (isUserBanned(user)) throw new Error('Вы заблокированы.\n' + formatBanInfo(user));
+
+            state.currentUser = uname;
+            state.currentRole = user.role || 'tech';
+            state.currentServer = user.server || '';
+
+            saveSession();
+
+            await fetchIP();
+
+            updateUserBadges();
+            $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
+            $('loginScreen').classList.add('hidden');
+            showScreen('menuScreen');
+            toast('success','Добро пожаловать', getUserDisplay(user));
+            $('password').value = '';
+            resetCaptcha();
+            updateStrength();
+        } catch (err) {
+            toast('error','Ошибка входа', err.message);
+            $('password').classList.add('error');
+            setTimeout(()=>$('password').classList.remove('error'),600);
+        } finally { hideLoading(); }
+    }
+
+    async function handleLogout() {
+        clearSession();
+        state.currentUser = '';
+        state.currentRole = '';
+        state.currentServer = '';
+        state.currentSection = '';
+        state.filter = 'all';
+        state.revealed = {};
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        $('loginScreen').classList.remove('hidden');
+        $('loginForm').reset();
+        updateStrength();
+        resetCaptcha();
+        toast('info','Выход','Вы вышли из системы');
+    }
+
+    /* ---------- События ---------- */
+    function bindEvents() {
+        $('loginForm').addEventListener('submit', handleLogin);
+        $('password').addEventListener('input', updateStrength);
+        $('setTokenBtn').addEventListener('click', openTokenModal);
+        document.querySelectorAll('[data-logout]').forEach(b => b.addEventListener('click', handleLogout));
+
+        document.querySelectorAll('.bottom-bar [data-section]').forEach(b => {
+            b.addEventListener('click', () => openSection(b.dataset.section));
+        });
+
+        $('adminBtn').addEventListener('click', openAdmin);
+
+        $('serverFilters').addEventListener('click', e => {
+            const b = e.target.closest('.server-filter');
+            if (!b) return;
+            state.filter = b.dataset.server;
+            document.querySelectorAll('#serverFilters .server-filter').forEach(x => x.classList.toggle('active', x === b));
+            renderSection();
+        });
+        $('dataBody').addEventListener('change', handleStatusChange);
+
+        $('uploadBtn').addEventListener('click', openUploadModal);
+        $('clearBtn').addEventListener('click', clearSection);
+        $('uploadCancel').addEventListener('click', () => $('uploadModal').classList.remove('open'));
+        $('uploadConfirm').addEventListener('click', confirmUpload);
+
+        $('backFromSection').addEventListener('click', () => showScreen('menuScreen'));
+        $('backFromAdmin').addEventListener('click', () => showScreen('menuScreen'));
+        $('clearAllBtn').addEventListener('click', clearAllSections);
+
+        $('adminBody').addEventListener('click', e => {
+            const banBtn = e.target.closest('[data-ban]');
+            const unbanBtn = e.target.closest('[data-unban]');
+            const passBtn = e.target.closest('[data-pass-toggle]');
+            if (banBtn) openUserBanModal(banBtn.dataset.ban);
+            else if (unbanBtn) unbanUser(unbanBtn.dataset.unban);
+            else if (passBtn) { const u = passBtn.dataset.passToggle; state.revealed[u] = !state.revealed[u]; renderAdminUsers(); }
+        });
+
+        $('userBanCancel').addEventListener('click', () => { $('userBanModal').classList.remove('open'); state.pendingUserBan = null; });
+        $('userBanConfirm').addEventListener('click', confirmUserBan);
+
+        $('tokenCancel').addEventListener('click', () => $('tokenModal').classList.remove('open'));
+        $('tokenSave').addEventListener('click', saveToken);
+        $('tokenClear').addEventListener('click', clearToken);
+
+        $('toastClose').addEventListener('click', () => $('toast').classList.remove('show'));
+
+        document.querySelectorAll('.modal').forEach(m => {
+            m.addEventListener('click', e => {
+                if (e.target === m) {
+                    m.classList.remove('open');
+                    if (m.id === 'userBanModal') state.pendingUserBan = null;
+                }
+            });
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.open').forEach(m => {
+                    m.classList.remove('open');
+                    if (m.id === 'userBanModal') state.pendingUserBan = null;
+                });
+            }
+        });
+    }
+
+    /* ---------- INIT ---------- */
+    async function init() {
+        initCaptcha();
+        updateStrength();
+        bindEvents();
+
+        // Автовосстановление сессии при F5 — не выкидывает на логин
+        showLoading('Проверка сессии...');
+        try {
+            const restored = await tryRestoreSession();
+            if (restored) {
+                await fetchIP();
+                updateUserBadges();
+                $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
+                $('loginScreen').classList.add('hidden');
+                showScreen('menuScreen');
+                toast('info', 'С возвращением', getUserDisplay(state.users[state.currentUser]));
+            }
+        } catch (e) {
+            console.warn('session restore failed', e);
+        } finally {
+            hideLoading();
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>
+</body>
+</html>
