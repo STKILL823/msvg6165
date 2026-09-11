@@ -528,5 +528,15 @@
     "type": "upload",
     "action": "Загрузка данных",
     "details": "Трейды: +100"
+  },
+  {
+    "t": 1789141587457,
+    "time": "11.09.2026 18:46:27",
+    "user": "Admin2",
+    "role": "admin2",
+    "ip": "193.22.231.11",
+    "type": "status",
+    "action": "Смена статуса",
+    "details": "Трейды | Muhammad_Tramp → Edik_Schmatko: Ожидание → Нету нарушений"
   }
 ]
