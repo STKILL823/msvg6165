@@ -84,8 +84,6 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
 .header-main { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; gap: 8px; flex-wrap: wrap; }
 .user-info { display: flex; align-items: center; gap: 8px; font-size: 12px; }
 .user-badge { background: rgba(74,127,212,0.25); padding: 5px 12px; font-weight: bold; animation: fadeIn 0.4s ease; display: inline-flex; align-items: center; gap: 6px; border-radius: 4px; color: #fff; border: 1px solid rgba(74,127,212,0.4); }
-.user-badge .badge-check { width: 16px; height: 16px; border-radius: 50%; background: var(--success); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.user-badge .badge-check svg { width: 10px; height: 10px; display: block; }
 .header-btn { padding: 6px 14px; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.3); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; white-space: nowrap; border-radius: 4px; font-weight: bold; }
 .header-btn:hover { background: var(--accent); border-color: var(--accent); transform: scale(1.03); }
 .header-btn:active { transform: scale(0.98); }
@@ -185,10 +183,7 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
 .token-modal-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; line-height: 1.5; }
 .token-current { background: var(--bg); padding: 10px 12px; border: 1px solid var(--border); font-size: 11px; color: var(--accent-bright); font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; border-radius: 4px; }
 
-/* ═══════════ ПРОФИЛЬ ═══════════ */
 .profile-avatar-big { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 32px; font-weight: bold; color: #fff; box-shadow: 0 4px 20px rgba(74,127,212,0.4); position: relative; }
-.profile-avatar-big .dev-check-big { position: absolute; bottom: 0; right: 0; width: 26px; height: 26px; border-radius: 50%; background: var(--success); border: 3px solid var(--bg-light); display: flex; align-items: center; justify-content: center; }
-.profile-avatar-big .dev-check-big svg { width: 14px; height: 14px; }
 .profile-name { text-align: center; font-size: 20px; font-weight: bold; color: var(--text); margin-bottom: 4px; }
 .profile-role-text { text-align: center; font-size: 13px; color: var(--text-dim); margin-bottom: 20px; }
 .profile-field { padding: 12px 14px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; }
@@ -355,9 +350,9 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
 <div class="screen" id="menuScreen">
     <div class="menu-header">
         <div class="header-main">
-            <button class="header-btn profile" id="profileBtn">Профиль</button>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeMenu">—</span>
+                <button class="header-btn profile" id="profileBtn">Профиль</button>
                 <button class="header-btn" data-logout>Выход</button>
             </div>
         </div>
@@ -380,9 +375,9 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
 <div class="screen" id="sectionScreen">
     <div class="menu-header">
         <div class="header-main">
-            <button class="header-btn profile" id="profileBtnSection">Профиль</button>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeSection">—</span>
+                <button class="header-btn profile" id="profileBtnSection">Профиль</button>
                 <button class="header-btn" data-logout>Выход</button>
             </div>
         </div>
@@ -414,9 +409,9 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
 <div class="screen" id="adminScreen">
     <div class="menu-header">
         <div class="header-main">
-            <button class="header-btn profile" id="profileBtnAdmin">Профиль</button>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeAdmin">—</span>
+                <button class="header-btn profile" id="profileBtnAdmin">Профиль</button>
                 <button class="header-btn" data-logout>Выход</button>
             </div>
         </div>
@@ -449,7 +444,6 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
     </div>
 </div>
 
-<!-- ═══════════ МОДАЛКА ПРОФИЛЯ ═══════════ -->
 <div class="modal" id="profileModal">
     <div class="modal-content">
         <div class="profile-avatar-big" id="profileAvatar">?</div>
@@ -648,13 +642,8 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
     function showLoading(txt) { $('loadingOverlay').textContent = txt || 'Загрузка...'; $('loadingOverlay').classList.add('show'); }
     function hideLoading() { $('loadingOverlay').classList.remove('show'); }
 
-    // ═══════════ ТРЕКЕР ВРЕМЕНИ ═══════════
     function timeKey(uname) { return 'profile_time_' + uname; }
-
-    function getSavedTime(uname) {
-        return parseInt(localStorage.getItem(timeKey(uname)) || '0', 10) || 0;
-    }
-
+    function getSavedTime(uname) { return parseInt(localStorage.getItem(timeKey(uname)) || '0', 10) || 0; }
     function flushTime() {
         if (!state.currentUser || !state.lastTick) return;
         const now = Date.now();
@@ -664,22 +653,16 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
         localStorage.setItem(timeKey(state.currentUser), String(total));
         state.lastTick = now;
     }
-
     function startTimer() {
         stopTimer();
         if (!state.currentUser) return;
         state.lastTick = Date.now();
         state.timerInterval = setInterval(flushTime, 5000);
     }
-
     function stopTimer() {
         flushTime();
-        if (state.timerInterval) {
-            clearInterval(state.timerInterval);
-            state.timerInterval = null;
-        }
+        if (state.timerInterval) { clearInterval(state.timerInterval); state.timerInterval = null; }
     }
-
     window.addEventListener('beforeunload', flushTime);
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) flushTime();
@@ -697,7 +680,6 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
         if (m > 0 || parts.length === 0) parts.push(m + ' мин');
         return parts.join(' ');
     }
-
     function formatDate(ts) {
         if (!ts) return '—';
         const d = new Date(ts);
@@ -710,28 +692,16 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
         const user = state.users[state.currentUser];
         if (!user) return;
         const display = getUserDisplay(user);
-        const isDevRole = user.role === 'admin3';
-
-        // Аватар — первые 2 буквы ника
         const initials = state.currentUser.substring(0, 2).toUpperCase();
         $('profileAvatar').innerHTML = initials;
-        if (isDevRole) {
-            const check = document.createElement('div');
-            check.className = 'dev-check-big';
-            check.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-            $('profileAvatar').appendChild(check);
-        }
-
         $('profileName').textContent = state.currentUser;
         $('profileRoleText').textContent = display;
         $('profileRegistered').textContent = formatDate(user.registered);
         $('profileTime').textContent = formatDuration(getSavedTime(state.currentUser));
         $('profileRole').textContent = ROLE_LABELS[user.role] || user.role;
-
         $('profileModal').classList.add('open');
     }
 
-    // ═══════════ СТАНДАРТНЫЕ ФУНКЦИИ ═══════════
     function updateStrength() {
         const input = $('password'), fill = $('strengthFill'), textEl = $('strengthText');
         if (!input || !fill || !textEl) return;
@@ -935,13 +905,9 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
         const user = state.users[state.currentUser];
         if (!user) return;
         const display = getUserDisplay(user);
-        const isDevRole = user.role === 'admin3';
-        const html = isDevRole
-            ? escapeHtml(display) + '<span class="badge-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>'
-            : escapeHtml(display);
-        $('userBadgeMenu').innerHTML = html;
-        $('userBadgeSection').innerHTML = html;
-        $('userBadgeAdmin').innerHTML = html;
+        $('userBadgeMenu').textContent = display;
+        $('userBadgeSection').textContent = display;
+        $('userBadgeAdmin').textContent = display;
     }
 
     function getUserDisplay(user) {
@@ -1348,13 +1314,10 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
             delete user.banned;
             writeFile('users.json', state.users, 'Auto-unban').catch(() => {});
         }
-
-        // Записываем дату регистрации, если её нет
         if (!user.registered) {
             user.registered = Date.now();
             writeFile('users.json', state.users, 'Set user registered').catch(() => {});
         }
-
         state.currentUser = uname;
         state.currentServer = user.server;
         state.currentRole = user.role;
@@ -1436,7 +1399,6 @@ legend { background: var(--bg-light); border: 1px solid var(--border); padding: 
             toast('info', 'Токен', 'Токен удалён');
         });
 
-        // Профиль
         $('profileBtn').addEventListener('click', openProfileModal);
         $('profileBtnSection').addEventListener('click', openProfileModal);
         $('profileBtnAdmin').addEventListener('click', openProfileModal);
