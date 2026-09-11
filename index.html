@@ -27,7 +27,7 @@ fieldset { border: 1px solid #ccc; padding: 12px; margin-bottom: 15px; backgroun
 legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 13px; font-weight: bold; color: #333; margin-left: 10px; }
 .auth-table { width: 100%; border-collapse: collapse; }
 .auth-table td { padding-bottom: 12px; vertical-align: top; }
-.auth-table .label-cell { width: 100px; padding-top: 8px; font-size: 13px; color: #333; }
+.auth-table .label-cell { width: 110px; padding-top: 8px; font-size: 13px; color: #333; }
 .auth-table input, .auth-table select { width: 100%; padding: 8px; border: 1px solid #aaa; font-size: 14px; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
 .auth-table input:focus, .auth-table select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.15); transform: translateY(-1px); }
 .auth-table input.error { border-color: #dc3545; box-shadow: 0 0 0 3px rgba(220,53,69,0.15); animation: shake 0.4s ease; }
@@ -54,8 +54,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .token-status.err { color: #dc3545; }
 .auth-footer { background: #e8e8e8; border-top: 1px solid #ccc; padding: 8px 10px; margin: 0 -12px -12px -12px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
 .auth-footer .pmabtn { padding: 5px 10px; font-size: 12px; }
-
-.pmabtn { display: inline-block; padding: 8px 14px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 13px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.4; transition: all 0.2s ease; position: relative; overflow: hidden; }
+.pmabtn { display: inline-block; padding: 8px 14px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 13px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.4; transition: all 0.2s ease; }
 .pmabtn:hover { background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%); border-color: var(--accent); color: #1a3d6e; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
 .pmabtn:active { transform: translateY(0); background: linear-gradient(to bottom, #d0dce8 0%, #b8c8d8 100%); box-shadow: inset 0 2px 4px rgba(0,0,0,0.15); }
 .pmabtn:disabled { opacity: 0.4; cursor: not-allowed; }
@@ -63,7 +62,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .pmabtn.danger:hover { background: linear-gradient(to bottom, #c82333, #8e2027); }
 .pmabtn.success { background: linear-gradient(to bottom, #28a745, #1e7e34); color: #fff; border-color: #1c7430; font-weight: bold; }
 .pmabtn.success:hover { background: linear-gradient(to bottom, #218838, #186f2b); }
-
 .screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
 .screen.active { display: flex; animation: fadeIn 0.4s ease; }
 .menu-header { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: #fff; padding: 0; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
@@ -124,9 +122,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .dot.clear { background: #28a745; }
 .dot.blocked { background: #dc3545; }
 .role-badge { padding: 2px 6px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; }
-.role-badge.admin { background: #fff3cd; color: #856404; border-color: #ffeeba; }
 .role-badge.admin1 { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .role-badge.admin2 { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+.role-badge.admin3 { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 .role-badge.tech { background: #e9ecef; color: #495057; border-color: #ced4da; }
 .user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; white-space: nowrap; }
 .user-status.active { background: #d4edda; color: #155724; border-color: #c3e6cb; }
@@ -142,7 +140,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10001; display: none; justify-content: center; align-items: center; padding: 15px; animation: fadeIn 0.2s ease; }
 .modal.open { display: flex; }
 .modal-content { background: #fff; padding: 18px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: fadeInUp 0.3s ease; }
-.modal-content.wide { max-width: 800px; }
+.modal-content.wide { max-width: 900px; }
 .modal-title { font-size: 16px; font-weight: bold; color: var(--accent); margin-bottom: 12px; }
 .modal-title.danger { color: #dc3545; }
 .modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; }
@@ -161,11 +159,24 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .color-swatch:hover { transform: scale(1.1); }
 .color-swatch.selected { border-color: #333; box-shadow: 0 0 0 2px #fff inset; }
 .color-swatch.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 20px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-.logs-list { max-height: 60vh; overflow-y: auto; border: 1px solid #ddd; background: #f9f9f9; padding: 8px; font-family: Consolas, monospace; font-size: 12px; line-height: 1.6; }
-.logs-list .log-item { padding: 6px 8px; border-bottom: 1px dashed #ddd; word-break: break-word; }
+.logs-filter { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+.logs-filter input { flex: 1; min-width: 150px; padding: 8px 10px; border: 1px solid #aaa; font-size: 13px; font-family: inherit; }
+.logs-filter select { padding: 8px 10px; border: 1px solid #aaa; font-size: 13px; font-family: inherit; background: #fff; }
+.logs-list { max-height: 55vh; overflow-y: auto; border: 1px solid #ddd; background: #f9f9f9; font-family: Consolas, monospace; font-size: 12px; line-height: 1.5; }
+.logs-list .log-item { padding: 8px 10px; border-bottom: 1px dashed #ddd; word-break: break-word; display: flex; gap: 8px; align-items: flex-start; }
 .logs-list .log-item:last-child { border-bottom: none; }
 .logs-list .log-item:hover { background: #eef4fb; }
+.logs-list .log-time { color: #888; flex-shrink: 0; white-space: nowrap; }
+.logs-list .log-user { color: var(--accent); font-weight: bold; flex-shrink: 0; }
+.logs-list .log-ip { color: #6f42c1; flex-shrink: 0; }
+.logs-list .log-action { flex: 1; }
+.logs-list .log-item.action-login .log-action { color: #28a745; font-weight: bold; }
+.logs-list .log-item.action-logout .log-action { color: #888; }
+.logs-list .log-item.action-status .log-action { color: #fd7e14; }
+.logs-list .log-item.action-ban .log-action { color: #dc3545; font-weight: bold; }
+.logs-list .log-item.action-unban .log-action { color: #28a745; }
 .logs-empty { text-align: center; padding: 30px; color: #999; font-size: 13px; }
+.logs-stats { font-size: 11px; color: #666; padding: 6px 10px; background: #f0f6fc; border: 1px solid #b8c8d8; margin-bottom: 8px; }
 .toast { position: fixed; top: 15px; right: 15px; left: 15px; max-width: 400px; margin-left: auto; padding: 12px 40px 12px 18px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); font-size: 13px; color: #333; z-index: 9999; overflow: hidden; opacity: 0; transform: translateY(-120%); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; }
 .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .toast::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
@@ -190,7 +201,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .logo-text { font-size: 17px; }
     .welcome-text { font-size: 13px; margin-bottom: 15px; }
     fieldset { padding: 10px; margin-bottom: 12px; }
-    .auth-table .label-cell { width: 80px; font-size: 12px; padding-top: 10px; }
+    .auth-table .label-cell { width: 90px; font-size: 12px; padding-top: 10px; }
     .auth-table input, .auth-table select { padding: 10px 8px; font-size: 15px; }
     .pmabtn { padding: 10px 12px; font-size: 13px; }
     .auth-footer .pmabtn { padding: 7px 12px; font-size: 12px; }
@@ -230,6 +241,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .gear-btn { padding: 5px 6px; margin-left: 3px; }
     .gear-btn svg { width: 12px; height: 12px; }
     .color-picker { grid-template-columns: repeat(3, 1fr); }
+    .logs-list .log-item { font-size: 11px; flex-direction: column; gap: 3px; }
 }
 @media (max-width: 400px) {
     .bottom-bar { grid-template-columns: repeat(2, 1fr); }
@@ -294,7 +306,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         </div>
         <div class="admin-top-bar" id="adminTopBar" style="display:none;">
             <button class="admin-top-btn" data-section="admin" id="adminBtn" data-i18n="adminPanel">Панель управления</button>
-            <button class="admin-top-btn logs" id="logsBtn">Логи ВСЕГО</button>
+            <button class="admin-top-btn logs" id="logsBtn" data-i18n="logging">Логирование</button>
         </div>
     </div>
     <div class="menu-title" data-i18n="menuTitle">Главное меню</div>
@@ -356,7 +368,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
     <div class="admin-container">
         <div class="admin-title" data-i18n="adminTitle">Управление пользователями</div>
-        <div class="admin-hint" data-i18n="adminHint">Только Админ может менять пароли и блокировать</div>
+        <div class="admin-hint" data-i18n="adminHint">Только админы могут менять пароли и блокировать</div>
         <div class="admin-msg" id="adminMsg"></div>
         <div class="admin-tools">
             <button class="pmabtn danger" id="clearAllBtn" data-i18n="clearAll">Очистить все разделы</button>
@@ -403,12 +415,23 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
 <div class="modal" id="logsModal">
     <div class="modal-content wide">
-        <div class="modal-title">📋 Логи ВСЕГО</div>
-        <div class="modal-hint">Все действия пользователей (последние 500 записей)</div>
+        <div class="modal-title" data-i18n="logging">Логирование</div>
+        <div class="modal-hint" data-i18n="logsHint">Все действия пользователей с IP-адресами (последние 500 записей)</div>
+        <div class="logs-filter">
+            <input type="text" id="logsSearch" placeholder="Поиск по логину/IP/действию...">
+            <select id="logsActionFilter">
+                <option value="all">Все действия</option>
+                <option value="login">Входы</option>
+                <option value="logout">Выходы</option>
+                <option value="status">Смена статусов</option>
+                <option value="ban">Баны</option>
+            </select>
+        </div>
+        <div class="logs-stats" id="logsStats"></div>
         <div class="logs-list" id="logsList"></div>
         <div class="modal-actions">
-            <button class="pmabtn danger" id="logsClear" style="display:none;">Очистить логи</button>
-            <button class="pmabtn" id="logsClose">Закрыть</button>
+            <button class="pmabtn danger" id="logsClear" style="display:none;" data-i18n="clearLogs">Очистить логи</button>
+            <button class="pmabtn" id="logsClose" data-i18n="close">Закрыть</button>
         </div>
     </div>
 </div>
@@ -486,13 +509,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             welcome: 'Добро пожаловать технический специалист!', legendAuth: 'Авторизация',
             labelUser: 'Пользователь:', labelPass: 'Пароль:', labelCaptcha: 'Капча:', captchaLabel: 'Я не робот',
             setToken: 'Токен', login: 'Войти', logout: 'Выход', menuTitle: 'Главное меню',
-            adminPanel: 'Панель управления', settings: 'Настройки', settingsTitle: 'Настройки',
-            settingsLang: 'Язык интерфейса:', settingsColor: 'Цвет интерфейса:', close: 'Закрыть',
+            adminPanel: 'Панель управления', logging: 'Логирование', settings: 'Настройки',
+            settingsTitle: 'Настройки', settingsLang: 'Язык интерфейса:', settingsColor: 'Цвет интерфейса:', close: 'Закрыть',
             trades: 'Трейды', unique: 'Уникальная', levels: 'Уровни 3,4,5', works: 'Работы', pays: '/pay',
             uploadBtn: 'Загрузить данные', clearBtn: 'Очистить', all: 'Все', back: 'Назад',
-            adminTitle: 'Управление пользователями', adminHint: 'Только Админ может менять пароли и блокировать',
+            adminTitle: 'Управление пользователями', adminHint: 'Только админы могут менять пароли и блокировать',
             clearAll: 'Очистить все разделы', thLogin: 'Логин', thRole: 'Роль', thServer: 'Сервер',
-            thPass: 'Пароль', thStatus: 'Статус', thActions: 'Действия',
+            thPass: 'Пароль', thStatus: 'Статус', thActions: 'Действия', clearLogs: 'Очистить логи',
             tokenTitle: 'Установка токена', tokenHint: 'Вставь Personal Access Token. Хранится только в браузере.',
             tokenLabel: 'Токен:', delete: 'Удалить', cancel: 'Отмена', save: 'Сохранить',
             uploadTitle: 'Загрузка данных', upload: 'Загрузить', banTitle: 'Блокировка пользователя',
@@ -506,38 +529,36 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             userBanned: 'Пользователь заблокирован', userUnbanned: 'Пользователь разблокирован',
             youAreBanned: 'Вы заблокированы', banReasonShort: 'Причина', banUntil: 'до',
             tokenSaved: 'Токен сохранён', tokenDeleted: 'Токен удалён', noToken: 'Вставь токен',
-            loggedOut: 'Вы вышли из системы', onlyAdmin: 'Только Админ',
+            loggedOut: 'Вы вышли из системы', onlyAdmin: 'Только админы',
             parseError: 'Не удалось распарсить ни одной строки', added: 'Добавлено', skipped: 'пропущено',
             loading: 'Загрузка...', saving: 'Сохранение...', checking: 'Проверка...',
             confirmClearAll: 'Точно очистить ВСЕ разделы?', confirmClearSection: 'Точно очистить раздел?',
             bannedUntil: 'Заблокирован до', bannedForever: 'навсегда',
             statusPending: 'Ожидание', statusClear: 'Нету нарушений', statusBlocked: 'Заблокирован',
             active: 'Активен', banned: 'Забанен',
-            roleAdmin: 'Админ', roleAdmin1: 'Куратор технических специалистов',
-            roleAdmin2: 'Зам. куратора технических специалистов', roleTech: 'Технический специалист',
+            roleAdmin1: 'Куратор технических специалистов', roleAdmin2: 'Зам. куратора технических специалистов',
+            roleAdmin3: 'Разработчик', roleTech: 'Технический специалист',
             license: '© 2026 Массовая выгрузка 61-65. Все права защищены.',
             settingsSaved: 'Настройки сохранены', enterPass: 'Введите пароль',
-            onlyDigits: 'Только цифры!', need6: 'Нужно 6 символов (введено ',
             veryWeak: 'Очень слабый пароль', strongPass: 'Надёжный пароль', mediumPass: 'Средний пароль',
-            logsEmpty: 'Логов пока нет', logsClearConfirm: 'Очистить все логи?',
-            logsCleared: 'Логи очищены', section: 'Раздел',
-            logLogin: 'Вход в систему', logLogout: 'Выход из системы',
-            logStatusChanged: 'Смена статуса', logUploaded: 'Загрузка данных',
-            logCleared: 'Очистка раздела', logClearedAll: 'Очистка всех разделов',
-            logBan: 'Блокировка пользователя', logUnban: 'Разблокировка пользователя',
-            logPassChanged: 'Смена пароля'
+            logsEmpty: 'Логов пока нет', logsClearConfirm: 'Очистить все логи?', logsCleared: 'Логи очищены',
+            logsHint: 'Все действия пользователей с IP-адресами (последние 500 записей)',
+            logLogin: 'Вход в систему', logLogout: 'Выход из системы', logStatusChanged: 'Смена статуса',
+            logUploaded: 'Загрузка данных', logCleared: 'Очистка раздела', logClearedAll: 'Очистка всех разделов',
+            logBan: 'Блокировка пользователя', logUnban: 'Разблокировка пользователя', logPassChanged: 'Смена пароля',
+            statsTotal: 'Всего записей: ', statsLogins: 'Входов сегодня: ', statsActions: 'Действий сегодня: '
         },
         en: {
             welcome: 'Welcome, technical specialist!', legendAuth: 'Authorization',
             labelUser: 'User:', labelPass: 'Password:', labelCaptcha: 'Captcha:', captchaLabel: 'I am not a robot',
             setToken: 'Token', login: 'Login', logout: 'Logout', menuTitle: 'Main menu',
-            adminPanel: 'Control panel', settings: 'Settings', settingsTitle: 'Settings',
-            settingsLang: 'Interface language:', settingsColor: 'Interface color:', close: 'Close',
+            adminPanel: 'Control panel', logging: 'Logging', settings: 'Settings',
+            settingsTitle: 'Settings', settingsLang: 'Interface language:', settingsColor: 'Interface color:', close: 'Close',
             trades: 'Trades', unique: 'Unique', levels: 'Levels 3,4,5', works: 'Works', pays: '/pay',
             uploadBtn: 'Upload data', clearBtn: 'Clear', all: 'All', back: 'Back',
-            adminTitle: 'User management', adminHint: 'Only Admin can change passwords and block',
+            adminTitle: 'User management', adminHint: 'Only admins can change passwords and block',
             clearAll: 'Clear all sections', thLogin: 'Login', thRole: 'Role', thServer: 'Server',
-            thPass: 'Password', thStatus: 'Status', thActions: 'Actions',
+            thPass: 'Password', thStatus: 'Status', thActions: 'Actions', clearLogs: 'Clear logs',
             tokenTitle: 'Set token', tokenHint: 'Paste Personal Access Token. Stored only in browser.',
             tokenLabel: 'Token:', delete: 'Delete', cancel: 'Cancel', save: 'Save',
             uploadTitle: 'Upload data', upload: 'Upload', banTitle: 'Block user',
@@ -551,26 +572,24 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             userBanned: 'User banned', userUnbanned: 'User unbanned',
             youAreBanned: 'You are banned', banReasonShort: 'Reason', banUntil: 'until',
             tokenSaved: 'Token saved', tokenDeleted: 'Token deleted', noToken: 'Paste token',
-            loggedOut: 'You logged out', onlyAdmin: 'Admin only',
+            loggedOut: 'You logged out', onlyAdmin: 'Admins only',
             parseError: 'Failed to parse any line', added: 'Added', skipped: 'skipped',
             loading: 'Loading...', saving: 'Saving...', checking: 'Checking...',
             confirmClearAll: 'Clear ALL sections?', confirmClearSection: 'Clear this section?',
             bannedUntil: 'Banned until', bannedForever: 'forever',
             statusPending: 'Pending', statusClear: 'No violations', statusBlocked: 'Blocked',
             active: 'Active', banned: 'Banned',
-            roleAdmin: 'Admin', roleAdmin1: 'Curator of techs',
-            roleAdmin2: 'Deputy curator of techs', roleTech: 'Technical specialist',
+            roleAdmin1: 'Curator of techs', roleAdmin2: 'Deputy curator of techs',
+            roleAdmin3: 'Developer', roleTech: 'Technical specialist',
             license: '© 2026 Mass upload 61-65. All rights reserved.',
             settingsSaved: 'Settings saved', enterPass: 'Enter password',
-            onlyDigits: 'Digits only!', need6: 'Need 6 chars (entered ',
             veryWeak: 'Very weak password', strongPass: 'Strong password', mediumPass: 'Medium password',
-            logsEmpty: 'No logs yet', logsClearConfirm: 'Clear all logs?',
-            logsCleared: 'Logs cleared', section: 'Section',
-            logLogin: 'Login', logLogout: 'Logout',
-            logStatusChanged: 'Status changed', logUploaded: 'Data uploaded',
-            logCleared: 'Section cleared', logClearedAll: 'All sections cleared',
-            logBan: 'User banned', logUnban: 'User unbanned',
-            logPassChanged: 'Password changed'
+            logsEmpty: 'No logs yet', logsClearConfirm: 'Clear all logs?', logsCleared: 'Logs cleared',
+            logsHint: 'All user actions with IP addresses (last 500 records)',
+            logLogin: 'Login', logLogout: 'Logout', logStatusChanged: 'Status changed',
+            logUploaded: 'Data uploaded', logCleared: 'Section cleared', logClearedAll: 'All sections cleared',
+            logBan: 'User banned', logUnban: 'User unbanned', logPassChanged: 'Password changed',
+            statsTotal: 'Total: ', statsLogins: 'Logins today: ', statsActions: 'Actions today: '
         }
     };
 
@@ -580,8 +599,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function applyLanguage() {
         document.documentElement.lang = lang;
         document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            el.textContent = t(key);
+            el.textContent = t(el.getAttribute('data-i18n'));
         });
         document.getElementById('settingsLangSelect').value = lang;
         if (state.currentSection) renderSection();
@@ -594,9 +612,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function applyColor(accent, dark) {
         document.documentElement.style.setProperty('--accent', accent);
         document.documentElement.style.setProperty('--accent-dark', dark);
-        document.querySelectorAll('.color-swatch').forEach(sw => {
-            sw.classList.toggle('selected', sw.dataset.color === accent);
-        });
+        document.querySelectorAll('.color-swatch').forEach(sw => sw.classList.toggle('selected', sw.dataset.color === accent));
     }
     function loadSavedColor() {
         applyColor(localStorage.getItem('color_accent') || '#3D6DB5', localStorage.getItem('color_dark') || '#2c4f8a');
@@ -652,9 +668,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         return key;
     }
     function roleLabel(role) {
-        if (role === 'admin') return t('roleAdmin');
         if (role === 'admin1') return t('roleAdmin1');
         if (role === 'admin2') return t('roleAdmin2');
+        if (role === 'admin3') return t('roleAdmin3');
         return t('roleTech');
     }
 
@@ -663,7 +679,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         logs: [],
         users: {},
         currentUser: '', currentServer: '', currentRole: '', currentSection: '',
-        filter: 'all', revealed: {}, openMenu: null, pendingUserBan: null, captchaVerified: false
+        filter: 'all', revealed: {}, openMenu: null, pendingUserBan: null, captchaVerified: false,
+        userIp: '—'
     };
 
     const $ = id => document.getElementById(id);
@@ -721,6 +738,28 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         });
     }
 
+    // ═══════════ ПОЛУЧЕНИЕ IP ═══════════
+    async function fetchIP() {
+        try {
+            const res = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
+            if (!res.ok) throw new Error('fail');
+            const data = await res.json();
+            state.userIp = data.ip || '—';
+            return state.userIp;
+        } catch (e) {
+            // Fallback
+            try {
+                const res2 = await fetch('https://api64.ipify.org?format=json', { cache: 'no-store' });
+                const data2 = await res2.json();
+                state.userIp = data2.ip || '—';
+                return state.userIp;
+            } catch (e2) {
+                state.userIp = '—';
+                return '—';
+            }
+        }
+    }
+
     async function readFile(fileName) {
         const token = getToken();
         const apiUrl = `${API_BASE}${fileName}?ref=${BRANCH}&t=${Date.now()}`;
@@ -767,31 +806,73 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
     }
 
-    async function addLog(actionKey, details) {
-        const line = `${nowStr()} | ${state.currentUser || '—'} | ${t(actionKey)}: ${details}`;
-        state.logs.push(line);
-        // Ограничиваем
+    async function addLog(actionType, actionLabel, details) {
+        // actionType: login/logout/status/ban/unban/upload/clear/pass
+        const logEntry = {
+            t: Date.now(),
+            time: nowStr(),
+            user: state.currentUser || '—',
+            role: state.currentRole || '—',
+            ip: state.userIp || '—',
+            type: actionType,
+            action: actionLabel,
+            details: details || ''
+        };
+        state.logs.push(logEntry);
         if (state.logs.length > MAX_LOGS) state.logs = state.logs.slice(-MAX_LOGS);
-        // Пишем в фоне (не блокируем основное действие)
-        writeFile('logs.json', state.logs, 'Log: ' + actionKey).catch(e => console.warn('log write failed', e));
+        writeFile('logs.json', state.logs, 'Log: ' + actionType).catch(e => console.warn('log write failed', e));
     }
 
     async function loadLogs() {
         try {
             const result = await readFile('logs.json');
             state.logs = Array.isArray(result) ? result : [];
+            // Совместимость со старым форматом (строки)
+            state.logs = state.logs.map(l => {
+                if (typeof l === 'string') return { t: 0, time: '—', user: '—', role: '—', ip: '—', type: 'info', action: l, details: '' };
+                return l;
+            });
         } catch (e) { state.logs = []; }
     }
 
     function renderLogs() {
         const list = $('logsList');
-        if (!state.logs.length) {
+        const search = ($('logsSearch').value || '').toLowerCase().trim();
+        const filter = $('logsActionFilter').value;
+
+        let filtered = state.logs.slice();
+        if (filter !== 'all') filtered = filtered.filter(l => l.type === filter);
+        if (search) filtered = filtered.filter(l =>
+            (l.user || '').toLowerCase().includes(search) ||
+            (l.ip || '').toLowerCase().includes(search) ||
+            (l.action || '').toLowerCase().includes(search) ||
+            (l.details || '').toLowerCase().includes(search)
+        );
+
+        // Статистика
+        const todayStart = new Date(); todayStart.setHours(0,0,0,0);
+        const todayTs = todayStart.getTime();
+        const loginsToday = state.logs.filter(l => l.type === 'login' && l.t >= todayTs).length;
+        const actionsToday = state.logs.filter(l => l.t >= todayTs).length;
+        $('logsStats').textContent = t('statsTotal') + state.logs.length + ' | ' + t('statsLogins') + loginsToday + ' | ' + t('statsActions') + actionsToday;
+
+        if (!filtered.length) {
             list.innerHTML = '<div class="logs-empty">' + t('logsEmpty') + '</div>';
             return;
         }
+
         // Последние сверху
-        const reversed = state.logs.slice().reverse();
-        list.innerHTML = reversed.map(l => '<div class="log-item">' + escapeHtml(l) + '</div>').join('');
+        filtered.sort((a, b) => (b.t || 0) - (a.t || 0));
+        list.innerHTML = filtered.map(l => {
+            const cls = 'log-item action-' + (l.type || 'info');
+            const details = l.details ? '<span class="log-details"> | ' + escapeHtml(l.details) + '</span>' : '';
+            return '<div class="' + cls + '">' +
+                '<span class="log-time">' + escapeHtml(l.time || '—') + '</span>' +
+                '<span class="log-user">' + escapeHtml(l.user || '—') + '</span>' +
+                '<span class="log-ip">IP: ' + escapeHtml(l.ip || '—') + '</span>' +
+                '<span class="log-action">' + escapeHtml(l.action || '') + details + '</span>' +
+            '</div>';
+        }).join('');
     }
 
     function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
@@ -826,7 +907,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         } catch (e) { state.users = {}; return false; }
     }
 
-    const isAdmin = () => state.currentRole === 'admin' || state.currentRole === 'admin1' || state.currentRole === 'admin2';
+    const isAdmin = () => state.currentRole === 'admin1' || state.currentRole === 'admin2' || state.currentRole === 'admin3';
     const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
 
     function getUserDisplay(user) {
@@ -892,7 +973,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 try {
                     await writeFile(cfg.file, state.data[state.currentSection], 'Update ' + state.currentSection);
                     toast('success', t('statusChanged'), cfg.getSummary(row) + ' → ' + statusLabel(key));
-                    addLog('logStatusChanged', t(cfg.titleKey) + ' | ' + cfg.getSummary(row) + ': ' + statusLabel(oldStatus) + ' → ' + statusLabel(key));
+                    addLog('status', t('logStatusChanged'), t(cfg.titleKey) + ' | ' + cfg.getSummary(row) + ': ' + statusLabel(oldStatus) + ' → ' + statusLabel(key));
                 } catch (e) {
                     row[cfg.statusIdx] = oldStatus;
                     badge.className = 'status-badge ' + oldStatus;
@@ -945,7 +1026,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         try {
             await writeFile(cfg.file, existing, 'Upload ' + state.currentSection);
             toast('success', t('uploaded'), `${t('added')}: ${added}${skipped > 0 ? ', ' + t('skipped') + ': ' + skipped : ''}`);
-            addLog('logUploaded', t(cfg.titleKey) + ': +' + added + ' (' + state.currentSection + ')');
+            addLog('status', t('logUploaded'), t(cfg.titleKey) + ': +' + added);
             renderSection();
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
@@ -960,7 +1041,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         try {
             await writeFile(cfg.file, [], 'Clear ' + state.currentSection);
             toast('success', t('cleared'), '—');
-            addLog('logCleared', t(cfg.titleKey));
+            addLog('status', t('logCleared'), t(cfg.titleKey));
             renderSection();
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
@@ -978,7 +1059,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             }
             await Promise.all(promises);
             toast('success', t('cleared'), t('allCleared'));
-            addLog('logClearedAll', '—');
+            addLog('status', t('logClearedAll'), '—');
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
     }
@@ -999,7 +1080,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function openUserBanModal(uname) {
         const u = state.users[uname];
         if (!u) return;
-        if (u.role === 'admin' || u.role === 'admin1' || u.role === 'admin2') { adminMsg(lang === 'ru' ? 'Нельзя забанить админа' : 'Cannot ban admin', 'err'); return; }
+        if (u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3') { adminMsg(lang === 'ru' ? 'Нельзя забанить админа' : 'Cannot ban admin', 'err'); return; }
         state.pendingUserBan = uname;
         $('userBanTarget').textContent = uname + ' (' + t('thServer') + ' ' + u.server + ')';
         $('userBanReason').value = '';
@@ -1024,7 +1105,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             await writeFile('users.json', state.users, 'Ban user ' + uname);
             const untilText = until === 0 ? t('bannedForever') : new Date(until).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
             toast('warning', t('userBanned'), `${uname}\n${t('banReasonShort')}: ${reason}\n${t('banUntil')}: ${untilText}`);
-            addLog('logBan', uname + ' | ' + reason + ' | ' + (until === 0 ? t('bannedForever') : hours + 'h'));
+            addLog('ban', t('logBan'), uname + ' | ' + reason + ' | ' + (until === 0 ? t('bannedForever') : hours + 'h'));
             renderAdminUsers();
         } catch (e) {
             state.users[uname].banned = oldBanned;
@@ -1040,7 +1121,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         try {
             await writeFile('users.json', state.users, 'Unban user ' + uname);
             toast('success', t('userUnbanned'), uname);
-            addLog('logUnban', uname);
+            addLog('unban', t('logUnban'), uname);
             renderAdminUsers();
         } catch (e) {
             state.users[uname].banned = oldBanned;
@@ -1055,7 +1136,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         Object.keys(state.users).forEach(uname => {
             const u = state.users[uname];
             const isSelf = uname === state.currentUser;
-            const isAdminRow = u.role === 'admin' || u.role === 'admin1' || u.role === 'admin2';
+            const isAdminRow = u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3';
             const revealed = state.revealed[uname] === true;
             const banned = isUserBanned(u);
             const banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
@@ -1063,7 +1144,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             const banBtn = isAdminRow ? '' : (banned
                 ? `<button class="pmabtn success" data-act="unban" data-user="${uname}">${lang === 'ru' ? 'Разблокировать' : 'Unban'}</button>`
                 : `<button class="pmabtn danger" data-act="ban" data-user="${uname}">${t('block')}</button>`);
-            const roleClass = u.role === 'admin' ? 'admin' : (u.role === 'admin1' ? 'admin1' : (u.role === 'admin2' ? 'admin2' : 'tech'));
+            const roleClass = u.role === 'admin1' ? 'admin1' : (u.role === 'admin2' ? 'admin2' : (u.role === 'admin3' ? 'admin3' : 'tech'));
             const tr = document.createElement('tr');
             if (banned) tr.className = 'banned-row';
             tr.innerHTML = `
@@ -1089,7 +1170,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (act === 'toggle') { state.revealed[uname] = !state.revealed[uname]; renderAdminUsers(); return; }
         if (act === 'change') {
             const u = state.users[uname];
-            if (u.role === 'admin' || u.role === 'admin1' || u.role === 'admin2') { adminMsg(lang === 'ru' ? 'Нельзя менять пароль админа' : 'Cannot change admin password', 'err'); return; }
+            if (u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3') { adminMsg(lang === 'ru' ? 'Нельзя менять пароль админа' : 'Cannot change admin password', 'err'); return; }
             const np = prompt((lang === 'ru' ? 'Новый пароль для ' : 'New password for ') + uname + ':', '');
             if (np === null) return;
             if (np.length < 4) { adminMsg(lang === 'ru' ? 'Пароль слишком короткий' : 'Password too short', 'err'); return; }
@@ -1100,7 +1181,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 await writeFile('users.json', state.users, 'Update user password');
                 adminMsg((lang === 'ru' ? 'Пароль сохранён: ' : 'Password saved: ') + uname, 'ok');
                 toast('success', t('okTitle'), uname + ' → ' + np);
-                addLog('logPassChanged', uname);
+                addLog('pass', t('logPassChanged'), uname);
                 renderAdminUsers();
             } catch (err) {
                 u.password = oldPass;
@@ -1132,6 +1213,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             return;
         }
         showLoading(t('checking'));
+        // Получаем IP в фоне
+        fetchIP();
         const loaded = await loadUsers();
         hideLoading();
         if (!loaded) { resetCaptcha(); toast('error', t('errTitle'), 'users.json'); return; }
@@ -1166,6 +1249,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         state.currentServer = user.server;
         state.currentRole = user.role;
 
+        // Дожидаемся IP
+        if (state.userIp === '—') await fetchIP();
+
         const display = getUserDisplay(user);
         $('userBadgeMenu').textContent = display;
         $('userBadgeSection').textContent = display;
@@ -1180,12 +1266,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         hideLoading();
 
         toast('success', t('okTitle'), t('welcomeBack') + uname);
-        addLog('logLogin', uname + ' | ' + roleLabel(user.role));
+        addLog('login', t('logLogin'), uname + ' | ' + roleLabel(user.role) + ' | IP: ' + state.userIp);
         setTimeout(() => { $('loginScreen').classList.add('hidden'); showScreen('menu'); }, 300);
     }
 
     function doLogout() {
-        addLog('logLogout', state.currentUser || '—');
+        addLog('logout', t('logLogout'), state.currentUser || '—');
         state.currentUser = ''; state.currentServer = ''; state.currentRole = '';
         state.revealed = {};
         closeAllMenus();
@@ -1225,6 +1311,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         updateTokenStatus();
         initCaptcha();
         updateStrength();
+        fetchIP(); // получаем IP при загрузке
         $('password').addEventListener('input', updateStrength);
         $('username').addEventListener('input', function () { this.classList.remove('error'); });
         $('password').addEventListener('input', function () { this.classList.remove('error'); });
@@ -1252,6 +1339,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         });
         $('logsClose').addEventListener('click', () => $('logsModal').classList.remove('open'));
         $('logsClear').addEventListener('click', clearAllLogs);
+        $('logsSearch').addEventListener('input', renderLogs);
+        $('logsActionFilter').addEventListener('change', renderLogs);
 
         $('setTokenBtn').addEventListener('click', openTokenModal);
         $('tokenCancel').addEventListener('click', () => $('tokenModal').classList.remove('open'));
