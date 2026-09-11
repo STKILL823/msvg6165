@@ -64,7 +64,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: bold; font-style: italic; }
 .brand-ship { font-size: 22px; line-height: 1; animation: pulse 3s ease infinite; }
 .user-info { display: flex; align-items: center; gap: 8px; font-size: 12px; }
-.user-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; font-weight: bold; animation: fadeIn 0.4s ease; }
+.user-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; font-weight: bold; animation: fadeIn 0.4s ease; display: inline-flex; align-items: center; gap: 6px; }
+.user-badge .badge-check { width: 16px; height: 16px; border-radius: 50%; background: #28a745; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.user-badge .badge-check svg { width: 10px; height: 10px; display: block; }
 .header-btn { padding: 5px 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
 .header-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
 .header-btn:active { transform: scale(0.97); }
@@ -128,7 +130,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .user-status.active { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .user-status.banned { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
 .user-status.dev { background: #d4edda; color: #155724; border-color: #28a745; }
-.dev-check { color: #28a745; font-weight: bold; font-size: 14px; margin-left: 4px; }
 .admin-hint { font-size: 12px; color: #888; margin-bottom: 12px; font-style: italic; }
 .admin-msg { padding: 8px 12px; margin-bottom: 12px; font-size: 12px; border: 1px solid; display: none; }
 .admin-msg.show { display: block; animation: fadeInUp 0.3s ease; }
@@ -638,6 +639,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (state.currentSection) renderSection();
         if (isAdmin() && document.getElementById('adminScreen').classList.contains('active')) renderAdminUsers();
         updateStrength();
+        updateUserBadges();
         document.title = lang === 'ru' ? 'Массовая выгрузка 61-65' : 'Mass upload 61-65';
     }
 
@@ -928,6 +930,28 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const isDev = () => state.currentRole === 'admin3';
     const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
 
+    // ═══════════ ОБНОВЛЕНИЕ БЕЙДЖА ═══════════
+    function updateUserBadges() {
+        if (!state.currentUser) {
+            $('userBadgeMenu').textContent = '—';
+            $('userBadgeSection').textContent = '—';
+            $('userBadgeAdmin').textContent = '—';
+            return;
+        }
+        const user = state.users[state.currentUser];
+        if (!user) return;
+        const display = getUserDisplay(user);
+        const isDevRole = user.role === 'admin3';
+
+        const html = isDevRole
+            ? escapeHtml(display) + '<span class="badge-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>'
+            : escapeHtml(display);
+
+        $('userBadgeMenu').innerHTML = html;
+        $('userBadgeSection').innerHTML = html;
+        $('userBadgeAdmin').innerHTML = html;
+    }
+
     function getUserDisplay(user) {
         const role = user.role;
         if (role === 'tech') return t('roleTech') + ' | ' + user.server;
@@ -1161,7 +1185,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (!isAdmin()) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#dc3545;padding:20px;">—</td></tr>'; return; }
         body.innerHTML = '';
 
-        // Сортировка: разработчик всегда первый
+        // Разработчик всегда первый
         const sortedNames = Object.keys(state.users).sort((a, b) => {
             const ra = state.users[a].role, rb = state.users[b].role;
             const rank = r => r === 'admin3' ? 0 : (r === 'admin1' ? 1 : (r === 'admin2' ? 2 : 3));
@@ -1175,14 +1199,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             const isSelf = uname === state.currentUser;
             const isProtected = isProtectedUser(uname, u);
             const isAdminRow = u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3';
-            // Пароль разработчика не показываем никому
             const revealed = !isProtected && state.revealed[uname] === true;
             const banned = isUserBanned(u);
             const banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
 
             let statusHtml;
             if (isProtected) {
-                statusHtml = `<span class="user-status dev">${t('devStatus')} <span class="dev-check">✓</span></span>`;
+                statusHtml = `<span class="user-status dev">${t('devStatus')}</span>`;
             } else if (banned) {
                 statusHtml = `<span class="user-status banned" title="${banTitle}">${t('banned')}</span>`;
             } else {
@@ -1205,11 +1228,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             if (banned && !isProtected) tr.className = 'banned-row';
             if (isProtected) tr.className = 'admin3-row';
 
-            // Имя с зелёной галочкой для разработчика
-            const nameHtml = uname + (isSelf ? ' *' : '') + (isProtected ? ' <span class="dev-check">✓</span>' : '');
-
             tr.innerHTML = `
-                <td style="font-weight:bold;color:var(--accent)">${nameHtml}</td>
+                <td style="font-weight:bold;color:var(--accent)">${uname}${isSelf ? ' *' : ''}</td>
                 <td style="text-align:center"><span class="role-badge ${roleClass}">${roleLabel(u.role)}</span></td>
                 <td style="text-align:center">${u.server}</td>
                 <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••'}</td>
@@ -1230,10 +1250,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const act = btn.dataset.act, uname = btn.dataset.user;
         const u = state.users[uname];
 
-        if (isProtectedUser(uname, u)) {
-            adminMsg(t('cannotTouchDev'), 'err');
-            return;
-        }
+        if (isProtectedUser(uname, u)) { adminMsg(t('cannotTouchDev'), 'err'); return; }
 
         if (act === 'toggle') { state.revealed[uname] = !state.revealed[uname]; renderAdminUsers(); return; }
         if (act === 'change') {
@@ -1313,10 +1330,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         state.currentServer = user.server;
         state.currentRole = user.role;
         if (state.userIp === '—') await fetchIP();
-        const display = getUserDisplay(user);
-        $('userBadgeMenu').textContent = display;
-        $('userBadgeSection').textContent = display;
-        $('userBadgeAdmin').textContent = display;
+        updateUserBadges();
         $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
         $('sectionActions').style.display = isAdmin() ? 'grid' : 'none';
         showLoading(t('loading'));
