@@ -418,5 +418,15 @@
     "type": "status",
     "action": "Смена статуса",
     "details": "Трейды | Beka_Millioner → Lexa_NaPlyazhe: Ожидание → Заблокирован"
+  },
+  {
+    "t": 1789140180221,
+    "time": "11.09.2026 22:23:00",
+    "user": "Tech_61",
+    "role": "tech",
+    "ip": "5.44.168.145",
+    "type": "status",
+    "action": "Смена статуса",
+    "details": "Трейды | Beka_Millioner → Lexa_NaPlyazhe: Заблокирован → Ожидание"
   }
 ]
