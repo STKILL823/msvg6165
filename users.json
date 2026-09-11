@@ -20,11 +20,7 @@
   "Tech_61": {
     "password": "123456",
     "server": "61",
-    "role": "tech",
-    "banned": {
-      "reason": "слив",
-      "until": 0
-    }
+    "role": "tech"
   },
   "Tech_62": {
     "password": "123456",
