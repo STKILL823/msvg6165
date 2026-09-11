@@ -6,10 +6,25 @@
 <title>Массовая выгрузка 61-65</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛵</text></svg>">
 <style>
-:root { --accent: #3D6DB5; --accent-dark: #2c4f8a; }
+:root {
+    --bg: #0d1220;
+    --bg-light: #161b2c;
+    --bg-lighter: #1e2538;
+    --accent: #4a7fd4;
+    --accent-dark: #2c4f8a;
+    --accent-bright: #5b8fe0;
+    --text: #e0e6f0;
+    --text-dim: #8892a8;
+    --text-mute: #5a6a85;
+    --border: #2a3247;
+    --border-light: #364259;
+    --success: #2ecc71;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+}
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; background: #fff; color: #000; min-height: 100vh; font-size: 14px; }
+body { font-family: Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 60% { opacity: 1; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
@@ -21,258 +36,244 @@ body { font-family: Arial, sans-serif; background: #fff; color: #000; min-height
 .login-container { width: 100%; max-width: 450px; padding: 20px; margin: 0 auto; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; animation: fadeInUp 0.5s ease; }
 .login-container.hidden { display: none; }
 .logo-ship { font-size: 56px; line-height: 1; display: block; margin-bottom: 5px; animation: popIn 0.6s ease; }
-.logo-text { font-size: 20px; font-weight: bold; font-style: italic; margin: 5px 0; color: var(--accent); animation: fadeIn 0.6s ease 0.1s backwards; }
-.welcome-text { font-size: 14px; font-weight: bold; margin-bottom: 20px; color: #333; animation: fadeIn 0.6s ease 0.2s backwards; }
-fieldset { border: 1px solid #ccc; padding: 12px; margin-bottom: 15px; background: #f9f9f9; text-align: left; animation: fadeInUp 0.5s ease 0.2s backwards; }
-legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 13px; font-weight: bold; color: #333; margin-left: 10px; }
+.logo-text { font-size: 20px; font-weight: bold; font-style: italic; margin: 5px 0; color: var(--accent-bright); animation: fadeIn 0.6s ease 0.1s backwards; }
+.welcome-text { font-size: 14px; font-weight: bold; margin-bottom: 20px; color: var(--text-dim); animation: fadeIn 0.6s ease 0.2s backwards; }
+fieldset { border: 1px solid var(--border); padding: 12px; margin-bottom: 15px; background: var(--bg-light); text-align: left; animation: fadeInUp 0.5s ease 0.2s backwards; border-radius: 6px; }
+legend { background: var(--bg-light); border: 1px solid var(--border); padding: 2px 10px; font-size: 13px; font-weight: bold; color: var(--text); margin-left: 10px; border-radius: 3px; }
 .auth-table { width: 100%; border-collapse: collapse; }
 .auth-table td { padding-bottom: 12px; vertical-align: top; }
-.auth-table .label-cell { width: 110px; padding-top: 8px; font-size: 13px; color: #333; }
-.auth-table input, .auth-table select { width: 100%; padding: 8px; border: 1px solid #aaa; font-size: 14px; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
-.auth-table input:focus, .auth-table select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.15); transform: translateY(-1px); }
-.auth-table input.error { border-color: #dc3545; box-shadow: 0 0 0 3px rgba(220,53,69,0.15); animation: shake 0.4s ease; }
-.strength-meter { height: 5px; background: #e0e0e0; margin-top: 6px; overflow: hidden; border-radius: 2px; }
+.auth-table .label-cell { width: 110px; padding-top: 8px; font-size: 13px; color: var(--text-dim); }
+.auth-table input, .auth-table select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); background: var(--bg-lighter); color: var(--text); font-size: 14px; font-family: inherit; border-radius: 4px; transition: border-color 0.2s, box-shadow 0.2s; }
+.auth-table input::placeholder { color: var(--text-mute); }
+.auth-table input:focus, .auth-table select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(74,127,212,0.2); }
+.auth-table input.error { border-color: var(--danger); box-shadow: 0 0 0 3px rgba(231,76,60,0.2); animation: shake 0.4s ease; }
+.strength-meter { height: 5px; background: var(--bg); margin-top: 6px; overflow: hidden; border-radius: 2px; }
 .strength-fill { height: 100%; width: 0; transition: all 0.35s ease; border-radius: 2px; }
-.strength-text { font-size: 11px; margin-top: 4px; color: #666; }
-.captcha-box { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #d3d3d3; background: #f9f9f9; cursor: pointer; user-select: none; width: 100%; transition: border-color 0.2s, transform 0.2s; }
-.captcha-box:hover { background: #f0f0f0; transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
-.captcha-box.error { animation: shake 0.4s ease; border-color: #dc3545; }
-.captcha-checkbox { width: 24px; height: 24px; border: 2px solid #999; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; }
-.captcha-box.checked .captcha-checkbox { border-color: #28a745; background: #28a745; animation: popIn 0.3s ease; }
+.strength-text { font-size: 11px; margin-top: 4px; color: var(--text-dim); }
+.captcha-box { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid var(--border); background: var(--bg-lighter); cursor: pointer; user-select: none; width: 100%; border-radius: 4px; transition: border-color 0.2s; }
+.captcha-box:hover { border-color: var(--accent); }
+.captcha-box.error { animation: shake 0.4s ease; border-color: var(--danger); }
+.captcha-checkbox { width: 24px; height: 24px; border: 2px solid var(--text-mute); background: transparent; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; border-radius: 3px; }
+.captcha-box.checked .captcha-checkbox { border-color: var(--success); background: var(--success); animation: popIn 0.3s ease; }
 .captcha-checkbox svg { width: 16px; height: 16px; display: none; }
 .captcha-box.checked .captcha-checkbox svg { display: block; }
 .captcha-box.loading .captcha-checkbox { border-color: var(--accent); }
-.captcha-spinner { width: 16px; height: 16px; border: 2px solid #ddd; border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; display: none; }
+.captcha-spinner { width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; display: none; }
 .captcha-box.loading .captcha-spinner { display: block; }
 .captcha-box.loading .captcha-checkbox svg { display: none; }
-.captcha-label { font-size: 13px; color: #333; flex: 1; text-align: left; }
-.captcha-brand { font-size: 10px; color: #999; }
-.auth-footer { background: #e8e8e8; border-top: 1px solid #ccc; padding: 8px 10px; margin: 0 -12px -12px -12px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
-.auth-footer .pmabtn { padding: 5px 10px; font-size: 12px; }
-.pmabtn { display: inline-block; padding: 8px 14px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 13px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.4; transition: all 0.2s ease; }
-.pmabtn:hover { background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%); border-color: var(--accent); color: #1a3d6e; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.pmabtn:active { transform: translateY(0); background: linear-gradient(to bottom, #d0dce8 0%, #b8c8d8 100%); box-shadow: inset 0 2px 4px rgba(0,0,0,0.15); }
+.captcha-label { font-size: 13px; color: var(--text); flex: 1; text-align: left; }
+.captcha-brand { font-size: 10px; color: var(--text-mute); }
+.auth-footer { background: var(--bg); border-top: 1px solid var(--border); padding: 10px 12px; margin: 0 -12px -12px -12px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; border-radius: 0 0 6px 6px; }
+.auth-footer .pmabtn { padding: 6px 12px; font-size: 12px; }
+.pmabtn { display: inline-block; padding: 8px 14px; border: 1px solid var(--border-light); background: linear-gradient(to bottom, #1e2538, #161b2c); color: var(--text); font-size: 13px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.4; border-radius: 4px; transition: all 0.2s ease; }
+.pmabtn:hover { background: linear-gradient(to bottom, var(--accent), var(--accent-dark)); border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(74,127,212,0.3); }
+.pmabtn:active { transform: translateY(0); }
 .pmabtn:disabled { opacity: 0.4; cursor: not-allowed; }
-.pmabtn.danger { background: linear-gradient(to bottom, #dc3545, #b02a37); color: #fff; border-color: #a52834; font-weight: bold; }
-.pmabtn.danger:hover { background: linear-gradient(to bottom, #c82333, #8e2027); }
-.pmabtn.success { background: linear-gradient(to bottom, #28a745, #1e7e34); color: #fff; border-color: #1c7430; font-weight: bold; }
-.pmabtn.success:hover { background: linear-gradient(to bottom, #218838, #186f2b); }
+.pmabtn.primary { background: linear-gradient(to bottom, var(--accent), var(--accent-dark)); color: #fff; border-color: var(--accent); font-weight: bold; }
+.pmabtn.primary:hover { background: linear-gradient(to bottom, var(--accent-bright), var(--accent)); }
+.pmabtn.danger { background: linear-gradient(to bottom, #e74c3c, #c0392b); color: #fff; border-color: #c0392b; font-weight: bold; }
+.pmabtn.danger:hover { background: linear-gradient(to bottom, #ff5c4a, #e74c3c); }
+.pmabtn.success { background: linear-gradient(to bottom, #2ecc71, #27ae60); color: #fff; border-color: #27ae60; font-weight: bold; }
+.pmabtn.success:hover { background: linear-gradient(to bottom, #40d980, #2ecc71); }
 
-/* Лицензия ТОЛЬКО на экране логина, прижата к низу */
-.login-license { position: fixed; bottom: 15px; left: 0; right: 0; text-align: center; font-size: 11px; color: #999; padding: 0 20px; line-height: 1.4; pointer-events: none; }
+.login-license { position: fixed; bottom: 15px; left: 0; right: 0; text-align: center; font-size: 11px; color: var(--text-mute); padding: 0 20px; line-height: 1.4; pointer-events: none; }
 
-.screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
+.screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: var(--bg); }
 .screen.active { display: flex; animation: fadeIn 0.4s ease; }
-.menu-header { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: #fff; padding: 0; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
-.header-main { display: flex; justify-content: space-between; align-items: center; padding: 12px; gap: 8px; flex-wrap: wrap; }
-.brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: bold; font-style: italic; }
+.menu-header { background: linear-gradient(135deg, #0a0e1a 0%, var(--accent-dark) 100%); color: #fff; padding: 0; display: flex; flex-direction: column; box-shadow: 0 2px 12px rgba(0,0,0,0.6); border-bottom: 1px solid var(--border); }
+.header-main { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; gap: 8px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: bold; font-style: italic; color: #fff; }
 .brand-ship { font-size: 22px; line-height: 1; animation: pulse 3s ease infinite; }
 .user-info { display: flex; align-items: center; gap: 8px; font-size: 12px; }
-.user-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; font-weight: bold; animation: fadeIn 0.4s ease; display: inline-flex; align-items: center; gap: 6px; }
-.user-badge .badge-check { width: 16px; height: 16px; border-radius: 50%; background: #28a745; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.user-badge { background: rgba(74,127,212,0.25); padding: 5px 12px; font-weight: bold; animation: fadeIn 0.4s ease; display: inline-flex; align-items: center; gap: 6px; border-radius: 4px; color: #fff; border: 1px solid rgba(74,127,212,0.4); }
+.user-badge .badge-check { width: 16px; height: 16px; border-radius: 50%; background: var(--success); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .user-badge .badge-check svg { width: 10px; height: 10px; display: block; }
-.header-btn { padding: 5px 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-.header-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
-.header-btn:active { transform: scale(0.97); }
-.admin-top-bar { padding: 6px 12px; display: flex; gap: 6px; flex-wrap: wrap; animation: fadeIn 0.4s ease; }
-.admin-top-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; padding: 6px 12px; font-weight: bold; transition: all 0.2s; }
-.admin-top-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
-.admin-top-btn:active { transform: translateY(0); }
-.menu-title { color: #000; font-size: 15px; font-weight: bold; padding: 15px 15px 0; margin: 0; text-align: left; animation: fadeInUp 0.4s ease; }
-.menu-content { flex: 1; padding: 15px 15px 140px 15px; }
-.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #f4f4f4; border-top: 1px solid #ccc; padding: 8px; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.06); }
-.bottom-bar .pmabtn { padding: 8px 12px; font-size: 12px; }
-.section-container, .admin-container { flex: 1; padding: 15px 15px 140px 15px; max-width: 1400px; margin: 0 auto; width: 100%; animation: fadeInUp 0.4s ease; }
-.section-title, .admin-title { color: #000; font-size: 16px; font-weight: bold; margin: 0 0 12px 0; text-align: left; }
-.section-actions { margin-bottom: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
+.header-btn { padding: 6px 12px; border: 1px solid rgba(255,255,255,0.3); background: rgba(0,0,0,0.3); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; white-space: nowrap; border-radius: 4px; }
+.header-btn:hover { background: var(--accent); border-color: var(--accent); transform: scale(1.03); }
+.header-btn:active { transform: scale(0.98); }
+.admin-top-bar { padding: 8px 16px; display: flex; gap: 8px; flex-wrap: wrap; animation: fadeIn 0.4s ease; border-top: 1px solid rgba(255,255,255,0.1); }
+.admin-top-btn { background: rgba(74,127,212,0.2); border: 1px solid rgba(74,127,212,0.5); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; padding: 7px 14px; font-weight: bold; transition: all 0.2s; border-radius: 4px; }
+.admin-top-btn:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(74,127,212,0.4); }
+.menu-title { color: var(--text); font-size: 15px; font-weight: bold; padding: 20px 20px 0; margin: 0; text-align: left; animation: fadeInUp 0.4s ease; }
+.menu-content { flex: 1; padding: 15px 20px 140px 20px; }
+.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg-light); border-top: 1px solid var(--border); padding: 10px 12px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; z-index: 100; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); }
+.bottom-bar .pmabtn { padding: 9px 16px; font-size: 12px; }
+.section-container, .admin-container { flex: 1; padding: 20px 20px 140px 20px; max-width: 1400px; margin: 0 auto; width: 100%; animation: fadeInUp 0.4s ease; }
+.section-title, .admin-title { color: var(--text); font-size: 17px; font-weight: bold; margin: 0 0 15px 0; text-align: left; }
+.section-actions { margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
 .section-actions .pmabtn { flex: 1; text-align: center; }
-.server-filters { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
-.server-filter { padding: 6px 12px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe, #eeeeee); color: #333; font-size: 12px; font-family: inherit; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
-.server-filter:hover { background: linear-gradient(to bottom, #f0f6fc, #dce8f5); border-color: var(--accent); transform: translateY(-1px); }
-.server-filter.active { background: linear-gradient(to bottom, var(--accent), var(--accent-dark)); color: #fff; border-color: var(--accent-dark); font-weight: bold; transform: scale(1.05); }
-.counter { font-size: 12px; color: #666; margin-bottom: 8px; text-align: left; }
-.table-wrap { background: #fff; border: 1px solid #ccc; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.data-table, .admin-table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
-.data-table th, .admin-table th { background: linear-gradient(to bottom, #f0f0f0 0%, #dcdcdc 100%); border: 1px solid #ccc; padding: 5px 6px; text-align: left; font-weight: bold; color: #333; white-space: nowrap; position: sticky; top: 0; }
-.data-table td, .admin-table td { border: 1px solid #e0e0e0; padding: 4px 6px; color: #333; white-space: nowrap; }
+.server-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 15px; }
+.server-filter { padding: 7px 14px; border: 1px solid var(--border-light); background: var(--bg-light); color: var(--text); font-size: 12px; font-family: inherit; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; border-radius: 4px; }
+.server-filter:hover { border-color: var(--accent); background: var(--bg-lighter); }
+.server-filter.active { background: linear-gradient(to bottom, var(--accent), var(--accent-dark)); color: #fff; border-color: var(--accent); font-weight: bold; box-shadow: 0 2px 8px rgba(74,127,212,0.4); }
+.counter { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; text-align: left; }
+.table-wrap { background: var(--bg-light); border: 1px solid var(--border); overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 6px; }
+.data-table, .admin-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--bg-light); }
+.data-table th, .admin-table th { background: linear-gradient(to bottom, #1a2130, #131828); border: 1px solid var(--border); padding: 8px 8px; text-align: left; font-weight: bold; color: var(--text-dim); white-space: nowrap; position: sticky; top: 0; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
+.data-table td, .admin-table td { border: 1px solid var(--border); padding: 5px 8px; color: var(--text); white-space: nowrap; }
 .data-table tbody tr, .admin-table tbody tr { animation: rowAppear 0.25s ease backwards; }
-.data-table tbody tr:nth-child(even), .admin-table tbody tr:nth-child(even) { background: #fafafa; }
-.data-table tbody tr:hover, .admin-table tbody tr:hover { background: #eef4fb; }
-.admin-table tbody tr.banned-row { background: #f8d7da !important; }
-.admin-table tbody tr.banned-row:hover { background: #f5c6cb !important; }
-.admin-table tbody tr.admin3-row { background: #e8f5e9 !important; }
-.admin-table tbody tr.admin3-row:hover { background: #d4edda !important; }
-.server-cell { text-align: center; font-weight: bold; color: var(--accent); }
+.data-table tbody tr:nth-child(even), .admin-table tbody tr:nth-child(even) { background: rgba(74,127,212,0.03); }
+.data-table tbody tr:hover, .admin-table tbody tr:hover { background: rgba(74,127,212,0.1); }
+.admin-table tbody tr.banned-row { background: rgba(231,76,60,0.15) !important; }
+.admin-table tbody tr.banned-row:hover { background: rgba(231,76,60,0.25) !important; }
+.admin-table tbody tr.admin3-row { background: rgba(46,204,113,0.08) !important; }
+.admin-table tbody tr.admin3-row:hover { background: rgba(46,204,113,0.15) !important; }
+.server-cell { text-align: center; font-weight: bold; color: var(--accent-bright); }
 .money-cell { text-align: right; font-family: Consolas, monospace; font-weight: bold; white-space: nowrap; }
-.status-badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; white-space: nowrap; transition: transform 0.15s; }
-.status-badge.pending { background: #e9ecef; color: #495057; border-color: #ced4da; }
-.status-badge.clear { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.status-badge.blocked { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.status-badge.changed { animation: pulse 0.5s ease; }
-.gear-btn { background: transparent; border: 1px solid #ccc; padding: 4px 6px; margin-left: 5px; cursor: pointer; color: #666; vertical-align: middle; display: inline-flex; align-items: center; justify-content: center; transition: all 0.25s ease; }
-.gear-btn:hover { background: #f0f6fc; border-color: var(--accent); color: var(--accent); transform: rotate(90deg); }
-.gear-btn.disabled { opacity: 0.35; cursor: not-allowed; background: #f0f0f0; color: #999; }
-.gear-btn.disabled:hover { transform: none; background: #f0f0f0; border-color: #ccc; color: #999; }
-.gear-btn svg { width: 14px; height: 14px; display: block; }
-.status-menu { position: fixed; background: #fff; border: 1px solid #999; box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 10000; min-width: 180px; display: none; }
-.status-menu.open { display: block; animation: popIn 0.2s ease; }
-.status-menu-item { padding: 12px 15px; font-size: 14px; cursor: pointer; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; color: #333; transition: background 0.15s, padding-left 0.2s; }
-.status-menu-item:last-child { border-bottom: none; }
-.status-menu-item:hover, .status-menu-item:active { background: #f0f6fc; padding-left: 20px; }
-.status-menu-item.active { background: #e7f0fa; font-weight: bold; }
-.dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-.dot.pending { background: #adb5bd; }
-.dot.clear { background: #28a745; }
-.dot.blocked { background: #dc3545; }
-.role-badge { padding: 2px 6px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; }
-.role-badge.admin1 { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.role-badge.admin2 { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
-.role-badge.admin3 { background: #d4edda; color: #155724; border-color: #28a745; }
-.role-badge.tech { background: #e9ecef; color: #495057; border-color: #ced4da; }
-.user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; white-space: nowrap; }
-.user-status.active { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.user-status.banned { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
-.user-status.dev { background: #d4edda; color: #155724; border-color: #28a745; }
-.admin-hint { font-size: 12px; color: #888; margin-bottom: 12px; font-style: italic; }
-.admin-msg { padding: 8px 12px; margin-bottom: 12px; font-size: 12px; border: 1px solid; display: none; }
+
+/* КАСТОМНЫЙ СЕЛЕКТ СТАТУСА В ЯЧЕЙКЕ */
+.status-select { appearance: none; -webkit-appearance: none; border: 1px solid var(--border-light); background: var(--bg-lighter) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238892a8' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e") no-repeat right 8px center; background-size: 14px; padding: 5px 28px 5px 10px; color: var(--text); font-size: 12px; font-family: inherit; font-weight: bold; cursor: pointer; border-radius: 4px; min-width: 140px; transition: all 0.2s; }
+.status-select:hover:not(:disabled) { border-color: var(--accent); background-color: var(--bg-light); }
+.status-select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(74,127,212,0.2); }
+.status-select:disabled { opacity: 0.5; cursor: not-allowed; }
+.status-select.sel-pending { color: #a5b0c4; }
+.status-select.sel-clear { color: var(--success); }
+.status-select.sel-blocked { color: var(--danger); }
+.status-select.changed { animation: pulse 0.5s ease; }
+
+.status-badge { display: inline-block; padding: 3px 10px; font-size: 11px; font-weight: bold; border: 1px solid; white-space: nowrap; border-radius: 3px; }
+.status-badge.pending { background: rgba(136,146,168,0.2); color: var(--text-dim); border-color: var(--border-light); }
+.status-badge.clear { background: rgba(46,204,113,0.15); color: var(--success); border-color: rgba(46,204,113,0.4); }
+.status-badge.blocked { background: rgba(231,76,60,0.15); color: var(--danger); border-color: rgba(231,76,60,0.4); }
+
+.role-badge { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; border-radius: 3px; }
+.role-badge.admin1 { background: rgba(46,204,113,0.15); color: var(--success); border-color: rgba(46,204,113,0.4); }
+.role-badge.admin2 { background: rgba(74,127,212,0.15); color: var(--accent-bright); border-color: rgba(74,127,212,0.4); }
+.role-badge.admin3 { background: rgba(46,204,113,0.2); color: var(--success); border-color: var(--success); }
+.role-badge.tech { background: rgba(136,146,168,0.15); color: var(--text-dim); border-color: var(--border-light); }
+.user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; white-space: nowrap; border-radius: 3px; }
+.user-status.active { background: rgba(46,204,113,0.15); color: var(--success); border-color: rgba(46,204,113,0.4); }
+.user-status.banned { background: rgba(231,76,60,0.15); color: var(--danger); border-color: rgba(231,76,60,0.4); cursor: help; }
+.admin-hint { font-size: 12px; color: var(--text-mute); margin-bottom: 15px; font-style: italic; }
+.admin-msg { padding: 10px 14px; margin-bottom: 12px; font-size: 12px; border: 1px solid; display: none; border-radius: 4px; }
 .admin-msg.show { display: block; animation: fadeInUp 0.3s ease; }
-.admin-msg.ok { background: #d4edda; color: #155724; border-color: #c3e6cb; }
-.admin-msg.err { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-.admin-tools { padding: 12px; background: #fff; border: 1px solid #ccc; margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
+.admin-msg.ok { background: rgba(46,204,113,0.15); color: var(--success); border-color: rgba(46,204,113,0.4); }
+.admin-msg.err { background: rgba(231,76,60,0.15); color: var(--danger); border-color: rgba(231,76,60,0.4); }
+.admin-tools { padding: 12px; background: var(--bg-light); border: 1px solid var(--border); margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; border-radius: 6px; }
 .admin-tools .pmabtn { flex: 1; text-align: center; min-width: 140px; }
-.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10001; display: none; justify-content: center; align-items: center; padding: 15px; animation: fadeIn 0.2s ease; }
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10001; display: none; justify-content: center; align-items: center; padding: 15px; animation: fadeIn 0.2s ease; }
 .modal.open { display: flex; }
-.modal-content { background: #fff; padding: 18px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: fadeInUp 0.3s ease; }
+.modal-content { background: var(--bg-light); padding: 20px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.7); animation: fadeInUp 0.3s ease; border: 1px solid var(--border); border-radius: 6px; }
 .modal-content.wide { max-width: 900px; }
-.modal-title { font-size: 16px; font-weight: bold; color: var(--accent); margin-bottom: 12px; }
-.modal-title.danger { color: #dc3545; }
-.modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; }
-.modal textarea { width: 100%; min-height: 200px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 13px; resize: vertical; transition: border-color 0.2s, box-shadow 0.2s; }
-.modal textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.15); }
-.modal label { display: block; font-size: 13px; color: #333; margin-bottom: 5px; margin-top: 10px; font-weight: bold; }
-.modal input[type="text"], .modal input[type="password"], .modal select { width: 100%; padding: 10px; border: 1px solid #aaa; font-size: 14px; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
-.modal input:focus, .modal select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.15); }
-.modal-actions { margin-top: 15px; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
+.modal-title { font-size: 16px; font-weight: bold; color: var(--accent-bright); margin-bottom: 14px; }
+.modal-title.danger { color: var(--danger); }
+.modal-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; }
+.modal textarea { width: 100%; min-height: 200px; padding: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: Consolas, monospace; font-size: 13px; resize: vertical; border-radius: 4px; }
+.modal textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(74,127,212,0.2); }
+.modal label { display: block; font-size: 13px; color: var(--text-dim); margin-bottom: 5px; margin-top: 12px; font-weight: bold; }
+.modal input[type="text"], .modal input[type="password"], .modal select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); background: var(--bg-lighter); color: var(--text); font-size: 14px; font-family: inherit; border-radius: 4px; }
+.modal input:focus, .modal select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(74,127,212,0.2); }
+.modal-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
 .modal-actions .pmabtn { flex: 1; text-align: center; min-width: 100px; }
-.token-modal-textarea { width: 100%; min-height: 100px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 12px; word-break: break-all; resize: vertical; }
-.token-modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
-.token-current { background: #f0f6fc; padding: 8px 10px; border: 1px solid #b8c8d8; font-size: 11px; color: var(--accent); font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; }
-.color-picker { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 8px; }
-.color-swatch { width: 100%; aspect-ratio: 1; border: 3px solid transparent; cursor: pointer; position: relative; transition: transform 0.2s ease, box-shadow 0.2s; }
-.color-swatch:hover { transform: scale(1.1); }
-.color-swatch.selected { border-color: #333; box-shadow: 0 0 0 2px #fff inset; }
-.color-swatch.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 20px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
+.token-modal-textarea { width: 100%; min-height: 100px; padding: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: Consolas, monospace; font-size: 12px; word-break: break-all; resize: vertical; border-radius: 4px; }
+.token-modal-hint { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; line-height: 1.5; }
+.token-current { background: var(--bg); padding: 10px 12px; border: 1px solid var(--border); font-size: 11px; color: var(--accent-bright); font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; border-radius: 4px; }
 
 .logs-toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-.logs-toolbar input { flex: 1; min-width: 200px; padding: 9px 12px; border: 1px solid #ccc; font-size: 13px; font-family: inherit; background: #fff; transition: border-color 0.2s, box-shadow 0.2s; }
-.logs-toolbar input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.1); }
-.logs-toolbar select { padding: 9px 12px; border: 1px solid #ccc; font-size: 13px; font-family: inherit; background: #fff; cursor: pointer; }
+.logs-toolbar input { flex: 1; min-width: 200px; padding: 10px 12px; border: 1px solid var(--border); font-size: 13px; font-family: inherit; background: var(--bg-lighter); color: var(--text); border-radius: 4px; }
+.logs-toolbar input::placeholder { color: var(--text-mute); }
+.logs-toolbar input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(74,127,212,0.2); }
+.logs-toolbar select { padding: 10px 12px; border: 1px solid var(--border); font-size: 13px; font-family: inherit; background: var(--bg-lighter); color: var(--text); cursor: pointer; border-radius: 4px; }
 .logs-toolbar select:focus { outline: none; border-color: var(--accent); }
-.logs-stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
-.logs-stat-card { background: #fff; border: 1px solid #e0e0e0; border-left: 3px solid var(--accent); padding: 10px 12px; }
-.logs-stat-card .stat-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-.logs-stat-card .stat-value { font-size: 20px; font-weight: bold; color: var(--accent); line-height: 1; }
-.logs-list-container { background: #fff; border: 1px solid #e0e0e0; max-height: 500px; overflow-y: auto; }
-.logs-date-header { position: sticky; top: 0; background: linear-gradient(to bottom, #f5f5f5, #ececec); border-bottom: 1px solid #ddd; padding: 8px 12px; font-size: 12px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 0.5px; z-index: 1; }
-.logs-row { display: grid; grid-template-columns: 90px 130px 130px 1fr; gap: 10px; padding: 10px 12px; border-bottom: 1px solid #f0f0f0; font-size: 12.5px; transition: background 0.15s; align-items: center; }
+.logs-stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
+.logs-stat-card { background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 4px; }
+.logs-stat-card .stat-label { font-size: 10px; color: var(--text-mute); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.logs-stat-card .stat-value { font-size: 22px; font-weight: bold; color: var(--accent-bright); line-height: 1; }
+.logs-list-container { background: var(--bg); border: 1px solid var(--border); max-height: 500px; overflow-y: auto; border-radius: 4px; }
+.logs-date-header { position: sticky; top: 0; background: linear-gradient(to bottom, #1a2130, #131828); border-bottom: 1px solid var(--border); padding: 8px 14px; font-size: 12px; font-weight: bold; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; z-index: 1; }
+.logs-row { display: grid; grid-template-columns: 90px 130px 130px 1fr; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 12.5px; transition: background 0.15s; align-items: center; }
 .logs-row:last-child { border-bottom: none; }
-.logs-row:hover { background: #f8fafd; }
-.logs-time { color: #888; font-family: Consolas, monospace; font-size: 11.5px; white-space: nowrap; }
-.logs-user { display: flex; align-items: center; gap: 6px; font-weight: bold; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.logs-row:hover { background: rgba(74,127,212,0.06); }
+.logs-time { color: var(--text-mute); font-family: Consolas, monospace; font-size: 11.5px; white-space: nowrap; }
+.logs-user { display: flex; align-items: center; gap: 6px; font-weight: bold; color: var(--accent-bright); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .logs-user-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; flex-shrink: 0; }
-.logs-user.role-admin1 .logs-user-avatar { background: #28a745; }
-.logs-user.role-admin2 .logs-user-avatar { background: #17a2b8; }
-.logs-user.role-admin3 .logs-user-avatar { background: #ffc107; color: #333; }
-.logs-ip { color: #6f42c1; font-family: Consolas, monospace; font-size: 11.5px; white-space: nowrap; }
+.logs-user.role-admin1 .logs-user-avatar { background: var(--success); }
+.logs-user.role-admin2 .logs-user-avatar { background: var(--accent); }
+.logs-user.role-admin3 .logs-user-avatar { background: var(--warning); color: #000; }
+.logs-ip { color: var(--warning); font-family: Consolas, monospace; font-size: 11.5px; white-space: nowrap; }
 .logs-action { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .logs-action-icon { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.logs-action-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.logs-action-details { color: #888; font-size: 11.5px; display: block; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; }
-.logs-row.type-login .logs-action-icon { background: #28a745; }
-.logs-row.type-logout .logs-action-icon { background: #999; }
-.logs-row.type-status .logs-action-icon { background: #fd7e14; }
-.logs-row.type-ban .logs-action-icon { background: #dc3545; }
-.logs-row.type-unban .logs-action-icon { background: #28a745; }
-.logs-row.type-upload .logs-action-icon { background: #17a2b8; }
+.logs-action-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+.logs-action-details { color: var(--text-mute); font-size: 11.5px; display: block; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; }
+.logs-row.type-login .logs-action-icon { background: var(--success); }
+.logs-row.type-logout .logs-action-icon { background: var(--text-mute); }
+.logs-row.type-status .logs-action-icon { background: var(--warning); }
+.logs-row.type-ban .logs-action-icon { background: var(--danger); }
+.logs-row.type-unban .logs-action-icon { background: var(--success); }
+.logs-row.type-upload .logs-action-icon { background: var(--accent); }
 .logs-row.type-clear .logs-action-icon { background: #6c757d; }
-.logs-row.type-pass .logs-action-icon { background: #6f42c1; }
-.logs-row.type-login .logs-action-text { color: #28a745; font-weight: bold; }
-.logs-row.type-ban .logs-action-text { color: #dc3545; font-weight: bold; }
-.logs-row.type-unban .logs-action-text { color: #28a745; font-weight: bold; }
-.logs-row.type-status .logs-action-text { color: #fd7e14; }
-.logs-empty { text-align: center; padding: 60px 20px; color: #999; font-size: 13px; }
+.logs-row.type-pass .logs-action-icon { background: #a855f7; }
+.logs-row.type-login .logs-action-text { color: var(--success); font-weight: bold; }
+.logs-row.type-ban .logs-action-text { color: var(--danger); font-weight: bold; }
+.logs-row.type-unban .logs-action-text { color: var(--success); font-weight: bold; }
+.logs-row.type-status .logs-action-text { color: var(--warning); }
+.logs-empty { text-align: center; padding: 60px 20px; color: var(--text-mute); font-size: 13px; }
 .logs-empty svg { width: 48px; height: 48px; opacity: 0.3; margin-bottom: 10px; }
 
-.toast { position: fixed; top: 15px; right: 15px; left: 15px; max-width: 400px; margin-left: auto; padding: 12px 40px 12px 18px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); font-size: 13px; color: #333; z-index: 9999; overflow: hidden; opacity: 0; transform: translateY(-120%); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; }
+.toast { position: fixed; top: 15px; right: 15px; left: 15px; max-width: 400px; margin-left: auto; padding: 14px 40px 14px 18px; background: var(--bg-light); box-shadow: 0 6px 20px rgba(0,0,0,0.5); font-size: 13px; color: var(--text); z-index: 9999; overflow: hidden; opacity: 0; transform: translateY(-120%); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; border: 1px solid var(--border); border-radius: 6px; }
 .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .toast::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
-.toast.error::before { background: #dc3545; }
-.toast.success::before { background: #28a745; }
+.toast.error::before { background: var(--danger); }
+.toast.success::before { background: var(--success); }
 .toast.info::before { background: var(--accent); }
-.toast.warning::before { background: #fd7e14; }
+.toast.warning::before { background: var(--warning); }
 .toast-title { font-weight: bold; margin-bottom: 3px; }
-.toast.error .toast-title { color: #dc3545; }
-.toast.success .toast-title { color: #28a745; }
-.toast.info .toast-title { color: var(--accent); }
-.toast.warning .toast-title { color: #fd7e14; }
-.toast-msg { color: #555; font-size: 12.5px; white-space: pre-line; }
-.toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 2px 6px; font-family: inherit; }
-.loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 15px; color: var(--accent); font-weight: bold; }
+.toast.error .toast-title { color: var(--danger); }
+.toast.success .toast-title { color: var(--success); }
+.toast.info .toast-title { color: var(--accent-bright); }
+.toast.warning .toast-title { color: var(--warning); }
+.toast-msg { color: var(--text-dim); font-size: 12.5px; white-space: pre-line; }
+.toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: var(--text-mute); cursor: pointer; padding: 2px 6px; font-family: inherit; }
+.toast-close:hover { color: var(--text); }
+.loading-overlay { position: fixed; inset: 0; background: rgba(13,18,32,0.95); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 15px; color: var(--accent-bright); font-weight: bold; }
 .loading-overlay.show { display: flex; }
-.loading-overlay::after { content: ''; width: 24px; height: 24px; border: 3px solid #e0e0e0; border-top-color: var(--accent); border-radius: 50%; margin-left: 12px; animation: spin 0.8s linear infinite; }
+.loading-overlay::after { content: ''; width: 24px; height: 24px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; margin-left: 12px; animation: spin 0.8s linear infinite; }
 
 @media (max-width: 700px) {
     body { font-size: 13px; }
     .login-container { padding: 12px; }
     .logo-ship { font-size: 40px; }
     .logo-text { font-size: 17px; }
-    .welcome-text { font-size: 13px; margin-bottom: 15px; }
-    fieldset { padding: 10px; margin-bottom: 12px; }
-    .auth-table .label-cell { width: 90px; font-size: 12px; padding-top: 10px; }
-    .auth-table input, .auth-table select { padding: 10px 8px; font-size: 15px; }
-    .pmabtn { padding: 10px 12px; font-size: 13px; }
-    .auth-footer .pmabtn { padding: 7px 12px; font-size: 12px; }
+    .auth-table .label-cell { width: 90px; font-size: 12px; }
+    .auth-table input, .auth-table select { padding: 10px 10px; font-size: 15px; }
+    .pmabtn { padding: 10px 14px; font-size: 13px; }
+    .auth-footer { flex-direction: column; }
+    .auth-footer .pmabtn { width: 100%; text-align: center; }
     .captcha-box { padding: 14px 12px; }
     .captcha-checkbox { width: 28px; height: 28px; }
-    .captcha-label { font-size: 14px; }
     .header-main { padding: 8px 10px; }
     .brand { font-size: 13px; gap: 6px; }
     .brand-ship { font-size: 20px; }
     .user-info { font-size: 11px; gap: 6px; }
     .user-badge { padding: 3px 8px; font-size: 11px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .header-btn { padding: 5px 8px; font-size: 11px; }
-    .admin-top-bar { padding: 6px 10px; gap: 4px; }
-    .admin-top-btn { font-size: 11px; padding: 6px 8px; }
-    .menu-title { font-size: 14px; padding: 12px 12px 0; }
-    .bottom-bar { padding: 6px; gap: 4px; display: grid; grid-template-columns: repeat(3, 1fr); }
+    .header-btn { padding: 5px 10px; font-size: 11px; }
+    .admin-top-bar { padding: 8px 10px; gap: 6px; }
+    .admin-top-btn { font-size: 11px; padding: 6px 10px; }
+    .menu-title { font-size: 14px; padding: 15px 12px 0; }
+    .bottom-bar { padding: 8px; gap: 6px; display: grid; grid-template-columns: repeat(3, 1fr); }
     .bottom-bar .pmabtn { padding: 10px 6px; font-size: 11px; width: 100%; text-align: center; min-width: 0; white-space: normal; line-height: 1.2; }
-    .section-container, .admin-container { padding: 12px 10px 160px 10px; }
+    .section-container, .admin-container { padding: 15px 10px 160px 10px; }
     .section-title, .admin-title { font-size: 15px; }
     .section-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     .section-actions .pmabtn { width: 100%; }
-    .server-filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+    .server-filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .server-filter { padding: 8px 4px; font-size: 12px; text-align: center; }
     .modal { padding: 10px; }
-    .modal-content { padding: 14px; max-height: 95vh; }
+    .modal-content { padding: 16px; }
     .modal-title { font-size: 15px; }
     .modal-actions { flex-direction: column; }
     .modal-actions .pmabtn { width: 100%; }
-    .modal textarea { min-height: 150px; font-size: 12px; }
     .admin-tools { display: grid; grid-template-columns: 1fr; padding: 10px; }
     .admin-tools .pmabtn { width: 100%; }
-    .toast { top: 10px; right: 10px; left: 10px; padding: 10px 36px 10px 14px; font-size: 12px; }
+    .toast { top: 10px; right: 10px; left: 10px; padding: 12px 36px 12px 14px; font-size: 12px; }
     .data-table, .admin-table { font-size: 11px; }
-    .data-table th, .admin-table th { padding: 4px 4px; font-size: 11px; }
-    .data-table td, .admin-table td { padding: 3px 4px; }
-    .status-badge { padding: 2px 6px; font-size: 10px; }
-    .gear-btn { padding: 5px 6px; margin-left: 3px; }
-    .gear-btn svg { width: 12px; height: 12px; }
-    .color-picker { grid-template-columns: repeat(3, 1fr); }
+    .data-table th, .admin-table th { padding: 5px 5px; font-size: 10px; }
+    .data-table td, .admin-table td { padding: 4px 5px; }
+    .status-select { min-width: 120px; font-size: 11px; padding: 4px 24px 4px 8px; background-size: 12px; }
     .logs-row { grid-template-columns: 1fr; gap: 3px; padding: 10px; }
     .logs-stats-bar { grid-template-columns: 1fr 1fr 1fr; }
     .logs-stat-card { padding: 8px; }
     .logs-stat-card .stat-value { font-size: 16px; }
-    .login-license { bottom: 8px; font-size: 10px; }
 }
 @media (max-width: 400px) {
     .bottom-bar { grid-template-columns: repeat(2, 1fr); }
@@ -317,8 +318,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 </tr>
             </table>
             <div class="auth-footer">
-                <button type="button" class="pmabtn" id="setTokenBtn" data-i18n="setToken">Ввести токен</button>
-                <button type="submit" class="pmabtn" data-i18n="login">Войти в систему</button>
+                <button type="submit" class="pmabtn primary" data-i18n="login">Войти в систему</button>
             </div>
         </fieldset>
     </form>
@@ -331,7 +331,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <div class="brand"><span class="brand-ship">⛵</span> Массовая выгрузка 61-65</div>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeMenu">—</span>
-                <button class="header-btn" id="settingsIconBtn" data-i18n="settings">Настройки</button>
                 <button class="header-btn" data-logout data-i18n="logout">Выход</button>
             </div>
         </div>
@@ -365,7 +364,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         <div class="section-title" id="sectionTitle">—</div>
         <div class="section-actions" id="sectionActions">
             <button class="pmabtn" id="uploadBtn" data-i18n="uploadBtn">Загрузить данные</button>
-            <button class="pmabtn" id="clearBtn" data-i18n="clearBtn">Очистить</button>
+            <button class="pmabtn danger" id="clearBtn" data-i18n="clearBtn">Очистить</button>
         </div>
         <div class="server-filters" id="serverFilters">
             <button class="server-filter active" data-server="all" data-i18n="all">Все</button>
@@ -423,24 +422,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
 </div>
 
-<div class="modal" id="settingsModal">
-    <div class="modal-content">
-        <div class="modal-title" data-i18n="settingsTitle">Настройки</div>
-        <label data-i18n="settingsLang">Язык интерфейса:</label>
-        <select id="settingsLangSelect"><option value="ru">Русский - Russian</option><option value="en">English</option></select>
-        <label data-i18n="settingsColor">Цвет интерфейса:</label>
-        <div class="color-picker" id="colorPicker">
-            <div class="color-swatch" data-color="#3D6DB5" data-dark="#2c4f8a" style="background:#3D6DB5;"></div>
-            <div class="color-swatch" data-color="#dc3545" data-dark="#b02a37" style="background:#dc3545;"></div>
-            <div class="color-swatch" data-color="#28a745" data-dark="#1e7e34" style="background:#28a745;"></div>
-            <div class="color-swatch" data-color="#6f42c1" data-dark="#59339b" style="background:#6f42c1;"></div>
-            <div class="color-swatch" data-color="#fd7e14" data-dark="#d96708" style="background:#fd7e14;"></div>
-            <div class="color-swatch" data-color="#333333" data-dark="#111111" style="background:#333333;"></div>
-        </div>
-        <div class="modal-actions"><button class="pmabtn" id="settingsClose" data-i18n="close">Закрыть</button></div>
-    </div>
-</div>
-
 <div class="modal" id="logsModal">
     <div class="modal-content wide">
         <div class="modal-title" data-i18n="logging">Логирование</div>
@@ -471,21 +452,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
 </div>
 
-<div class="modal" id="tokenModal">
-    <div class="modal-content">
-        <div class="modal-title" data-i18n="tokenTitle">Установка токена</div>
-        <div class="token-modal-hint" data-i18n="tokenHint">Вставь Personal Access Token (начинается с github_pat_). Токен хранится только в браузере.</div>
-        <div class="token-current" id="tokenCurrent">Текущий токен: не установлен</div>
-        <label data-i18n="tokenLabel">Токен:</label>
-        <textarea id="tokenInput" class="token-modal-textarea" placeholder="github_pat_..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
-        <div class="modal-actions">
-            <button class="pmabtn danger" id="tokenClear" data-i18n="delete">Удалить</button>
-            <button class="pmabtn" id="tokenCancel" data-i18n="cancel">Отмена</button>
-            <button class="pmabtn" id="tokenSave" data-i18n="save">Сохранить</button>
-        </div>
-    </div>
-</div>
-
 <div class="modal" id="uploadModal">
     <div class="modal-content wide">
         <div class="modal-title" id="uploadModalTitle" data-i18n="uploadTitle">Загрузка данных</div>
@@ -493,7 +459,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         <textarea id="uploadTextarea" placeholder="..."></textarea>
         <div class="modal-actions">
             <button class="pmabtn" id="uploadCancel" data-i18n="cancel">Отмена</button>
-            <button class="pmabtn" id="uploadConfirm" data-i18n="upload">Загрузить</button>
+            <button class="pmabtn primary" id="uploadConfirm" data-i18n="upload">Загрузить</button>
         </div>
     </div>
 </div>
@@ -539,20 +505,25 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const API_BASE = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`;
     const MAX_LOGS = 500;
 
+    // ═══════════════════════════════════════════════════════════════
+    // ВСТАВЬ СЮДА СВОЙ ТОКЕН ДЛЯ АВТОМАТИЧЕСКОЙ РАБОТЫ У ВСЕХ ЮЗЕРОВ
+    // Если поле пустое — пользователям придётся вводить токен вручную
+    // ВНИМАНИЕ: GitHub может отозвать токен через Secret Scanning!
+    // ═══════════════════════════════════════════════════════════════
+    const DEFAULT_TOKEN = '';
+    // ═══════════════════════════════════════════════════════════════
+
     const i18n = {
         ru: {
             welcome: 'Добро пожаловать технический специалист!', legendAuth: 'Авторизация',
             labelUser: 'Пользователь:', labelPass: 'Пароль:', labelCaptcha: 'Капча:', captchaLabel: 'Я не робот',
-            setToken: 'Ввести токен', login: 'Войти в систему', logout: 'Выход', menuTitle: 'Главное меню',
-            adminPanel: 'Панель управления', logging: 'Логирование', settings: 'Настройки',
-            settingsTitle: 'Настройки', settingsLang: 'Язык интерфейса:', settingsColor: 'Цвет интерфейса:', close: 'Закрыть',
+            login: 'Войти в систему', logout: 'Выход', menuTitle: 'Главное меню',
+            adminPanel: 'Панель управления', logging: 'Логирование',
             trades: 'Трейды', unique: 'Уникальная', levels: 'Уровни 3,4,5', works: 'Работы', pays: '/pay',
             uploadBtn: 'Загрузить данные', clearBtn: 'Очистить', all: 'Все', back: 'Назад',
             adminTitle: 'Управление пользователями', adminHint: 'Разработчик защищён, остальные админы не могут взаимодействовать',
             clearAll: 'Очистить все разделы', thLogin: 'Логин', thRole: 'Роль', thServer: 'Сервер',
-            thPass: 'Пароль', thStatus: 'Статус', thActions: 'Действия',
-            tokenTitle: 'Установка токена', tokenHint: 'Вставь Personal Access Token. Хранится только в браузере.',
-            tokenLabel: 'Токен:', delete: 'Удалить', cancel: 'Отмена', save: 'Сохранить',
+            thPass: 'Пароль', thStatus: 'Статус', thActions: 'Действия', close: 'Закрыть',
             uploadTitle: 'Загрузка данных', upload: 'Загрузить', banTitle: 'Блокировка пользователя',
             banReason: 'Причина бана:', banDuration: 'Срок блокировки:', block: 'Заблокировать',
             h1: '1 час', h6: '6 часов', d1: '1 день', d3: '3 дня', d7: '7 дней', d30: '30 дней', forever: 'Навсегда',
@@ -563,18 +534,18 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             statusChanged: 'Статус изменён', uploaded: 'Загружено', cleared: 'Очищено', allCleared: 'Все разделы очищены',
             userBanned: 'Пользователь заблокирован', userUnbanned: 'Пользователь разблокирован',
             youAreBanned: 'Вы заблокированы', banReasonShort: 'Причина', banUntil: 'до',
-            tokenSaved: 'Токен сохранён', tokenDeleted: 'Токен удалён', noToken: 'Вставь токен',
+            tokenSaved: 'Токен сохранён', tokenDeleted: 'Токен удалён', noToken: 'Токен не установлен',
             loggedOut: 'Вы вышли из системы', onlyAdmin: 'Только админы',
             parseError: 'Не удалось распарсить ни одной строки', added: 'Добавлено', skipped: 'пропущено',
             loading: 'Загрузка...', saving: 'Сохранение...', checking: 'Проверка...',
             confirmClearAll: 'Точно очистить ВСЕ разделы?', confirmClearSection: 'Точно очистить раздел?',
             bannedUntil: 'Заблокирован до', bannedForever: 'навсегда',
             statusPending: 'Ожидание', statusClear: 'Нету нарушений', statusBlocked: 'Заблокирован',
-            active: 'Активен', banned: 'Забанен', devStatus: 'Разработчик',
+            active: 'Активен', banned: 'Забанен',
             roleAdmin1: 'Куратор технических специалистов', roleAdmin2: 'Зам. куратора технических специалистов',
             roleAdmin3: 'Разработчик', roleTech: 'Технический специалист',
             license: '© 2026 Массовая выгрузка 61-65. Все права защищены.',
-            settingsSaved: 'Настройки сохранены', enterPass: 'Введите пароль',
+            enterPass: 'Введите пароль',
             veryWeak: 'Очень слабый пароль', strongPass: 'Надёжный пароль', mediumPass: 'Средний пароль',
             logsEmpty: 'Логов пока нет',
             logsHint: 'Все действия пользователей с IP-адресами (последние 500 записей)',
@@ -587,16 +558,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         en: {
             welcome: 'Welcome, technical specialist!', legendAuth: 'Authorization',
             labelUser: 'User:', labelPass: 'Password:', labelCaptcha: 'Captcha:', captchaLabel: 'I am not a robot',
-            setToken: 'Enter token', login: 'Sign in', logout: 'Logout', menuTitle: 'Main menu',
-            adminPanel: 'Control panel', logging: 'Logging', settings: 'Settings',
-            settingsTitle: 'Settings', settingsLang: 'Interface language:', settingsColor: 'Interface color:', close: 'Close',
+            login: 'Sign in', logout: 'Logout', menuTitle: 'Main menu',
+            adminPanel: 'Control panel', logging: 'Logging',
             trades: 'Trades', unique: 'Unique', levels: 'Levels 3,4,5', works: 'Works', pays: '/pay',
             uploadBtn: 'Upload data', clearBtn: 'Clear', all: 'All', back: 'Back',
             adminTitle: 'User management', adminHint: 'Developer is protected, other admins cannot interact',
             clearAll: 'Clear all sections', thLogin: 'Login', thRole: 'Role', thServer: 'Server',
-            thPass: 'Password', thStatus: 'Status', thActions: 'Actions',
-            tokenTitle: 'Set token', tokenHint: 'Paste Personal Access Token. Stored only in browser.',
-            tokenLabel: 'Token:', delete: 'Delete', cancel: 'Cancel', save: 'Save',
+            thPass: 'Password', thStatus: 'Status', thActions: 'Actions', close: 'Close',
             uploadTitle: 'Upload data', upload: 'Upload', banTitle: 'Block user',
             banReason: 'Ban reason:', banDuration: 'Duration:', block: 'Block',
             h1: '1 hour', h6: '6 hours', d1: '1 day', d3: '3 days', d7: '7 days', d30: '30 days', forever: 'Forever',
@@ -607,18 +575,18 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             statusChanged: 'Status changed', uploaded: 'Uploaded', cleared: 'Cleared', allCleared: 'All sections cleared',
             userBanned: 'User banned', userUnbanned: 'User unbanned',
             youAreBanned: 'You are banned', banReasonShort: 'Reason', banUntil: 'until',
-            tokenSaved: 'Token saved', tokenDeleted: 'Token deleted', noToken: 'Paste token',
+            tokenSaved: 'Token saved', tokenDeleted: 'Token deleted', noToken: 'Token not set',
             loggedOut: 'You logged out', onlyAdmin: 'Admins only',
             parseError: 'Failed to parse any line', added: 'Added', skipped: 'skipped',
             loading: 'Loading...', saving: 'Saving...', checking: 'Checking...',
             confirmClearAll: 'Clear ALL sections?', confirmClearSection: 'Clear this section?',
             bannedUntil: 'Banned until', bannedForever: 'forever',
             statusPending: 'Pending', statusClear: 'No violations', statusBlocked: 'Blocked',
-            active: 'Active', banned: 'Banned', devStatus: 'Developer',
+            active: 'Active', banned: 'Banned',
             roleAdmin1: 'Curator of techs', roleAdmin2: 'Deputy curator of techs',
             roleAdmin3: 'Developer', roleTech: 'Technical specialist',
             license: '© 2026 Mass upload 61-65. All rights reserved.',
-            settingsSaved: 'Settings saved', enterPass: 'Enter password',
+            enterPass: 'Enter password',
             veryWeak: 'Very weak password', strongPass: 'Strong password', mediumPass: 'Medium password',
             logsEmpty: 'No logs yet',
             logsHint: 'All user actions with IP addresses (last 500 records)',
@@ -638,21 +606,11 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         document.querySelectorAll('[data-i18n]').forEach(el => {
             el.textContent = t(el.getAttribute('data-i18n'));
         });
-        document.getElementById('settingsLangSelect').value = lang;
         if (state.currentSection) renderSection();
         if (isAdmin() && document.getElementById('adminScreen').classList.contains('active')) renderAdminUsers();
         updateStrength();
         updateUserBadges();
         document.title = lang === 'ru' ? 'Массовая выгрузка 61-65' : 'Mass upload 61-65';
-    }
-
-    function applyColor(accent, dark) {
-        document.documentElement.style.setProperty('--accent', accent);
-        document.documentElement.style.setProperty('--accent-dark', dark);
-        document.querySelectorAll('.color-swatch').forEach(sw => sw.classList.toggle('selected', sw.dataset.color === accent));
-    }
-    function loadSavedColor() {
-        applyColor(localStorage.getItem('color_accent') || '#3D6DB5', localStorage.getItem('color_dark') || '#2c4f8a');
     }
 
     const SECTIONS = {
@@ -716,19 +674,14 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         logs: [],
         users: {},
         currentUser: '', currentServer: '', currentRole: '', currentSection: '',
-        filter: 'all', revealed: {}, openMenu: null, pendingUserBan: null, captchaVerified: false,
+        filter: 'all', revealed: {}, pendingUserBan: null, captchaVerified: false,
         userIp: '—'
     };
 
     const $ = id => document.getElementById(id);
     const formatMoney = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
-    function getToken() { return localStorage.getItem('gh_token') || ''; }
-    function setToken(tk) { if (tk) localStorage.setItem('gh_token', tk); else localStorage.removeItem('gh_token'); }
-
-    // ═══════════ СЕССИЯ ═══════════
-    function saveSession(uname) { localStorage.setItem('session_user', uname); }
-    function clearSession() { localStorage.removeItem('session_user'); }
+    function getToken() { return localStorage.getItem('gh_token') || DEFAULT_TOKEN || ''; }
 
     let toastTimer = null;
     function toast(type, title, msg) {
@@ -748,16 +701,16 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const input = $('password'), fill = $('strengthFill'), textEl = $('strengthText');
         if (!input || !fill || !textEl) return;
         const val = input.value;
-        let color = '#e0e0e0', width = '0', text = '';
+        let color = '#333', width = '0', text = '';
         if (val.length > 0) {
             const hasDigits = /\d/.test(val), hasLetters = /[a-zA-Zа-яА-Я]/.test(val), hasSpecial = /[^a-zA-Zа-яА-Я0-9]/.test(val);
             const uniqueCount = new Set(val).size;
-            if (val.length < 4) { color = '#dc3545'; width = '25%'; text = t('veryWeak') + ' (' + val.length + ')'; }
-            else if (val.length < 6 || uniqueCount < 3) { color = '#dc3545'; width = '33%'; text = t('veryWeak'); }
-            else if (val.length >= 8 && hasDigits && hasLetters && uniqueCount >= 4) { color = '#28a745'; width = '100%'; text = t('strongPass'); }
-            else if (val.length < 8 && hasDigits && (hasLetters || hasSpecial)) { color = '#fd7e14'; width = '66%'; text = t('mediumPass'); }
-            else if (val.length >= 6 && uniqueCount >= 3) { color = '#fd7e14'; width = '66%'; text = t('mediumPass'); }
-            else { color = '#fd7e14'; width = '50%'; text = t('mediumPass'); }
+            if (val.length < 4) { color = '#e74c3c'; width = '25%'; text = t('veryWeak') + ' (' + val.length + ')'; }
+            else if (val.length < 6 || uniqueCount < 3) { color = '#e74c3c'; width = '33%'; text = t('veryWeak'); }
+            else if (val.length >= 8 && hasDigits && hasLetters && uniqueCount >= 4) { color = '#2ecc71'; width = '100%'; text = t('strongPass'); }
+            else if (val.length < 8 && hasDigits && (hasLetters || hasSpecial)) { color = '#f39c12'; width = '66%'; text = t('mediumPass'); }
+            else if (val.length >= 6 && uniqueCount >= 3) { color = '#f39c12'; width = '66%'; text = t('mediumPass'); }
+            else { color = '#f39c12'; width = '50%'; text = t('mediumPass'); }
         }
         fill.style.backgroundColor = color; fill.style.width = width;
         textEl.textContent = text; textEl.style.color = color;
@@ -811,7 +764,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     async function writeFile(fileName, data, message) {
         const token = getToken();
-        if (!token) throw new Error(lang === 'ru' ? 'Токен не установлен.' : 'Token not set.');
+        if (!token) throw new Error(t('noToken'));
         const url = `${API_BASE}${fileName}`;
         let sha = null;
         const getRes = await fetch(`${url}?ref=${BRANCH}&t=${Date.now()}`, { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json' } });
@@ -979,7 +932,16 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             let html = '';
             for (let i = 0; i < cfg.headers.length; i++) {
                 if (i === cfg.statusIdx) {
-                    html += `<td style="white-space:nowrap"><span class="status-badge ${status}">${statusLabel(status)}</span><button class="gear-btn ${editable ? '' : 'disabled'}" data-idx="${idx}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></td>`;
+                    // СЕЛЕКТ СТАТУСА ПРЯМО В ЯЧЕЙКЕ (как в Google таблицах)
+                    const selClass = 'status-select sel-' + status;
+                    const disabled = editable ? '' : 'disabled';
+                    html += `<td style="white-space:nowrap">
+                        <select class="${selClass}" data-idx="${idx}" ${disabled}>
+                            <option value="pending" ${status === 'pending' ? 'selected' : ''}>${statusLabel('pending')}</option>
+                            <option value="clear" ${status === 'clear' ? 'selected' : ''}>${statusLabel('clear')}</option>
+                            <option value="blocked" ${status === 'blocked' ? 'selected' : ''}>${statusLabel('blocked')}</option>
+                        </select>
+                    </td>`;
                 } else if (i === 0) { html += `<td class="server-cell">${row[i]}</td>`; }
                 else if (cfg.headers[i] === 'thAmount') { html += `<td class="money-cell">${formatMoney(row[i])}</td>`; }
                 else { html += `<td>${row[i]}</td>`; }
@@ -990,54 +952,47 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('sectionCounter').textContent = (lang === 'ru' ? 'Найдено записей: ' : 'Found: ') + count;
     }
 
-    function closeAllMenus() { if (state.openMenu) { state.openMenu.remove(); state.openMenu = null; } }
-
-    function openStatusMenu(gearBtn, idx) {
-        if (state.openMenu && state.openMenu.dataset.idx == idx) { closeAllMenus(); return; }
-        closeAllMenus();
+    // Обработчик смены статуса через селект
+    async function handleStatusChange(e) {
+        const sel = e.target.closest('.status-select');
+        if (!sel) return;
+        const idx = parseInt(sel.dataset.idx, 10);
+        if (isNaN(idx)) return;
         const cfg = SECTIONS[state.currentSection];
         const row = state.data[state.currentSection][idx];
-        const rect = gearBtn.getBoundingClientRect();
-        const menu = document.createElement('div');
-        menu.className = 'status-menu open';
-        menu.dataset.idx = idx;
-        ['pending', 'clear', 'blocked'].forEach(key => {
-            const item = document.createElement('div');
-            item.className = 'status-menu-item' + (row[cfg.statusIdx] === key ? ' active' : '');
-            item.innerHTML = `<span class="dot ${key}"></span><span>${statusLabel(key)}</span>`;
-            item.addEventListener('click', async ev => {
-                ev.stopPropagation();
-                if (!canEditServer(cfg.getServer(row))) { closeAllMenus(); toast('error', t('noRights'), t('noRightsMsg')); return; }
-                const oldStatus = row[cfg.statusIdx];
-                row[cfg.statusIdx] = key;
-                const badge = gearBtn.closest('tr').querySelector('.status-badge');
-                badge.className = 'status-badge ' + key + ' changed';
-                badge.textContent = statusLabel(key);
-                setTimeout(() => badge.classList.remove('changed'), 600);
-                closeAllMenus();
-                showLoading(t('saving'));
-                try {
-                    await writeFile(cfg.file, state.data[state.currentSection], 'Update ' + state.currentSection);
-                    toast('success', t('statusChanged'), cfg.getSummary(row) + ' → ' + statusLabel(key));
-                    addLog('status', t('logStatusChanged'), t(cfg.titleKey) + ' | ' + cfg.getSummary(row) + ': ' + statusLabel(oldStatus) + ' → ' + statusLabel(key));
-                } catch (e) {
-                    row[cfg.statusIdx] = oldStatus;
-                    badge.className = 'status-badge ' + oldStatus;
-                    badge.textContent = statusLabel(oldStatus);
-                    toast('error', t('errTitle'), e.message);
-                } finally { hideLoading(); }
-            });
-            menu.appendChild(item);
-        });
-        const mw = 180, mh = 150;
-        let top = rect.bottom + 4, left = rect.right - mw;
-        if (left < 8) left = 8;
-        if (left + mw > window.innerWidth - 8) left = window.innerWidth - mw - 8;
-        if (top + mh > window.innerHeight - 8) top = rect.top - mh - 4;
-        if (top < 8) top = 8;
-        menu.style.top = top + 'px'; menu.style.left = left + 'px';
-        document.body.appendChild(menu);
-        state.openMenu = menu;
+        if (!row) return;
+        if (!canEditServer(cfg.getServer(row))) {
+            toast('error', t('noRights'), t('noRightsMsg'));
+            // Откатываем селект к старому значению
+            const cur = row[cfg.statusIdx] || 'pending';
+            sel.value = cur;
+            sel.className = 'status-select sel-' + cur;
+            return;
+        }
+        const newStatus = sel.value;
+        const oldStatus = row[cfg.statusIdx] || 'pending';
+        if (newStatus === oldStatus) return;
+
+        // Визуально сразу применяем
+        sel.className = 'status-select sel-' + newStatus + ' changed';
+        setTimeout(() => sel.classList.remove('changed'), 500);
+
+        // Сохраняем
+        row[cfg.statusIdx] = newStatus;
+        showLoading(t('saving'));
+        try {
+            await writeFile(cfg.file, state.data[state.currentSection], 'Update ' + state.currentSection);
+            toast('success', t('statusChanged'), cfg.getSummary(row) + ' → ' + statusLabel(newStatus));
+            addLog('status', t('logStatusChanged'), t(cfg.titleKey) + ' | ' + cfg.getSummary(row) + ': ' + statusLabel(oldStatus) + ' → ' + statusLabel(newStatus));
+        } catch (err) {
+            // Откатываем
+            row[cfg.statusIdx] = oldStatus;
+            sel.value = oldStatus;
+            sel.className = 'status-select sel-' + oldStatus;
+            toast('error', t('errTitle'), err.message);
+        } finally {
+            hideLoading();
+        }
     }
 
     function openUploadModal() {
@@ -1186,7 +1141,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     function renderAdminUsers() {
         const body = $('adminBody');
-        if (!isAdmin()) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#dc3545;padding:20px;">—</td></tr>'; return; }
+        if (!isAdmin()) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#e74c3c;padding:20px;">—</td></tr>'; return; }
         body.innerHTML = '';
 
         const sortedNames = Object.keys(state.users).sort((a, b) => {
@@ -1206,10 +1161,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             const banned = isUserBanned(u);
             const banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
 
+            // Статус всегда Активен для разработчика
             let statusHtml;
-            if (isProtected) {
-                statusHtml = `<span class="user-status dev">${t('devStatus')}</span>`;
-            } else if (banned) {
+            if (banned && !isProtected) {
                 statusHtml = `<span class="user-status banned" title="${banTitle}">${t('banned')}</span>`;
             } else {
                 statusHtml = `<span class="user-status active">${t('active')}</span>`;
@@ -1232,7 +1186,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             if (isProtected) tr.className = 'admin3-row';
 
             tr.innerHTML = `
-                <td style="font-weight:bold;color:var(--accent)">${uname}${isSelf ? ' *' : ''}</td>
+                <td style="font-weight:bold;color:var(--accent-bright)">${uname}${isSelf ? ' *' : ''}</td>
                 <td style="text-align:center"><span class="role-badge ${roleClass}">${roleLabel(u.role)}</span></td>
                 <td style="text-align:center">${u.server}</td>
                 <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••'}</td>
@@ -1282,7 +1236,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     function adminMsg(text, type) { const el = $('adminMsg'); el.textContent = text; el.className = 'admin-msg show ' + type; setTimeout(() => el.classList.remove('show'), 4000); }
 
-    // ═══════════ АВТО-ВХОД ПО СЕССИИ ═══════════
+    function saveSession(uname) { localStorage.setItem('session_user', uname); }
+    function clearSession() { localStorage.removeItem('session_user'); }
+
     async function restoreSession() {
         const savedUser = localStorage.getItem('session_user');
         if (!savedUser) return false;
@@ -1294,7 +1250,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             const user = state.users[savedUser];
             if (!user) { hideLoading(); clearSession(); return false; }
             if (isUserBanned(user) && user.role !== 'admin3') { hideLoading(); clearSession(); return false; }
-
             state.currentUser = savedUser;
             state.currentServer = user.server;
             state.currentRole = user.role;
@@ -1368,10 +1323,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         updateUserBadges();
         $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
         $('sectionActions').style.display = isAdmin() ? 'grid' : 'none';
-
-        // СОХРАНЯЕМ СЕССИЮ
         saveSession(uname);
-
         showLoading(t('loading'));
         await loadAllData();
         await loadLogs();
@@ -1386,7 +1338,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         clearSession();
         state.currentUser = ''; state.currentServer = ''; state.currentRole = '';
         state.revealed = {};
-        closeAllMenus();
         $('username').value = ''; $('password').value = '';
         $('strengthFill').style.width = '0'; $('strengthText').textContent = '';
         resetCaptcha();
@@ -1403,42 +1354,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (name === 'admin') $('adminScreen').classList.add('active');
     }
 
-    function openTokenModal() {
-        const tk = getToken();
-        $('tokenCurrent').textContent = tk ? (lang === 'ru' ? 'Текущий токен: ' : 'Current token: ') + tk.slice(0, 25) + '...' + tk.slice(-10) : (lang === 'ru' ? 'Текущий токен: не установлен' : 'Current token: not set');
-        $('tokenInput').value = '';
-        $('tokenModal').classList.add('open');
-        setTimeout(() => $('tokenInput').focus(), 200);
-    }
-
-    function openSettingsModal() {
-        $('settingsLangSelect').value = lang;
-        const currentAccent = localStorage.getItem('color_accent') || '#3D6DB5';
-        document.querySelectorAll('.color-swatch').forEach(sw => sw.classList.toggle('selected', sw.dataset.color === currentAccent));
-        $('settingsModal').classList.add('open');
-    }
-
     function init() {
-        loadSavedColor();
         initCaptcha();
         updateStrength();
         fetchIP();
         $('password').addEventListener('input', updateStrength);
         $('username').addEventListener('input', function () { this.classList.remove('error'); });
         $('password').addEventListener('input', function () { this.classList.remove('error'); });
-
-        $('settingsIconBtn').addEventListener('click', openSettingsModal);
-        $('settingsClose').addEventListener('click', () => $('settingsModal').classList.remove('open'));
-
-        $('settingsLangSelect').addEventListener('change', function () { lang = this.value; localStorage.setItem('lang', lang); applyLanguage(); });
-
-        $('colorPicker').addEventListener('click', e => {
-            const sw = e.target.closest('.color-swatch'); if (!sw) return;
-            localStorage.setItem('color_accent', sw.dataset.color);
-            localStorage.setItem('color_dark', sw.dataset.dark);
-            applyColor(sw.dataset.color, sw.dataset.dark);
-            toast('success', t('okTitle'), t('settingsSaved'));
-        });
 
         $('logsBtn').addEventListener('click', () => {
             if (!isAdmin()) { toast('error', t('noRights'), t('onlyAdmin')); return; }
@@ -1449,27 +1371,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('logsSearch').addEventListener('input', renderLogs);
         $('logsActionFilter').addEventListener('change', renderLogs);
 
-        $('setTokenBtn').addEventListener('click', openTokenModal);
-        $('tokenCancel').addEventListener('click', () => $('tokenModal').classList.remove('open'));
-        $('tokenSave').addEventListener('click', () => {
-            const val = $('tokenInput').value.trim();
-            if (!val) { toast('error', t('errTitle'), t('noToken')); return; }
-            setToken(val);
-            $('tokenModal').classList.remove('open');
-            toast('success', t('okTitle'), t('tokenSaved'));
-        });
-        $('tokenClear').addEventListener('click', () => {
-            if (!getToken()) { $('tokenModal').classList.remove('open'); return; }
-            if (!confirm(lang === 'ru' ? 'Удалить токен?' : 'Delete token?')) return;
-            setToken('');
-            $('tokenModal').classList.remove('open');
-            toast('info', t('infoTitle'), t('tokenDeleted'));
-        });
-
         $('loginForm').addEventListener('submit', handleLogin);
         document.querySelectorAll('[data-logout]').forEach(btn => btn.addEventListener('click', doLogout));
 
-        $('backFromSection').addEventListener('click', () => { showScreen('menu'); closeAllMenus(); });
+        $('backFromSection').addEventListener('click', () => { showScreen('menu'); });
         $('backFromAdmin').addEventListener('click', () => showScreen('menu'));
 
         document.querySelectorAll('[data-section]').forEach(btn => {
@@ -1493,24 +1398,11 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             document.querySelectorAll('.server-filter').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             state.filter = btn.dataset.server;
-            closeAllMenus();
             renderSection();
         });
 
-        $('dataBody').addEventListener('click', e => {
-            const gear = e.target.closest('.gear-btn'); if (!gear) return;
-            e.stopPropagation();
-            const idx = parseInt(gear.dataset.idx, 10);
-            if (isNaN(idx)) return;
-            const cfg = SECTIONS[state.currentSection];
-            const row = state.data[state.currentSection][idx];
-            if (!canEditServer(cfg.getServer(row))) { toast('error', t('noRights'), t('noRightsMsg')); return; }
-            openStatusMenu(gear, idx);
-        });
-
-        document.addEventListener('click', e => { if (!e.target.closest('.status-menu') && !e.target.closest('.gear-btn')) closeAllMenus(); });
-        window.addEventListener('scroll', closeAllMenus, true);
-        window.addEventListener('resize', closeAllMenus);
+        // Слушаем изменения селектов статуса
+        $('dataBody').addEventListener('change', handleStatusChange);
 
         $('uploadBtn').addEventListener('click', openUploadModal);
         $('uploadCancel').addEventListener('click', () => $('uploadModal').classList.remove('open'));
@@ -1526,8 +1418,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
         applyLanguage();
 
-        // ═══════════ АВТО-ВХОД ═══════════
-        // Пытаемся восстановить сессию через небольшую задержку, чтобы UI успел отрисоваться
         setTimeout(() => { restoreSession(); }, 100);
     }
 
