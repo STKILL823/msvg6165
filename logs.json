@@ -478,5 +478,15 @@
     "type": "status",
     "action": "Смена статуса",
     "details": "Трейды | Rozex_Tramp → Muhammad_Tramp: Нету нарушений → Заблокирован"
+  },
+  {
+    "t": 1789141219076,
+    "time": "11.09.2026 18:40:19",
+    "user": "Admin2",
+    "role": "admin2",
+    "ip": "193.22.231.11",
+    "type": "status",
+    "action": "Смена статуса",
+    "details": "Трейды | Rozex_Tramp → Muhammad_Tramp: Заблокирован → Ожидание"
   }
 ]
