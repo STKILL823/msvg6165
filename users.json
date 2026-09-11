@@ -28,7 +28,8 @@
   "Tech_63": {
     "password": "123456",
     "server": "63",
-    "role": "tech"
+    "role": "tech",
+    "registered": 1789138651497
   },
   "Tech_64": {
     "password": "123456",
