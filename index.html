@@ -47,9 +47,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .captcha-box.loading .captcha-checkbox svg { display: none; }
 .captcha-label { font-size: 13px; color: #333; flex: 1; text-align: left; }
 .captcha-brand { font-size: 10px; color: #999; }
-.token-status { font-size: 11px; color: #888; margin-top: 5px; }
-.token-status.ok { color: #28a745; }
-.token-status.err { color: #dc3545; }
 .auth-footer { background: #e8e8e8; border-top: 1px solid #ccc; padding: 8px 10px; margin: 0 -12px -12px -12px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
 .auth-footer .pmabtn { padding: 5px 10px; font-size: 12px; }
 .pmabtn { display: inline-block; padding: 8px 14px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 13px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.4; transition: all 0.2s ease; }
@@ -68,12 +65,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .brand-ship { font-size: 22px; line-height: 1; animation: pulse 3s ease infinite; }
 .user-info { display: flex; align-items: center; gap: 8px; font-size: 12px; }
 .user-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; font-weight: bold; animation: fadeIn 0.4s ease; }
-.logout-btn { padding: 5px 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; }
-.logout-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
-.settings-icon-btn { width: 34px; height: 34px; padding: 0; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0; }
-.settings-icon-btn:hover { background: rgba(255,255,255,0.25); transform: rotate(90deg); }
-.settings-icon-btn:active { transform: rotate(90deg) scale(0.95); }
-.settings-icon-btn svg { width: 18px; height: 18px; display: block; }
+.header-btn { padding: 5px 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+.header-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+.header-btn:active { transform: scale(0.97); }
 .admin-top-bar { padding: 6px 12px; display: flex; gap: 6px; flex-wrap: wrap; animation: fadeIn 0.4s ease; }
 .admin-top-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; padding: 6px 12px; font-weight: bold; transition: all 0.2s; }
 .admin-top-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
@@ -101,8 +95,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .data-table tbody tr:hover, .admin-table tbody tr:hover { background: #eef4fb; }
 .admin-table tbody tr.banned-row { background: #f8d7da !important; }
 .admin-table tbody tr.banned-row:hover { background: #f5c6cb !important; }
-.admin-table tbody tr.admin3-row { background: #fff8e1 !important; }
-.admin-table tbody tr.admin3-row:hover { background: #ffecb3 !important; }
+.admin-table tbody tr.admin3-row { background: #e8f5e9 !important; }
+.admin-table tbody tr.admin3-row:hover { background: #d4edda !important; }
 .server-cell { text-align: center; font-weight: bold; color: var(--accent); }
 .money-cell { text-align: right; font-family: Consolas, monospace; font-weight: bold; white-space: nowrap; }
 .status-badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; white-space: nowrap; transition: transform 0.15s; }
@@ -128,12 +122,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .role-badge { padding: 2px 6px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; }
 .role-badge.admin1 { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .role-badge.admin2 { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
-.role-badge.admin3 { background: #fff3cd; color: #856404; border-color: #ffeeba; }
+.role-badge.admin3 { background: #d4edda; color: #155724; border-color: #28a745; }
 .role-badge.tech { background: #e9ecef; color: #495057; border-color: #ced4da; }
 .user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; white-space: nowrap; }
 .user-status.active { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .user-status.banned { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
-.user-status.hidden-status { background: #fff3cd; color: #856404; border-color: #ffeeba; }
+.user-status.dev { background: #d4edda; color: #155724; border-color: #28a745; }
+.dev-check { color: #28a745; font-weight: bold; font-size: 14px; margin-left: 4px; }
 .admin-hint { font-size: 12px; color: #888; margin-bottom: 12px; font-style: italic; }
 .admin-msg { padding: 8px 12px; margin-bottom: 12px; font-size: 12px; border: 1px solid; display: none; }
 .admin-msg.show { display: block; animation: fadeInUp 0.3s ease; }
@@ -164,7 +159,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .color-swatch.selected { border-color: #333; box-shadow: 0 0 0 2px #fff inset; }
 .color-swatch.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 20px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 
-/* ═══════════ ЛОГИ v2 ═══════════ */
 .logs-toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
 .logs-toolbar input { flex: 1; min-width: 200px; padding: 9px 12px; border: 1px solid #ccc; font-size: 13px; font-family: inherit; background: #fff; transition: border-color 0.2s, box-shadow 0.2s; }
 .logs-toolbar input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.1); }
@@ -205,17 +199,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .logs-empty { text-align: center; padding: 60px 20px; color: #999; font-size: 13px; }
 .logs-empty svg { width: 48px; height: 48px; opacity: 0.3; margin-bottom: 10px; }
 
-@media (max-width: 700px) {
-    .logs-row { grid-template-columns: 1fr; gap: 3px; padding: 10px; }
-    .logs-row .logs-time { order: 1; }
-    .logs-row .logs-user { order: 2; }
-    .logs-row .logs-ip { order: 3; }
-    .logs-row .logs-action { order: 4; }
-    .logs-stats-bar { grid-template-columns: 1fr 1fr 1fr; }
-    .logs-stat-card { padding: 8px; }
-    .logs-stat-card .stat-value { font-size: 16px; }
-}
-
 .toast { position: fixed; top: 15px; right: 15px; left: 15px; max-width: 400px; margin-left: auto; padding: 12px 40px 12px 18px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); font-size: 13px; color: #333; z-index: 9999; overflow: hidden; opacity: 0; transform: translateY(-120%); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; }
 .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .toast::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
@@ -252,10 +235,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .brand { font-size: 13px; gap: 6px; }
     .brand-ship { font-size: 20px; }
     .user-info { font-size: 11px; gap: 6px; }
-    .user-badge { padding: 3px 8px; font-size: 11px; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .logout-btn { padding: 5px 8px; font-size: 11px; }
-    .settings-icon-btn { width: 30px; height: 30px; }
-    .settings-icon-btn svg { width: 16px; height: 16px; }
+    .user-badge { padding: 3px 8px; font-size: 11px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .header-btn { padding: 5px 8px; font-size: 11px; }
     .admin-top-bar { padding: 6px 10px; gap: 4px; }
     .admin-top-btn { font-size: 11px; padding: 6px 8px; }
     .menu-title { font-size: 14px; padding: 12px 12px 0; }
@@ -283,6 +264,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .gear-btn { padding: 5px 6px; margin-left: 3px; }
     .gear-btn svg { width: 12px; height: 12px; }
     .color-picker { grid-template-columns: repeat(3, 1fr); }
+    .logs-row { grid-template-columns: 1fr; gap: 3px; padding: 10px; }
+    .logs-stats-bar { grid-template-columns: 1fr 1fr 1fr; }
+    .logs-stat-card { padding: 8px; }
+    .logs-stat-card .stat-value { font-size: 16px; }
 }
 @media (max-width: 400px) {
     .bottom-bar { grid-template-columns: repeat(2, 1fr); }
@@ -310,7 +295,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                         <input type="password" id="password" autocomplete="off">
                         <div class="strength-meter"><div class="strength-fill" id="strengthFill"></div></div>
                         <div class="strength-text" id="strengthText"></div>
-                        <div class="token-status" id="tokenStatus">Токен не установлен</div>
                     </td>
                 </tr>
                 <tr>
@@ -341,10 +325,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <div class="brand"><span class="brand-ship">⛵</span> Массовая выгрузка 61-65</div>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeMenu">—</span>
-                <button class="settings-icon-btn" id="settingsIconBtn" title="Настройки">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                </button>
-                <button class="logout-btn" data-logout data-i18n="logout">Выход</button>
+                <button class="header-btn" id="settingsIconBtn" data-i18n="settings">Настройки</button>
+                <button class="header-btn" data-logout data-i18n="logout">Выход</button>
             </div>
         </div>
         <div class="admin-top-bar" id="adminTopBar" style="display:none;">
@@ -371,7 +353,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <div class="brand"><span class="brand-ship">⛵</span> Массовая выгрузка 61-65</div>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeSection">—</span>
-                <button class="logout-btn" data-logout data-i18n="logout">Выход</button>
+                <button class="header-btn" data-logout data-i18n="logout">Выход</button>
             </div>
         </div>
     </div>
@@ -405,13 +387,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <div class="brand"><span class="brand-ship">⛵</span> Массовая выгрузка 61-65</div>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeAdmin">—</span>
-                <button class="logout-btn" data-logout data-i18n="logout">Выход</button>
+                <button class="header-btn" data-logout data-i18n="logout">Выход</button>
             </div>
         </div>
     </div>
     <div class="admin-container">
         <div class="admin-title" data-i18n="adminTitle">Управление пользователями</div>
-        <div class="admin-hint" data-i18n="adminHint">Только админы могут менять пароли и блокировать</div>
+        <div class="admin-hint" data-i18n="adminHint">Разработчик защищён, остальные админы не могут взаимодействовать</div>
         <div class="admin-msg" id="adminMsg"></div>
         <div class="admin-tools">
             <button class="pmabtn danger" id="clearAllBtn" data-i18n="clearAll">Очистить все разделы</button>
@@ -562,7 +544,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             settingsTitle: 'Настройки', settingsLang: 'Язык интерфейса:', settingsColor: 'Цвет интерфейса:', close: 'Закрыть',
             trades: 'Трейды', unique: 'Уникальная', levels: 'Уровни 3,4,5', works: 'Работы', pays: '/pay',
             uploadBtn: 'Загрузить данные', clearBtn: 'Очистить', all: 'Все', back: 'Назад',
-            adminTitle: 'Управление пользователями', adminHint: 'Разработчик скрыт, остальные админы не могут взаимодействовать',
+            adminTitle: 'Управление пользователями', adminHint: 'Разработчик защищён, остальные админы не могут взаимодействовать',
             clearAll: 'Очистить все разделы', thLogin: 'Логин', thRole: 'Роль', thServer: 'Сервер',
             thPass: 'Пароль', thStatus: 'Статус', thActions: 'Действия',
             tokenTitle: 'Установка токена', tokenHint: 'Вставь Personal Access Token. Хранится только в браузере.',
@@ -584,7 +566,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             confirmClearAll: 'Точно очистить ВСЕ разделы?', confirmClearSection: 'Точно очистить раздел?',
             bannedUntil: 'Заблокирован до', bannedForever: 'навсегда',
             statusPending: 'Ожидание', statusClear: 'Нету нарушений', statusBlocked: 'Заблокирован',
-            active: 'Активен', banned: 'Забанен', hiddenStatus: 'Скрыт',
+            active: 'Активен', banned: 'Забанен', devStatus: 'Разработчик',
             roleAdmin1: 'Куратор технических специалистов', roleAdmin2: 'Зам. куратора технических специалистов',
             roleAdmin3: 'Разработчик', roleTech: 'Технический специалист',
             license: '© 2026 Массовая выгрузка 61-65. Все права защищены.',
@@ -606,7 +588,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             settingsTitle: 'Settings', settingsLang: 'Interface language:', settingsColor: 'Interface color:', close: 'Close',
             trades: 'Trades', unique: 'Unique', levels: 'Levels 3,4,5', works: 'Works', pays: '/pay',
             uploadBtn: 'Upload data', clearBtn: 'Clear', all: 'All', back: 'Back',
-            adminTitle: 'User management', adminHint: 'Developer is hidden, other admins cannot interact',
+            adminTitle: 'User management', adminHint: 'Developer is protected, other admins cannot interact',
             clearAll: 'Clear all sections', thLogin: 'Login', thRole: 'Role', thServer: 'Server',
             thPass: 'Password', thStatus: 'Status', thActions: 'Actions',
             tokenTitle: 'Set token', tokenHint: 'Paste Personal Access Token. Stored only in browser.',
@@ -628,7 +610,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             confirmClearAll: 'Clear ALL sections?', confirmClearSection: 'Clear this section?',
             bannedUntil: 'Banned until', bannedForever: 'forever',
             statusPending: 'Pending', statusClear: 'No violations', statusBlocked: 'Blocked',
-            active: 'Active', banned: 'Banned', hiddenStatus: 'Hidden',
+            active: 'Active', banned: 'Banned', devStatus: 'Developer',
             roleAdmin1: 'Curator of techs', roleAdmin2: 'Deputy curator of techs',
             roleAdmin3: 'Developer', roleTech: 'Technical specialist',
             license: '© 2026 Mass upload 61-65. All rights reserved.',
@@ -655,7 +637,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         document.getElementById('settingsLangSelect').value = lang;
         if (state.currentSection) renderSection();
         if (isAdmin() && document.getElementById('adminScreen').classList.contains('active')) renderAdminUsers();
-        updateTokenStatus();
         updateStrength();
         document.title = lang === 'ru' ? 'Массовая выгрузка 61-65' : 'Mass upload 61-65';
     }
@@ -724,12 +705,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (role === 'admin3') return t('roleAdmin3');
         return t('roleTech');
     }
-    function roleShort(role) {
-        if (role === 'admin1') return 'A1';
-        if (role === 'admin2') return 'A2';
-        if (role === 'admin3') return 'DEV';
-        return 'T';
-    }
 
     const state = {
         data: { trades: [], unique: [], levels: [], works: [], pays: [] },
@@ -744,13 +719,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const formatMoney = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
     function getToken() { return localStorage.getItem('gh_token') || ''; }
-    function setToken(tk) { if (tk) localStorage.setItem('gh_token', tk); else localStorage.removeItem('gh_token'); updateTokenStatus(); }
-    function updateTokenStatus() {
-        const el = $('tokenStatus'); if (!el) return;
-        const tk = getToken();
-        el.textContent = tk ? (lang === 'ru' ? 'Токен установлен' : 'Token set') : (lang === 'ru' ? 'Токен не установлен' : 'Token not set');
-        el.className = 'token-status ' + (tk ? 'ok' : 'err');
-    }
+    function setToken(tk) { if (tk) localStorage.setItem('gh_token', tk); else localStorage.removeItem('gh_token'); }
 
     let toastTimer = null;
     function toast(type, title, msg) {
@@ -855,17 +824,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const p = n => String(n).padStart(2, '0');
         return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
     }
-    function dateOnly(d) {
-        const p = n => String(n).padStart(2, '0');
-        return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()}`;
-    }
-    function timeOnly(d) {
-        const p = n => String(n).padStart(2, '0');
-        return `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
-    }
+    function dateOnly(d) { const p = n => String(n).padStart(2, '0'); return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()}`; }
+    function timeOnly(d) { const p = n => String(n).padStart(2, '0'); return `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`; }
 
     async function addLog(actionType, actionLabel, details) {
-        // Разработчик не логируется в общий лог
         if (state.currentRole === 'admin3') return;
         const logEntry = {
             t: Date.now(), time: nowStr(),
@@ -903,7 +865,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             (l.details || '').toLowerCase().includes(search)
         );
 
-        // Статистика
         const todayStart = new Date(); todayStart.setHours(0,0,0,0);
         const todayTs = todayStart.getTime();
         const loginsToday = state.logs.filter(l => l.type === 'login' && l.t >= todayTs).length;
@@ -919,7 +880,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
         filtered.sort((a, b) => (b.t || 0) - (a.t || 0));
 
-        // Группировка по дате
         let html = '';
         let lastDate = '';
         filtered.forEach(l => {
@@ -1135,24 +1095,16 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         return `${t('banReasonShort')}: ${user.banned.reason}\n${t('bannedUntil')}: ${until}`;
     }
 
-    // ═══════════ ЗАЩИТА РАЗРАБОТЧИКА ═══════════
-    const isProtectedUser = (uname, u) => {
-        // Разработчик (admin3) полностью защищён — нельзя забанить, нельзя менять пароль
-        return u && u.role === 'admin3';
-    };
+    const isProtectedUser = (uname, u) => u && u.role === 'admin3';
     const isHiddenFromMe = (uname, u) => {
-        // Если я не разработчик — не вижу разработчика в списке
-        if (isDev()) return false; // Разработчик видит себя
+        if (isDev()) return false;
         return u && u.role === 'admin3';
     };
 
     function openUserBanModal(uname) {
         const u = state.users[uname];
         if (!u) return;
-        if (isProtectedUser(uname, u)) {
-            adminMsg(t('cannotTouchDev'), 'err');
-            return;
-        }
+        if (isProtectedUser(uname, u)) { adminMsg(t('cannotTouchDev'), 'err'); return; }
         state.pendingUserBan = uname;
         $('userBanTarget').textContent = uname + ' (' + t('thServer') + ' ' + u.server + ')';
         $('userBanReason').value = '';
@@ -1208,30 +1160,38 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const body = $('adminBody');
         if (!isAdmin()) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#dc3545;padding:20px;">—</td></tr>'; return; }
         body.innerHTML = '';
-        Object.keys(state.users).forEach(uname => {
+
+        // Сортировка: разработчик всегда первый
+        const sortedNames = Object.keys(state.users).sort((a, b) => {
+            const ra = state.users[a].role, rb = state.users[b].role;
+            const rank = r => r === 'admin3' ? 0 : (r === 'admin1' ? 1 : (r === 'admin2' ? 2 : 3));
+            return rank(ra) - rank(rb);
+        });
+
+        sortedNames.forEach(uname => {
             const u = state.users[uname];
-            // Скрываем разработчика от всех, кроме него самого
             if (isHiddenFromMe(uname, u)) return;
 
             const isSelf = uname === state.currentUser;
-            const isAdminRow = u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3';
             const isProtected = isProtectedUser(uname, u);
-            const revealed = state.revealed[uname] === true;
+            const isAdminRow = u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3';
+            // Пароль разработчика не показываем никому
+            const revealed = !isProtected && state.revealed[uname] === true;
             const banned = isUserBanned(u);
             const banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
 
             let statusHtml;
             if (isProtected) {
-                statusHtml = `<span class="user-status hidden-status">${t('hiddenStatus')}</span>`;
+                statusHtml = `<span class="user-status dev">${t('devStatus')} <span class="dev-check">✓</span></span>`;
             } else if (banned) {
                 statusHtml = `<span class="user-status banned" title="${banTitle}">${t('banned')}</span>`;
             } else {
                 statusHtml = `<span class="user-status active">${t('active')}</span>`;
             }
 
-            // Защищённым нельзя менять пароль и банить
             const canChangePass = !isProtected;
             const canBan = !isProtected && !isAdminRow;
+            const canToggle = !isProtected;
 
             let banBtn = '';
             if (canBan) {
@@ -1245,14 +1205,17 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             if (banned && !isProtected) tr.className = 'banned-row';
             if (isProtected) tr.className = 'admin3-row';
 
+            // Имя с зелёной галочкой для разработчика
+            const nameHtml = uname + (isSelf ? ' *' : '') + (isProtected ? ' <span class="dev-check">✓</span>' : '');
+
             tr.innerHTML = `
-                <td style="font-weight:bold;color:var(--accent)">${uname}${isSelf ? ' *' : ''}</td>
+                <td style="font-weight:bold;color:var(--accent)">${nameHtml}</td>
                 <td style="text-align:center"><span class="role-badge ${roleClass}">${roleLabel(u.role)}</span></td>
                 <td style="text-align:center">${u.server}</td>
                 <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••'}</td>
                 <td style="text-align:center">${statusHtml}</td>
                 <td style="white-space:nowrap">
-                    <button class="pmabtn" data-act="toggle" data-user="${uname}">${lang === 'ru' ? 'Показать' : 'Show'}</button>
+                    <button class="pmabtn" data-act="toggle" data-user="${uname}" ${canToggle ? '' : 'disabled'}>${lang === 'ru' ? 'Показать' : 'Show'}</button>
                     <button class="pmabtn" data-act="change" data-user="${uname}" ${canChangePass ? '' : 'disabled'}>${lang === 'ru' ? 'Пароль' : 'Password'}</button>
                     ${banBtn}
                 </td>`;
@@ -1267,14 +1230,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const act = btn.dataset.act, uname = btn.dataset.user;
         const u = state.users[uname];
 
-        if (isProtectedUser(uname, u) && act !== 'toggle') {
+        if (isProtectedUser(uname, u)) {
             adminMsg(t('cannotTouchDev'), 'err');
             return;
         }
 
         if (act === 'toggle') { state.revealed[uname] = !state.revealed[uname]; renderAdminUsers(); return; }
         if (act === 'change') {
-            if (isProtectedUser(uname, u)) { adminMsg(t('cannotTouchDev'), 'err'); return; }
             const np = prompt((lang === 'ru' ? 'Новый пароль для ' : 'New password for ') + uname + ':', '');
             if (np === null) return;
             if (np.length < 4) { adminMsg(lang === 'ru' ? 'Пароль слишком короткий' : 'Password too short', 'err'); return; }
@@ -1336,15 +1298,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             toast('error', t('errTitle'), t('wrongPass'));
             return;
         }
-        if (isUserBanned(user)) {
-            // Защита: разработчик не может быть забанен (доп. проверка)
-            if (user.role !== 'admin3') {
-                const info = user.banned;
-                const untilText = info.until === 0 ? t('bannedForever') : new Date(info.until).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
-                resetCaptcha();
-                toast('error', t('youAreBanned'), `${t('banReasonShort')}: ${info.reason}\n${t('bannedUntil')}: ${untilText}`);
-                return;
-            }
+        if (isUserBanned(user) && user.role !== 'admin3') {
+            const info = user.banned;
+            const untilText = info.until === 0 ? t('bannedForever') : new Date(info.until).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
+            resetCaptcha();
+            toast('error', t('youAreBanned'), `${t('banReasonShort')}: ${info.reason}\n${t('bannedUntil')}: ${untilText}`);
+            return;
         }
         if (user.banned && typeof user.banned === 'object' && user.banned.until !== 0 && user.banned.until <= Date.now()) {
             delete user.banned;
@@ -1407,7 +1366,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     function init() {
         loadSavedColor();
-        updateTokenStatus();
         initCaptcha();
         updateStrength();
         fetchIP();
