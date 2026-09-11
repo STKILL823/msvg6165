@@ -148,5 +148,15 @@
     "type": "status",
     "action": "Смена статуса",
     "details": "Трейды | Sanek_Tramp → Edik_Stark: Нету нарушений → Заблокирован"
+  },
+  {
+    "t": 1789137238830,
+    "time": "11.09.2026 17:33:58",
+    "user": "Admin1",
+    "role": "admin1",
+    "ip": "193.22.231.11",
+    "type": "status",
+    "action": "Смена статуса",
+    "details": "Трейды | Sanek_Tramp → Edik_Stark: Заблокирован → Ожидание"
   }
 ]
