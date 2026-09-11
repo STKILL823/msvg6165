@@ -57,6 +57,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .pmabtn.danger:hover { background: linear-gradient(to bottom, #c82333, #8e2027); }
 .pmabtn.success { background: linear-gradient(to bottom, #28a745, #1e7e34); color: #fff; border-color: #1c7430; font-weight: bold; }
 .pmabtn.success:hover { background: linear-gradient(to bottom, #218838, #186f2b); }
+
+/* Лицензия ТОЛЬКО на экране логина, прижата к низу */
+.login-license { position: fixed; bottom: 15px; left: 0; right: 0; text-align: center; font-size: 11px; color: #999; padding: 0 20px; line-height: 1.4; pointer-events: none; }
+
 .screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
 .screen.active { display: flex; animation: fadeIn 0.4s ease; }
 .menu-header { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: #fff; padding: 0; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
@@ -75,8 +79,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .admin-top-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
 .admin-top-btn:active { transform: translateY(0); }
 .menu-title { color: #000; font-size: 15px; font-weight: bold; padding: 15px 15px 0; margin: 0; text-align: left; animation: fadeInUp 0.4s ease; }
-.menu-content { flex: 1; padding: 15px 15px 140px 15px; display: flex; flex-direction: column; }
-.license-footer { text-align: center; font-size: 11px; color: #999; padding-top: 30px; margin-top: auto; line-height: 1.5; }
+.menu-content { flex: 1; padding: 15px 15px 140px 15px; }
 .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #f4f4f4; border-top: 1px solid #ccc; padding: 8px; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.06); }
 .bottom-bar .pmabtn { padding: 8px 12px; font-size: 12px; }
 .section-container, .admin-container { flex: 1; padding: 15px 15px 140px 15px; max-width: 1400px; margin: 0 auto; width: 100%; animation: fadeInUp 0.4s ease; }
@@ -269,6 +272,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .logs-stats-bar { grid-template-columns: 1fr 1fr 1fr; }
     .logs-stat-card { padding: 8px; }
     .logs-stat-card .stat-value { font-size: 16px; }
+    .login-license { bottom: 8px; font-size: 10px; }
 }
 @media (max-width: 400px) {
     .bottom-bar { grid-template-columns: repeat(2, 1fr); }
@@ -319,6 +323,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         </fieldset>
     </form>
 </div>
+<div class="login-license" id="loginLicense" data-i18n="license">© 2026 Массовая выгрузка 61-65. Все права защищены.</div>
 
 <div class="screen" id="menuScreen">
     <div class="menu-header">
@@ -336,9 +341,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         </div>
     </div>
     <div class="menu-title" data-i18n="menuTitle">Главное меню</div>
-    <div class="menu-content">
-        <div class="license-footer" data-i18n="license">© 2026 Массовая выгрузка 61-65. Все права защищены.</div>
-    </div>
+    <div class="menu-content"></div>
     <div class="bottom-bar">
         <button class="pmabtn" data-section="trades" data-i18n="trades">Трейды</button>
         <button class="pmabtn" data-section="unique" data-i18n="unique">Уникальная</button>
@@ -723,6 +726,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function getToken() { return localStorage.getItem('gh_token') || ''; }
     function setToken(tk) { if (tk) localStorage.setItem('gh_token', tk); else localStorage.removeItem('gh_token'); }
 
+    // ═══════════ СЕССИЯ ═══════════
+    function saveSession(uname) { localStorage.setItem('session_user', uname); }
+    function clearSession() { localStorage.removeItem('session_user'); }
+
     let toastTimer = null;
     function toast(type, title, msg) {
         const el = $('toast');
@@ -930,7 +937,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const isDev = () => state.currentRole === 'admin3';
     const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
 
-    // ═══════════ ОБНОВЛЕНИЕ БЕЙДЖА ═══════════
     function updateUserBadges() {
         if (!state.currentUser) {
             $('userBadgeMenu').textContent = '—';
@@ -942,11 +948,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (!user) return;
         const display = getUserDisplay(user);
         const isDevRole = user.role === 'admin3';
-
         const html = isDevRole
             ? escapeHtml(display) + '<span class="badge-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>'
             : escapeHtml(display);
-
         $('userBadgeMenu').innerHTML = html;
         $('userBadgeSection').innerHTML = html;
         $('userBadgeAdmin').innerHTML = html;
@@ -1185,7 +1189,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (!isAdmin()) { body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#dc3545;padding:20px;">—</td></tr>'; return; }
         body.innerHTML = '';
 
-        // Разработчик всегда первый
         const sortedNames = Object.keys(state.users).sort((a, b) => {
             const ra = state.users[a].role, rb = state.users[b].role;
             const rank = r => r === 'admin3' ? 0 : (r === 'admin1' ? 1 : (r === 'admin2' ? 2 : 3));
@@ -1279,6 +1282,38 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     function adminMsg(text, type) { const el = $('adminMsg'); el.textContent = text; el.className = 'admin-msg show ' + type; setTimeout(() => el.classList.remove('show'), 4000); }
 
+    // ═══════════ АВТО-ВХОД ПО СЕССИИ ═══════════
+    async function restoreSession() {
+        const savedUser = localStorage.getItem('session_user');
+        if (!savedUser) return false;
+        try {
+            showLoading(t('checking'));
+            await fetchIP();
+            const loaded = await loadUsers();
+            if (!loaded) { hideLoading(); clearSession(); return false; }
+            const user = state.users[savedUser];
+            if (!user) { hideLoading(); clearSession(); return false; }
+            if (isUserBanned(user) && user.role !== 'admin3') { hideLoading(); clearSession(); return false; }
+
+            state.currentUser = savedUser;
+            state.currentServer = user.server;
+            state.currentRole = user.role;
+            updateUserBadges();
+            $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
+            $('sectionActions').style.display = isAdmin() ? 'grid' : 'none';
+            await loadAllData();
+            await loadLogs();
+            hideLoading();
+            $('loginScreen').classList.add('hidden');
+            showScreen('menu');
+            return true;
+        } catch (e) {
+            hideLoading();
+            clearSession();
+            return false;
+        }
+    }
+
     async function handleLogin(e) {
         e.preventDefault();
         const uname = $('username').value.trim();
@@ -1333,6 +1368,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         updateUserBadges();
         $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
         $('sectionActions').style.display = isAdmin() ? 'grid' : 'none';
+
+        // СОХРАНЯЕМ СЕССИЮ
+        saveSession(uname);
+
         showLoading(t('loading'));
         await loadAllData();
         await loadLogs();
@@ -1344,6 +1383,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     function doLogout() {
         addLog('logout', t('logLogout'), state.currentUser || '—');
+        clearSession();
         state.currentUser = ''; state.currentServer = ''; state.currentRole = '';
         state.revealed = {};
         closeAllMenus();
@@ -1485,6 +1525,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('toastClose').addEventListener('click', () => $('toast').classList.remove('show'));
 
         applyLanguage();
+
+        // ═══════════ АВТО-ВХОД ═══════════
+        // Пытаемся восстановить сессию через небольшую задержку, чтобы UI успел отрисоваться
+        setTimeout(() => { restoreSession(); }, 100);
     }
 
     document.addEventListener('DOMContentLoaded', init);
