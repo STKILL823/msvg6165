@@ -6,76 +6,38 @@
 <title>Массовая выгрузка 61-65</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛵</text></svg>">
 <style>
-:root {
-    --accent: #3D6DB5;
-    --accent-dark: #2c4f8a;
-}
+:root { --accent: #3D6DB5; --accent-dark: #2c4f8a; }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; padding: 0; }
 body { font-family: Arial, sans-serif; background: #fff; color: #000; min-height: 100vh; font-size: 14px; }
-
-/* ═══════ АНИМАЦИИ ═══════ */
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-@keyframes slideInRight {
-    from { opacity: 0; transform: translateX(40px); }
-    to { opacity: 1; transform: translateX(0); }
-}
-@keyframes popIn {
-    0% { opacity: 0; transform: scale(0.8); }
-    60% { opacity: 1; transform: scale(1.05); }
-    100% { opacity: 1; transform: scale(1); }
-}
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-6px); }
-    40% { transform: translateX(6px); }
-    60% { transform: translateX(-4px); }
-    80% { transform: translateX(4px); }
-}
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.08); }
-    100% { transform: scale(1); }
-}
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 60% { opacity: 1; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
 @keyframes spin { to { transform: rotate(360deg); } }
-@keyframes rowAppear {
-    from { opacity: 0; transform: translateX(-10px); }
-    to { opacity: 1; transform: translateX(0); }
-}
+@keyframes rowAppear { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
 
-/* ═══════ ЛОГИН ═══════ */
 .login-container { width: 100%; max-width: 450px; padding: 20px; margin: 0 auto; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; animation: fadeInUp 0.5s ease; }
 .login-container.hidden { display: none; }
 .logo-ship { font-size: 56px; line-height: 1; display: block; margin-bottom: 5px; animation: popIn 0.6s ease; }
 .logo-text { font-size: 20px; font-weight: bold; font-style: italic; margin: 5px 0; color: var(--accent); animation: fadeIn 0.6s ease 0.1s backwards; }
 .welcome-text { font-size: 14px; font-weight: bold; margin-bottom: 20px; color: #333; animation: fadeIn 0.6s ease 0.2s backwards; }
-
 fieldset { border: 1px solid #ccc; padding: 12px; margin-bottom: 15px; background: #f9f9f9; text-align: left; animation: fadeInUp 0.5s ease 0.2s backwards; }
-fieldset:nth-of-type(2) { animation-delay: 0.35s; }
 legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 13px; font-weight: bold; color: #333; margin-left: 10px; }
-
 .auth-table { width: 100%; border-collapse: collapse; }
 .auth-table td { padding-bottom: 12px; vertical-align: top; }
 .auth-table .label-cell { width: 100px; padding-top: 8px; font-size: 13px; color: #333; }
 .auth-table input, .auth-table select { width: 100%; padding: 8px; border: 1px solid #aaa; font-size: 14px; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s; }
 .auth-table input:focus, .auth-table select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.15); transform: translateY(-1px); }
 .auth-table input.error { border-color: #dc3545; box-shadow: 0 0 0 3px rgba(220,53,69,0.15); animation: shake 0.4s ease; }
-
-/* Шкала сложности пароля */
 .strength-meter { height: 5px; background: #e0e0e0; margin-top: 6px; overflow: hidden; border-radius: 2px; }
 .strength-fill { height: 100%; width: 0; transition: all 0.35s ease; border-radius: 2px; }
-.strength-text { font-size: 11px; margin-top: 4px; color: #666; transition: color 0.3s; }
-
+.strength-text { font-size: 11px; margin-top: 4px; color: #666; }
 .captcha-box { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #d3d3d3; background: #f9f9f9; cursor: pointer; user-select: none; width: 100%; transition: all 0.25s ease; }
 .captcha-box:hover { background: #f0f0f0; transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
 .captcha-box.checked { background: #f0fdf4; border-color: #28a745; }
+.captcha-box.error { animation: shake 0.4s ease; border-color: #dc3545; }
 .captcha-checkbox { width: 24px; height: 24px; border: 2px solid #999; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; }
 .captcha-box.checked .captcha-checkbox { border-color: #28a745; background: #28a745; animation: popIn 0.3s ease; }
 .captcha-checkbox svg { width: 16px; height: 16px; display: none; }
@@ -87,17 +49,14 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .captcha-label { font-size: 13px; color: #333; flex: 1; text-align: left; transition: color 0.3s; }
 .captcha-box.checked .captcha-label { color: #28a745; font-weight: bold; }
 .captcha-brand { font-size: 10px; color: #999; }
-
 .token-status { font-size: 11px; color: #888; margin-top: 5px; }
 .token-status.ok { color: #28a745; }
 .token-status.err { color: #dc3545; }
-
-.auth-footer { background: #e8e8e8; border-top: 1px solid #ccc; padding: 10px 12px; margin: 0 -12px -12px -12px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+.auth-footer { background: #e8e8e8; border-top: 1px solid #ccc; padding: 8px 10px; margin: 0 -12px -12px -12px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+.auth-footer .pmabtn { padding: 5px 10px; font-size: 12px; }
 
 .pmabtn { display: inline-block; padding: 8px 14px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 13px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.4; transition: all 0.2s ease; position: relative; overflow: hidden; }
-.pmabtn::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle, rgba(61,109,181,0.15), transparent 70%); opacity: 0; transition: opacity 0.3s; }
 .pmabtn:hover { background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%); border-color: var(--accent); color: #1a3d6e; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.pmabtn:hover::after { opacity: 1; }
 .pmabtn:active { transform: translateY(0); background: linear-gradient(to bottom, #d0dce8 0%, #b8c8d8 100%); box-shadow: inset 0 2px 4px rgba(0,0,0,0.15); }
 .pmabtn:disabled { opacity: 0.4; cursor: not-allowed; }
 .pmabtn.danger { background: linear-gradient(to bottom, #dc3545, #b02a37); color: #fff; border-color: #a52834; font-weight: bold; }
@@ -107,7 +66,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
 .screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
 .screen.active { display: flex; animation: fadeIn 0.4s ease; }
-
 .menu-header { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: #fff; padding: 0; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
 .header-main { display: flex; justify-content: space-between; align-items: center; padding: 12px; gap: 8px; flex-wrap: wrap; }
 .brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: bold; font-style: italic; }
@@ -116,63 +74,45 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .user-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; font-weight: bold; animation: fadeIn 0.4s ease; }
 .logout-btn { padding: 5px 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; }
 .logout-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
-.logout-btn:active { transform: scale(0.97); }
-
-.admin-top-bar { padding: 6px 12px 0; animation: fadeIn 0.4s ease; }
+.admin-top-bar { padding: 6px 12px; display: flex; gap: 6px; flex-wrap: wrap; animation: fadeIn 0.4s ease; }
 .admin-top-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; padding: 6px 12px; font-weight: bold; transition: all 0.2s; }
 .admin-top-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
 .admin-top-btn:active { transform: translateY(0); }
-
+.admin-top-btn.logs { background: rgba(255,193,7,0.25); border-color: rgba(255,193,7,0.7); }
 .menu-title { color: #000; font-size: 15px; font-weight: bold; padding: 15px 15px 0; margin: 0; text-align: left; animation: fadeInUp 0.4s ease; }
 .menu-content { flex: 1; padding: 15px 15px 140px 15px; }
-
 .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #f4f4f4; border-top: 1px solid #ccc; padding: 8px; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.06); }
 .bottom-bar .pmabtn { padding: 8px 12px; font-size: 12px; }
-
 .section-container, .admin-container { flex: 1; padding: 15px 15px 140px 15px; max-width: 1400px; margin: 0 auto; width: 100%; animation: fadeInUp 0.4s ease; }
 .section-title, .admin-title { color: #000; font-size: 16px; font-weight: bold; margin: 0 0 12px 0; text-align: left; }
 .section-actions { margin-bottom: 12px; display: flex; gap: 6px; flex-wrap: wrap; }
 .section-actions .pmabtn { flex: 1; text-align: center; }
-
 .server-filters { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
-.server-filter { padding: 6px 10px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe, #eeeeee); color: #333; font-size: 12px; font-family: inherit; cursor: pointer; transition: all 0.2s ease; }
+.server-filter { padding: 6px 12px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe, #eeeeee); color: #333; font-size: 12px; font-family: inherit; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
 .server-filter:hover { background: linear-gradient(to bottom, #f0f6fc, #dce8f5); border-color: var(--accent); transform: translateY(-1px); }
-.server-filter:active { transform: translateY(0); }
 .server-filter.active { background: linear-gradient(to bottom, var(--accent), var(--accent-dark)); color: #fff; border-color: var(--accent-dark); font-weight: bold; transform: scale(1.05); }
-
 .counter { font-size: 12px; color: #666; margin-bottom: 8px; text-align: left; }
-
 .table-wrap { background: #fff; border: 1px solid #ccc; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .data-table, .admin-table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
 .data-table th, .admin-table th { background: linear-gradient(to bottom, #f0f0f0 0%, #dcdcdc 100%); border: 1px solid #ccc; padding: 5px 6px; text-align: left; font-weight: bold; color: #333; white-space: nowrap; position: sticky; top: 0; }
-.data-table td, .admin-table td { border: 1px solid #e0e0e0; padding: 4px 6px; color: #333; white-space: nowrap; transition: background 0.15s; }
+.data-table td, .admin-table td { border: 1px solid #e0e0e0; padding: 4px 6px; color: #333; white-space: nowrap; }
 .data-table tbody tr, .admin-table tbody tr { animation: rowAppear 0.25s ease backwards; }
-.data-table tbody tr:nth-child(1) { animation-delay: 0.02s; }
-.data-table tbody tr:nth-child(2) { animation-delay: 0.04s; }
-.data-table tbody tr:nth-child(3) { animation-delay: 0.06s; }
-.data-table tbody tr:nth-child(4) { animation-delay: 0.08s; }
-.data-table tbody tr:nth-child(5) { animation-delay: 0.1s; }
 .data-table tbody tr:nth-child(even), .admin-table tbody tr:nth-child(even) { background: #fafafa; }
 .data-table tbody tr:hover, .admin-table tbody tr:hover { background: #eef4fb; }
-
 .admin-table tbody tr.banned-row { background: #f8d7da !important; }
 .admin-table tbody tr.banned-row:hover { background: #f5c6cb !important; }
-
 .server-cell { text-align: center; font-weight: bold; color: var(--accent); }
 .money-cell { text-align: right; font-family: Consolas, monospace; font-weight: bold; white-space: nowrap; }
-
 .status-badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; white-space: nowrap; transition: transform 0.15s; }
 .status-badge.pending { background: #e9ecef; color: #495057; border-color: #ced4da; }
 .status-badge.clear { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .status-badge.blocked { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 .status-badge.changed { animation: pulse 0.5s ease; }
-
 .gear-btn { background: transparent; border: 1px solid #ccc; padding: 4px 6px; margin-left: 5px; cursor: pointer; color: #666; vertical-align: middle; display: inline-flex; align-items: center; justify-content: center; transition: all 0.25s ease; }
 .gear-btn:hover { background: #f0f6fc; border-color: var(--accent); color: var(--accent); transform: rotate(90deg); }
 .gear-btn.disabled { opacity: 0.35; cursor: not-allowed; background: #f0f0f0; color: #999; }
 .gear-btn.disabled:hover { transform: none; background: #f0f0f0; border-color: #ccc; color: #999; }
 .gear-btn svg { width: 14px; height: 14px; display: block; }
-
 .status-menu { position: fixed; background: #fff; border: 1px solid #999; box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 10000; min-width: 180px; display: none; }
 .status-menu.open { display: block; animation: popIn 0.2s ease; }
 .status-menu-item { padding: 12px 15px; font-size: 14px; cursor: pointer; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; color: #333; transition: background 0.15s, padding-left 0.2s; }
@@ -183,27 +123,22 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .dot.pending { background: #adb5bd; }
 .dot.clear { background: #28a745; }
 .dot.blocked { background: #dc3545; }
-
 .role-badge { padding: 2px 6px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; }
 .role-badge.admin { background: #fff3cd; color: #856404; border-color: #ffeeba; }
-.role-badge.tech { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
-
+.role-badge.admin1 { background: #d4edda; color: #155724; border-color: #c3e6cb; }
+.role-badge.admin2 { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
+.role-badge.tech { background: #e9ecef; color: #495057; border-color: #ced4da; }
 .user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; white-space: nowrap; }
 .user-status.active { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .user-status.banned { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
-
 .admin-hint { font-size: 12px; color: #888; margin-bottom: 12px; font-style: italic; }
 .admin-msg { padding: 8px 12px; margin-bottom: 12px; font-size: 12px; border: 1px solid; display: none; }
 .admin-msg.show { display: block; animation: fadeInUp 0.3s ease; }
 .admin-msg.ok { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .admin-msg.err { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
-
 .admin-tools { padding: 12px; background: #fff; border: 1px solid #ccc; margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
 .admin-tools .pmabtn { flex: 1; text-align: center; min-width: 140px; }
-
 .license-footer { text-align: center; font-size: 11px; color: #999; padding: 20px 15px 10px; line-height: 1.5; }
-.license-footer a { color: var(--accent); text-decoration: none; }
-
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10001; display: none; justify-content: center; align-items: center; padding: 15px; animation: fadeIn 0.2s ease; }
 .modal.open { display: flex; }
 .modal-content { background: #fff; padding: 18px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: fadeInUp 0.3s ease; }
@@ -218,17 +153,19 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .modal input:focus, .modal select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.15); }
 .modal-actions { margin-top: 15px; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
 .modal-actions .pmabtn { flex: 1; text-align: center; min-width: 100px; }
-
 .token-modal-textarea { width: 100%; min-height: 100px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 12px; word-break: break-all; resize: vertical; }
 .token-modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
 .token-current { background: #f0f6fc; padding: 8px 10px; border: 1px solid #b8c8d8; font-size: 11px; color: var(--accent); font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; }
-
 .color-picker { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 8px; }
 .color-swatch { width: 100%; aspect-ratio: 1; border: 3px solid transparent; cursor: pointer; position: relative; transition: transform 0.2s ease, box-shadow 0.2s; }
 .color-swatch:hover { transform: scale(1.1); }
 .color-swatch.selected { border-color: #333; box-shadow: 0 0 0 2px #fff inset; }
 .color-swatch.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 20px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-
+.logs-list { max-height: 60vh; overflow-y: auto; border: 1px solid #ddd; background: #f9f9f9; padding: 8px; font-family: Consolas, monospace; font-size: 12px; line-height: 1.6; }
+.logs-list .log-item { padding: 6px 8px; border-bottom: 1px dashed #ddd; word-break: break-word; }
+.logs-list .log-item:last-child { border-bottom: none; }
+.logs-list .log-item:hover { background: #eef4fb; }
+.logs-empty { text-align: center; padding: 30px; color: #999; font-size: 13px; }
 .toast { position: fixed; top: 15px; right: 15px; left: 15px; max-width: 400px; margin-left: auto; padding: 12px 40px 12px 18px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); font-size: 13px; color: #333; z-index: 9999; overflow: hidden; opacity: 0; transform: translateY(-120%); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; }
 .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .toast::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
@@ -242,13 +179,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .toast.info .toast-title { color: var(--accent); }
 .toast.warning .toast-title { color: #fd7e14; }
 .toast-msg { color: #555; font-size: 12.5px; white-space: pre-line; }
-.toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 2px 6px; font-family: inherit; transition: color 0.2s, transform 0.2s; }
-.toast-close:hover { color: #333; transform: scale(1.2); }
-
-.loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 15px; color: var(--accent); font-weight: bold; animation: fadeIn 0.2s ease; }
+.toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 2px 6px; font-family: inherit; }
+.loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 15px; color: var(--accent); font-weight: bold; }
 .loading-overlay.show { display: flex; }
 .loading-overlay::after { content: ''; width: 24px; height: 24px; border: 3px solid #e0e0e0; border-top-color: var(--accent); border-radius: 50%; margin-left: 12px; animation: spin 0.8s linear infinite; }
-
 @media (max-width: 700px) {
     body { font-size: 13px; }
     .login-container { padding: 12px; }
@@ -256,58 +190,47 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .logo-text { font-size: 17px; }
     .welcome-text { font-size: 13px; margin-bottom: 15px; }
     fieldset { padding: 10px; margin-bottom: 12px; }
-    .auth-table .label-cell { width: 70px; font-size: 12px; padding-top: 10px; }
+    .auth-table .label-cell { width: 80px; font-size: 12px; padding-top: 10px; }
     .auth-table input, .auth-table select { padding: 10px 8px; font-size: 15px; }
     .pmabtn { padding: 10px 12px; font-size: 13px; }
-    .auth-footer { flex-direction: column; }
-    .auth-footer .pmabtn { width: 100%; text-align: center; }
+    .auth-footer .pmabtn { padding: 7px 12px; font-size: 12px; }
     .captcha-box { padding: 14px 12px; }
     .captcha-checkbox { width: 28px; height: 28px; }
     .captcha-label { font-size: 14px; }
-
     .header-main { padding: 8px 10px; }
     .brand { font-size: 13px; gap: 6px; }
     .brand-ship { font-size: 20px; }
     .user-info { font-size: 11px; gap: 6px; }
-    .user-badge { padding: 3px 8px; font-size: 11px; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .user-badge { padding: 3px 8px; font-size: 11px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .logout-btn { padding: 5px 8px; font-size: 11px; }
-    .admin-top-bar { padding: 6px 10px 0; }
-    .admin-top-btn { font-size: 12px; padding: 6px 10px; }
+    .admin-top-bar { padding: 6px 10px; gap: 4px; }
+    .admin-top-btn { font-size: 11px; padding: 6px 8px; }
     .menu-title { font-size: 14px; padding: 12px 12px 0; }
-
     .bottom-bar { padding: 6px; gap: 4px; display: grid; grid-template-columns: repeat(3, 1fr); }
     .bottom-bar .pmabtn { padding: 10px 6px; font-size: 11px; width: 100%; text-align: center; min-width: 0; white-space: normal; line-height: 1.2; }
-
     .section-container, .admin-container { padding: 12px 10px 160px 10px; }
     .section-title, .admin-title { font-size: 15px; }
     .section-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     .section-actions .pmabtn { width: 100%; }
-
     .server-filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
     .server-filter { padding: 8px 4px; font-size: 12px; text-align: center; }
-
     .modal { padding: 10px; }
     .modal-content { padding: 14px; max-height: 95vh; }
     .modal-title { font-size: 15px; }
     .modal-actions { flex-direction: column; }
     .modal-actions .pmabtn { width: 100%; }
     .modal textarea { min-height: 150px; font-size: 12px; }
-
     .admin-tools { display: grid; grid-template-columns: 1fr; padding: 10px; }
     .admin-tools .pmabtn { width: 100%; }
-
     .toast { top: 10px; right: 10px; left: 10px; padding: 10px 36px 10px 14px; font-size: 12px; }
-
     .data-table, .admin-table { font-size: 11px; }
     .data-table th, .admin-table th { padding: 4px 4px; font-size: 11px; }
     .data-table td, .admin-table td { padding: 3px 4px; }
     .status-badge { padding: 2px 6px; font-size: 10px; }
     .gear-btn { padding: 5px 6px; margin-left: 3px; }
     .gear-btn svg { width: 12px; height: 12px; }
-
     .color-picker { grid-template-columns: repeat(3, 1fr); }
 }
-
 @media (max-width: 400px) {
     .bottom-bar { grid-template-columns: repeat(2, 1fr); }
     .server-filters { grid-template-columns: repeat(2, 1fr); }
@@ -325,18 +248,14 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <legend data-i18n="legendAuth">Авторизация</legend>
             <table class="auth-table">
                 <tr>
-                    <td class="label-cell"><label data-i18n="labelUser">Nick:</label></td>
-                    <td>
-                        <input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Введи ник">
-                    </td>
+                    <td class="label-cell"><label data-i18n="labelUser">Пользователь:</label></td>
+                    <td><input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
                 </tr>
                 <tr>
                     <td class="label-cell"><label data-i18n="labelPass">Пароль:</label></td>
                     <td>
-                        <input type="password" id="password" autocomplete="off" placeholder="Введи пароль">
-                        <div class="strength-meter">
-                            <div class="strength-fill" id="strengthFill"></div>
-                        </div>
+                        <input type="password" id="password" autocomplete="off">
+                        <div class="strength-meter"><div class="strength-fill" id="strengthFill"></div></div>
                         <div class="strength-text" id="strengthText"></div>
                         <div class="token-status" id="tokenStatus">Токен не установлен</div>
                     </td>
@@ -356,8 +275,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 </tr>
             </table>
             <div class="auth-footer">
-                <button type="button" class="pmabtn" id="setTokenBtn" data-i18n="setToken">Установить токен</button>
-                <button type="submit" class="pmabtn" data-i18n="login">Авторизация</button>
+                <button type="button" class="pmabtn" id="setTokenBtn" data-i18n="setToken">Токен</button>
+                <button type="submit" class="pmabtn" data-i18n="login">Войти</button>
             </div>
         </fieldset>
     </form>
@@ -375,6 +294,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         </div>
         <div class="admin-top-bar" id="adminTopBar" style="display:none;">
             <button class="admin-top-btn" data-section="admin" id="adminBtn" data-i18n="adminPanel">Панель управления</button>
+            <button class="admin-top-btn logs" id="logsBtn">Логи ВСЕГО</button>
         </div>
     </div>
     <div class="menu-title" data-i18n="menuTitle">Главное меню</div>
@@ -407,18 +327,15 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         </div>
         <div class="server-filters" id="serverFilters">
             <button class="server-filter active" data-server="all" data-i18n="all">Все</button>
-            <button class="server-filter" data-server="61">61</button>
-            <button class="server-filter" data-server="62">62</button>
-            <button class="server-filter" data-server="63">63</button>
-            <button class="server-filter" data-server="64">64</button>
-            <button class="server-filter" data-server="65">65</button>
+            <button class="server-filter" data-server="61">Сервер 61</button>
+            <button class="server-filter" data-server="62">Сервер 62</button>
+            <button class="server-filter" data-server="63">Сервер 63</button>
+            <button class="server-filter" data-server="64">Сервер 64</button>
+            <button class="server-filter" data-server="65">Сервер 65</button>
         </div>
         <div class="counter" id="sectionCounter"></div>
         <div class="table-wrap">
-            <table class="data-table">
-                <thead id="dataHead"></thead>
-                <tbody id="dataBody"></tbody>
-            </table>
+            <table class="data-table"><thead id="dataHead"></thead><tbody id="dataBody"></tbody></table>
         </div>
     </div>
     <div class="bottom-bar">
@@ -439,7 +356,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
     <div class="admin-container">
         <div class="admin-title" data-i18n="adminTitle">Управление пользователями</div>
-        <div class="admin-hint" data-i18n="adminHint">Только Admin может менять пароли и блокировать техов</div>
+        <div class="admin-hint" data-i18n="adminHint">Только Админ может менять пароли и блокировать</div>
         <div class="admin-msg" id="adminMsg"></div>
         <div class="admin-tools">
             <button class="pmabtn danger" id="clearAllBtn" data-i18n="clearAll">Очистить все разделы</button>
@@ -470,10 +387,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     <div class="modal-content">
         <div class="modal-title" data-i18n="settingsTitle">Настройки</div>
         <label data-i18n="settingsLang">Язык интерфейса:</label>
-        <select id="settingsLangSelect">
-            <option value="ru">Русский - Russian</option>
-            <option value="en">English</option>
-        </select>
+        <select id="settingsLangSelect"><option value="ru">Русский - Russian</option><option value="en">English</option></select>
         <label data-i18n="settingsColor">Цвет интерфейса:</label>
         <div class="color-picker" id="colorPicker">
             <div class="color-swatch" data-color="#3D6DB5" data-dark="#2c4f8a" style="background:#3D6DB5;"></div>
@@ -483,8 +397,18 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <div class="color-swatch" data-color="#fd7e14" data-dark="#d96708" style="background:#fd7e14;"></div>
             <div class="color-swatch" data-color="#333333" data-dark="#111111" style="background:#333333;"></div>
         </div>
+        <div class="modal-actions"><button class="pmabtn" id="settingsClose" data-i18n="close">Закрыть</button></div>
+    </div>
+</div>
+
+<div class="modal" id="logsModal">
+    <div class="modal-content wide">
+        <div class="modal-title">📋 Логи ВСЕГО</div>
+        <div class="modal-hint">Все действия пользователей (последние 500 записей)</div>
+        <div class="logs-list" id="logsList"></div>
         <div class="modal-actions">
-            <button class="pmabtn" id="settingsClose" data-i18n="close">Закрыть</button>
+            <button class="pmabtn danger" id="logsClear" style="display:none;">Очистить логи</button>
+            <button class="pmabtn" id="logsClose">Закрыть</button>
         </div>
     </div>
 </div>
@@ -518,7 +442,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
 <div class="modal" id="userBanModal">
     <div class="modal-content">
-        <div class="modal-title danger" data-i18n="banTitle">Блокировка техника</div>
+        <div class="modal-title danger" data-i18n="banTitle">Блокировка пользователя</div>
         <div class="modal-hint" id="userBanTarget"></div>
         <label data-i18n="banReason">Причина бана:</label>
         <input type="text" id="userBanReason" placeholder="..." maxlength="200">
@@ -555,209 +479,98 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const GITHUB_REPO = 'msvg6165';
     const BRANCH = 'main';
     const API_BASE = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`;
+    const MAX_LOGS = 500;
 
     const i18n = {
         ru: {
-            welcome: 'Добро пожаловать технический специалист!',
-            legendAuth: 'Авторизация',
-            labelUser: 'Nick:',
-            labelPass: 'Пароль:',
-            labelCaptcha: 'Капча:',
-            captchaLabel: 'Я не робот',
-            setToken: 'Установить токен',
-            login: 'Авторизация',
-            logout: 'Выход',
-            menuTitle: 'Главное меню',
-            adminPanel: 'Панель управления',
-            settings: 'Настройки',
-            settingsTitle: 'Настройки',
-            settingsLang: 'Язык интерфейса:',
-            settingsColor: 'Цвет интерфейса:',
-            close: 'Закрыть',
-            trades: 'Трейды',
-            unique: 'Уникальная',
-            levels: 'Уровни 3,4,5',
-            works: 'Работы',
-            pays: '/pay',
-            uploadBtn: 'Загрузить данные',
-            clearBtn: 'Очистить',
-            all: 'Все',
-            back: 'Назад',
-            adminTitle: 'Управление пользователями',
-            adminHint: 'Только Admin может менять пароли и блокировать техов',
-            clearAll: 'Очистить все разделы',
-            thLogin: 'Логин',
-            thRole: 'Роль',
-            thServer: 'Сервер',
-            thPass: 'Пароль',
-            thStatus: 'Статус',
-            thActions: 'Действия',
-            tokenTitle: 'Установка токена',
-            tokenHint: 'Вставь Personal Access Token (начинается с github_pat_). Токен хранится только в браузере.',
-            tokenLabel: 'Токен:',
-            delete: 'Удалить',
-            cancel: 'Отмена',
-            save: 'Сохранить',
-            uploadTitle: 'Загрузка данных',
-            upload: 'Загрузить',
-            banTitle: 'Блокировка техника',
-            banReason: 'Причина бана:',
-            banDuration: 'Срок блокировки:',
-            block: 'Заблокировать',
+            welcome: 'Добро пожаловать технический специалист!', legendAuth: 'Авторизация',
+            labelUser: 'Пользователь:', labelPass: 'Пароль:', labelCaptcha: 'Капча:', captchaLabel: 'Я не робот',
+            setToken: 'Токен', login: 'Войти', logout: 'Выход', menuTitle: 'Главное меню',
+            adminPanel: 'Панель управления', settings: 'Настройки', settingsTitle: 'Настройки',
+            settingsLang: 'Язык интерфейса:', settingsColor: 'Цвет интерфейса:', close: 'Закрыть',
+            trades: 'Трейды', unique: 'Уникальная', levels: 'Уровни 3,4,5', works: 'Работы', pays: '/pay',
+            uploadBtn: 'Загрузить данные', clearBtn: 'Очистить', all: 'Все', back: 'Назад',
+            adminTitle: 'Управление пользователями', adminHint: 'Только Админ может менять пароли и блокировать',
+            clearAll: 'Очистить все разделы', thLogin: 'Логин', thRole: 'Роль', thServer: 'Сервер',
+            thPass: 'Пароль', thStatus: 'Статус', thActions: 'Действия',
+            tokenTitle: 'Установка токена', tokenHint: 'Вставь Personal Access Token. Хранится только в браузере.',
+            tokenLabel: 'Токен:', delete: 'Удалить', cancel: 'Отмена', save: 'Сохранить',
+            uploadTitle: 'Загрузка данных', upload: 'Загрузить', banTitle: 'Блокировка пользователя',
+            banReason: 'Причина бана:', banDuration: 'Срок блокировки:', block: 'Заблокировать',
             h1: '1 час', h6: '6 часов', d1: '1 день', d3: '3 дня', d7: '7 дней', d30: '30 дней', forever: 'Навсегда',
-            okTitle: 'Успешно',
-            errTitle: 'Ошибка',
-            infoTitle: 'Информация',
-            warnTitle: 'Внимание',
-            welcomeBack: 'Добро пожаловать, ',
-            wrongPass: 'Неверный пароль',
-            userNotFound: 'Пользователь не найден',
-            fillAll: 'Заполните все поля',
-            captchaFail: 'Подтвердите, что вы не робот',
-            noRights: 'Нет прав',
-            noRightsMsg: 'Вы не можете менять статусы на чужом сервере.',
-            statusChanged: 'Статус изменён',
-            uploaded: 'Загружено',
-            cleared: 'Очищено',
-            allCleared: 'Все разделы очищены',
-            userBanned: 'Техник заблокирован',
-            userUnbanned: 'Техник разблокирован',
-            youAreBanned: 'Вы заблокированы',
-            banReasonShort: 'Причина',
-            banUntil: 'до',
-            tokenSaved: 'Токен сохранён',
-            tokenDeleted: 'Токен удалён',
-            noToken: 'Вставь токен',
-            loggedOut: 'Вы вышли из системы',
-            onlyAdmin: 'Только Admin',
-            parseError: 'Не удалось распарсить ни одной строки',
-            added: 'Добавлено',
-            skipped: 'пропущено',
-            loading: 'Загрузка...',
-            saving: 'Сохранение...',
-            checking: 'Проверка...',
-            confirmClearAll: 'Точно очистить ВСЕ разделы? Это удалит все данные.',
-            confirmClearSection: 'Точно очистить раздел?',
-            bannedUntil: 'Заблокирован до',
-            bannedForever: 'навсегда',
-            statusPending: 'Ожидание',
-            statusClear: 'Нету нарушений',
-            statusBlocked: 'Заблокирован',
-            active: 'Активен',
-            banned: 'Забанен',
-            roleAdmin: 'Админ',
-            roleTech: 'Тех',
+            okTitle: 'Успешно', errTitle: 'Ошибка', infoTitle: 'Информация', warnTitle: 'Внимание',
+            welcomeBack: 'Добро пожаловать, ', wrongPass: 'Неверный пароль', userNotFound: 'Пользователь не найден',
+            fillAll: 'Заполните все поля', captchaFail: 'Подтвердите, что вы не робот',
+            noRights: 'Нет прав', noRightsMsg: 'Вы не можете менять статусы на чужом сервере.',
+            statusChanged: 'Статус изменён', uploaded: 'Загружено', cleared: 'Очищено', allCleared: 'Все разделы очищены',
+            userBanned: 'Пользователь заблокирован', userUnbanned: 'Пользователь разблокирован',
+            youAreBanned: 'Вы заблокированы', banReasonShort: 'Причина', banUntil: 'до',
+            tokenSaved: 'Токен сохранён', tokenDeleted: 'Токен удалён', noToken: 'Вставь токен',
+            loggedOut: 'Вы вышли из системы', onlyAdmin: 'Только Админ',
+            parseError: 'Не удалось распарсить ни одной строки', added: 'Добавлено', skipped: 'пропущено',
+            loading: 'Загрузка...', saving: 'Сохранение...', checking: 'Проверка...',
+            confirmClearAll: 'Точно очистить ВСЕ разделы?', confirmClearSection: 'Точно очистить раздел?',
+            bannedUntil: 'Заблокирован до', bannedForever: 'навсегда',
+            statusPending: 'Ожидание', statusClear: 'Нету нарушений', statusBlocked: 'Заблокирован',
+            active: 'Активен', banned: 'Забанен',
+            roleAdmin: 'Админ', roleAdmin1: 'Куратор технических специалистов',
+            roleAdmin2: 'Зам. куратора технических специалистов', roleTech: 'Технический специалист',
             license: '© 2026 Массовая выгрузка 61-65. Все права защищены.',
-            settingsSaved: 'Настройки сохранены',
-            enterPass: 'Введите пароль',
-            onlyDigits: 'Только цифры!',
-            need6: 'Нужно 6 символов (введено ',
-            veryWeak: 'Очень слабый пароль',
-            strongPass: 'Надёжный пароль',
-            mediumPass: 'Средний пароль',
-            passPlaceholder: 'Введи пароль',
-            nickPlaceholder: 'Введи ник'
+            settingsSaved: 'Настройки сохранены', enterPass: 'Введите пароль',
+            onlyDigits: 'Только цифры!', need6: 'Нужно 6 символов (введено ',
+            veryWeak: 'Очень слабый пароль', strongPass: 'Надёжный пароль', mediumPass: 'Средний пароль',
+            logsEmpty: 'Логов пока нет', logsClearConfirm: 'Очистить все логи?',
+            logsCleared: 'Логи очищены', section: 'Раздел',
+            logLogin: 'Вход в систему', logLogout: 'Выход из системы',
+            logStatusChanged: 'Смена статуса', logUploaded: 'Загрузка данных',
+            logCleared: 'Очистка раздела', logClearedAll: 'Очистка всех разделов',
+            logBan: 'Блокировка пользователя', logUnban: 'Разблокировка пользователя',
+            logPassChanged: 'Смена пароля'
         },
         en: {
-            welcome: 'Welcome, technical specialist!',
-            legendAuth: 'Authorization',
-            labelUser: 'Nick:',
-            labelPass: 'Password:',
-            labelCaptcha: 'Captcha:',
-            captchaLabel: 'I am not a robot',
-            setToken: 'Set token',
-            login: 'Login',
-            logout: 'Logout',
-            menuTitle: 'Main menu',
-            adminPanel: 'Control panel',
-            settings: 'Settings',
-            settingsTitle: 'Settings',
-            settingsLang: 'Interface language:',
-            settingsColor: 'Interface color:',
-            close: 'Close',
-            trades: 'Trades',
-            unique: 'Unique',
-            levels: 'Levels 3,4,5',
-            works: 'Works',
-            pays: '/pay',
-            uploadBtn: 'Upload data',
-            clearBtn: 'Clear',
-            all: 'All',
-            back: 'Back',
-            adminTitle: 'User management',
-            adminHint: 'Only Admin can change passwords and block techs',
-            clearAll: 'Clear all sections',
-            thLogin: 'Login',
-            thRole: 'Role',
-            thServer: 'Server',
-            thPass: 'Password',
-            thStatus: 'Status',
-            thActions: 'Actions',
-            tokenTitle: 'Set token',
-            tokenHint: 'Paste Personal Access Token (starts with github_pat_). Stored only in browser.',
-            tokenLabel: 'Token:',
-            delete: 'Delete',
-            cancel: 'Cancel',
-            save: 'Save',
-            uploadTitle: 'Upload data',
-            upload: 'Upload',
-            banTitle: 'Block technician',
-            banReason: 'Ban reason:',
-            banDuration: 'Duration:',
-            block: 'Block',
+            welcome: 'Welcome, technical specialist!', legendAuth: 'Authorization',
+            labelUser: 'User:', labelPass: 'Password:', labelCaptcha: 'Captcha:', captchaLabel: 'I am not a robot',
+            setToken: 'Token', login: 'Login', logout: 'Logout', menuTitle: 'Main menu',
+            adminPanel: 'Control panel', settings: 'Settings', settingsTitle: 'Settings',
+            settingsLang: 'Interface language:', settingsColor: 'Interface color:', close: 'Close',
+            trades: 'Trades', unique: 'Unique', levels: 'Levels 3,4,5', works: 'Works', pays: '/pay',
+            uploadBtn: 'Upload data', clearBtn: 'Clear', all: 'All', back: 'Back',
+            adminTitle: 'User management', adminHint: 'Only Admin can change passwords and block',
+            clearAll: 'Clear all sections', thLogin: 'Login', thRole: 'Role', thServer: 'Server',
+            thPass: 'Password', thStatus: 'Status', thActions: 'Actions',
+            tokenTitle: 'Set token', tokenHint: 'Paste Personal Access Token. Stored only in browser.',
+            tokenLabel: 'Token:', delete: 'Delete', cancel: 'Cancel', save: 'Save',
+            uploadTitle: 'Upload data', upload: 'Upload', banTitle: 'Block user',
+            banReason: 'Ban reason:', banDuration: 'Duration:', block: 'Block',
             h1: '1 hour', h6: '6 hours', d1: '1 day', d3: '3 days', d7: '7 days', d30: '30 days', forever: 'Forever',
-            okTitle: 'Success',
-            errTitle: 'Error',
-            infoTitle: 'Info',
-            warnTitle: 'Warning',
-            welcomeBack: 'Welcome, ',
-            wrongPass: 'Wrong password',
-            userNotFound: 'User not found',
-            fillAll: 'Fill in all fields',
-            captchaFail: 'Confirm you are not a robot',
-            noRights: 'No permission',
-            noRightsMsg: 'You cannot change statuses on another server.',
-            statusChanged: 'Status changed',
-            uploaded: 'Uploaded',
-            cleared: 'Cleared',
-            allCleared: 'All sections cleared',
-            userBanned: 'Tech banned',
-            userUnbanned: 'Tech unbanned',
-            youAreBanned: 'You are banned',
-            banReasonShort: 'Reason',
-            banUntil: 'until',
-            tokenSaved: 'Token saved',
-            tokenDeleted: 'Token deleted',
-            noToken: 'Paste token',
-            loggedOut: 'You logged out',
-            onlyAdmin: 'Admin only',
-            parseError: 'Failed to parse any line',
-            added: 'Added',
-            skipped: 'skipped',
-            loading: 'Loading...',
-            saving: 'Saving...',
-            checking: 'Checking...',
-            confirmClearAll: 'Clear ALL sections? This will delete all data.',
-            confirmClearSection: 'Clear this section?',
-            bannedUntil: 'Banned until',
-            bannedForever: 'forever',
-            statusPending: 'Pending',
-            statusClear: 'No violations',
-            statusBlocked: 'Blocked',
-            active: 'Active',
-            banned: 'Banned',
-            roleAdmin: 'Admin',
-            roleTech: 'Tech',
+            okTitle: 'Success', errTitle: 'Error', infoTitle: 'Info', warnTitle: 'Warning',
+            welcomeBack: 'Welcome, ', wrongPass: 'Wrong password', userNotFound: 'User not found',
+            fillAll: 'Fill in all fields', captchaFail: 'Confirm you are not a robot',
+            noRights: 'No permission', noRightsMsg: 'You cannot change statuses on another server.',
+            statusChanged: 'Status changed', uploaded: 'Uploaded', cleared: 'Cleared', allCleared: 'All sections cleared',
+            userBanned: 'User banned', userUnbanned: 'User unbanned',
+            youAreBanned: 'You are banned', banReasonShort: 'Reason', banUntil: 'until',
+            tokenSaved: 'Token saved', tokenDeleted: 'Token deleted', noToken: 'Paste token',
+            loggedOut: 'You logged out', onlyAdmin: 'Admin only',
+            parseError: 'Failed to parse any line', added: 'Added', skipped: 'skipped',
+            loading: 'Loading...', saving: 'Saving...', checking: 'Checking...',
+            confirmClearAll: 'Clear ALL sections?', confirmClearSection: 'Clear this section?',
+            bannedUntil: 'Banned until', bannedForever: 'forever',
+            statusPending: 'Pending', statusClear: 'No violations', statusBlocked: 'Blocked',
+            active: 'Active', banned: 'Banned',
+            roleAdmin: 'Admin', roleAdmin1: 'Curator of techs',
+            roleAdmin2: 'Deputy curator of techs', roleTech: 'Technical specialist',
             license: '© 2026 Mass upload 61-65. All rights reserved.',
-            settingsSaved: 'Settings saved',
-            enterPass: 'Enter password',
-            onlyDigits: 'Digits only!',
-            need6: 'Need 6 chars (entered ',
-            veryWeak: 'Very weak password',
-            strongPass: 'Strong password',
-            mediumPass: 'Medium password',
-            passPlaceholder: 'Enter password',
-            nickPlaceholder: 'Enter nick'
+            settingsSaved: 'Settings saved', enterPass: 'Enter password',
+            onlyDigits: 'Digits only!', need6: 'Need 6 chars (entered ',
+            veryWeak: 'Very weak password', strongPass: 'Strong password', mediumPass: 'Medium password',
+            logsEmpty: 'No logs yet', logsClearConfirm: 'Clear all logs?',
+            logsCleared: 'Logs cleared', section: 'Section',
+            logLogin: 'Login', logLogout: 'Logout',
+            logStatusChanged: 'Status changed', logUploaded: 'Data uploaded',
+            logCleared: 'Section cleared', logClearedAll: 'All sections cleared',
+            logBan: 'User banned', logUnban: 'User unbanned',
+            logPassChanged: 'Password changed'
         }
     };
 
@@ -770,11 +583,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             const key = el.getAttribute('data-i18n');
             el.textContent = t(key);
         });
-        // Плейсхолдеры
-        const uEl = document.getElementById('username');
-        const pEl = document.getElementById('password');
-        if (uEl) uEl.placeholder = t('nickPlaceholder');
-        if (pEl) pEl.placeholder = t('passPlaceholder');
         document.getElementById('settingsLangSelect').value = lang;
         if (state.currentSection) renderSection();
         if (isAdmin() && document.getElementById('adminScreen').classList.contains('active')) renderAdminUsers();
@@ -790,11 +598,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             sw.classList.toggle('selected', sw.dataset.color === accent);
         });
     }
-
     function loadSavedColor() {
-        const accent = localStorage.getItem('color_accent') || '#3D6DB5';
-        const dark = localStorage.getItem('color_dark') || '#2c4f8a';
-        applyColor(accent, dark);
+        applyColor(localStorage.getItem('color_accent') || '#3D6DB5', localStorage.getItem('color_dark') || '#2c4f8a');
     }
 
     const SECTIONS = {
@@ -840,16 +645,22 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         en: { thServer: 'Server', thSellerId: 'Seller (ID)', thSellerName: 'Seller name', thLvl: 'Lvl.', thBuyerId: 'Buyer (ID)', thBuyerName: 'Buyer name', thAmount: 'Amount', thStatus: 'Status', thId: 'ID', thName: 'Name', thV1: 'Val.1', thV2: 'Val.2', thSenderId: 'Sender (ID)', thReceiverId: 'Receiver (ID)' }
     };
     function headerLabel(key) { return HEADERS_MAP[lang][key] || key; }
-
     function statusLabel(key) {
         if (key === 'pending') return t('statusPending');
         if (key === 'clear') return t('statusClear');
         if (key === 'blocked') return t('statusBlocked');
         return key;
     }
+    function roleLabel(role) {
+        if (role === 'admin') return t('roleAdmin');
+        if (role === 'admin1') return t('roleAdmin1');
+        if (role === 'admin2') return t('roleAdmin2');
+        return t('roleTech');
+    }
 
     const state = {
         data: { trades: [], unique: [], levels: [], works: [], pays: [] },
+        logs: [],
         users: {},
         currentUser: '', currentServer: '', currentRole: '', currentSection: '',
         filter: 'all', revealed: {}, openMenu: null, pendingUserBan: null, captchaVerified: false
@@ -859,22 +670,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const formatMoney = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 
     function getToken() { return localStorage.getItem('gh_token') || ''; }
-    function setToken(tk) {
-        if (tk) localStorage.setItem('gh_token', tk);
-        else localStorage.removeItem('gh_token');
-        updateTokenStatus();
-    }
+    function setToken(tk) { if (tk) localStorage.setItem('gh_token', tk); else localStorage.removeItem('gh_token'); updateTokenStatus(); }
     function updateTokenStatus() {
-        const el = $('tokenStatus');
-        if (!el) return;
+        const el = $('tokenStatus'); if (!el) return;
         const tk = getToken();
-        if (tk) {
-            el.textContent = (lang === 'ru' ? 'Токен установлен' : 'Token set');
-            el.className = 'token-status ok';
-        } else {
-            el.textContent = (lang === 'ru' ? 'Токен не установлен' : 'Token not set');
-            el.className = 'token-status err';
-        }
+        el.textContent = tk ? (lang === 'ru' ? 'Токен установлен' : 'Token set') : (lang === 'ru' ? 'Токен не установлен' : 'Token not set');
+        el.className = 'token-status ' + (tk ? 'ok' : 'err');
     }
 
     let toastTimer = null;
@@ -888,65 +689,35 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         requestAnimationFrame(() => el.classList.add('show'));
         toastTimer = setTimeout(() => el.classList.remove('show'), 6000);
     }
-
     function showLoading(txt) { $('loadingOverlay').textContent = txt || t('loading'); $('loadingOverlay').classList.add('show'); }
     function hideLoading() { $('loadingOverlay').classList.remove('show'); }
 
-    // ═══════════ ПРОВЕРКА ПАРОЛЯ ═══════════
     function updateStrength() {
-        const input = $('password');
-        const fill = $('strengthFill');
-        const textEl = $('strengthText');
+        const input = $('password'), fill = $('strengthFill'), textEl = $('strengthText');
         if (!input || !fill || !textEl) return;
-
         const val = input.value;
-        let color = '#e0e0e0';
-        let width = '0';
-        let text = val.length > 0 ? t('enterPass') : '';
-
+        let color = '#e0e0e0', width = '0', text = '';
         if (val.length > 0) {
-            const hasDigits = /\d/.test(val);
-            const hasLetters = /[a-zA-Zа-яА-Я]/.test(val);
-            const hasSpecial = /[^a-zA-Zа-яА-Я0-9]/.test(val);
+            const hasDigits = /\d/.test(val), hasLetters = /[a-zA-Zа-яА-Я]/.test(val), hasSpecial = /[^a-zA-Zа-яА-Я0-9]/.test(val);
             const uniqueCount = new Set(val).size;
-
-            if (val.length < 4) {
-                color = '#dc3545'; width = '25%'; text = t('veryWeak') + ' (' + val.length + ')';
-            } else if (val.length < 6 || uniqueCount < 3) {
-                color = '#dc3545'; width = '33%'; text = t('veryWeak');
-            } else if (val.length < 8 && hasDigits && (hasLetters || hasSpecial)) {
-                color = '#fd7e14'; width = '66%'; text = t('mediumPass');
-            } else if (val.length >= 8 && hasDigits && hasLetters && uniqueCount >= 4) {
-                color = '#28a745'; width = '100%'; text = t('strongPass');
-            } else if (val.length >= 6 && uniqueCount >= 3) {
-                color = '#fd7e14'; width = '66%'; text = t('mediumPass');
-            } else {
-                color = '#fd7e14'; width = '50%'; text = t('mediumPass');
-            }
+            if (val.length < 4) { color = '#dc3545'; width = '25%'; text = t('veryWeak') + ' (' + val.length + ')'; }
+            else if (val.length < 6 || uniqueCount < 3) { color = '#dc3545'; width = '33%'; text = t('veryWeak'); }
+            else if (val.length >= 8 && hasDigits && hasLetters && uniqueCount >= 4) { color = '#28a745'; width = '100%'; text = t('strongPass'); }
+            else if (val.length < 8 && hasDigits && (hasLetters || hasSpecial)) { color = '#fd7e14'; width = '66%'; text = t('mediumPass'); }
+            else if (val.length >= 6 && uniqueCount >= 3) { color = '#fd7e14'; width = '66%'; text = t('mediumPass'); }
+            else { color = '#fd7e14'; width = '50%'; text = t('mediumPass'); }
         }
-
-        fill.style.backgroundColor = color;
-        fill.style.width = width;
-        textEl.textContent = text;
-        textEl.style.color = color;
+        fill.style.backgroundColor = color; fill.style.width = width;
+        textEl.textContent = text; textEl.style.color = color;
     }
 
-    function resetCaptcha() {
-        state.captchaVerified = false;
-        const box = $('captchaBox');
-        box.classList.remove('checked', 'loading');
-    }
-
+    function resetCaptcha() { state.captchaVerified = false; $('captchaBox').classList.remove('checked', 'loading'); }
     function initCaptcha() {
         const box = $('captchaBox');
         box.addEventListener('click', () => {
             if (state.captchaVerified || box.classList.contains('loading')) return;
             box.classList.add('loading');
-            setTimeout(() => {
-                box.classList.remove('loading');
-                box.classList.add('checked');
-                state.captchaVerified = true;
-            }, 800 + Math.random() * 600);
+            setTimeout(() => { box.classList.remove('loading'); box.classList.add('checked'); state.captchaVerified = true; }, 800 + Math.random() * 600);
         });
     }
 
@@ -960,12 +731,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             if (res.status === 404) return null;
             if (res.ok) {
                 const info = await res.json();
-                const decoded = decodeURIComponent(escape(atob(info.content.replace(/\s/g, ''))));
-                return JSON.parse(decoded);
+                return JSON.parse(decodeURIComponent(escape(atob(info.content.replace(/\s/g, '')))));
             }
         } catch (e) {}
-        const rawUrl = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}/${fileName}?t=${Date.now()}`;
-        const rawRes = await fetch(rawUrl);
+        const rawRes = await fetch(`https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${BRANCH}/${fileName}?t=${Date.now()}`);
         if (rawRes.status === 404) return null;
         if (!rawRes.ok) throw new Error('HTTP ' + rawRes.status);
         return await rawRes.json();
@@ -976,27 +745,68 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (!token) throw new Error(lang === 'ru' ? 'Токен не установлен.' : 'Token not set.');
         const url = `${API_BASE}${fileName}`;
         let sha = null;
-        const getRes = await fetch(`${url}?ref=${BRANCH}&t=${Date.now()}`, {
-            headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json' }
-        });
+        const getRes = await fetch(`${url}?ref=${BRANCH}&t=${Date.now()}`, { headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json' } });
         if (getRes.status === 401) throw new Error('401');
         if (getRes.ok) sha = (await getRes.json()).sha;
         else if (getRes.status !== 404) throw new Error('GET SHA: ' + getRes.status);
 
-        const json = JSON.stringify(data, null, 2);
-        const content = btoa(unescape(encodeURIComponent(json)));
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
         const body = { message, content, branch: BRANCH };
         if (sha) body.sha = sha;
-
-        const putRes = await fetch(url, {
-            method: 'PUT',
-            headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        });
+        const putRes = await fetch(url, { method: 'PUT', headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
         if (putRes.status === 401) throw new Error('401');
         if (putRes.status === 403) throw new Error('403');
         if (!putRes.ok) throw new Error('PUT ' + putRes.status);
         return true;
+    }
+
+    // ═══════════ ЛОГИ ═══════════
+    function nowStr() {
+        const d = new Date();
+        const p = n => String(n).padStart(2, '0');
+        return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+    }
+
+    async function addLog(actionKey, details) {
+        const line = `${nowStr()} | ${state.currentUser || '—'} | ${t(actionKey)}: ${details}`;
+        state.logs.push(line);
+        // Ограничиваем
+        if (state.logs.length > MAX_LOGS) state.logs = state.logs.slice(-MAX_LOGS);
+        // Пишем в фоне (не блокируем основное действие)
+        writeFile('logs.json', state.logs, 'Log: ' + actionKey).catch(e => console.warn('log write failed', e));
+    }
+
+    async function loadLogs() {
+        try {
+            const result = await readFile('logs.json');
+            state.logs = Array.isArray(result) ? result : [];
+        } catch (e) { state.logs = []; }
+    }
+
+    function renderLogs() {
+        const list = $('logsList');
+        if (!state.logs.length) {
+            list.innerHTML = '<div class="logs-empty">' + t('logsEmpty') + '</div>';
+            return;
+        }
+        // Последние сверху
+        const reversed = state.logs.slice().reverse();
+        list.innerHTML = reversed.map(l => '<div class="log-item">' + escapeHtml(l) + '</div>').join('');
+    }
+
+    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
+
+    async function clearAllLogs() {
+        if (!isAdmin()) { toast('error', t('noRights'), t('onlyAdmin')); return; }
+        if (!confirm(t('logsClearConfirm'))) return;
+        state.logs = [];
+        showLoading(t('saving'));
+        try {
+            await writeFile('logs.json', [], 'Clear logs');
+            renderLogs();
+            toast('success', t('okTitle'), t('logsCleared'));
+        } catch (e) { toast('error', t('errTitle'), e.message); }
+        finally { hideLoading(); }
     }
 
     async function loadAllData() {
@@ -1016,50 +826,40 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         } catch (e) { state.users = {}; return false; }
     }
 
-    const isAdmin = () => state.currentRole === 'admin';
+    const isAdmin = () => state.currentRole === 'admin' || state.currentRole === 'admin1' || state.currentRole === 'admin2';
     const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
+
+    function getUserDisplay(user) {
+        const role = user.role;
+        if (role === 'tech') return t('roleTech') + ' | ' + user.server;
+        return roleLabel(role);
+    }
 
     function renderSection() {
         const cfg = SECTIONS[state.currentSection];
         if (!cfg) return;
-
         $('sectionTitle').textContent = t(cfg.titleKey);
         $('dataHead').innerHTML = '<tr>' + cfg.headers.map(k => `<th>${headerLabel(k)}</th>`).join('') + '</tr>';
-
-        const body = $('dataBody');
-        body.innerHTML = '';
+        const body = $('dataBody'); body.innerHTML = '';
         let count = 0;
-
         state.data[state.currentSection].forEach((row, idx) => {
             const srv = cfg.getServer(row);
             if (state.filter !== 'all' && String(srv) !== state.filter) return;
             count++;
-
             const editable = canEditServer(srv);
             const status = row[cfg.statusIdx] || 'pending';
             const tr = document.createElement('tr');
             let html = '';
-
             for (let i = 0; i < cfg.headers.length; i++) {
                 if (i === cfg.statusIdx) {
-                    html += `<td style="white-space:nowrap">
-                        <span class="status-badge ${status}">${statusLabel(status)}</span>
-                        <button class="gear-btn ${editable ? '' : 'disabled'}" data-idx="${idx}">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                        </button>
-                    </td>`;
-                } else if (i === 0) {
-                    html += `<td class="server-cell">${row[i]}</td>`;
-                } else if (cfg.headers[i] === 'thAmount') {
-                    html += `<td class="money-cell">${formatMoney(row[i])}</td>`;
-                } else {
-                    html += `<td>${row[i]}</td>`;
-                }
+                    html += `<td style="white-space:nowrap"><span class="status-badge ${status}">${statusLabel(status)}</span><button class="gear-btn ${editable ? '' : 'disabled'}" data-idx="${idx}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></td>`;
+                } else if (i === 0) { html += `<td class="server-cell">${row[i]}</td>`; }
+                else if (cfg.headers[i] === 'thAmount') { html += `<td class="money-cell">${formatMoney(row[i])}</td>`; }
+                else { html += `<td>${row[i]}</td>`; }
             }
             tr.innerHTML = html;
             body.appendChild(tr);
         });
-
         $('sectionCounter').textContent = (lang === 'ru' ? 'Найдено записей: ' : 'Found: ') + count;
     }
 
@@ -1068,27 +868,19 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function openStatusMenu(gearBtn, idx) {
         if (state.openMenu && state.openMenu.dataset.idx == idx) { closeAllMenus(); return; }
         closeAllMenus();
-
         const cfg = SECTIONS[state.currentSection];
         const row = state.data[state.currentSection][idx];
         const rect = gearBtn.getBoundingClientRect();
-
         const menu = document.createElement('div');
         menu.className = 'status-menu open';
         menu.dataset.idx = idx;
-
         ['pending', 'clear', 'blocked'].forEach(key => {
             const item = document.createElement('div');
             item.className = 'status-menu-item' + (row[cfg.statusIdx] === key ? ' active' : '');
             item.innerHTML = `<span class="dot ${key}"></span><span>${statusLabel(key)}</span>`;
-
             item.addEventListener('click', async ev => {
                 ev.stopPropagation();
-                if (!canEditServer(cfg.getServer(row))) {
-                    closeAllMenus();
-                    toast('error', t('noRights'), t('noRightsMsg'));
-                    return;
-                }
+                if (!canEditServer(cfg.getServer(row))) { closeAllMenus(); toast('error', t('noRights'), t('noRightsMsg')); return; }
                 const oldStatus = row[cfg.statusIdx];
                 row[cfg.statusIdx] = key;
                 const badge = gearBtn.closest('tr').querySelector('.status-badge');
@@ -1100,6 +892,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 try {
                     await writeFile(cfg.file, state.data[state.currentSection], 'Update ' + state.currentSection);
                     toast('success', t('statusChanged'), cfg.getSummary(row) + ' → ' + statusLabel(key));
+                    addLog('logStatusChanged', t(cfg.titleKey) + ' | ' + cfg.getSummary(row) + ': ' + statusLabel(oldStatus) + ' → ' + statusLabel(key));
                 } catch (e) {
                     row[cfg.statusIdx] = oldStatus;
                     badge.className = 'status-badge ' + oldStatus;
@@ -1109,15 +902,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             });
             menu.appendChild(item);
         });
-
         const mw = 180, mh = 150;
         let top = rect.bottom + 4, left = rect.right - mw;
         if (left < 8) left = 8;
         if (left + mw > window.innerWidth - 8) left = window.innerWidth - mw - 8;
         if (top + mh > window.innerHeight - 8) top = rect.top - mh - 4;
         if (top < 8) top = 8;
-        menu.style.top = top + 'px';
-        menu.style.left = left + 'px';
+        menu.style.top = top + 'px'; menu.style.left = left + 'px';
         document.body.appendChild(menu);
         state.openMenu = menu;
     }
@@ -1140,26 +931,21 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const cfg = SECTIONS[state.currentSection];
         const text = $('uploadTextarea').value.trim();
         if (!text) { toast('error', t('errTitle'), '—'); return; }
-
         let added = 0, skipped = 0;
         const existing = state.data[state.currentSection];
-
         text.split('\n').forEach(line => {
-            line = line.trim();
-            if (!line) return;
+            line = line.trim(); if (!line) return;
             const parsed = cfg.parse(line);
             if (!parsed) { skipped++; return; }
-            existing.push(parsed);
-            added++;
+            existing.push(parsed); added++;
         });
-
         if (added === 0) { toast('error', t('errTitle'), t('parseError')); return; }
-
         $('uploadModal').classList.remove('open');
         showLoading(t('saving'));
         try {
             await writeFile(cfg.file, existing, 'Upload ' + state.currentSection);
             toast('success', t('uploaded'), `${t('added')}: ${added}${skipped > 0 ? ', ' + t('skipped') + ': ' + skipped : ''}`);
+            addLog('logUploaded', t(cfg.titleKey) + ': +' + added + ' (' + state.currentSection + ')');
             renderSection();
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
@@ -1174,6 +960,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         try {
             await writeFile(cfg.file, [], 'Clear ' + state.currentSection);
             toast('success', t('cleared'), '—');
+            addLog('logCleared', t(cfg.titleKey));
             renderSection();
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
@@ -1191,6 +978,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             }
             await Promise.all(promises);
             toast('success', t('cleared'), t('allCleared'));
+            addLog('logClearedAll', '—');
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
     }
@@ -1202,7 +990,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (user.banned.until > Date.now()) return true;
         return false;
     }
-
     function formatBanInfo(user) {
         if (!user.banned || typeof user.banned !== 'object') return '';
         const until = user.banned.until === 0 ? t('bannedForever') : new Date(user.banned.until).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
@@ -1212,7 +999,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function openUserBanModal(uname) {
         const u = state.users[uname];
         if (!u) return;
-        if (u.role === 'admin') { adminMsg(lang === 'ru' ? 'Нельзя забанить админа' : 'Cannot ban admin', 'err'); return; }
+        if (u.role === 'admin' || u.role === 'admin1' || u.role === 'admin2') { adminMsg(lang === 'ru' ? 'Нельзя забанить админа' : 'Cannot ban admin', 'err'); return; }
         state.pendingUserBan = uname;
         $('userBanTarget').textContent = uname + ' (' + t('thServer') + ' ' + u.server + ')';
         $('userBanReason').value = '';
@@ -1226,21 +1013,18 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const uname = state.pendingUserBan;
         const reason = $('userBanReason').value.trim();
         if (!reason) { toast('error', t('errTitle'), t('banReason')); return; }
-
         const hours = parseInt($('userBanDuration').value, 10);
         const until = hours === 0 ? 0 : Date.now() + hours * 3600 * 1000;
-
         const oldBanned = state.users[uname].banned;
         state.users[uname].banned = { reason, until };
-
         $('userBanModal').classList.remove('open');
         state.pendingUserBan = null;
-
         showLoading(t('saving'));
         try {
             await writeFile('users.json', state.users, 'Ban user ' + uname);
             const untilText = until === 0 ? t('bannedForever') : new Date(until).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
             toast('warning', t('userBanned'), `${uname}\n${t('banReasonShort')}: ${reason}\n${t('banUntil')}: ${untilText}`);
+            addLog('logBan', uname + ' | ' + reason + ' | ' + (until === 0 ? t('bannedForever') : hours + 'h'));
             renderAdminUsers();
         } catch (e) {
             state.users[uname].banned = oldBanned;
@@ -1256,6 +1040,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         try {
             await writeFile('users.json', state.users, 'Unban user ' + uname);
             toast('success', t('userUnbanned'), uname);
+            addLog('logUnban', uname);
             renderAdminUsers();
         } catch (e) {
             state.users[uname].banned = oldBanned;
@@ -1270,24 +1055,20 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         Object.keys(state.users).forEach(uname => {
             const u = state.users[uname];
             const isSelf = uname === state.currentUser;
-            const isAdminRow = u.role === 'admin';
+            const isAdminRow = u.role === 'admin' || u.role === 'admin1' || u.role === 'admin2';
             const revealed = state.revealed[uname] === true;
             const banned = isUserBanned(u);
-
             const banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
-            const statusHtml = banned
-                ? `<span class="user-status banned" title="${banTitle}">${t('banned')}</span>`
-                : `<span class="user-status active">${t('active')}</span>`;
-
+            const statusHtml = banned ? `<span class="user-status banned" title="${banTitle}">${t('banned')}</span>` : `<span class="user-status active">${t('active')}</span>`;
             const banBtn = isAdminRow ? '' : (banned
                 ? `<button class="pmabtn success" data-act="unban" data-user="${uname}">${lang === 'ru' ? 'Разблокировать' : 'Unban'}</button>`
                 : `<button class="pmabtn danger" data-act="ban" data-user="${uname}">${t('block')}</button>`);
-
+            const roleClass = u.role === 'admin' ? 'admin' : (u.role === 'admin1' ? 'admin1' : (u.role === 'admin2' ? 'admin2' : 'tech'));
             const tr = document.createElement('tr');
             if (banned) tr.className = 'banned-row';
             tr.innerHTML = `
                 <td style="font-weight:bold;color:var(--accent)">${uname}${isSelf ? ' *' : ''}</td>
-                <td style="text-align:center"><span class="role-badge ${isAdminRow ? 'admin' : 'tech'}">${isAdminRow ? t('roleAdmin') : t('roleTech')}</span></td>
+                <td style="text-align:center"><span class="role-badge ${roleClass}">${roleLabel(u.role)}</span></td>
                 <td style="text-align:center">${u.server}</td>
                 <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••'}</td>
                 <td style="text-align:center">${statusHtml}</td>
@@ -1304,25 +1085,25 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (!isAdmin()) { toast('error', t('noRights'), t('onlyAdmin')); return; }
         const btn = e.target.closest('button[data-act]');
         if (!btn) return;
-        const act = btn.dataset.act;
-        const uname = btn.dataset.user;
-
+        const act = btn.dataset.act, uname = btn.dataset.user;
         if (act === 'toggle') { state.revealed[uname] = !state.revealed[uname]; renderAdminUsers(); return; }
         if (act === 'change') {
-            if (state.users[uname].role === 'admin') { adminMsg(lang === 'ru' ? 'Нельзя менять пароль админа' : 'Cannot change admin password', 'err'); return; }
+            const u = state.users[uname];
+            if (u.role === 'admin' || u.role === 'admin1' || u.role === 'admin2') { adminMsg(lang === 'ru' ? 'Нельзя менять пароль админа' : 'Cannot change admin password', 'err'); return; }
             const np = prompt((lang === 'ru' ? 'Новый пароль для ' : 'New password for ') + uname + ':', '');
             if (np === null) return;
             if (np.length < 4) { adminMsg(lang === 'ru' ? 'Пароль слишком короткий' : 'Password too short', 'err'); return; }
-            const oldPass = state.users[uname].password;
-            state.users[uname].password = np;
+            const oldPass = u.password;
+            u.password = np;
             showLoading(t('saving'));
             try {
                 await writeFile('users.json', state.users, 'Update user password');
                 adminMsg((lang === 'ru' ? 'Пароль сохранён: ' : 'Password saved: ') + uname, 'ok');
                 toast('success', t('okTitle'), uname + ' → ' + np);
+                addLog('logPassChanged', uname);
                 renderAdminUsers();
             } catch (err) {
-                state.users[uname].password = oldPass;
+                u.password = oldPass;
                 adminMsg(t('errTitle') + ': ' + err.message, 'err');
                 toast('error', t('errTitle'), err.message);
             } finally { hideLoading(); }
@@ -1332,38 +1113,24 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (act === 'unban') { unbanUser(uname); return; }
     }
 
-    function adminMsg(text, type) {
-        const el = $('adminMsg');
-        el.textContent = text;
-        el.className = 'admin-msg show ' + type;
-        setTimeout(() => el.classList.remove('show'), 4000);
-    }
+    function adminMsg(text, type) { const el = $('adminMsg'); el.textContent = text; el.className = 'admin-msg show ' + type; setTimeout(() => el.classList.remove('show'), 4000); }
 
     async function handleLogin(e) {
         e.preventDefault();
         const uname = $('username').value.trim();
         const pass = $('password').value;
-
-        // Проверка заполнения
         if (!uname || !pass) {
-            $('username').classList.add('error');
-            $('password').classList.add('error');
-            setTimeout(() => {
-                $('username').classList.remove('error');
-                $('password').classList.remove('error');
-            }, 600);
+            $('username').classList.add('error'); $('password').classList.add('error');
+            setTimeout(() => { $('username').classList.remove('error'); $('password').classList.remove('error'); }, 600);
             toast('error', t('errTitle'), t('fillAll'));
             return;
         }
-
-        // Капча
         if (!state.captchaVerified) {
             $('captchaBox').classList.add('error');
             setTimeout(() => $('captchaBox').classList.remove('error'), 600);
             toast('error', t('errTitle'), t('captchaFail'));
             return;
         }
-
         showLoading(t('checking'));
         const loaded = await loadUsers();
         hideLoading();
@@ -1383,8 +1150,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             toast('error', t('errTitle'), t('wrongPass'));
             return;
         }
-
-        // Проверка бана
         if (isUserBanned(user)) {
             const info = user.banned;
             const untilText = info.until === 0 ? t('bannedForever') : new Date(info.until).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
@@ -1392,7 +1157,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             toast('error', t('youAreBanned'), `${t('banReasonShort')}: ${info.reason}\n${t('bannedUntil')}: ${untilText}`);
             return;
         }
-
         if (user.banned && typeof user.banned === 'object' && user.banned.until !== 0 && user.banned.until <= Date.now()) {
             delete user.banned;
             writeFile('users.json', state.users, 'Auto-unban').catch(() => {});
@@ -1402,40 +1166,38 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         state.currentServer = user.server;
         state.currentRole = user.role;
 
-        $('userBadgeMenu').textContent = uname;
-        $('userBadgeSection').textContent = uname + (isAdmin() ? ' (Admin)' : ' (' + t('thServer') + ' ' + state.currentServer + ')');
-        $('userBadgeAdmin').textContent = uname;
-        $('adminTopBar').style.display = isAdmin() ? 'block' : 'none';
+        const display = getUserDisplay(user);
+        $('userBadgeMenu').textContent = display;
+        $('userBadgeSection').textContent = display;
+        $('userBadgeAdmin').textContent = display;
+        $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
         $('sectionActions').style.display = isAdmin() ? 'grid' : 'none';
+        $('logsClear').style.display = isAdmin() ? 'inline-block' : 'none';
 
         showLoading(t('loading'));
         await loadAllData();
+        await loadLogs();
         hideLoading();
 
         toast('success', t('okTitle'), t('welcomeBack') + uname);
-        setTimeout(() => {
-            $('loginScreen').classList.add('hidden');
-            showScreen('menu');
-        }, 300);
+        addLog('logLogin', uname + ' | ' + roleLabel(user.role));
+        setTimeout(() => { $('loginScreen').classList.add('hidden'); showScreen('menu'); }, 300);
     }
 
     function doLogout() {
+        addLog('logLogout', state.currentUser || '—');
         state.currentUser = ''; state.currentServer = ''; state.currentRole = '';
         state.revealed = {};
         closeAllMenus();
-        $('username').value = '';
-        $('password').value = '';
-        $('strengthFill').style.width = '0';
-        $('strengthText').textContent = '';
+        $('username').value = ''; $('password').value = '';
+        $('strengthFill').style.width = '0'; $('strengthText').textContent = '';
         resetCaptcha();
         hideAllScreens();
         $('loginScreen').classList.remove('hidden');
         toast('info', t('infoTitle'), t('loggedOut'));
     }
 
-    function hideAllScreens() {
-        ['menuScreen', 'sectionScreen', 'adminScreen'].forEach(id => $(id).classList.remove('active'));
-    }
+    function hideAllScreens() { ['menuScreen', 'sectionScreen', 'adminScreen'].forEach(id => $(id).classList.remove('active')); }
     function showScreen(name) {
         hideAllScreens();
         if (name === 'menu') $('menuScreen').classList.add('active');
@@ -1445,9 +1207,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     function openTokenModal() {
         const tk = getToken();
-        $('tokenCurrent').textContent = tk
-            ? (lang === 'ru' ? 'Текущий токен: ' : 'Current token: ') + tk.slice(0, 25) + '...' + tk.slice(-10)
-            : (lang === 'ru' ? 'Текущий токен: не установлен' : 'Current token: not set');
+        $('tokenCurrent').textContent = tk ? (lang === 'ru' ? 'Текущий токен: ' : 'Current token: ') + tk.slice(0, 25) + '...' + tk.slice(-10) : (lang === 'ru' ? 'Текущий токен: не установлен' : 'Current token: not set');
         $('tokenInput').value = '';
         $('tokenModal').classList.add('open');
         setTimeout(() => $('tokenInput').focus(), 200);
@@ -1456,9 +1216,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     function openSettingsModal() {
         $('settingsLangSelect').value = lang;
         const currentAccent = localStorage.getItem('color_accent') || '#3D6DB5';
-        document.querySelectorAll('.color-swatch').forEach(sw => {
-            sw.classList.toggle('selected', sw.dataset.color === currentAccent);
-        });
+        document.querySelectorAll('.color-swatch').forEach(sw => sw.classList.toggle('selected', sw.dataset.color === currentAccent));
         $('settingsModal').classList.add('open');
     }
 
@@ -1467,11 +1225,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         updateTokenStatus();
         initCaptcha();
         updateStrength();
-
-        // Слушаем ввод пароля — обновляем шкалу
         $('password').addEventListener('input', updateStrength);
-
-        // Убираем ошибку при вводе
         $('username').addEventListener('input', function () { this.classList.remove('error'); });
         $('password').addEventListener('input', function () { this.classList.remove('error'); });
 
@@ -1480,22 +1234,24 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('settingsBtnAdmin').addEventListener('click', openSettingsModal);
         $('settingsClose').addEventListener('click', () => $('settingsModal').classList.remove('open'));
 
-        $('settingsLangSelect').addEventListener('change', function () {
-            lang = this.value;
-            localStorage.setItem('lang', lang);
-            applyLanguage();
-        });
+        $('settingsLangSelect').addEventListener('change', function () { lang = this.value; localStorage.setItem('lang', lang); applyLanguage(); });
 
         $('colorPicker').addEventListener('click', e => {
-            const sw = e.target.closest('.color-swatch');
-            if (!sw) return;
-            const accent = sw.dataset.color;
-            const dark = sw.dataset.dark;
-            localStorage.setItem('color_accent', accent);
-            localStorage.setItem('color_dark', dark);
-            applyColor(accent, dark);
+            const sw = e.target.closest('.color-swatch'); if (!sw) return;
+            localStorage.setItem('color_accent', sw.dataset.color);
+            localStorage.setItem('color_dark', sw.dataset.dark);
+            applyColor(sw.dataset.color, sw.dataset.dark);
             toast('success', t('okTitle'), t('settingsSaved'));
         });
+
+        // Логи
+        $('logsBtn').addEventListener('click', () => {
+            if (!isAdmin()) { toast('error', t('noRights'), t('onlyAdmin')); return; }
+            renderLogs();
+            $('logsModal').classList.add('open');
+        });
+        $('logsClose').addEventListener('click', () => $('logsModal').classList.remove('open'));
+        $('logsClear').addEventListener('click', clearAllLogs);
 
         $('setTokenBtn').addEventListener('click', openTokenModal);
         $('tokenCancel').addEventListener('click', () => $('tokenModal').classList.remove('open'));
@@ -1525,23 +1281,19 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 const section = this.dataset.section;
                 if (section === 'admin') {
                     if (!isAdmin()) { toast('error', t('noRights'), t('onlyAdmin')); return; }
-                    showScreen('admin');
-                    renderAdminUsers();
-                    return;
+                    showScreen('admin'); renderAdminUsers(); return;
                 }
                 if (!SECTIONS[section]) return;
                 state.currentSection = section;
                 state.filter = 'all';
                 document.querySelectorAll('.server-filter').forEach(b => b.classList.remove('active'));
                 document.querySelector('.server-filter[data-server="all"]').classList.add('active');
-                showScreen('section');
-                renderSection();
+                showScreen('section'); renderSection();
             });
         });
 
         $('serverFilters').addEventListener('click', e => {
-            const btn = e.target.closest('.server-filter');
-            if (!btn) return;
+            const btn = e.target.closest('.server-filter'); if (!btn) return;
             document.querySelectorAll('.server-filter').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             state.filter = btn.dataset.server;
@@ -1550,8 +1302,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         });
 
         $('dataBody').addEventListener('click', e => {
-            const gear = e.target.closest('.gear-btn');
-            if (!gear) return;
+            const gear = e.target.closest('.gear-btn'); if (!gear) return;
             e.stopPropagation();
             const idx = parseInt(gear.dataset.idx, 10);
             if (isNaN(idx)) return;
@@ -1561,9 +1312,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             openStatusMenu(gear, idx);
         });
 
-        document.addEventListener('click', e => {
-            if (!e.target.closest('.status-menu') && !e.target.closest('.gear-btn')) closeAllMenus();
-        });
+        document.addEventListener('click', e => { if (!e.target.closest('.status-menu') && !e.target.closest('.gear-btn')) closeAllMenus(); });
         window.addEventListener('scroll', closeAllMenus, true);
         window.addEventListener('resize', closeAllMenus);
 
@@ -1572,10 +1321,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('uploadConfirm').addEventListener('click', confirmUpload);
         $('clearBtn').addEventListener('click', clearSection);
 
-        $('userBanCancel').addEventListener('click', () => {
-            $('userBanModal').classList.remove('open');
-            state.pendingUserBan = null;
-        });
+        $('userBanCancel').addEventListener('click', () => { $('userBanModal').classList.remove('open'); state.pendingUserBan = null; });
         $('userBanConfirm').addEventListener('click', confirmUserBan);
 
         $('adminBody').addEventListener('click', handleAdminClick);
@@ -1589,4 +1335,4 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 })();
 </script>
 </body>
-    </html>
+</html>
