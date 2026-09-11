@@ -1,10 +1,43 @@
 {
-  "Admin1": { "password": "curator123", "server": "all", "role": "admin1" },
-  "Admin2": { "password": "deputy123", "server": "all", "role": "admin2" },
-  "Admin3": { "password": "dev123", "server": "all", "role": "admin3" },
-  "Tech_61": { "password": "123456", "server": "61", "role": "tech" },
-  "Tech_62": { "password": "123456", "server": "62", "role": "tech" },
-  "Tech_63": { "password": "123456", "server": "63", "role": "tech" },
-  "Tech_64": { "password": "123456", "server": "64", "role": "tech" },
-  "Tech_65": { "password": "123456", "server": "65", "role": "tech" }
+  "Admin1": {
+    "password": "curator123",
+    "server": "all",
+    "role": "admin1"
+  },
+  "Admin2": {
+    "password": "deputy123",
+    "server": "all",
+    "role": "admin2"
+  },
+  "Admin3": {
+    "password": "dev123",
+    "server": "all",
+    "role": "admin3",
+    "registered": 1789138543212
+  },
+  "Tech_61": {
+    "password": "123456",
+    "server": "61",
+    "role": "tech"
+  },
+  "Tech_62": {
+    "password": "123456",
+    "server": "62",
+    "role": "tech"
+  },
+  "Tech_63": {
+    "password": "123456",
+    "server": "63",
+    "role": "tech"
+  },
+  "Tech_64": {
+    "password": "123456",
+    "server": "64",
+    "role": "tech"
+  },
+  "Tech_65": {
+    "password": "123456",
+    "server": "65",
+    "role": "tech"
+  }
 }
