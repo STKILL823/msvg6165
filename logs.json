@@ -78,5 +78,15 @@
     "type": "status",
     "action": "Смена статуса",
     "details": "Уровни 3,4,5 | Chantha_Semchenok: Ожидание → Нету нарушений"
+  },
+  {
+    "t": 1789130031464,
+    "time": "11.09.2026 15:33:51",
+    "user": "Tech_61",
+    "role": "tech",
+    "ip": "193.22.231.11",
+    "type": "logout",
+    "action": "Выход из системы",
+    "details": "Tech_61"
   }
 ]
