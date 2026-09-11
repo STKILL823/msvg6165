@@ -28,5 +28,15 @@
     "type": "status",
     "action": "Смена статуса",
     "details": "Трейды | Sanek_Tramp → Edik_Stark: Ожидание → Нету нарушений"
+  },
+  {
+    "t": 1789129785555,
+    "time": "11.09.2026 15:29:45",
+    "user": "Admin3",
+    "role": "admin3",
+    "ip": "193.22.231.11",
+    "type": "logout",
+    "action": "Выход из системы",
+    "details": "Admin3"
   }
 ]
