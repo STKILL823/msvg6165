@@ -22,7 +22,6 @@ body { font-family: Arial, sans-serif; background: #fff; color: #000; min-height
 
 fieldset { border: 1px solid #ccc; padding: 12px; margin-bottom: 15px; background: #f9f9f9; text-align: left; }
 legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 13px; font-weight: bold; color: #333; margin-left: 10px; }
-.lang-select { width: 100%; padding: 8px; border: 1px solid #aaa; font-size: 14px; font-family: inherit; background: #fff; cursor: pointer; }
 
 .auth-table { width: 100%; border-collapse: collapse; }
 .auth-table td { padding-bottom: 12px; vertical-align: top; }
@@ -62,22 +61,20 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
 .screen.active { display: flex; }
 
-/* ═══════ ШАПКА С ДВУМЯ СТРОКАМИ ═══════ */
+/* Шапка */
 .menu-header { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: #fff; padding: 0; display: flex; flex-direction: column; }
-
-.header-top { display: flex; align-items: center; gap: 5px; padding: 6px 12px; border-bottom: 1px solid rgba(255,255,255,0.15); flex-wrap: wrap; }
-.header-link { background: transparent; border: none; color: rgba(255,255,255,0.85); font-family: inherit; font-size: 12px; cursor: pointer; padding: 6px 10px; text-decoration: none; border-radius: 0; }
-.header-link:hover { color: #fff; background: rgba(255,255,255,0.1); }
-.header-link.primary { color: #fff; font-weight: bold; font-size: 13px; }
-.header-link.spacer { margin-left: auto; }
-
-.header-main { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; gap: 8px; flex-wrap: wrap; }
+.header-main { display: flex; justify-content: space-between; align-items: center; padding: 12px; gap: 8px; flex-wrap: wrap; }
 .brand { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: bold; font-style: italic; }
 .brand-ship { font-size: 22px; line-height: 1; }
 .user-info { display: flex; align-items: center; gap: 8px; font-size: 12px; }
 .user-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; font-weight: bold; }
 .logout-btn { padding: 5px 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; }
 .logout-btn:hover { background: rgba(255,255,255,0.25); }
+
+/* Кнопка "Панель управления" сверху */
+.admin-top-bar { padding: 6px 12px 0; }
+.admin-top-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; padding: 6px 12px; font-weight: bold; }
+.admin-top-btn:hover { background: rgba(255,255,255,0.25); }
 
 .menu-title { color: #000; font-size: 15px; font-weight: bold; padding: 15px 15px 0; margin: 0; text-align: left; }
 .menu-content { flex: 1; padding: 15px 15px 140px 15px; }
@@ -148,12 +145,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .admin-tools { padding: 12px; background: #fff; border: 1px solid #ccc; margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
 .admin-tools .pmabtn { flex: 1; text-align: center; min-width: 140px; }
 
-/* ═══════ ЛИЦЕНЗИЯ ═══════ */
 .license-footer { text-align: center; font-size: 11px; color: #999; padding: 20px 15px 10px; line-height: 1.5; }
 .license-footer a { color: var(--accent); text-decoration: none; }
 .license-footer a:hover { text-decoration: underline; }
 
-/* ═══════ МОДАЛКИ ═══════ */
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10001; display: none; justify-content: center; align-items: center; padding: 15px; }
 .modal.open { display: flex; }
 .modal-content { background: #fff; padding: 18px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
@@ -171,7 +166,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .token-modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
 .token-current { background: #f0f6fc; padding: 8px 10px; border: 1px solid #b8c8d8; font-size: 11px; color: var(--accent); font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; }
 
-/* ═══════ НАСТРОЙКИ: палитра цветов ═══════ */
 .color-picker { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 8px; }
 .color-swatch { width: 100%; aspect-ratio: 1; border: 3px solid transparent; cursor: pointer; position: relative; }
 .color-swatch:hover { transform: scale(1.05); }
@@ -212,15 +206,14 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .captcha-checkbox { width: 28px; height: 28px; }
     .captcha-label { font-size: 14px; }
 
-    .header-top { padding: 4px 8px; }
-    .header-link { font-size: 11px; padding: 6px 8px; }
-    .header-link.primary { font-size: 12px; }
     .header-main { padding: 8px 10px; }
     .brand { font-size: 13px; gap: 6px; }
     .brand-ship { font-size: 20px; }
     .user-info { font-size: 11px; gap: 6px; }
     .user-badge { padding: 3px 8px; font-size: 11px; max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .logout-btn { padding: 5px 8px; font-size: 11px; }
+    .admin-top-bar { padding: 6px 10px 0; }
+    .admin-top-btn { font-size: 12px; padding: 6px 10px; }
     .menu-title { font-size: 14px; padding: 12px 12px 0; }
 
     .bottom-bar { padding: 6px; gap: 4px; display: grid; grid-template-columns: repeat(3, 1fr); }
@@ -318,16 +311,15 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
 <div class="screen" id="menuScreen">
     <div class="menu-header">
-        <div class="header-top">
-            <button class="header-link primary" data-section="admin" id="adminBtn" style="display:none;" data-i18n="adminPanel">Панель управления</button>
-            <button class="header-link spacer" id="settingsBtn" data-i18n="settings">Настройки</button>
-        </div>
         <div class="header-main">
             <div class="brand"><span class="brand-ship">⛵</span> Массовая выгрузка 61-65</div>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeMenu">—</span>
                 <button class="logout-btn" data-logout data-i18n="logout">Выход</button>
             </div>
+        </div>
+        <div class="admin-top-bar" id="adminTopBar" style="display:none;">
+            <button class="admin-top-btn" data-section="admin" id="adminBtn" data-i18n="adminPanel">Панель управления</button>
         </div>
     </div>
     <div class="menu-title" data-i18n="menuTitle">Главное меню</div>
@@ -338,14 +330,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         <button class="pmabtn" data-section="levels" data-i18n="levels">Уровни 3,4,5</button>
         <button class="pmabtn" data-section="works" data-i18n="works">Работы</button>
         <button class="pmabtn" data-section="pays" data-i18n="pays">/pay</button>
+        <button class="pmabtn" id="settingsBtn" data-i18n="settings">Настройки</button>
     </div>
 </div>
 
 <div class="screen" id="sectionScreen">
     <div class="menu-header">
-        <div class="header-top">
-            <button class="header-link spacer" id="settingsBtnSection" data-i18n="settings">Настройки</button>
-        </div>
         <div class="header-main">
             <div class="brand"><span class="brand-ship">⛵</span> Массовая выгрузка 61-65</div>
             <div class="user-info">
@@ -378,14 +368,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
     <div class="bottom-bar">
         <button class="pmabtn" id="backFromSection" data-i18n="back">Назад</button>
+        <button class="pmabtn" id="settingsBtnSection" data-i18n="settings">Настройки</button>
     </div>
 </div>
 
 <div class="screen" id="adminScreen">
     <div class="menu-header">
-        <div class="header-top">
-            <button class="header-link spacer" id="settingsBtnAdmin" data-i18n="settings">Настройки</button>
-        </div>
         <div class="header-main">
             <div class="brand"><span class="brand-ship">⛵</span> Массовая выгрузка 61-65</div>
             <div class="user-info">
@@ -419,10 +407,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
     <div class="bottom-bar">
         <button class="pmabtn" id="backFromAdmin" data-i18n="back">Назад</button>
+        <button class="pmabtn" id="settingsBtnAdmin" data-i18n="settings">Настройки</button>
     </div>
 </div>
 
-<!-- Модалка настроек -->
 <div class="modal" id="settingsModal">
     <div class="modal-content">
         <div class="modal-title" data-i18n="settingsTitle">Настройки</div>
@@ -516,7 +504,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     const BRANCH = 'main';
     const API_BASE = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`;
 
-    // ═══════════ ПЕРЕВОДЫ ═══════════
     const i18n = {
         ru: {
             welcome: 'Добро пожаловать технический специалист!',
@@ -715,7 +702,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             const key = el.getAttribute('data-i18n');
             el.textContent = t(key);
         });
-        document.getElementById('langSelect') && (document.getElementById('langSelect').value = lang);
         document.getElementById('settingsLangSelect').value = lang;
         if (state.currentSection) renderSection();
         if (isAdmin() && document.getElementById('adminScreen').classList.contains('active')) renderAdminUsers();
@@ -723,11 +709,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         document.title = lang === 'ru' ? 'Массовая выгрузка 61-65' : 'Mass upload 61-65';
     }
 
-    // ═══════════ ЦВЕТА ═══════════
     function applyColor(accent, dark) {
         document.documentElement.style.setProperty('--accent', accent);
         document.documentElement.style.setProperty('--accent-dark', dark);
-        // Обновляем селект свотчей
         document.querySelectorAll('.color-swatch').forEach(sw => {
             sw.classList.toggle('selected', sw.dataset.color === accent);
         });
@@ -739,7 +723,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         applyColor(accent, dark);
     }
 
-    // ═══════════ СЕКЦИИ ═══════════
     const SECTIONS = {
         trades: {
             file: 'trades.json', titleKey: 'trades',
@@ -1278,7 +1261,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         $('userBadgeMenu').textContent = uname;
         $('userBadgeSection').textContent = uname + (isAdmin() ? ' (Admin)' : ' (' + t('thServer') + ' ' + state.currentServer + ')');
         $('userBadgeAdmin').textContent = uname;
-        $('adminBtn').style.display = isAdmin() ? 'inline-block' : 'none';
+        $('adminTopBar').style.display = isAdmin() ? 'block' : 'none';
         $('sectionActions').style.display = isAdmin() ? 'grid' : 'none';
 
         showLoading(t('loading'));
@@ -1326,8 +1309,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 
     function openSettingsModal() {
         $('settingsLangSelect').value = lang;
+        const currentAccent = localStorage.getItem('color_accent') || '#3D6DB5';
         document.querySelectorAll('.color-swatch').forEach(sw => {
-            const currentAccent = localStorage.getItem('color_accent') || '#3D6DB5';
             sw.classList.toggle('selected', sw.dataset.color === currentAccent);
         });
         $('settingsModal').classList.add('open');
@@ -1338,7 +1321,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         updateTokenStatus();
         initCaptcha();
 
-        // Настройки
+        // Настройки — все кнопки снизу
         $('settingsBtn').addEventListener('click', openSettingsModal);
         $('settingsBtnSection').addEventListener('click', openSettingsModal);
         $('settingsBtnAdmin').addEventListener('click', openSettingsModal);
@@ -1361,7 +1344,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             toast('success', t('okTitle'), t('settingsSaved'));
         });
 
-        // Токен
         $('setTokenBtn').addEventListener('click', openTokenModal);
         $('tokenCancel').addEventListener('click', () => $('tokenModal').classList.remove('open'));
         $('tokenSave').addEventListener('click', () => {
