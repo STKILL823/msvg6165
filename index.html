@@ -2,222 +2,585 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Массовая выгрузка 61-65</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛵</text></svg>">
 <style>
-:root {
-    --accent: #3D6DB5;
-    --accent-dark: #2c4f8a;
-    --accent-bright: #4a7fd4;
-}
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; background: #fff; color: #000; min-height: 100vh; font-size: 14px; }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+    color: #000;
+    min-height: 100vh;
+    font-size: 13px;
+    line-height: 1.4;
+}
 
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+/* ═══════════ ЛОГИН phpMyAdmin ═══════════ */
+.login-wrap {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes fadeInDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slideInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes slideInLeft { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes popIn { 0% { opacity: 0; transform: scale(0.8); } 60% { opacity: 1; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
-@keyframes shake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
-@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.08); } 100% { transform: scale(1); } }
-@keyframes spin { to { transform: rotate(360deg); } }
-@keyframes rowAppear { from { opacity: 0; transform: translateX(-15px); } to { opacity: 1; transform: translateX(0); } }
-@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
-/* ═══════ ЛОГИН ═══════ */
-.login-container { width: 100%; max-width: 450px; padding: 20px; margin: 0 auto; text-align: center; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; animation: fadeInUp 0.5s ease; }
-.login-container.hidden { display: none; }
-.logo-ship { font-size: 56px; line-height: 1; display: block; margin-bottom: 5px; animation: popIn 0.6s ease, float 3s ease-in-out infinite; }
-.logo-text { font-size: 22px; font-weight: bold; font-style: italic; margin: 5px 0; color: var(--accent); }
-.welcome-text { font-size: 14px; font-weight: bold; margin-bottom: 20px; color: #333; }
-fieldset { border: 1px solid #ccc; padding: 12px; margin-bottom: 15px; background: #f9f9f9; text-align: left; animation: fadeInUp 0.5s ease 0.2s backwards; }
-legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size: 13px; font-weight: bold; color: #333; margin-left: 10px; }
-.auth-table { width: 100%; border-collapse: collapse; }
-.auth-table td { padding-bottom: 12px; vertical-align: top; }
-.auth-table .label-cell { width: 110px; padding-top: 8px; font-size: 13px; color: #333; }
-.auth-table input, .auth-table select { width: 100%; padding: 8px 10px; border: 1px solid #aaa; background: #fff; color: #000; font-size: 14px; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
-.auth-table input:focus, .auth-table select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(61,109,181,0.2); }
-.auth-table input.error { border-color: #dc3545; box-shadow: 0 0 0 2px rgba(220,53,69,0.2); animation: shake 0.4s ease; }
-.strength-meter { height: 5px; background: #e0e0e0; margin-top: 6px; overflow: hidden; }
-.strength-fill { height: 100%; width: 0; transition: all 0.35s ease; }
-.strength-text { font-size: 11px; margin-top: 4px; color: #666; }
+/* Логотип */
+.pma-logo {
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.pma-logo svg {
+    width: 100px;
+    height: 90px;
+    display: block;
+    margin: 0 auto;
+}
+.pma-title {
+    font-size: 24px;
+    font-weight: bold;
+    font-style: italic;
+    margin: 0 0 5px 0;
+    line-height: 1.1;
+}
+.pma-title .php { color: #F89C0E; }
+.pma-title .myadmin { color: #3D6DB5; }
+.pma-welcome {
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    margin: 0 0 20px 0;
+}
 
-/* ═══════ КАПЧА ═══════ */
-.captcha-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.captcha-img-wrap { position: relative; display: inline-flex; align-items: center; }
-.captcha-canvas { display: block; border: 1px solid #aaa; background: #f0f0f0; cursor: pointer; user-select: none; border-radius: 3px; transition: border-color 0.2s; }
-.captcha-canvas:hover { border-color: var(--accent); }
-.captcha-refresh { background: #fff; border: 1px solid #aaa; color: #333; font-size: 16px; width: 32px; height: 40px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.2s; border-radius: 3px; font-family: inherit; }
-.captcha-refresh:hover { background: #f0f6fc; border-color: var(--accent); color: var(--accent); transform: rotate(180deg); }
-.captcha-input { width: 120px !important; padding: 8px 10px !important; font-size: 15px !important; font-family: Consolas, monospace !important; text-align: center; letter-spacing: 2px; text-transform: uppercase; }
+/* Fieldset */
+.pma-fieldset {
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    padding: 12px 15px;
+    margin: 0 auto 20px auto;
+    text-align: left;
+    width: 100%;
+    position: relative;
+    border-radius: 0;
+}
+.pma-fieldset legend {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 8px;
+    border-radius: 3px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.pma-fieldset legend .help-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    background: #3D6DB5;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: help;
+    font-style: normal;
+}
 
-.auth-footer { background: #e8e8e8; border-top: 1px solid #ccc; padding: 10px 12px; margin: 0 -12px -12px -12px; display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
-.auth-footer .pmabtn { padding: 6px 12px; font-size: 12px; }
-.pmabtn { display: inline-block; padding: 5px 12px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 12px; font-family: inherit; cursor: pointer; text-decoration: none; white-space: nowrap; line-height: 1.4; transition: all 0.15s ease; border-radius: 3px; }
-.pmabtn:hover { background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%); border-color: var(--accent); color: #1a3d6e; box-shadow: 0 1px 2px rgba(61,109,181,0.2); }
-.pmabtn:active { background: linear-gradient(to bottom, #d0dce8 0%, #b8c8d8 100%); box-shadow: inset 0 1px 2px rgba(0,0,0,0.15); transform: translateY(1px); }
-.pmabtn:disabled { opacity: 0.4; cursor: not-allowed; }
-.pmabtn.primary { background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%); border-color: var(--accent); color: #1a3d6e; font-weight: bold; }
-.pmabtn.primary:hover { background: linear-gradient(to bottom, #dce8f5 0%, #c8dcf0 100%); }
-.pmabtn.danger { background: linear-gradient(to bottom, #fce8e8 0%, #f5c8c8 100%); color: #721c24; border-color: #c0392b; font-weight: bold; }
-.pmabtn.danger:hover { background: linear-gradient(to bottom, #f5c8c8 0%, #e8b0b0 100%); }
-.pmabtn.success { background: linear-gradient(to bottom, #e8f5ec 0%, #d0e8d8 100%); color: #155724; border-color: #27ae60; font-weight: bold; }
-.pmabtn.success:hover { background: linear-gradient(to bottom, #d0e8d8 0%, #b8d8c0 100%); }
+/* Таблица полей */
+.pma-form-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.pma-form-table td {
+    padding: 8px 0;
+    vertical-align: middle;
+}
+.pma-form-table td.label-cell {
+    width: 110px;
+    font-size: 13px;
+    color: #000;
+    padding-right: 10px;
+}
+.pma-form-table td.input-cell {
+    /* никаких лишних отступов */
+}
+.pma-form-table input,
+.pma-form-table select {
+    width: 100%;
+    padding: 4px 6px;
+    border: 1px solid #aaa;
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    font-family: inherit;
+    border-radius: 0;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.pma-form-table input:focus,
+.pma-form-table select:focus {
+    outline: none;
+    border-color: #3D6DB5;
+    box-shadow: 0 0 0 2px rgba(61,109,181,0.2);
+}
+.pma-form-table input.error {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 2px rgba(220,53,69,0.2);
+    animation: shake 0.35s ease;
+}
+@keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-4px); }
+    40% { transform: translateX(4px); }
+    60% { transform: translateX(-3px); }
+    80% { transform: translateX(3px); }
+}
 
-.login-license { position: fixed; bottom: 15px; left: 0; right: 0; text-align: center; font-size: 11px; color: #999; padding: 0 20px; line-height: 1.4; pointer-events: none; }
+/* Шкала пароля */
+.pma-strength {
+    height: 4px;
+    background: #e0e0e0;
+    margin-top: 4px;
+    overflow: hidden;
+}
+.pma-strength-fill {
+    height: 100%;
+    width: 0;
+    transition: all 0.3s ease;
+}
+.pma-strength-text {
+    font-size: 11px;
+    color: #666;
+    margin-top: 3px;
+}
 
-/* ═══════ ЭКРАНЫ ═══════ */
+/* КАПЧА */
+.pma-captcha-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+.pma-captcha-canvas {
+    display: block;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    user-select: none;
+    background: #fff;
+    flex-shrink: 0;
+}
+.pma-captcha-refresh {
+    width: 26px;
+    height: 36px;
+    border: 1px solid #aaa;
+    background: linear-gradient(to bottom, #fefefe, #eeeeee);
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    padding: 0;
+    flex-shrink: 0;
+}
+.pma-captcha-refresh:hover {
+    background: linear-gradient(to bottom, #f0f6fc, #dce8f5);
+    border-color: #3D6DB5;
+}
+.pma-captcha-input {
+    flex: 1;
+    min-width: 80px;
+    padding: 4px 6px;
+    border: 1px solid #aaa;
+    background: #fff;
+    color: #000;
+    font-size: 13px;
+    font-family: Consolas, monospace;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 0;
+}
+
+/* Footer с кнопкой */
+.pma-footer {
+    background: #d8dde3;
+    border-top: 1px solid #ccc;
+    padding: 10px 15px;
+    margin: 15px -15px -12px -15px;
+    text-align: right;
+}
+
+/* Кнопка phpMyAdmin */
+.pma-btn {
+    display: inline-block;
+    padding: 3px 12px;
+    border: 1px solid #aaa;
+    background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%);
+    color: #000;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: normal;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s ease;
+    line-height: 1.5;
+}
+.pma-btn:hover {
+    background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%);
+    border-color: #3D6DB5;
+    color: #1a3d6e;
+}
+.pma-btn:active {
+    background: linear-gradient(to bottom, #d0dce8 0%, #b8c8d8 100%);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+}
+.pma-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Кнопки Токен + Авторизация рядом */
+.pma-footer-btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.pma-footer-btns .pma-btn { flex: 1; text-align: center; }
+
+/* ═══════════ ЭКРАНЫ ═══════════ */
 .screen { display: none; width: 100%; min-height: 100vh; flex-direction: column; background: #f4f6f9; }
-.screen.active { display: flex; animation: fadeIn 0.4s ease; }
-.menu-header { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: #fff; padding: 0; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.1); animation: fadeInDown 0.4s ease; }
-.header-main { display: flex; justify-content: flex-end; align-items: center; padding: 12px 16px; gap: 8px; flex-wrap: wrap; }
-.user-info { display: flex; align-items: center; gap: 8px; font-size: 12px; animation: slideInRight 0.5s ease; }
-.user-badge { background: rgba(255,255,255,0.2); padding: 5px 12px; font-weight: bold; animation: fadeIn 0.5s ease; display: inline-flex; align-items: center; border-radius: 3px; color: #fff; transition: all 0.2s; }
-.user-badge:hover { background: rgba(255,255,255,0.35); transform: translateY(-1px); }
-.header-btn { padding: 5px 12px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; white-space: nowrap; border-radius: 3px; font-weight: bold; }
-.header-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
-.header-btn:active { transform: translateY(0); }
-.header-btn.profile { background: rgba(255,255,255,0.2); }
-.header-btn.profile:hover { background: rgba(255,255,255,0.4); }
-.admin-top-bar { padding: 8px 16px; display: flex; gap: 8px; flex-wrap: wrap; animation: fadeInUp 0.4s ease 0.1s backwards; border-top: 1px solid rgba(255,255,255,0.15); }
-.admin-top-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; padding: 6px 14px; font-weight: bold; transition: all 0.2s; border-radius: 3px; }
-.admin-top-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-1px); box-shadow: 0 3px 10px rgba(0,0,0,0.2); }
-.menu-title { color: #000; font-size: 15px; font-weight: bold; padding: 20px 20px 0; margin: 0; text-align: left; animation: slideInLeft 0.4s ease; }
-.menu-content { flex: 1; padding: 15px 20px 140px 20px; }
-.bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #f4f4f4; border-top: 1px solid #ccc; padding: 10px 12px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.06); }
-.bottom-bar .pmabtn { padding: 8px 16px; font-size: 12px; animation: fadeInUp 0.4s ease backwards; }
-.bottom-bar .pmabtn:nth-child(1) { animation-delay: 0.05s; }
-.bottom-bar .pmabtn:nth-child(2) { animation-delay: 0.1s; }
-.bottom-bar .pmabtn:nth-child(3) { animation-delay: 0.15s; }
-.bottom-bar .pmabtn:nth-child(4) { animation-delay: 0.2s; }
-.bottom-bar .pmabtn:nth-child(5) { animation-delay: 0.25s; }
+.screen.active { display: flex; animation: fadeIn 0.3s ease; }
 
-.section-container, .admin-container { flex: 1; padding: 20px 20px 140px 20px; max-width: 1400px; margin: 0 auto; width: 100%; animation: fadeInUp 0.4s ease; }
-.section-title, .admin-title { color: #000; font-size: 17px; font-weight: bold; margin: 0 0 15px 0; text-align: left; }
+.menu-header {
+    background: linear-gradient(135deg, #3D6DB5 0%, #2c4f8a 100%);
+    color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.header-main {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.user-info { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-left: auto; }
+.user-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 3px;
+    transition: background 0.15s;
+}
+.user-badge:hover { background: rgba(255,255,255,0.35); }
+.header-btn {
+    padding: 5px 12px;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    font-weight: bold;
+}
+.header-btn:hover { background: rgba(255,255,255,0.3); }
+.header-btn.profile { background: rgba(255,255,255,0.15); }
+
+.admin-top-bar {
+    padding: 8px 20px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+.admin-top-btn {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 6px 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: background 0.15s;
+}
+.admin-top-btn:hover { background: rgba(255,255,255,0.3); }
+
+.menu-title { color: #000; font-size: 15px; font-weight: bold; padding: 20px 20px 0; margin: 0; text-align: left; }
+.menu-content { flex: 1; padding: 15px 20px 140px 20px; }
+
+.bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: #f4f4f4;
+    border-top: 1px solid #ccc;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 100;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.06);
+}
+
+.section-container, .admin-container {
+    flex: 1;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+.section-title, .admin-title {
+    color: #000;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 0 0 15px 0;
+    text-align: left;
+}
 .section-actions { margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
-.section-actions .pmabtn { flex: 1; text-align: center; }
-.server-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 15px; animation: fadeInUp 0.4s ease 0.1s backwards; }
-.server-filter { padding: 6px 14px; border: 1px solid #aaa; background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%); color: #333; font-size: 12px; font-family: inherit; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; border-radius: 3px; }
-.server-filter:hover { background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%); border-color: var(--accent); transform: translateY(-1px); }
-.server-filter.active { background: linear-gradient(to bottom, var(--accent), var(--accent-dark)); color: #fff; border-color: var(--accent-dark); font-weight: bold; box-shadow: 0 2px 6px rgba(61,109,181,0.4); }
+.section-actions .pma-btn { flex: 1; text-align: center; }
+
+.server-filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 15px; }
+.server-filter {
+    padding: 6px 14px;
+    border: 1px solid #aaa;
+    background: linear-gradient(to bottom, #fefefe 0%, #eeeeee 100%);
+    color: #333;
+    font-size: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+.server-filter:hover {
+    background: linear-gradient(to bottom, #f0f6fc 0%, #dce8f5 100%);
+    border-color: #3D6DB5;
+}
+.server-filter.active {
+    background: linear-gradient(to bottom, #3D6DB5, #2c4f8a);
+    color: #fff;
+    border-color: #2c4f8a;
+    font-weight: bold;
+}
 .counter { font-size: 12px; color: #666; margin-bottom: 10px; text-align: left; }
 
-.table-wrap { background: #fff; border: 1px solid #ccc; overflow-x: auto; -webkit-overflow-scrolling: touch; animation: scaleIn 0.4s ease 0.15s backwards; }
+.table-wrap { background: #fff; border: 1px solid #ccc; overflow-x: auto; }
 .data-table, .admin-table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; }
-.data-table th, .admin-table th { background: linear-gradient(to bottom, #f0f0f0 0%, #dcdcdc 100%); border: 1px solid #ccc; padding: 6px 8px; text-align: left; font-weight: bold; color: #333; white-space: nowrap; position: sticky; top: 0; font-size: 12px; }
-.data-table td, .admin-table td { border: 1px solid #e0e0e0; padding: 5px 8px; color: #333; white-space: nowrap; }
-.data-table tbody tr, .admin-table tbody tr { animation: rowAppear 0.3s ease backwards; }
-.data-table tbody tr:nth-child(1), .admin-table tbody tr:nth-child(1) { animation-delay: 0.02s; }
-.data-table tbody tr:nth-child(2), .admin-table tbody tr:nth-child(2) { animation-delay: 0.04s; }
-.data-table tbody tr:nth-child(3), .admin-table tbody tr:nth-child(3) { animation-delay: 0.06s; }
-.data-table tbody tr:nth-child(4), .admin-table tbody tr:nth-child(4) { animation-delay: 0.08s; }
-.data-table tbody tr:nth-child(5), .admin-table tbody tr:nth-child(5) { animation-delay: 0.1s; }
+.data-table th, .admin-table th {
+    background: linear-gradient(to bottom, #f0f0f0 0%, #dcdcdc 100%);
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    font-size: 12px;
+}
+.data-table td, .admin-table td {
+    border: 1px solid #e0e0e0;
+    padding: 5px 8px;
+    color: #333;
+    white-space: nowrap;
+}
 .data-table tbody tr:nth-child(even), .admin-table tbody tr:nth-child(even) { background: #fafafa; }
 .data-table tbody tr:hover, .admin-table tbody tr:hover { background: #eef4fb; }
 .admin-table tbody tr.banned-row { background: #f8d7da !important; }
-.admin-table tbody tr.banned-row:hover { background: #f5c6cb !important; }
 .admin-table tbody tr.admin3-row { background: #e8f5e9 !important; }
-.admin-table tbody tr.admin3-row:hover { background: #d4edda !important; }
-.server-cell { text-align: center; font-weight: bold; color: var(--accent); }
-.money-cell { text-align: right; font-family: Consolas, monospace; font-weight: bold; white-space: nowrap; }
 
-.status-select { appearance: none; -webkit-appearance: none; border: 2px solid transparent; padding: 5px 28px 5px 10px; font-size: 12px; font-family: inherit; font-weight: bold; cursor: pointer; border-radius: 3px; min-width: 150px; transition: all 0.2s ease; background-repeat: no-repeat; background-position: right 8px center; background-size: 12px; color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.status-select:hover:not(:disabled) { transform: scale(1.02); box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
-.status-select:focus { outline: none; box-shadow: 0 0 0 2px rgba(61,109,181,0.3); }
+.server-cell { text-align: center; font-weight: bold; color: #3D6DB5; }
+.money-cell { text-align: right; font-family: Consolas, monospace; font-weight: bold; }
+
+.status-select {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 2px solid transparent;
+    padding: 5px 26px 5px 10px;
+    font-size: 12px;
+    font-family: inherit;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+    min-width: 150px;
+    transition: all 0.2s;
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 12px;
+    color: #fff;
+}
+.status-select:disabled { opacity: 0.45; cursor: not-allowed; }
 .status-select.sel-pending { background-color: #6b7280; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e"); border-color: #4b5563; }
-.status-select.sel-pending:hover:not(:disabled) { background-color: #7a8290; }
 .status-select.sel-clear { background-color: #16a34a; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e"); border-color: #15803d; }
-.status-select.sel-clear:hover:not(:disabled) { background-color: #22c55e; }
 .status-select.sel-blocked { background-color: #dc2626; background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3'%3e%3cpolyline points='6 9 12 15 18 9'/%3e%3c/svg%3e"); border-color: #991b1b; }
-.status-select.sel-blocked:hover:not(:disabled) { background-color: #ef4444; }
-.status-select:disabled { opacity: 0.45; cursor: not-allowed; filter: grayscale(0.5); }
-.status-select:disabled:hover { transform: none; }
-.status-select.changed { animation: pulse 0.5s ease; }
-.status-select option { background: #fff; color: #333; font-weight: bold; padding: 8px; }
 
 .role-badge { padding: 2px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; border-radius: 2px; }
 .role-badge.admin1 { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .role-badge.admin2 { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
 .role-badge.admin3 { background: #d4edda; color: #155724; border-color: #28a745; }
 .role-badge.tech { background: #e9ecef; color: #495057; border-color: #ced4da; }
-.user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; white-space: nowrap; border-radius: 2px; }
+.user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; border-radius: 2px; }
 .user-status.active { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .user-status.banned { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
+
 .admin-hint { font-size: 12px; color: #888; margin-bottom: 15px; font-style: italic; }
 .admin-msg { padding: 10px 14px; margin-bottom: 12px; font-size: 12px; border: 1px solid; display: none; border-radius: 3px; }
-.admin-msg.show { display: block; animation: fadeInUp 0.3s ease; }
+.admin-msg.show { display: block; }
 .admin-msg.ok { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .admin-msg.err { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 .admin-tools { padding: 12px; background: #fff; border: 1px solid #ccc; margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
-.admin-tools .pmabtn { flex: 1; text-align: center; min-width: 140px; }
+.admin-tools .pma-btn { flex: 1; text-align: center; min-width: 140px; }
 
-/* ═══════ МОДАЛКИ ═══════ */
-.modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10001; display: none; justify-content: center; align-items: center; padding: 15px; animation: fadeIn 0.25s ease; }
-.modal.open { display: flex; }
-.modal-content { background: #fff; padding: 20px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: popIn 0.35s cubic-bezier(0.22, 1, 0.36, 1); border: 1px solid #ccc; border-radius: 4px; }
+/* Модалки */
+.modal {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 10001;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+.modal.open { display: flex; animation: fadeIn 0.2s ease; }
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 .modal-content.wide { max-width: 900px; }
-.modal-title { font-size: 16px; font-weight: bold; color: var(--accent); margin-bottom: 14px; }
+.modal-title { font-size: 16px; font-weight: bold; color: #3D6DB5; margin-bottom: 14px; }
 .modal-title.danger { color: #dc3545; }
 .modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; }
-.modal textarea { width: 100%; min-height: 200px; padding: 10px; border: 1px solid #aaa; background: #fff; color: #333; font-family: Consolas, monospace; font-size: 13px; resize: vertical; border-radius: 3px; }
-.modal textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(61,109,181,0.2); }
+.modal textarea {
+    width: 100%;
+    min-height: 200px;
+    padding: 10px;
+    border: 1px solid #aaa;
+    background: #fff;
+    color: #333;
+    font-family: Consolas, monospace;
+    font-size: 13px;
+    resize: vertical;
+}
 .modal label { display: block; font-size: 13px; color: #333; margin-bottom: 5px; margin-top: 12px; font-weight: bold; }
-.modal input[type="text"], .modal input[type="password"], .modal select { width: 100%; padding: 8px 10px; border: 1px solid #aaa; background: #fff; color: #333; font-size: 14px; font-family: inherit; border-radius: 3px; }
-.modal input:focus, .modal select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(61,109,181,0.2); }
+.modal input[type="text"], .modal input[type="password"], .modal select {
+    width: 100%; padding: 8px 10px; border: 1px solid #aaa; background: #fff; color: #333; font-size: 14px; font-family: inherit;
+}
 .modal-actions { margin-top: 18px; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap; }
-.modal-actions .pmabtn { flex: 1; text-align: center; min-width: 100px; }
-.token-modal-textarea { width: 100%; min-height: 100px; padding: 10px; border: 1px solid #aaa; background: #fff; color: #333; font-family: Consolas, monospace; font-size: 12px; word-break: break-all; resize: vertical; border-radius: 3px; }
-.token-modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; line-height: 1.5; }
-.token-current { background: #f0f6fc; padding: 10px 12px; border: 1px solid #b8c8d8; font-size: 11px; color: var(--accent); font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; border-radius: 3px; }
+.modal-actions .pma-btn { flex: 1; text-align: center; min-width: 100px; }
 
-/* ═══════ ПРОФИЛЬ ═══════ */
-.profile-avatar-big { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-dark)); display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 32px; font-weight: bold; color: #fff; box-shadow: 0 4px 15px rgba(61,109,181,0.4); animation: popIn 0.5s ease; }
+/* Token */
+.token-modal-textarea { width: 100%; min-height: 100px; padding: 10px; border: 1px solid #aaa; font-family: Consolas, monospace; font-size: 12px; word-break: break-all; }
+.token-modal-hint { font-size: 12px; color: #666; margin-bottom: 10px; }
+.token-current { background: #f0f6fc; padding: 10px; border: 1px solid #b8c8d8; font-size: 11px; color: #3D6DB5; font-family: Consolas, monospace; word-break: break-all; margin-bottom: 10px; }
+
+/* Профиль */
+.profile-avatar-big {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3D6DB5, #2c4f8a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+}
 .profile-name { text-align: center; font-size: 20px; font-weight: bold; color: #333; margin-bottom: 4px; }
 .profile-role-text { text-align: center; font-size: 13px; color: #666; margin-bottom: 20px; }
-.profile-field { padding: 12px 14px; background: #f9f9f9; border: 1px solid #ddd; border-radius: 3px; margin-bottom: 10px; animation: fadeInUp 0.4s ease backwards; transition: all 0.2s ease; }
-.profile-field:nth-of-type(1) { animation-delay: 0.15s; }
-.profile-field:nth-of-type(2) { animation-delay: 0.2s; }
-.profile-field:nth-of-type(3) { animation-delay: 0.25s; }
-.profile-field:hover { border-color: var(--accent); transform: translateX(3px); }
+.profile-field {
+    padding: 12px 14px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
 .profile-field .pf-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
 .profile-field .pf-value { font-size: 14px; color: #333; font-weight: bold; }
-.profile-field .pf-value.accent { color: var(--accent); }
+.profile-field .pf-value.accent { color: #3D6DB5; }
 .profile-field .pf-value.success { color: #27ae60; }
 
-/* ═══════ ЛОГИ ═══════ */
+/* Логи */
 .logs-toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
-.logs-toolbar input { flex: 1; min-width: 200px; padding: 8px 12px; border: 1px solid #ccc; font-size: 13px; font-family: inherit; background: #fff; color: #333; border-radius: 3px; }
-.logs-toolbar input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(61,109,181,0.15); }
-.logs-toolbar select { padding: 8px 12px; border: 1px solid #ccc; font-size: 13px; font-family: inherit; background: #fff; color: #333; cursor: pointer; border-radius: 3px; }
-.logs-toolbar select:focus { outline: none; border-color: var(--accent); }
+.logs-toolbar input {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    font-size: 13px;
+    font-family: inherit;
+    background: #fff;
+    color: #333;
+}
+.logs-toolbar select { padding: 8px 12px; border: 1px solid #ccc; font-size: 13px; font-family: inherit; background: #fff; color: #333; cursor: pointer; }
 .logs-stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
-.logs-stat-card { background: #fff; border: 1px solid #ddd; border-left: 3px solid var(--accent); padding: 12px 14px; border-radius: 3px; animation: fadeInUp 0.4s ease backwards; transition: all 0.25s ease; }
-.logs-stat-card:nth-child(1) { animation-delay: 0.05s; }
-.logs-stat-card:nth-child(2) { animation-delay: 0.1s; }
-.logs-stat-card:nth-child(3) { animation-delay: 0.15s; }
-.logs-stat-card:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(61,109,181,0.15); border-left-width: 5px; }
-.logs-stat-card .stat-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
-.logs-stat-card .stat-value { font-size: 22px; font-weight: bold; color: var(--accent); line-height: 1; }
+.logs-stat-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-left: 3px solid #3D6DB5;
+    padding: 12px 14px;
+    border-radius: 3px;
+}
+.logs-stat-card .stat-label { font-size: 10px; color: #888; text-transform: uppercase; margin-bottom: 6px; }
+.logs-stat-card .stat-value { font-size: 22px; font-weight: bold; color: #3D6DB5; line-height: 1; }
 .logs-list-container { background: #fff; border: 1px solid #ddd; max-height: 500px; overflow-y: auto; border-radius: 3px; }
-.logs-date-header { position: sticky; top: 0; background: linear-gradient(to bottom, #f5f5f5, #ececec); border-bottom: 1px solid #ddd; padding: 8px 14px; font-size: 12px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 0.5px; z-index: 1; }
-.logs-row { display: grid; grid-template-columns: 90px 130px 130px 1fr; gap: 10px; padding: 10px 14px; border-bottom: 1px solid #f0f0f0; font-size: 12.5px; transition: all 0.2s; align-items: center; animation: slideInLeft 0.35s ease backwards; }
-.logs-row:last-child { border-bottom: none; }
-.logs-row:hover { background: #f0f6fc; padding-left: 18px; }
-.logs-time { color: #888; font-family: Consolas, monospace; font-size: 11.5px; white-space: nowrap; }
-.logs-user { display: flex; align-items: center; gap: 6px; font-weight: bold; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.logs-user-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; flex-shrink: 0; }
+.logs-date-header {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(to bottom, #f5f5f5, #ececec);
+    border-bottom: 1px solid #ddd;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    text-transform: uppercase;
+    z-index: 1;
+}
+.logs-row {
+    display: grid;
+    grid-template-columns: 90px 130px 130px 1fr;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 12.5px;
+    align-items: center;
+}
+.logs-row:hover { background: #f0f6fc; }
+.logs-time { color: #888; font-family: Consolas, monospace; font-size: 11.5px; }
+.logs-user { display: flex; align-items: center; gap: 6px; font-weight: bold; color: #3D6DB5; }
+.logs-user-avatar { width: 22px; height: 22px; border-radius: 50%; background: #3D6DB5; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; }
 .logs-user.role-admin1 .logs-user-avatar { background: #28a745; }
 .logs-user.role-admin2 .logs-user-avatar { background: #17a2b8; }
 .logs-user.role-admin3 .logs-user-avatar { background: #f39c12; color: #000; }
-.logs-ip { color: #6f42c1; font-family: Consolas, monospace; font-size: 11.5px; white-space: nowrap; }
+.logs-ip { color: #6f42c1; font-family: Consolas, monospace; font-size: 11.5px; }
 .logs-action { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .logs-action-icon { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .logs-action-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; color: #333; }
-.logs-action-details { color: #888; font-size: 11.5px; display: block; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; }
+.logs-action-details { color: #888; font-size: 11.5px; display: block; margin-top: 2px; }
 .logs-row.type-login .logs-action-icon { background: #28a745; }
 .logs-row.type-logout .logs-action-icon { background: #999; }
 .logs-row.type-status .logs-action-icon { background: #fd7e14; }
@@ -228,123 +591,162 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
 .logs-row.type-pass .logs-action-icon { background: #a855f7; }
 .logs-row.type-login .logs-action-text { color: #28a745; font-weight: bold; }
 .logs-row.type-ban .logs-action-text { color: #dc3545; font-weight: bold; }
-.logs-row.type-unban .logs-action-text { color: #28a745; font-weight: bold; }
-.logs-row.type-status .logs-action-text { color: #fd7e14; }
 .logs-empty { text-align: center; padding: 60px 20px; color: #999; font-size: 13px; }
-.logs-empty svg { width: 48px; height: 48px; opacity: 0.3; margin-bottom: 10px; }
 
-/* ═══════ TOAST ═══════ */
-.toast { position: fixed; top: 15px; right: 15px; left: 15px; max-width: 400px; margin-left: auto; padding: 14px 40px 14px 18px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); font-size: 13px; color: #333; z-index: 9999; overflow: hidden; opacity: 0; transform: translateY(-120%) scale(0.9); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; border: 1px solid #ddd; border-radius: 4px; }
-.toast.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+/* Toast */
+.toast {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    left: 15px;
+    max-width: 400px;
+    margin-left: auto;
+    padding: 14px 40px 14px 18px;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    font-size: 13px;
+    color: #333;
+    z-index: 9999;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    opacity: 0;
+    transform: translateY(-120%);
+    transition: opacity 0.35s, transform 0.35s;
+    pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .toast::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
 .toast.error::before { background: #dc3545; }
 .toast.success::before { background: #28a745; }
-.toast.info::before { background: var(--accent); }
+.toast.info::before { background: #3D6DB5; }
 .toast.warning::before { background: #fd7e14; }
 .toast-title { font-weight: bold; margin-bottom: 3px; }
 .toast.error .toast-title { color: #dc3545; }
 .toast.success .toast-title { color: #28a745; }
-.toast.info .toast-title { color: var(--accent); }
-.toast.warning .toast-title { color: #fd7e14; }
+.toast.info .toast-title { color: #3D6DB5; }
 .toast-msg { color: #555; font-size: 12.5px; white-space: pre-line; }
-.toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 2px 6px; font-family: inherit; transition: all 0.2s; }
-.toast-close:hover { color: #333; transform: rotate(90deg); }
-.loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 15px; color: var(--accent); font-weight: bold; }
-.loading-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
-.loading-overlay::after { content: ''; width: 24px; height: 24px; border: 3px solid #e0e0e0; border-top-color: var(--accent); border-radius: 50%; margin-left: 12px; animation: spin 0.8s linear infinite; }
+.toast-close { position: absolute; top: 8px; right: 10px; background: none; border: none; font-size: 18px; color: #999; cursor: pointer; padding: 2px 6px; }
+
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    font-size: 15px;
+    color: #3D6DB5;
+    font-weight: bold;
+}
+.loading-overlay.show { display: flex; }
+.loading-overlay::after {
+    content: '';
+    width: 24px;
+    height: 24px;
+    border: 3px solid #e0e0e0;
+    border-top-color: #3D6DB5;
+    border-radius: 50%;
+    margin-left: 12px;
+    animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 @media (max-width: 700px) {
     body { font-size: 13px; }
-    .login-container { padding: 12px; }
-    .logo-ship { font-size: 40px; }
-    .logo-text { font-size: 17px; }
-    .auth-table .label-cell { width: 90px; font-size: 12px; }
-    .auth-table input, .auth-table select { padding: 10px; font-size: 15px; }
-    .pmabtn { padding: 8px 12px; font-size: 12px; }
-    .auth-footer { flex-direction: column; }
-    .auth-footer .pmabtn { width: 100%; text-align: center; }
+    .login-wrap { padding: 20px 12px; }
+    .pma-logo svg { width: 80px; height: 72px; }
+    .pma-title { font-size: 20px; }
+    .pma-form-table td.label-cell { width: 90px; font-size: 12px; }
+    .pma-form-table input, .pma-form-table select { padding: 8px; font-size: 14px; }
+    .pma-btn { padding: 6px 12px; font-size: 13px; }
     .header-main { padding: 8px 10px; gap: 4px; }
     .user-info { font-size: 11px; gap: 4px; }
     .user-badge { padding: 3px 8px; font-size: 11px; max-width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .header-btn { padding: 5px 8px; font-size: 11px; }
     .admin-top-bar { padding: 8px 10px; gap: 6px; }
     .admin-top-btn { font-size: 11px; padding: 6px 10px; }
-    .menu-title { font-size: 14px; padding: 15px 12px 0; }
     .bottom-bar { padding: 8px; gap: 6px; display: grid; grid-template-columns: repeat(3, 1fr); }
-    .bottom-bar .pmabtn { padding: 10px 6px; font-size: 11px; width: 100%; text-align: center; min-width: 0; white-space: normal; line-height: 1.2; }
+    .bottom-bar .pma-btn { padding: 10px 6px; font-size: 11px; width: 100%; text-align: center; min-width: 0; }
     .section-container, .admin-container { padding: 15px 10px 160px 10px; }
-    .section-title, .admin-title { font-size: 15px; }
-    .section-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-    .section-actions .pmabtn { width: 100%; }
     .server-filters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
     .server-filter { padding: 8px 4px; font-size: 12px; text-align: center; }
-    .modal { padding: 10px; }
-    .modal-content { padding: 16px; }
-    .modal-title { font-size: 15px; }
-    .modal-actions { flex-direction: column; }
-    .modal-actions .pmabtn { width: 100%; }
-    .admin-tools { display: grid; grid-template-columns: 1fr; padding: 10px; }
-    .admin-tools .pmabtn { width: 100%; }
-    .toast { top: 10px; right: 10px; left: 10px; padding: 12px 36px 12px 14px; font-size: 12px; }
-    .data-table, .admin-table { font-size: 11px; }
-    .data-table th, .admin-table th { padding: 5px; font-size: 10px; }
-    .data-table td, .admin-table td { padding: 4px 5px; }
-    .status-select { min-width: 130px; font-size: 11px; padding: 5px 24px 5px 8px; background-size: 12px; }
-    .logs-row { grid-template-columns: 1fr; gap: 3px; padding: 10px; }
+    .logs-row { grid-template-columns: 1fr; gap: 3px; }
     .logs-stats-bar { grid-template-columns: 1fr 1fr 1fr; }
-    .logs-stat-card { padding: 8px; }
-    .logs-stat-card .stat-value { font-size: 16px; }
-}
-@media (max-width: 400px) {
-    .bottom-bar { grid-template-columns: repeat(2, 1fr); }
-    .server-filters { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
 <body>
 
-<div class="login-container" id="loginScreen">
-    <span class="logo-ship">⛵</span>
-    <div class="logo-text">Массовая выгрузка 61-65</div>
-    <div class="welcome-text">Добро пожаловать технический специалист!</div>
+<!-- ═══════════ ЛОГИН phpMyAdmin ═══════════ -->
+<div class="login-wrap" id="loginScreen">
+    <!-- SVG логотип phpMyAdmin - парусник -->
+    <div class="pma-logo">
+        <svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#B8B8B8">
+                <path d="M100 10 L90 15 L85 30 L100 25 L115 30 L110 15 Z" opacity="0.6"/>
+                <path d="M100 30 L60 90 L100 80 Z" opacity="0.7"/>
+                <path d="M100 30 L140 90 L100 80 Z" opacity="0.5"/>
+                <path d="M100 85 L50 155 L100 145 Z" opacity="0.7"/>
+                <path d="M100 85 L150 155 L100 145 Z" opacity="0.5"/>
+                <path d="M40 155 L160 155 L100 170 Z" opacity="0.8"/>
+                <path d="M60 20 Q80 15 100 18 Q120 15 140 20 Q120 22 100 20 Q80 22 60 20 Z" opacity="0.4"/>
+            </g>
+        </svg>
+    </div>
+    <div class="pma-title">
+        <span class="php">php</span><span class="myadmin">MyAdmin</span>
+    </div>
+    <div class="pma-welcome">Добро пожаловать в phpMyAdmin</div>
+
     <form id="loginForm" novalidate>
-        <fieldset>
-            <legend>Авторизация</legend>
-            <table class="auth-table">
+        <!-- Язык -->
+        <fieldset class="pma-fieldset">
+            <legend>Язык (Language)</legend>
+            <select class="lang-select" id="langSelect" style="width:100%;padding:4px 6px;border:1px solid #aaa;background:#fff;font-size:13px;font-family:inherit;">
+                <option value="ru">Русский - Russian</option>
+                <option value="en">English</option>
+            </select>
+        </fieldset>
+
+        <!-- Авторизация -->
+        <fieldset class="pma-fieldset" style="padding-bottom:0;">
+            <legend>Авторизация <span class="help-icon">?</span></legend>
+            <table class="pma-form-table">
                 <tr>
-                    <td class="label-cell"><label>Пользователь:</label></td>
-                    <td><input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
+                    <td class="label-cell"><label for="username">Пользователь:</label></td>
+                    <td class="input-cell"><input type="text" id="username" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></td>
                 </tr>
                 <tr>
-                    <td class="label-cell"><label>Пароль:</label></td>
-                    <td>
+                    <td class="label-cell"><label for="password">Пароль:</label></td>
+                    <td class="input-cell">
                         <input type="password" id="password" autocomplete="off">
-                        <div class="strength-meter"><div class="strength-fill" id="strengthFill"></div></div>
-                        <div class="strength-text" id="strengthText"></div>
+                        <div class="pma-strength"><div class="pma-strength-fill" id="strengthFill"></div></div>
+                        <div class="pma-strength-text" id="strengthText"></div>
                     </td>
                 </tr>
                 <tr>
-                    <td class="label-cell"><label>Капча:</label></td>
-                    <td>
-                        <div class="captcha-row">
-                            <div class="captcha-img-wrap">
-                                <canvas class="captcha-canvas" id="captchaCanvas" width="140" height="40" title="Нажми, чтобы обновить"></canvas>
-                            </div>
-                            <button type="button" class="captcha-refresh" id="captchaRefresh" title="Обновить">↻</button>
-                            <input type="text" id="captchaInput" class="captcha-input" placeholder="Код" maxlength="6" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                    <td class="label-cell"><label for="captchaInput">Капча:</label></td>
+                    <td class="input-cell">
+                        <div class="pma-captcha-row">
+                            <canvas class="pma-captcha-canvas" id="captchaCanvas" width="130" height="36" title="Нажми, чтобы обновить"></canvas>
+                            <button type="button" class="pma-captcha-refresh" id="captchaRefresh" title="Обновить">↻</button>
+                            <input type="text" id="captchaInput" class="pma-captcha-input" placeholder="Код" maxlength="6" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                         </div>
                     </td>
                 </tr>
             </table>
-            <div class="auth-footer">
-                <button type="button" class="pmabtn" id="setTokenBtn">Ввести токен</button>
-                <button type="submit" class="pmabtn primary">Войти в систему</button>
+            <div class="pma-footer">
+                <div class="pma-footer-btns">
+                    <button type="button" class="pma-btn" id="setTokenBtn">Ввести токен</button>
+                    <button type="submit" class="pma-btn" style="font-weight:bold;">Авторизация</button>
+                </div>
             </div>
         </fieldset>
     </form>
 </div>
-<div class="login-license" id="loginLicense">© 2026 Массовая выгрузка 61-65. Все права защищены.</div>
 
+<!-- ═══════════ МЕНЮ ═══════════ -->
 <div class="screen" id="menuScreen">
     <div class="menu-header">
         <div class="header-main">
@@ -362,14 +764,15 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
     <div class="menu-title">Главное меню</div>
     <div class="menu-content"></div>
     <div class="bottom-bar">
-        <button class="pmabtn" data-section="trades">Трейды</button>
-        <button class="pmabtn" data-section="unique">Уникальная</button>
-        <button class="pmabtn" data-section="levels">Уровни 3,4,5</button>
-        <button class="pmabtn" data-section="works">Работы</button>
-        <button class="pmabtn" data-section="pays">/pay</button>
+        <button class="pma-btn" data-section="trades">Трейды</button>
+        <button class="pma-btn" data-section="unique">Уникальная</button>
+        <button class="pma-btn" data-section="levels">Уровни 3,4,5</button>
+        <button class="pma-btn" data-section="works">Работы</button>
+        <button class="pma-btn" data-section="pays">/pay</button>
     </div>
 </div>
 
+<!-- ═══════════ РАЗДЕЛ ═══════════ -->
 <div class="screen" id="sectionScreen">
     <div class="menu-header">
         <div class="header-main">
@@ -383,8 +786,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
     <div class="section-container">
         <div class="section-title" id="sectionTitle">—</div>
         <div class="section-actions" id="sectionActions">
-            <button class="pmabtn" id="uploadBtn">Загрузить данные</button>
-            <button class="pmabtn danger" id="clearBtn">Очистить</button>
+            <button class="pma-btn" id="uploadBtn">Загрузить данные</button>
+            <button class="pma-btn" id="clearBtn">Очистить</button>
         </div>
         <div class="server-filters" id="serverFilters">
             <button class="server-filter active" data-server="all">Все</button>
@@ -400,10 +803,11 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         </div>
     </div>
     <div class="bottom-bar">
-        <button class="pmabtn" id="backFromSection">Назад</button>
+        <button class="pma-btn" id="backFromSection">Назад</button>
     </div>
 </div>
 
+<!-- ═══════════ АДМИН ═══════════ -->
 <div class="screen" id="adminScreen">
     <div class="menu-header">
         <div class="header-main">
@@ -419,7 +823,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         <div class="admin-hint">Разработчик защищён, остальные админы не могут взаимодействовать</div>
         <div class="admin-msg" id="adminMsg"></div>
         <div class="admin-tools">
-            <button class="pmabtn danger" id="clearAllBtn">Очистить все разделы</button>
+            <button class="pma-btn" id="clearAllBtn">Очистить все разделы</button>
         </div>
         <div class="table-wrap">
             <table class="admin-table">
@@ -438,10 +842,11 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         </div>
     </div>
     <div class="bottom-bar">
-        <button class="pmabtn" id="backFromAdmin">Назад</button>
+        <button class="pma-btn" id="backFromAdmin">Назад</button>
     </div>
 </div>
 
+<!-- МОДАЛКИ -->
 <div class="modal" id="profileModal">
     <div class="modal-content">
         <div class="profile-avatar-big" id="profileAvatar">?</div>
@@ -460,7 +865,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
             <div class="pf-value" id="profileRole">—</div>
         </div>
         <div class="modal-actions">
-            <button class="pmabtn" id="profileClose">Закрыть</button>
+            <button class="pma-btn" id="profileClose">Закрыть</button>
         </div>
     </div>
 </div>
@@ -490,7 +895,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         </div>
         <div class="logs-list-container" id="logsList"></div>
         <div class="modal-actions">
-            <button class="pmabtn" id="logsClose">Закрыть</button>
+            <button class="pma-btn" id="logsClose">Закрыть</button>
         </div>
     </div>
 </div>
@@ -503,9 +908,9 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         <label>Токен:</label>
         <textarea id="tokenInput" class="token-modal-textarea" placeholder="github_pat_..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
         <div class="modal-actions">
-            <button class="pmabtn danger" id="tokenClear">Удалить</button>
-            <button class="pmabtn" id="tokenCancel">Отмена</button>
-            <button class="pmabtn primary" id="tokenSave">Сохранить</button>
+            <button class="pma-btn" id="tokenClear">Удалить</button>
+            <button class="pma-btn" id="tokenCancel">Отмена</button>
+            <button class="pma-btn" id="tokenSave" style="font-weight:bold;">Сохранить</button>
         </div>
     </div>
 </div>
@@ -516,8 +921,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         <div class="modal-hint" id="uploadModalHint"></div>
         <textarea id="uploadTextarea" placeholder="..."></textarea>
         <div class="modal-actions">
-            <button class="pmabtn" id="uploadCancel">Отмена</button>
-            <button class="pmabtn primary" id="uploadConfirm">Загрузить</button>
+            <button class="pma-btn" id="uploadCancel">Отмена</button>
+            <button class="pma-btn" id="uploadConfirm" style="font-weight:bold;">Загрузить</button>
         </div>
     </div>
 </div>
@@ -539,8 +944,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
             <option value="0">Навсегда</option>
         </select>
         <div class="modal-actions">
-            <button class="pmabtn" id="userBanCancel">Отмена</button>
-            <button class="pmabtn danger" id="userBanConfirm">Заблокировать</button>
+            <button class="pma-btn" id="userBanCancel">Отмена</button>
+            <button class="pma-btn" id="userBanConfirm" style="font-weight:bold;">Заблокировать</button>
         </div>
     </div>
 </div>
@@ -624,7 +1029,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
     function getToken() { return localStorage.getItem('gh_token') || ''; }
     function setToken(tk) { if (tk) localStorage.setItem('gh_token', tk); else localStorage.removeItem('gh_token'); }
 
-    // ═══════════ КАПЧА С КАРТИНКОЙ ═══════════
+    // ═══════════ КАПЧА ═══════════
     function generateCaptcha() {
         const canvas = $('captchaCanvas');
         const ctx = canvas.getContext('2d');
@@ -634,6 +1039,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         state.captchaCode = code;
 
         const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
 
         // Фон
         const gradient = ctx.createLinearGradient(0, 0, w, h);
@@ -660,14 +1066,14 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
             ctx.fill();
         }
 
-        // Буквы/цифры
+        // Буквы
         const colors = ['#1a3d6e', '#2c4f8a', '#3D6DB5', '#c0392b', '#27ae60', '#8e44ad'];
         for (let i = 0; i < code.length; i++) {
-            const fontSize = 22 + Math.random() * 6;
+            const fontSize = 20 + Math.random() * 6;
             ctx.font = `bold ${fontSize}px Arial`;
             ctx.textBaseline = 'middle';
             ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
-            const x = 15 + i * ((w - 30) / code.length);
+            const x = 12 + i * ((w - 24) / code.length);
             const y = h / 2 + (Math.random() * 6 - 3);
             ctx.save();
             ctx.translate(x, y);
@@ -690,7 +1096,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         return input === state.captchaCode;
     }
 
-    // ═══════════ РАЗНОЕ ═══════════
+    // ═══════════ TOAST ═══════════
     let toastTimer = null;
     function toast(type, title, msg) {
         const el = $('toast');
@@ -705,6 +1111,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
     function showLoading(txt) { $('loadingOverlay').textContent = txt || 'Загрузка...'; $('loadingOverlay').classList.add('show'); }
     function hideLoading() { $('loadingOverlay').classList.remove('show'); }
 
+    // ═══════════ ТРЕКЕР ВРЕМЕНИ ═══════════
     function timeKey(uname) { return 'profile_time_' + uname; }
     function getSavedTime(uname) { return parseInt(localStorage.getItem(timeKey(uname)) || '0', 10) || 0; }
     function flushTime() {
@@ -771,14 +1178,13 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         const val = input.value;
         let color = '#e0e0e0', width = '0', text = '';
         if (val.length > 0) {
-            const hasDigits = /\d/.test(val), hasLetters = /[a-zA-Zа-яА-Я]/.test(val), hasSpecial = /[^a-zA-Zа-яА-Я0-9]/.test(val);
+            const hasDigits = /\d/.test(val), hasLetters = /[a-zA-Zа-яА-Я]/.test(val);
             const uniqueCount = new Set(val).size;
-            if (val.length < 4) { color = '#dc3545'; width = '25%'; text = 'Очень слабый пароль'; }
-            else if (val.length < 6 || uniqueCount < 3) { color = '#dc3545'; width = '33%'; text = 'Очень слабый пароль'; }
-            else if (val.length >= 8 && hasDigits && hasLetters && uniqueCount >= 4) { color = '#28a745'; width = '100%'; text = 'Надёжный пароль'; }
-            else if (val.length < 8 && hasDigits && (hasLetters || hasSpecial)) { color = '#fd7e14'; width = '66%'; text = 'Средний пароль'; }
-            else if (val.length >= 6 && uniqueCount >= 3) { color = '#fd7e14'; width = '66%'; text = 'Средний пароль'; }
-            else { color = '#fd7e14'; width = '50%'; text = 'Средний пароль'; }
+            if (val.length < 4) { color = '#dc3545'; width = '25%'; text = 'Очень слабый'; }
+            else if (val.length < 6 || uniqueCount < 3) { color = '#dc3545'; width = '33%'; text = 'Очень слабый'; }
+            else if (val.length >= 8 && hasDigits && hasLetters && uniqueCount >= 4) { color = '#28a745'; width = '100%'; text = 'Надёжный'; }
+            else if (val.length < 8 && hasDigits && hasLetters) { color = '#fd7e14'; width = '66%'; text = 'Средний'; }
+            else { color = '#fd7e14'; width = '66%'; text = 'Средний'; }
         }
         fill.style.backgroundColor = color; fill.style.width = width;
         textEl.textContent = text; textEl.style.color = color;
@@ -856,9 +1262,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         };
         state.logs.push(logEntry);
         if (state.logs.length > MAX_LOGS) state.logs = state.logs.slice(-MAX_LOGS);
-        try {
-            await writeFile('logs.json', state.logs, 'Log: ' + actionType + ' by ' + state.currentUser);
-        } catch (e) { console.warn('log write failed', e); }
+        try { await writeFile('logs.json', state.logs, 'Log: ' + actionType + ' by ' + state.currentUser); }
+        catch (e) { console.warn('log write failed', e); }
     }
 
     async function loadLogs() {
@@ -895,7 +1300,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         $('statActions').textContent = actionsToday;
 
         if (!filtered.length) {
-            list.innerHTML = '<div class="logs-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg><br>Логов пока нет</div>';
+            list.innerHTML = '<div class="logs-empty">Логов пока нет</div>';
             return;
         }
 
@@ -903,7 +1308,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
 
         let html = '';
         let lastDate = '';
-        let idx = 0;
         filtered.forEach(l => {
             const dt = new Date(l.t || Date.now());
             const dateStr = dateOnly(dt);
@@ -917,13 +1321,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
             const details = l.details ? '<span class="logs-action-details">' + escapeHtml(l.details) + '</span>' : '';
             const initials = (l.user || '?').substring(0, 2).toUpperCase();
             html +=
-                '<div class="logs-row type-' + (l.type || 'info') + '" style="animation-delay:' + (idx * 0.02) + 's">' +
+                '<div class="logs-row type-' + (l.type || 'info') + '">' +
                     '<div class="logs-time">' + timeStr + '</div>' +
                     '<div class="logs-user ' + roleCls + '"><span class="logs-user-avatar">' + initials + '</span>' + escapeHtml(l.user || '—') + '</div>' +
                     '<div class="logs-ip">' + escapeHtml(l.ip || '—') + '</div>' +
                     '<div class="logs-action"><span class="logs-action-icon"></span><span class="logs-action-text">' + escapeHtml(action) + details + '</span></div>' +
                 '</div>';
-            idx++;
         });
         list.innerHTML = html;
     }
@@ -1024,9 +1427,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
         const oldStatus = row[cfg.statusIdx] || 'pending';
         if (newStatus === oldStatus) return;
 
-        sel.className = 'status-select sel-' + newStatus + ' changed';
-        setTimeout(() => sel.classList.remove('changed'), 500);
-
+        sel.className = 'status-select sel-' + newStatus;
         row[cfg.statusIdx] = newStatus;
         showLoading('Сохранение...');
         try {
@@ -1038,9 +1439,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
             sel.value = oldStatus;
             sel.className = 'status-select sel-' + oldStatus;
             toast('error', 'Ошибка', err.message);
-        } finally {
-            hideLoading();
-        }
+        } finally { hideLoading(); }
     }
 
     function openUploadModal() {
@@ -1226,8 +1625,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
             let banBtn = '';
             if (canBan) {
                 banBtn = banned
-                    ? `<button class="pmabtn success" data-act="unban" data-user="${uname}">Разблокировать</button>`
-                    : `<button class="pmabtn danger" data-act="ban" data-user="${uname}">Заблокировать</button>`;
+                    ? `<button class="pma-btn" data-act="unban" data-user="${uname}">Разблокировать</button>`
+                    : `<button class="pma-btn" data-act="ban" data-user="${uname}">Заблокировать</button>`;
             }
 
             const roleClass = u.role === 'admin1' ? 'admin1' : (u.role === 'admin2' ? 'admin2' : (u.role === 'admin3' ? 'admin3' : 'tech'));
@@ -1236,14 +1635,14 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
             if (isProtected) tr.className = 'admin3-row';
 
             tr.innerHTML = `
-                <td style="font-weight:bold;color:var(--accent)">${uname}${isSelf ? ' *' : ''}</td>
+                <td style="font-weight:bold;color:#3D6DB5">${uname}${isSelf ? ' *' : ''}</td>
                 <td style="text-align:center"><span class="role-badge ${roleClass}">${ROLE_LABELS[u.role] || u.role}</span></td>
                 <td style="text-align:center">${u.server}</td>
                 <td style="font-family:Consolas,monospace">${revealed ? u.password : '••••••'}</td>
                 <td style="text-align:center">${statusHtml}</td>
                 <td style="white-space:nowrap">
-                    <button class="pmabtn" data-act="toggle" data-user="${uname}" ${canToggle ? '' : 'disabled'}>Показать</button>
-                    <button class="pmabtn" data-act="change" data-user="${uname}" ${canChangePass ? '' : 'disabled'}>Пароль</button>
+                    <button class="pma-btn" data-act="toggle" data-user="${uname}" ${canToggle ? '' : 'disabled'}>Показать</button>
+                    <button class="pma-btn" data-act="change" data-user="${uname}" ${canChangePass ? '' : 'disabled'}>Пароль</button>
                     ${banBtn}
                 </td>`;
             body.appendChild(tr);
@@ -1332,7 +1731,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 10px; font-size:
             return;
         }
 
-        // Проверка капчи
         if (!checkCaptcha()) {
             $('captchaInput').classList.add('error');
             setTimeout(() => $('captchaInput').classList.remove('error'), 600);
