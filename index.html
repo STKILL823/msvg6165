@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Технический отдел 61-65</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='18' rx='9' ry='8' fill='%234a7fb5'/%3E%3Cellipse cx='7' cy='16' rx='3.5' ry='5' fill='%234a7fb5'/%3E%3Cellipse cx='25' cy='16' rx='3.5' ry='5' fill='%234a7fb5'/%3E%3Cpath d='M14 23 Q16 31 18 23 Z' fill='%234a7fb5'/%3E%3Ccircle cx='12' cy='16' r='1' fill='%23fff'/%3E%3Ccircle cx='20' cy='16' r='1' fill='%23fff'/%3E%3C/svg%3E">
+<title>Массовая выгрузка 61-65</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M6 5 Q8 3 10 5' fill='none' stroke='%239aa4ae' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M12 8 Q14 6 16 8' fill='none' stroke='%239aa4ae' stroke-width='1.2' stroke-linecap='round'/%3E%3Cpath d='M14 10 L9 24 L14 24 Z' fill='%23d8dde2'/%3E%3Cpath d='M15 8 L22 24 L15 24 Z' fill='%23c4ccd4'/%3E%3Cpath d='M15 8 L15 24 L18 24 Z' fill='%2398a4b0' opacity='.6'/%3E%3Cpath d='M6 24 Q15 28 25 24 L23 27 Q15 31 8 27 Z' fill='%236b7684'/%3E%3C/svg%3E">
 <style>
 :root{
   --bg:#f2f2f2; --panel:#fff; --panel-alt:#f5f5f5; --panel-head:#e8eef2;
   --accent:#235a81; --accent-light:#3d7ba8; --accent-dark:#1a4460;
-  --orange:#f7b42c; --orange-dark:#d68910;
+  --orange:#f7a500; --orange-dark:#d68a00;
   --text:#333; --text-dim:#666; --text-mute:#999;
   --border:#c9c9c9; --border-light:#dedede;
   --success:#2e8b57; --danger:#c0392b; --warning:#d68910;
@@ -63,17 +63,20 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--tex
 .pmabtn.success:hover{background:linear-gradient(to bottom,#4ea972,#266f47);color:#fff}
 .pmabtn.success .ico{filter:brightness(0) invert(1)}
 
-/* ЛОГОТИП phpMyAdmin-style */
+/* ЛОГОТИП */
 .pmalogo{display:inline-block;vertical-align:middle}
 .pmalogo-lg{width:72px;height:72px}
-.pmalogo-md{width:34px;height:34px}
+.pmalogo-md{width:36px;height:36px}
 .pmalogo-sm{width:26px;height:26px}
+.pmalogo-xs{width:20px;height:20px}
+.pmalogo-full{width:100%;max-width:260px;height:auto;display:block}
+.logo-php-text{font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-style:italic}
 
 /* ЛОГИН */
 .login-container{width:100%;max-width:460px;padding:20px;margin:0 auto;text-align:center;min-height:100vh;display:flex;flex-direction:column;justify-content:center;animation:fadeInUp .4s ease}
 .login-container.hidden{display:none}
-.logo-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:10px;animation:popIn .5s ease}
-.logo-text{font-size:20px;font-weight:bold;font-style:italic;margin:4px 0 0;color:var(--accent)}
+.logo-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:14px;animation:popIn .5s ease}
+.logo-title{font-size:18px;font-weight:bold;color:var(--accent);margin:6px 0 0}
 .logo-sub{font-size:11px;color:var(--text-mute);letter-spacing:1.5px;text-transform:uppercase}
 .welcome-text{font-size:13px;font-weight:bold;margin-bottom:18px;color:var(--text-dim);animation:fadeIn .5s ease .2s backwards}
 fieldset{border:1px solid var(--border);padding:12px;margin-bottom:14px;background:var(--panel);text-align:left;animation:fadeInUp .5s ease .2s backwards;border-radius:4px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
@@ -210,8 +213,8 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
 @media (max-width:700px){
   body{font-size:12.5px}
   .login-container{padding:12px}
-  .pmalogo-lg{width:56px;height:56px}
-  .logo-text{font-size:17px}
+  .pmalogo-full{max-width:220px}
+  .logo-title{font-size:16px}
   .auth-table .label-cell{width:88px;font-size:11.5px}
   .auth-table input,.auth-table select{padding:9px 10px;font-size:14px}
   .pmabtn{padding:6px 10px;font-size:12px}
@@ -257,18 +260,43 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
 </head>
 <body>
 
-<!-- SVG-спрайт с иконками (по мотивам phpMyAdmin) -->
+<!-- SVG-спрайт: парусник (phpMyAdmin-style) + иконки кнопок -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-elephant" viewBox="0 0 32 32">
-    <ellipse cx="16" cy="18" rx="9" ry="8" fill="#4a7fb5"/>
-    <ellipse cx="7" cy="16" rx="3.5" ry="5" fill="#4a7fb5"/>
-    <ellipse cx="25" cy="16" rx="3.5" ry="5" fill="#4a7fb5"/>
-    <path d="M14 23 Q16 31 18 23 Z" fill="#4a7fb5"/>
-    <circle cx="12" cy="16" r="1" fill="#fff"/>
-    <circle cx="20" cy="16" r="1" fill="#fff"/>
-    <path d="M6 11 Q2 7 7 6 Q9 9 12 9 Z" fill="#fff" stroke="#4a7fb5" stroke-width=".8"/>
-    <path d="M26 11 Q30 7 25 6 Q23 9 20 9 Z" fill="#fff" stroke="#4a7fb5" stroke-width=".8"/>
+  <!-- ЛОГОТИП: ПАРУСНИК -->
+  <symbol id="i-sailboat" viewBox="0 0 32 32">
+    <!-- Чайки -->
+    <path d="M6 5 Q8 3 10 5" fill="none" stroke="#9aa4ae" stroke-width="1.1" stroke-linecap="round"/>
+    <path d="M12 8 Q14 6 16 8" fill="none" stroke="#9aa4ae" stroke-width="1.1" stroke-linecap="round"/>
+    <!-- Левый парус (светлый) -->
+    <path d="M14 10 L9 24 L14 24 Z" fill="#d8dde2"/>
+    <!-- Правый парус (большой) -->
+    <path d="M15 8 L22 24 L15 24 Z" fill="#c4ccd4"/>
+    <!-- Тень правого паруса -->
+    <path d="M15 8 L15 24 L18 24 Z" fill="#98a4b0" opacity="0.65"/>
+    <!-- Корпус -->
+    <path d="M6 24 Q15 28 25 24 L23 27 Q15 31 8 27 Z" fill="#6b7684"/>
   </symbol>
+
+  <!-- ЛОГОТИП: ПОЛНЫЙ (парусник + phpMyAdmin) -->
+  <symbol id="i-logo-full" viewBox="0 0 260 160">
+    <!-- Чайки -->
+    <path d="M100 26 Q108 18 116 26" fill="none" stroke="#9aa4ae" stroke-width="2" stroke-linecap="round"/>
+    <path d="M120 34 Q128 26 136 34" fill="none" stroke="#9aa4ae" stroke-width="2" stroke-linecap="round"/>
+    <!-- Левый парус -->
+    <path d="M118 40 L92 110 L118 110 Z" fill="#d8dde2"/>
+    <path d="M118 40 L118 110 L128 110 Z" fill="#b8c0c8" opacity="0.6"/>
+    <!-- Правый парус (большой) -->
+    <path d="M128 32 L180 110 L128 110 Z" fill="#c4ccd4"/>
+    <path d="M128 32 L128 110 L146 110 Z" fill="#98a4b0" opacity="0.55"/>
+    <!-- Корпус -->
+    <path d="M80 110 Q130 124 180 110 L172 122 Q130 134 88 122 Z" fill="#6b7684"/>
+    <!-- Текст: phpMyAdmin -->
+    <text x="130" y="150" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="bold" font-style="italic" letter-spacing="-0.5">
+      <tspan fill="#5b6b7c">php</tspan><tspan fill="#f7a500">MyAdmin</tspan>
+    </text>
+  </symbol>
+
+  <!-- Иконки кнопок -->
   <symbol id="i-browse" viewBox="0 0 16 16">
     <path d="M1 2h6l1 2h7v10H1z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
     <path d="M1 5h14" stroke="currentColor" stroke-width="1.2"/>
@@ -321,8 +349,11 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
 
 <div class="login-container" id="loginScreen">
     <div class="logo-wrap">
-        <svg class="pmalogo pmalogo-lg"><use href="#i-elephant"/></svg>
-        <div class="logo-text">Массовая выгрузка 61-65</div>
+        <!-- Большой логотип phpMyAdmin: парусник + надпись -->
+        <svg class="pmalogo-full" viewBox="0 0 260 160" aria-label="phpMyAdmin">
+            <use href="#i-logo-full"/>
+        </svg>
+        <div class="logo-title">Массовая выгрузка 61-65</div>
         <div class="logo-sub">powered by phpMyAdmin style</div>
     </div>
     <div class="welcome-text">Добро пожаловать, технический специалист!</div>
@@ -369,7 +400,7 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
     <div class="menu-header">
         <div class="header-main">
             <div class="brand">
-                <svg class="pmalogo pmalogo-md"><use href="#i-elephant"/></svg>
+                <svg class="pmalogo pmalogo-md"><use href="#i-sailboat"/></svg>
                 Массовая выгрузка 61-65
                 <span class="brand-sub">phpMyAdmin style</span>
             </div>
@@ -397,7 +428,7 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
     <div class="menu-header">
         <div class="header-main">
             <div class="brand">
-                <svg class="pmalogo pmalogo-md"><use href="#i-elephant"/></svg>
+                <svg class="pmalogo pmalogo-md"><use href="#i-sailboat"/></svg>
                 Массовая выгрузка 61-65
                 <span class="brand-sub">phpMyAdmin style</span>
             </div>
@@ -435,7 +466,7 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
     <div class="menu-header">
         <div class="header-main">
             <div class="brand">
-                <svg class="pmalogo pmalogo-md"><use href="#i-elephant"/></svg>
+                <svg class="pmalogo pmalogo-md"><use href="#i-sailboat"/></svg>
                 Массовая выгрузка 61-65
                 <span class="brand-sub">phpMyAdmin style</span>
             </div>
@@ -471,7 +502,7 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
 
 <div class="modal" id="tokenModal">
     <div class="modal-content">
-        <div class="modal-title"><svg class="pmalogo pmalogo-sm"><use href="#i-elephant"/></svg>Установка токена</div>
+        <div class="modal-title"><svg class="pmalogo pmalogo-sm"><use href="#i-sailboat"/></svg>Установка токена</div>
         <div class="token-modal-hint">Вставь Personal Access Token (начинается с github_pat_). Токен хранится только в браузере.</div>
         <div class="token-current" id="tokenCurrent">Текущий токен: не установлен</div>
         <label>Токен:</label>
@@ -486,7 +517,7 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
 
 <div class="modal" id="uploadModal">
     <div class="modal-content wide">
-        <div class="modal-title" id="uploadModalTitle"><svg class="pmalogo pmalogo-sm"><use href="#i-elephant"/></svg>Загрузка данных</div>
+        <div class="modal-title" id="uploadModalTitle"><svg class="pmalogo pmalogo-sm"><use href="#i-sailboat"/></svg>Загрузка данных</div>
         <div class="modal-hint" id="uploadModalHint"></div>
         <textarea id="uploadTextarea" placeholder="..."></textarea>
         <div class="modal-actions">
@@ -498,7 +529,7 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
 
 <div class="modal" id="userBanModal">
     <div class="modal-content">
-        <div class="modal-title danger"><svg class="pmalogo pmalogo-sm"><use href="#i-elephant"/></svg>Блокировка пользователя</div>
+        <div class="modal-title danger"><svg class="pmalogo pmalogo-sm"><use href="#i-sailboat"/></svg>Блокировка пользователя</div>
         <div class="modal-hint" id="userBanTarget"></div>
         <label>Причина бана:</label>
         <input type="text" id="userBanReason" placeholder="..." maxlength="200">
@@ -875,7 +906,7 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
     function openUploadModal() {
         if (!isAdmin()) { toast('error','Нет прав','Только админы'); return; }
         const cfg = SECTIONS[state.currentSection];
-        $('uploadModalTitle').innerHTML = '<svg class="pmalogo pmalogo-sm"><use href="#i-elephant"/></svg>Загрузка: ' + escapeHtml(cfg.title);
+        $('uploadModalTitle').innerHTML = '<svg class="pmalogo pmalogo-sm"><use href="#i-sailboat"/></svg>Загрузка: ' + escapeHtml(cfg.title);
         const hints = {
             trades:'Формат: Сервер → ID → Имя → Ур → ID → Имя → Ур → Сумма',
             unique:'Формат: Сервер → ID → Имя → Ур → Знач1 → Знач2 → Сумма',
@@ -1208,7 +1239,6 @@ legend{background:var(--panel-head);border:1px solid var(--border);padding:3px 1
         updateStrength();
         bindEvents();
 
-        // Автовосстановление сессии при F5 — не выкидывает на логин
         showLoading('Проверка сессии...');
         try {
             const restored = await tryRestoreSession();
