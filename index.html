@@ -34,9 +34,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .strength-meter { height: 5px; background: #e0e0e0; margin-top: 6px; overflow: hidden; border-radius: 2px; }
 .strength-fill { height: 100%; width: 0; transition: all 0.35s ease; border-radius: 2px; }
 .strength-text { font-size: 11px; margin-top: 4px; color: #666; }
-.captcha-box { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #d3d3d3; background: #f9f9f9; cursor: pointer; user-select: none; width: 100%; transition: all 0.25s ease; }
+.captcha-box { display: flex; align-items: center; gap: 10px; padding: 12px; border: 1px solid #d3d3d3; background: #f9f9f9; cursor: pointer; user-select: none; width: 100%; transition: border-color 0.2s, transform 0.2s; }
 .captcha-box:hover { background: #f0f0f0; transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
-.captcha-box.checked { background: #f0fdf4; border-color: #28a745; }
 .captcha-box.error { animation: shake 0.4s ease; border-color: #dc3545; }
 .captcha-checkbox { width: 24px; height: 24px; border: 2px solid #999; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; }
 .captcha-box.checked .captcha-checkbox { border-color: #28a745; background: #28a745; animation: popIn 0.3s ease; }
@@ -46,8 +45,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .captcha-spinner { width: 16px; height: 16px; border: 2px solid #ddd; border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; display: none; }
 .captcha-box.loading .captcha-spinner { display: block; }
 .captcha-box.loading .captcha-checkbox svg { display: none; }
-.captcha-label { font-size: 13px; color: #333; flex: 1; text-align: left; transition: color 0.3s; }
-.captcha-box.checked .captcha-label { color: #28a745; font-weight: bold; }
+.captcha-label { font-size: 13px; color: #333; flex: 1; text-align: left; }
 .captcha-brand { font-size: 10px; color: #999; }
 .token-status { font-size: 11px; color: #888; margin-top: 5px; }
 .token-status.ok { color: #28a745; }
@@ -72,13 +70,17 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .user-badge { background: rgba(255,255,255,0.2); padding: 4px 10px; font-weight: bold; animation: fadeIn 0.4s ease; }
 .logout-btn { padding: 5px 10px; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; transition: all 0.2s; }
 .logout-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.05); }
+.settings-icon-btn { width: 34px; height: 34px; padding: 0; border: 1px solid rgba(255,255,255,0.5); background: rgba(255,255,255,0.1); color: #fff; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transition: all 0.3s; flex-shrink: 0; }
+.settings-icon-btn:hover { background: rgba(255,255,255,0.25); transform: rotate(90deg); }
+.settings-icon-btn:active { transform: rotate(90deg) scale(0.95); }
+.settings-icon-btn svg { width: 18px; height: 18px; display: block; }
 .admin-top-bar { padding: 6px 12px; display: flex; gap: 6px; flex-wrap: wrap; animation: fadeIn 0.4s ease; }
 .admin-top-btn { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4); color: #fff; font-family: inherit; font-size: 12px; cursor: pointer; padding: 6px 12px; font-weight: bold; transition: all 0.2s; }
 .admin-top-btn:hover { background: rgba(255,255,255,0.25); transform: translateY(-1px); }
 .admin-top-btn:active { transform: translateY(0); }
-.admin-top-btn.logs { background: rgba(255,193,7,0.25); border-color: rgba(255,193,7,0.7); }
 .menu-title { color: #000; font-size: 15px; font-weight: bold; padding: 15px 15px 0; margin: 0; text-align: left; animation: fadeInUp 0.4s ease; }
-.menu-content { flex: 1; padding: 15px 15px 140px 15px; }
+.menu-content { flex: 1; padding: 15px 15px 140px 15px; display: flex; flex-direction: column; }
+.license-footer { text-align: center; font-size: 11px; color: #999; padding-top: 30px; margin-top: auto; line-height: 1.5; }
 .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #f4f4f4; border-top: 1px solid #ccc; padding: 8px; display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.06); }
 .bottom-bar .pmabtn { padding: 8px 12px; font-size: 12px; }
 .section-container, .admin-container { flex: 1; padding: 15px 15px 140px 15px; max-width: 1400px; margin: 0 auto; width: 100%; animation: fadeInUp 0.4s ease; }
@@ -99,6 +101,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .data-table tbody tr:hover, .admin-table tbody tr:hover { background: #eef4fb; }
 .admin-table tbody tr.banned-row { background: #f8d7da !important; }
 .admin-table tbody tr.banned-row:hover { background: #f5c6cb !important; }
+.admin-table tbody tr.admin3-row { background: #fff8e1 !important; }
+.admin-table tbody tr.admin3-row:hover { background: #ffecb3 !important; }
 .server-cell { text-align: center; font-weight: bold; color: var(--accent); }
 .money-cell { text-align: right; font-family: Consolas, monospace; font-weight: bold; white-space: nowrap; }
 .status-badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; white-space: nowrap; transition: transform 0.15s; }
@@ -124,11 +128,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .role-badge { padding: 2px 6px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; }
 .role-badge.admin1 { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .role-badge.admin2 { background: #d1ecf1; color: #0c5460; border-color: #bee5eb; }
-.role-badge.admin3 { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+.role-badge.admin3 { background: #fff3cd; color: #856404; border-color: #ffeeba; }
 .role-badge.tech { background: #e9ecef; color: #495057; border-color: #ced4da; }
 .user-status { padding: 3px 8px; font-size: 11px; font-weight: bold; border: 1px solid; display: inline-block; white-space: nowrap; }
 .user-status.active { background: #d4edda; color: #155724; border-color: #c3e6cb; }
 .user-status.banned { background: #f8d7da; color: #721c24; border-color: #f5c6cb; cursor: help; }
+.user-status.hidden-status { background: #fff3cd; color: #856404; border-color: #ffeeba; }
 .admin-hint { font-size: 12px; color: #888; margin-bottom: 12px; font-style: italic; }
 .admin-msg { padding: 8px 12px; margin-bottom: 12px; font-size: 12px; border: 1px solid; display: none; }
 .admin-msg.show { display: block; animation: fadeInUp 0.3s ease; }
@@ -136,7 +141,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .admin-msg.err { background: #f8d7da; color: #721c24; border-color: #f5c6cb; }
 .admin-tools { padding: 12px; background: #fff; border: 1px solid #ccc; margin-bottom: 15px; display: flex; gap: 8px; flex-wrap: wrap; }
 .admin-tools .pmabtn { flex: 1; text-align: center; min-width: 140px; }
-.license-footer { text-align: center; font-size: 11px; color: #999; padding: 20px 15px 10px; line-height: 1.5; }
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 10001; display: none; justify-content: center; align-items: center; padding: 15px; animation: fadeIn 0.2s ease; }
 .modal.open { display: flex; }
 .modal-content { background: #fff; padding: 18px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: fadeInUp 0.3s ease; }
@@ -159,24 +163,59 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .color-swatch:hover { transform: scale(1.1); }
 .color-swatch.selected { border-color: #333; box-shadow: 0 0 0 2px #fff inset; }
 .color-swatch.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 20px; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-.logs-filter { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
-.logs-filter input { flex: 1; min-width: 150px; padding: 8px 10px; border: 1px solid #aaa; font-size: 13px; font-family: inherit; }
-.logs-filter select { padding: 8px 10px; border: 1px solid #aaa; font-size: 13px; font-family: inherit; background: #fff; }
-.logs-list { max-height: 55vh; overflow-y: auto; border: 1px solid #ddd; background: #f9f9f9; font-family: Consolas, monospace; font-size: 12px; line-height: 1.5; }
-.logs-list .log-item { padding: 8px 10px; border-bottom: 1px dashed #ddd; word-break: break-word; display: flex; gap: 8px; align-items: flex-start; }
-.logs-list .log-item:last-child { border-bottom: none; }
-.logs-list .log-item:hover { background: #eef4fb; }
-.logs-list .log-time { color: #888; flex-shrink: 0; white-space: nowrap; }
-.logs-list .log-user { color: var(--accent); font-weight: bold; flex-shrink: 0; }
-.logs-list .log-ip { color: #6f42c1; flex-shrink: 0; }
-.logs-list .log-action { flex: 1; }
-.logs-list .log-item.action-login .log-action { color: #28a745; font-weight: bold; }
-.logs-list .log-item.action-logout .log-action { color: #888; }
-.logs-list .log-item.action-status .log-action { color: #fd7e14; }
-.logs-list .log-item.action-ban .log-action { color: #dc3545; font-weight: bold; }
-.logs-list .log-item.action-unban .log-action { color: #28a745; }
-.logs-empty { text-align: center; padding: 30px; color: #999; font-size: 13px; }
-.logs-stats { font-size: 11px; color: #666; padding: 6px 10px; background: #f0f6fc; border: 1px solid #b8c8d8; margin-bottom: 8px; }
+
+/* ═══════════ ЛОГИ v2 ═══════════ */
+.logs-toolbar { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.logs-toolbar input { flex: 1; min-width: 200px; padding: 9px 12px; border: 1px solid #ccc; font-size: 13px; font-family: inherit; background: #fff; transition: border-color 0.2s, box-shadow 0.2s; }
+.logs-toolbar input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(61,109,181,0.1); }
+.logs-toolbar select { padding: 9px 12px; border: 1px solid #ccc; font-size: 13px; font-family: inherit; background: #fff; cursor: pointer; }
+.logs-toolbar select:focus { outline: none; border-color: var(--accent); }
+.logs-stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+.logs-stat-card { background: #fff; border: 1px solid #e0e0e0; border-left: 3px solid var(--accent); padding: 10px 12px; }
+.logs-stat-card .stat-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.logs-stat-card .stat-value { font-size: 20px; font-weight: bold; color: var(--accent); line-height: 1; }
+.logs-list-container { background: #fff; border: 1px solid #e0e0e0; max-height: 500px; overflow-y: auto; }
+.logs-date-header { position: sticky; top: 0; background: linear-gradient(to bottom, #f5f5f5, #ececec); border-bottom: 1px solid #ddd; padding: 8px 12px; font-size: 12px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: 0.5px; z-index: 1; }
+.logs-row { display: grid; grid-template-columns: 90px 130px 130px 1fr; gap: 10px; padding: 10px 12px; border-bottom: 1px solid #f0f0f0; font-size: 12.5px; transition: background 0.15s; align-items: center; }
+.logs-row:last-child { border-bottom: none; }
+.logs-row:hover { background: #f8fafd; }
+.logs-time { color: #888; font-family: Consolas, monospace; font-size: 11.5px; white-space: nowrap; }
+.logs-user { display: flex; align-items: center; gap: 6px; font-weight: bold; color: var(--accent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.logs-user-avatar { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; flex-shrink: 0; }
+.logs-user.role-admin1 .logs-user-avatar { background: #28a745; }
+.logs-user.role-admin2 .logs-user-avatar { background: #17a2b8; }
+.logs-user.role-admin3 .logs-user-avatar { background: #ffc107; color: #333; }
+.logs-ip { color: #6f42c1; font-family: Consolas, monospace; font-size: 11.5px; white-space: nowrap; }
+.logs-action { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.logs-action-icon { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.logs-action-text { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.logs-action-details { color: #888; font-size: 11.5px; display: block; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; }
+.logs-row.type-login .logs-action-icon { background: #28a745; }
+.logs-row.type-logout .logs-action-icon { background: #999; }
+.logs-row.type-status .logs-action-icon { background: #fd7e14; }
+.logs-row.type-ban .logs-action-icon { background: #dc3545; }
+.logs-row.type-unban .logs-action-icon { background: #28a745; }
+.logs-row.type-upload .logs-action-icon { background: #17a2b8; }
+.logs-row.type-clear .logs-action-icon { background: #6c757d; }
+.logs-row.type-pass .logs-action-icon { background: #6f42c1; }
+.logs-row.type-login .logs-action-text { color: #28a745; font-weight: bold; }
+.logs-row.type-ban .logs-action-text { color: #dc3545; font-weight: bold; }
+.logs-row.type-unban .logs-action-text { color: #28a745; font-weight: bold; }
+.logs-row.type-status .logs-action-text { color: #fd7e14; }
+.logs-empty { text-align: center; padding: 60px 20px; color: #999; font-size: 13px; }
+.logs-empty svg { width: 48px; height: 48px; opacity: 0.3; margin-bottom: 10px; }
+
+@media (max-width: 700px) {
+    .logs-row { grid-template-columns: 1fr; gap: 3px; padding: 10px; }
+    .logs-row .logs-time { order: 1; }
+    .logs-row .logs-user { order: 2; }
+    .logs-row .logs-ip { order: 3; }
+    .logs-row .logs-action { order: 4; }
+    .logs-stats-bar { grid-template-columns: 1fr 1fr 1fr; }
+    .logs-stat-card { padding: 8px; }
+    .logs-stat-card .stat-value { font-size: 16px; }
+}
+
 .toast { position: fixed; top: 15px; right: 15px; left: 15px; max-width: 400px; margin-left: auto; padding: 12px 40px 12px 18px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.15); font-size: 13px; color: #333; z-index: 9999; overflow: hidden; opacity: 0; transform: translateY(-120%); transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; }
 .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 .toast::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px; }
@@ -194,6 +233,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
 .loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); display: none; justify-content: center; align-items: center; z-index: 99999; font-size: 15px; color: var(--accent); font-weight: bold; }
 .loading-overlay.show { display: flex; }
 .loading-overlay::after { content: ''; width: 24px; height: 24px; border: 3px solid #e0e0e0; border-top-color: var(--accent); border-radius: 50%; margin-left: 12px; animation: spin 0.8s linear infinite; }
+
 @media (max-width: 700px) {
     body { font-size: 13px; }
     .login-container { padding: 12px; }
@@ -212,8 +252,10 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .brand { font-size: 13px; gap: 6px; }
     .brand-ship { font-size: 20px; }
     .user-info { font-size: 11px; gap: 6px; }
-    .user-badge { padding: 3px 8px; font-size: 11px; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .user-badge { padding: 3px 8px; font-size: 11px; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .logout-btn { padding: 5px 8px; font-size: 11px; }
+    .settings-icon-btn { width: 30px; height: 30px; }
+    .settings-icon-btn svg { width: 16px; height: 16px; }
     .admin-top-bar { padding: 6px 10px; gap: 4px; }
     .admin-top-btn { font-size: 11px; padding: 6px 8px; }
     .menu-title { font-size: 14px; padding: 12px 12px 0; }
@@ -241,7 +283,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     .gear-btn { padding: 5px 6px; margin-left: 3px; }
     .gear-btn svg { width: 12px; height: 12px; }
     .color-picker { grid-template-columns: repeat(3, 1fr); }
-    .logs-list .log-item { font-size: 11px; flex-direction: column; gap: 3px; }
 }
 @media (max-width: 400px) {
     .bottom-bar { grid-template-columns: repeat(2, 1fr); }
@@ -287,12 +328,11 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 </tr>
             </table>
             <div class="auth-footer">
-                <button type="button" class="pmabtn" id="setTokenBtn" data-i18n="setToken">Токен</button>
-                <button type="submit" class="pmabtn" data-i18n="login">Войти</button>
+                <button type="button" class="pmabtn" id="setTokenBtn" data-i18n="setToken">Ввести токен</button>
+                <button type="submit" class="pmabtn" data-i18n="login">Войти в систему</button>
             </div>
         </fieldset>
     </form>
-    <div class="license-footer" data-i18n="license">© 2026 Массовая выгрузка 61-65. Все права защищены.</div>
 </div>
 
 <div class="screen" id="menuScreen">
@@ -301,23 +341,27 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             <div class="brand"><span class="brand-ship">⛵</span> Массовая выгрузка 61-65</div>
             <div class="user-info">
                 <span class="user-badge" id="userBadgeMenu">—</span>
+                <button class="settings-icon-btn" id="settingsIconBtn" title="Настройки">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </button>
                 <button class="logout-btn" data-logout data-i18n="logout">Выход</button>
             </div>
         </div>
         <div class="admin-top-bar" id="adminTopBar" style="display:none;">
             <button class="admin-top-btn" data-section="admin" id="adminBtn" data-i18n="adminPanel">Панель управления</button>
-            <button class="admin-top-btn logs" id="logsBtn" data-i18n="logging">Логирование</button>
+            <button class="admin-top-btn" id="logsBtn" data-i18n="logging">Логирование</button>
         </div>
     </div>
     <div class="menu-title" data-i18n="menuTitle">Главное меню</div>
-    <div class="menu-content"></div>
+    <div class="menu-content">
+        <div class="license-footer" data-i18n="license">© 2026 Массовая выгрузка 61-65. Все права защищены.</div>
+    </div>
     <div class="bottom-bar">
         <button class="pmabtn" data-section="trades" data-i18n="trades">Трейды</button>
         <button class="pmabtn" data-section="unique" data-i18n="unique">Уникальная</button>
         <button class="pmabtn" data-section="levels" data-i18n="levels">Уровни 3,4,5</button>
         <button class="pmabtn" data-section="works" data-i18n="works">Работы</button>
         <button class="pmabtn" data-section="pays" data-i18n="pays">/pay</button>
-        <button class="pmabtn" id="settingsBtn" data-i18n="settings">Настройки</button>
     </div>
 </div>
 
@@ -352,7 +396,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
     <div class="bottom-bar">
         <button class="pmabtn" id="backFromSection" data-i18n="back">Назад</button>
-        <button class="pmabtn" id="settingsBtnSection" data-i18n="settings">Настройки</button>
     </div>
 </div>
 
@@ -391,7 +434,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     </div>
     <div class="bottom-bar">
         <button class="pmabtn" id="backFromAdmin" data-i18n="back">Назад</button>
-        <button class="pmabtn" id="settingsBtnAdmin" data-i18n="settings">Настройки</button>
     </div>
 </div>
 
@@ -417,20 +459,27 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     <div class="modal-content wide">
         <div class="modal-title" data-i18n="logging">Логирование</div>
         <div class="modal-hint" data-i18n="logsHint">Все действия пользователей с IP-адресами (последние 500 записей)</div>
-        <div class="logs-filter">
-            <input type="text" id="logsSearch" placeholder="Поиск по логину/IP/действию...">
+        <div class="logs-stats-bar">
+            <div class="logs-stat-card"><div class="stat-label" data-i18n="statsTotalLabel">Всего записей</div><div class="stat-value" id="statTotal">0</div></div>
+            <div class="logs-stat-card"><div class="stat-label" data-i18n="statsLoginsLabel">Входов сегодня</div><div class="stat-value" id="statLogins">0</div></div>
+            <div class="logs-stat-card"><div class="stat-label" data-i18n="statsActionsLabel">Действий сегодня</div><div class="stat-value" id="statActions">0</div></div>
+        </div>
+        <div class="logs-toolbar">
+            <input type="text" id="logsSearch" placeholder="Поиск по логину / IP / действию...">
             <select id="logsActionFilter">
                 <option value="all">Все действия</option>
                 <option value="login">Входы</option>
                 <option value="logout">Выходы</option>
                 <option value="status">Смена статусов</option>
+                <option value="upload">Загрузка данных</option>
+                <option value="clear">Очистка</option>
                 <option value="ban">Баны</option>
+                <option value="unban">Разбаны</option>
+                <option value="pass">Смена паролей</option>
             </select>
         </div>
-        <div class="logs-stats" id="logsStats"></div>
-        <div class="logs-list" id="logsList"></div>
+        <div class="logs-list-container" id="logsList"></div>
         <div class="modal-actions">
-            <button class="pmabtn danger" id="logsClear" style="display:none;" data-i18n="clearLogs">Очистить логи</button>
             <button class="pmabtn" id="logsClose" data-i18n="close">Закрыть</button>
         </div>
     </div>
@@ -508,14 +557,14 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         ru: {
             welcome: 'Добро пожаловать технический специалист!', legendAuth: 'Авторизация',
             labelUser: 'Пользователь:', labelPass: 'Пароль:', labelCaptcha: 'Капча:', captchaLabel: 'Я не робот',
-            setToken: 'Токен', login: 'Войти', logout: 'Выход', menuTitle: 'Главное меню',
+            setToken: 'Ввести токен', login: 'Войти в систему', logout: 'Выход', menuTitle: 'Главное меню',
             adminPanel: 'Панель управления', logging: 'Логирование', settings: 'Настройки',
             settingsTitle: 'Настройки', settingsLang: 'Язык интерфейса:', settingsColor: 'Цвет интерфейса:', close: 'Закрыть',
             trades: 'Трейды', unique: 'Уникальная', levels: 'Уровни 3,4,5', works: 'Работы', pays: '/pay',
             uploadBtn: 'Загрузить данные', clearBtn: 'Очистить', all: 'Все', back: 'Назад',
-            adminTitle: 'Управление пользователями', adminHint: 'Только админы могут менять пароли и блокировать',
+            adminTitle: 'Управление пользователями', adminHint: 'Разработчик скрыт, остальные админы не могут взаимодействовать',
             clearAll: 'Очистить все разделы', thLogin: 'Логин', thRole: 'Роль', thServer: 'Сервер',
-            thPass: 'Пароль', thStatus: 'Статус', thActions: 'Действия', clearLogs: 'Очистить логи',
+            thPass: 'Пароль', thStatus: 'Статус', thActions: 'Действия',
             tokenTitle: 'Установка токена', tokenHint: 'Вставь Personal Access Token. Хранится только в браузере.',
             tokenLabel: 'Токен:', delete: 'Удалить', cancel: 'Отмена', save: 'Сохранить',
             uploadTitle: 'Загрузка данных', upload: 'Загрузить', banTitle: 'Блокировка пользователя',
@@ -535,30 +584,31 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             confirmClearAll: 'Точно очистить ВСЕ разделы?', confirmClearSection: 'Точно очистить раздел?',
             bannedUntil: 'Заблокирован до', bannedForever: 'навсегда',
             statusPending: 'Ожидание', statusClear: 'Нету нарушений', statusBlocked: 'Заблокирован',
-            active: 'Активен', banned: 'Забанен',
+            active: 'Активен', banned: 'Забанен', hiddenStatus: 'Скрыт',
             roleAdmin1: 'Куратор технических специалистов', roleAdmin2: 'Зам. куратора технических специалистов',
             roleAdmin3: 'Разработчик', roleTech: 'Технический специалист',
             license: '© 2026 Массовая выгрузка 61-65. Все права защищены.',
             settingsSaved: 'Настройки сохранены', enterPass: 'Введите пароль',
             veryWeak: 'Очень слабый пароль', strongPass: 'Надёжный пароль', mediumPass: 'Средний пароль',
-            logsEmpty: 'Логов пока нет', logsClearConfirm: 'Очистить все логи?', logsCleared: 'Логи очищены',
+            logsEmpty: 'Логов пока нет',
             logsHint: 'Все действия пользователей с IP-адресами (последние 500 записей)',
             logLogin: 'Вход в систему', logLogout: 'Выход из системы', logStatusChanged: 'Смена статуса',
             logUploaded: 'Загрузка данных', logCleared: 'Очистка раздела', logClearedAll: 'Очистка всех разделов',
             logBan: 'Блокировка пользователя', logUnban: 'Разблокировка пользователя', logPassChanged: 'Смена пароля',
-            statsTotal: 'Всего записей: ', statsLogins: 'Входов сегодня: ', statsActions: 'Действий сегодня: '
+            statsTotalLabel: 'Всего записей', statsLoginsLabel: 'Входов сегодня', statsActionsLabel: 'Действий сегодня',
+            cannotTouchDev: 'Разработчик защищён. Действия недоступны.'
         },
         en: {
             welcome: 'Welcome, technical specialist!', legendAuth: 'Authorization',
             labelUser: 'User:', labelPass: 'Password:', labelCaptcha: 'Captcha:', captchaLabel: 'I am not a robot',
-            setToken: 'Token', login: 'Login', logout: 'Logout', menuTitle: 'Main menu',
+            setToken: 'Enter token', login: 'Sign in', logout: 'Logout', menuTitle: 'Main menu',
             adminPanel: 'Control panel', logging: 'Logging', settings: 'Settings',
             settingsTitle: 'Settings', settingsLang: 'Interface language:', settingsColor: 'Interface color:', close: 'Close',
             trades: 'Trades', unique: 'Unique', levels: 'Levels 3,4,5', works: 'Works', pays: '/pay',
             uploadBtn: 'Upload data', clearBtn: 'Clear', all: 'All', back: 'Back',
-            adminTitle: 'User management', adminHint: 'Only admins can change passwords and block',
+            adminTitle: 'User management', adminHint: 'Developer is hidden, other admins cannot interact',
             clearAll: 'Clear all sections', thLogin: 'Login', thRole: 'Role', thServer: 'Server',
-            thPass: 'Password', thStatus: 'Status', thActions: 'Actions', clearLogs: 'Clear logs',
+            thPass: 'Password', thStatus: 'Status', thActions: 'Actions',
             tokenTitle: 'Set token', tokenHint: 'Paste Personal Access Token. Stored only in browser.',
             tokenLabel: 'Token:', delete: 'Delete', cancel: 'Cancel', save: 'Save',
             uploadTitle: 'Upload data', upload: 'Upload', banTitle: 'Block user',
@@ -578,18 +628,19 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             confirmClearAll: 'Clear ALL sections?', confirmClearSection: 'Clear this section?',
             bannedUntil: 'Banned until', bannedForever: 'forever',
             statusPending: 'Pending', statusClear: 'No violations', statusBlocked: 'Blocked',
-            active: 'Active', banned: 'Banned',
+            active: 'Active', banned: 'Banned', hiddenStatus: 'Hidden',
             roleAdmin1: 'Curator of techs', roleAdmin2: 'Deputy curator of techs',
             roleAdmin3: 'Developer', roleTech: 'Technical specialist',
             license: '© 2026 Mass upload 61-65. All rights reserved.',
             settingsSaved: 'Settings saved', enterPass: 'Enter password',
             veryWeak: 'Very weak password', strongPass: 'Strong password', mediumPass: 'Medium password',
-            logsEmpty: 'No logs yet', logsClearConfirm: 'Clear all logs?', logsCleared: 'Logs cleared',
+            logsEmpty: 'No logs yet',
             logsHint: 'All user actions with IP addresses (last 500 records)',
             logLogin: 'Login', logLogout: 'Logout', logStatusChanged: 'Status changed',
             logUploaded: 'Data uploaded', logCleared: 'Section cleared', logClearedAll: 'All sections cleared',
             logBan: 'User banned', logUnban: 'User unbanned', logPassChanged: 'Password changed',
-            statsTotal: 'Total: ', statsLogins: 'Logins today: ', statsActions: 'Actions today: '
+            statsTotalLabel: 'Total records', statsLoginsLabel: 'Logins today', statsActionsLabel: 'Actions today',
+            cannotTouchDev: 'Developer is protected. Actions unavailable.'
         }
     };
 
@@ -673,6 +724,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (role === 'admin3') return t('roleAdmin3');
         return t('roleTech');
     }
+    function roleShort(role) {
+        if (role === 'admin1') return 'A1';
+        if (role === 'admin2') return 'A2';
+        if (role === 'admin3') return 'DEV';
+        return 'T';
+    }
 
     const state = {
         data: { trades: [], unique: [], levels: [], works: [], pays: [] },
@@ -738,7 +795,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         });
     }
 
-    // ═══════════ ПОЛУЧЕНИЕ IP ═══════════
     async function fetchIP() {
         try {
             const res = await fetch('https://api.ipify.org?format=json', { cache: 'no-store' });
@@ -747,16 +803,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             state.userIp = data.ip || '—';
             return state.userIp;
         } catch (e) {
-            // Fallback
             try {
                 const res2 = await fetch('https://api64.ipify.org?format=json', { cache: 'no-store' });
                 const data2 = await res2.json();
                 state.userIp = data2.ip || '—';
                 return state.userIp;
-            } catch (e2) {
-                state.userIp = '—';
-                return '—';
-            }
+            } catch (e2) { state.userIp = '—'; return '—'; }
         }
     }
 
@@ -788,7 +840,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         if (getRes.status === 401) throw new Error('401');
         if (getRes.ok) sha = (await getRes.json()).sha;
         else if (getRes.status !== 404) throw new Error('GET SHA: ' + getRes.status);
-
         const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
         const body = { message, content, branch: BRANCH };
         if (sha) body.sha = sha;
@@ -799,24 +850,28 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         return true;
     }
 
-    // ═══════════ ЛОГИ ═══════════
     function nowStr() {
         const d = new Date();
         const p = n => String(n).padStart(2, '0');
         return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
     }
+    function dateOnly(d) {
+        const p = n => String(n).padStart(2, '0');
+        return `${p(d.getDate())}.${p(d.getMonth()+1)}.${d.getFullYear()}`;
+    }
+    function timeOnly(d) {
+        const p = n => String(n).padStart(2, '0');
+        return `${p(d.getHours())}:${p(d.getMinutes())}:${p(d.getSeconds())}`;
+    }
 
     async function addLog(actionType, actionLabel, details) {
-        // actionType: login/logout/status/ban/unban/upload/clear/pass
+        // Разработчик не логируется в общий лог
+        if (state.currentRole === 'admin3') return;
         const logEntry = {
-            t: Date.now(),
-            time: nowStr(),
-            user: state.currentUser || '—',
-            role: state.currentRole || '—',
-            ip: state.userIp || '—',
-            type: actionType,
-            action: actionLabel,
-            details: details || ''
+            t: Date.now(), time: nowStr(),
+            user: state.currentUser || '—', role: state.currentRole || '—',
+            ip: state.userIp || '—', type: actionType,
+            action: actionLabel, details: details || ''
         };
         state.logs.push(logEntry);
         if (state.logs.length > MAX_LOGS) state.logs = state.logs.slice(-MAX_LOGS);
@@ -827,7 +882,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         try {
             const result = await readFile('logs.json');
             state.logs = Array.isArray(result) ? result : [];
-            // Совместимость со старым форматом (строки)
             state.logs = state.logs.map(l => {
                 if (typeof l === 'string') return { t: 0, time: '—', user: '—', role: '—', ip: '—', type: 'info', action: l, details: '' };
                 return l;
@@ -854,41 +908,44 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const todayTs = todayStart.getTime();
         const loginsToday = state.logs.filter(l => l.type === 'login' && l.t >= todayTs).length;
         const actionsToday = state.logs.filter(l => l.t >= todayTs).length;
-        $('logsStats').textContent = t('statsTotal') + state.logs.length + ' | ' + t('statsLogins') + loginsToday + ' | ' + t('statsActions') + actionsToday;
+        $('statTotal').textContent = state.logs.length;
+        $('statLogins').textContent = loginsToday;
+        $('statActions').textContent = actionsToday;
 
         if (!filtered.length) {
-            list.innerHTML = '<div class="logs-empty">' + t('logsEmpty') + '</div>';
+            list.innerHTML = '<div class="logs-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg><br>' + t('logsEmpty') + '</div>';
             return;
         }
 
-        // Последние сверху
         filtered.sort((a, b) => (b.t || 0) - (a.t || 0));
-        list.innerHTML = filtered.map(l => {
-            const cls = 'log-item action-' + (l.type || 'info');
-            const details = l.details ? '<span class="log-details"> | ' + escapeHtml(l.details) + '</span>' : '';
-            return '<div class="' + cls + '">' +
-                '<span class="log-time">' + escapeHtml(l.time || '—') + '</span>' +
-                '<span class="log-user">' + escapeHtml(l.user || '—') + '</span>' +
-                '<span class="log-ip">IP: ' + escapeHtml(l.ip || '—') + '</span>' +
-                '<span class="log-action">' + escapeHtml(l.action || '') + details + '</span>' +
-            '</div>';
-        }).join('');
+
+        // Группировка по дате
+        let html = '';
+        let lastDate = '';
+        filtered.forEach(l => {
+            const dt = new Date(l.t || Date.now());
+            const dateStr = dateOnly(dt);
+            if (dateStr !== lastDate) {
+                lastDate = dateStr;
+                html += '<div class="logs-date-header">' + dateStr + '</div>';
+            }
+            const timeStr = timeOnly(dt);
+            const roleCls = 'role-' + (l.role || 'tech');
+            const action = l.action || '';
+            const details = l.details ? '<span class="logs-action-details">' + escapeHtml(l.details) + '</span>' : '';
+            const initials = (l.user || '?').substring(0, 2).toUpperCase();
+            html +=
+                '<div class="logs-row type-' + (l.type || 'info') + '">' +
+                    '<div class="logs-time">' + timeStr + '</div>' +
+                    '<div class="logs-user ' + roleCls + '"><span class="logs-user-avatar">' + initials + '</span>' + escapeHtml(l.user || '—') + '</div>' +
+                    '<div class="logs-ip">' + escapeHtml(l.ip || '—') + '</div>' +
+                    '<div class="logs-action"><span class="logs-action-icon"></span><span class="logs-action-text">' + escapeHtml(action) + details + '</span></div>' +
+                '</div>';
+        });
+        list.innerHTML = html;
     }
 
     function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' })[c]); }
-
-    async function clearAllLogs() {
-        if (!isAdmin()) { toast('error', t('noRights'), t('onlyAdmin')); return; }
-        if (!confirm(t('logsClearConfirm'))) return;
-        state.logs = [];
-        showLoading(t('saving'));
-        try {
-            await writeFile('logs.json', [], 'Clear logs');
-            renderLogs();
-            toast('success', t('okTitle'), t('logsCleared'));
-        } catch (e) { toast('error', t('errTitle'), e.message); }
-        finally { hideLoading(); }
-    }
 
     async function loadAllData() {
         for (const key of Object.keys(SECTIONS)) {
@@ -908,6 +965,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     }
 
     const isAdmin = () => state.currentRole === 'admin1' || state.currentRole === 'admin2' || state.currentRole === 'admin3';
+    const isDev = () => state.currentRole === 'admin3';
     const canEditServer = srv => isAdmin() || (state.currentServer && String(srv) === String(state.currentServer));
 
     function getUserDisplay(user) {
@@ -1026,7 +1084,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         try {
             await writeFile(cfg.file, existing, 'Upload ' + state.currentSection);
             toast('success', t('uploaded'), `${t('added')}: ${added}${skipped > 0 ? ', ' + t('skipped') + ': ' + skipped : ''}`);
-            addLog('status', t('logUploaded'), t(cfg.titleKey) + ': +' + added);
+            addLog('upload', t('logUploaded'), t(cfg.titleKey) + ': +' + added);
             renderSection();
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
@@ -1041,7 +1099,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         try {
             await writeFile(cfg.file, [], 'Clear ' + state.currentSection);
             toast('success', t('cleared'), '—');
-            addLog('status', t('logCleared'), t(cfg.titleKey));
+            addLog('clear', t('logCleared'), t(cfg.titleKey));
             renderSection();
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
@@ -1059,7 +1117,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             }
             await Promise.all(promises);
             toast('success', t('cleared'), t('allCleared'));
-            addLog('status', t('logClearedAll'), '—');
+            addLog('clear', t('logClearedAll'), '—');
         } catch (e) { toast('error', t('errTitle'), e.message); }
         finally { hideLoading(); }
     }
@@ -1077,10 +1135,24 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         return `${t('banReasonShort')}: ${user.banned.reason}\n${t('bannedUntil')}: ${until}`;
     }
 
+    // ═══════════ ЗАЩИТА РАЗРАБОТЧИКА ═══════════
+    const isProtectedUser = (uname, u) => {
+        // Разработчик (admin3) полностью защищён — нельзя забанить, нельзя менять пароль
+        return u && u.role === 'admin3';
+    };
+    const isHiddenFromMe = (uname, u) => {
+        // Если я не разработчик — не вижу разработчика в списке
+        if (isDev()) return false; // Разработчик видит себя
+        return u && u.role === 'admin3';
+    };
+
     function openUserBanModal(uname) {
         const u = state.users[uname];
         if (!u) return;
-        if (u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3') { adminMsg(lang === 'ru' ? 'Нельзя забанить админа' : 'Cannot ban admin', 'err'); return; }
+        if (isProtectedUser(uname, u)) {
+            adminMsg(t('cannotTouchDev'), 'err');
+            return;
+        }
         state.pendingUserBan = uname;
         $('userBanTarget').textContent = uname + ' (' + t('thServer') + ' ' + u.server + ')';
         $('userBanReason').value = '';
@@ -1092,6 +1164,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     async function confirmUserBan() {
         if (!state.pendingUserBan) return;
         const uname = state.pendingUserBan;
+        if (isProtectedUser(uname, state.users[uname])) { $('userBanModal').classList.remove('open'); state.pendingUserBan = null; adminMsg(t('cannotTouchDev'), 'err'); return; }
         const reason = $('userBanReason').value.trim();
         if (!reason) { toast('error', t('errTitle'), t('banReason')); return; }
         const hours = parseInt($('userBanDuration').value, 10);
@@ -1114,6 +1187,8 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
     }
 
     async function unbanUser(uname) {
+        const u = state.users[uname];
+        if (isProtectedUser(uname, u)) { adminMsg(t('cannotTouchDev'), 'err'); return; }
         if (!confirm((lang === 'ru' ? 'Разблокировать ' : 'Unban ') + uname + '?')) return;
         const oldBanned = state.users[uname].banned;
         delete state.users[uname].banned;
@@ -1135,18 +1210,41 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         body.innerHTML = '';
         Object.keys(state.users).forEach(uname => {
             const u = state.users[uname];
+            // Скрываем разработчика от всех, кроме него самого
+            if (isHiddenFromMe(uname, u)) return;
+
             const isSelf = uname === state.currentUser;
             const isAdminRow = u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3';
+            const isProtected = isProtectedUser(uname, u);
             const revealed = state.revealed[uname] === true;
             const banned = isUserBanned(u);
             const banTitle = banned ? formatBanInfo(u).replace(/"/g, '&quot;') : '';
-            const statusHtml = banned ? `<span class="user-status banned" title="${banTitle}">${t('banned')}</span>` : `<span class="user-status active">${t('active')}</span>`;
-            const banBtn = isAdminRow ? '' : (banned
-                ? `<button class="pmabtn success" data-act="unban" data-user="${uname}">${lang === 'ru' ? 'Разблокировать' : 'Unban'}</button>`
-                : `<button class="pmabtn danger" data-act="ban" data-user="${uname}">${t('block')}</button>`);
+
+            let statusHtml;
+            if (isProtected) {
+                statusHtml = `<span class="user-status hidden-status">${t('hiddenStatus')}</span>`;
+            } else if (banned) {
+                statusHtml = `<span class="user-status banned" title="${banTitle}">${t('banned')}</span>`;
+            } else {
+                statusHtml = `<span class="user-status active">${t('active')}</span>`;
+            }
+
+            // Защищённым нельзя менять пароль и банить
+            const canChangePass = !isProtected;
+            const canBan = !isProtected && !isAdminRow;
+
+            let banBtn = '';
+            if (canBan) {
+                banBtn = banned
+                    ? `<button class="pmabtn success" data-act="unban" data-user="${uname}">${lang === 'ru' ? 'Разблокировать' : 'Unban'}</button>`
+                    : `<button class="pmabtn danger" data-act="ban" data-user="${uname}">${t('block')}</button>`;
+            }
+
             const roleClass = u.role === 'admin1' ? 'admin1' : (u.role === 'admin2' ? 'admin2' : (u.role === 'admin3' ? 'admin3' : 'tech'));
             const tr = document.createElement('tr');
-            if (banned) tr.className = 'banned-row';
+            if (banned && !isProtected) tr.className = 'banned-row';
+            if (isProtected) tr.className = 'admin3-row';
+
             tr.innerHTML = `
                 <td style="font-weight:bold;color:var(--accent)">${uname}${isSelf ? ' *' : ''}</td>
                 <td style="text-align:center"><span class="role-badge ${roleClass}">${roleLabel(u.role)}</span></td>
@@ -1155,7 +1253,7 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
                 <td style="text-align:center">${statusHtml}</td>
                 <td style="white-space:nowrap">
                     <button class="pmabtn" data-act="toggle" data-user="${uname}">${lang === 'ru' ? 'Показать' : 'Show'}</button>
-                    <button class="pmabtn" data-act="change" data-user="${uname}" ${isAdminRow ? 'disabled' : ''}>${lang === 'ru' ? 'Пароль' : 'Password'}</button>
+                    <button class="pmabtn" data-act="change" data-user="${uname}" ${canChangePass ? '' : 'disabled'}>${lang === 'ru' ? 'Пароль' : 'Password'}</button>
                     ${banBtn}
                 </td>`;
             body.appendChild(tr);
@@ -1167,10 +1265,16 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         const btn = e.target.closest('button[data-act]');
         if (!btn) return;
         const act = btn.dataset.act, uname = btn.dataset.user;
+        const u = state.users[uname];
+
+        if (isProtectedUser(uname, u) && act !== 'toggle') {
+            adminMsg(t('cannotTouchDev'), 'err');
+            return;
+        }
+
         if (act === 'toggle') { state.revealed[uname] = !state.revealed[uname]; renderAdminUsers(); return; }
         if (act === 'change') {
-            const u = state.users[uname];
-            if (u.role === 'admin1' || u.role === 'admin2' || u.role === 'admin3') { adminMsg(lang === 'ru' ? 'Нельзя менять пароль админа' : 'Cannot change admin password', 'err'); return; }
+            if (isProtectedUser(uname, u)) { adminMsg(t('cannotTouchDev'), 'err'); return; }
             const np = prompt((lang === 'ru' ? 'Новый пароль для ' : 'New password for ') + uname + ':', '');
             if (np === null) return;
             if (np.length < 4) { adminMsg(lang === 'ru' ? 'Пароль слишком короткий' : 'Password too short', 'err'); return; }
@@ -1213,7 +1317,6 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             return;
         }
         showLoading(t('checking'));
-        // Получаем IP в фоне
         fetchIP();
         const loaded = await loadUsers();
         hideLoading();
@@ -1234,37 +1337,33 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             return;
         }
         if (isUserBanned(user)) {
-            const info = user.banned;
-            const untilText = info.until === 0 ? t('bannedForever') : new Date(info.until).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
-            resetCaptcha();
-            toast('error', t('youAreBanned'), `${t('banReasonShort')}: ${info.reason}\n${t('bannedUntil')}: ${untilText}`);
-            return;
+            // Защита: разработчик не может быть забанен (доп. проверка)
+            if (user.role !== 'admin3') {
+                const info = user.banned;
+                const untilText = info.until === 0 ? t('bannedForever') : new Date(info.until).toLocaleString(lang === 'ru' ? 'ru-RU' : 'en-US');
+                resetCaptcha();
+                toast('error', t('youAreBanned'), `${t('banReasonShort')}: ${info.reason}\n${t('bannedUntil')}: ${untilText}`);
+                return;
+            }
         }
         if (user.banned && typeof user.banned === 'object' && user.banned.until !== 0 && user.banned.until <= Date.now()) {
             delete user.banned;
             writeFile('users.json', state.users, 'Auto-unban').catch(() => {});
         }
-
         state.currentUser = uname;
         state.currentServer = user.server;
         state.currentRole = user.role;
-
-        // Дожидаемся IP
         if (state.userIp === '—') await fetchIP();
-
         const display = getUserDisplay(user);
         $('userBadgeMenu').textContent = display;
         $('userBadgeSection').textContent = display;
         $('userBadgeAdmin').textContent = display;
         $('adminTopBar').style.display = isAdmin() ? 'flex' : 'none';
         $('sectionActions').style.display = isAdmin() ? 'grid' : 'none';
-        $('logsClear').style.display = isAdmin() ? 'inline-block' : 'none';
-
         showLoading(t('loading'));
         await loadAllData();
         await loadLogs();
         hideLoading();
-
         toast('success', t('okTitle'), t('welcomeBack') + uname);
         addLog('login', t('logLogin'), uname + ' | ' + roleLabel(user.role) + ' | IP: ' + state.userIp);
         setTimeout(() => { $('loginScreen').classList.add('hidden'); showScreen('menu'); }, 300);
@@ -1311,14 +1410,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
         updateTokenStatus();
         initCaptcha();
         updateStrength();
-        fetchIP(); // получаем IP при загрузке
+        fetchIP();
         $('password').addEventListener('input', updateStrength);
         $('username').addEventListener('input', function () { this.classList.remove('error'); });
         $('password').addEventListener('input', function () { this.classList.remove('error'); });
 
-        $('settingsBtn').addEventListener('click', openSettingsModal);
-        $('settingsBtnSection').addEventListener('click', openSettingsModal);
-        $('settingsBtnAdmin').addEventListener('click', openSettingsModal);
+        $('settingsIconBtn').addEventListener('click', openSettingsModal);
         $('settingsClose').addEventListener('click', () => $('settingsModal').classList.remove('open'));
 
         $('settingsLangSelect').addEventListener('change', function () { lang = this.value; localStorage.setItem('lang', lang); applyLanguage(); });
@@ -1331,14 +1428,12 @@ legend { background: #fff; border: 1px solid #ccc; padding: 2px 8px; font-size: 
             toast('success', t('okTitle'), t('settingsSaved'));
         });
 
-        // Логи
         $('logsBtn').addEventListener('click', () => {
             if (!isAdmin()) { toast('error', t('noRights'), t('onlyAdmin')); return; }
             renderLogs();
             $('logsModal').classList.add('open');
         });
         $('logsClose').addEventListener('click', () => $('logsModal').classList.remove('open'));
-        $('logsClear').addEventListener('click', clearAllLogs);
         $('logsSearch').addEventListener('input', renderLogs);
         $('logsActionFilter').addEventListener('change', renderLogs);
 
