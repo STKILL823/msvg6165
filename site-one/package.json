@@ -5,8 +5,11 @@
   "description": "Защищённая авторизация для технического отдела 61-65",
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check public/app.js && node --check public/protected.js && node --check scripts/hash-password.js",
+    "check": "node --check server.js && node --check lib/database.js && node --check lib/passwords.js && node --check public/app.js && node --check public/protected.js && node --check public/admin.js && node --check scripts/hash-password.js",
     "hash-password": "node scripts/hash-password.js"
+  },
+  "dependencies": {
+    "mysql2": "^3.15.0"
   },
   "engines": {
     "node": ">=20"

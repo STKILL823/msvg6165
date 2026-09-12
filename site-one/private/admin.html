@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PhpMyTech — Admin panel</title>
+    <link rel="stylesheet" href="/admin.css">
+    <script src="/admin.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <div><strong>PhpMyTech</strong><span>Admin panel</span></div>
+      <nav><a href="/app">Рабочая область</a><button id="logout" type="button">Выйти</button></nav>
+    </header>
+    <main class="admin-shell">
+      <section class="intro">
+        <h1>Управление пользователями</h1>
+        <p id="current-user">Загрузка прав…</p>
+      </section>
+
+      <section class="card">
+        <h2>Создать аккаунт</h2>
+        <form id="create-form">
+          <label>Nick_Name<input name="username" required minlength="3" maxlength="80" autocomplete="off"></label>
+          <label>Пароль<input name="password" type="password" required minlength="12" maxlength="256" autocomplete="new-password"></label>
+          <label>Права
+            <select name="role" id="role-select">
+              <option value="user">Пользователь</option>
+              <option value="admin" id="admin-role-option">Зам. куратора (Admin)</option>
+            </select>
+          </label>
+          <button type="submit">Создать пользователя</button>
+        </form>
+        <p class="hint">Пароль должен содержать не менее 12 символов. В базе сохраняется только его защищённый хеш.</p>
+        <p id="message" class="message" role="alert" aria-live="polite"></p>
+      </section>
+
+      <section class="card users-card">
+        <div class="section-title"><h2>Пользователи базы данных</h2><button id="refresh" type="button">Обновить</button></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nick_Name</th><th>Права</th><th>Создал</th><th>Дата создания</th><th>Действие</th></tr></thead>
+            <tbody id="users-body"><tr><td colspan="5">Загрузка…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+

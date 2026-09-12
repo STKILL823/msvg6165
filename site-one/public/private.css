@@ -23,11 +23,20 @@ h1 {
   font-size: 22px;
 }
 
+.button,
 button {
+  display: inline-block;
   padding: 7px 15px;
   border: 1px solid #999;
   border-radius: 3px;
   background: linear-gradient(#fff, #ddd);
   cursor: pointer;
+  color: #222;
+  font: inherit;
+  text-decoration: none;
 }
+
+.actions { display: flex; justify-content: center; gap: 10px; margin-top: 24px; }
+.role-line { color: #53616d; }
+.hidden { display: none; }
 

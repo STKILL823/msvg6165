@@ -1,6 +1,6 @@
 'use strict';
 
-const { randomBytes, scryptSync } = require('node:crypto');
+const { hashPassword } = require('../lib/passwords');
 
 const password = process.env.APP_PASSWORD;
 
@@ -9,7 +9,4 @@ if (!password || password.length < 12) {
   process.exit(1);
 }
 
-const salt = randomBytes(16);
-const derived = scryptSync(password, salt, 64);
-process.stdout.write(`scrypt:${salt.toString('hex')}:${derived.toString('hex')}\n`);
-
+process.stdout.write(`${hashPassword(password)}\n`);
