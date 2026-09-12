@@ -6,12 +6,13 @@
     <meta name="theme-color" content="#f3f6fb">
     <title>Массовая выгрузка — Admin panel</title>
     <link rel="stylesheet" href="/admin.css">
+    <script src="/theme.js"></script>
     <script src="/admin.js" defer></script>
   </head>
   <body>
     <header class="topbar">
       <div class="brand">⛵ <strong>Массовая выгрузка 61-65</strong><span>Admin panel</span></div>
-      <nav><a href="/app">Рабочая зона</a><button id="logout" type="button">Выйти</button></nav>
+      <nav><button class="theme-toggle" type="button" data-theme-toggle>☾ Тёмная</button><a href="/app">Рабочая зона</a><button id="logout" type="button">Выйти</button></nav>
     </header>
     <main class="admin-shell">
       <section class="intro"><h1>Панель управления</h1><p id="current-user">Загрузка прав…</p></section>

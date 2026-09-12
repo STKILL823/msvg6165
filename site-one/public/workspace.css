@@ -166,6 +166,54 @@ tbody tr:hover { background: #f1f5ff; }
 .progress span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, #41c58a, #2e9d70); transition: width .55s cubic-bezier(.2,.8,.2,1); }
 .hidden { display: none !important; }
 
+html[data-theme="dark"] {
+  color: #e5ebf5;
+  background: #0b1020;
+  --surface: #141c2d;
+  --line: #29354a;
+  --muted: #919db1;
+  --shadow: 0 20px 54px rgb(0 0 0 / 28%);
+}
+
+html[data-theme="dark"] body { background: radial-gradient(circle at 92% 4%, rgb(65 92 198 / 15%), transparent 28rem), linear-gradient(180deg, #0d1322, #0a0f1c); }
+html[data-theme="dark"] .topbar { border-color: rgb(45 58 80 / 82%); background: rgb(14 20 34 / 84%); box-shadow: 0 9px 34px rgb(0 0 0 / 22%); }
+html[data-theme="dark"] .brand { color: #8ca4ff; }
+html[data-theme="dark"] .boat { background: linear-gradient(135deg, #1c2949, #342918); box-shadow: inset 0 0 0 1px #2c3850; }
+html[data-theme="dark"] .account { color: #a0adbf; }
+html[data-theme="dark"] .button,
+html[data-theme="dark"] .topbar button { border-color: #303c52; background: #151e30; color: #cbd5e5; }
+html[data-theme="dark"] .button:hover,
+html[data-theme="dark"] .topbar button:hover { border-color: #52689d; background: #1a2540; box-shadow: 0 9px 24px rgb(0 0 0 / 24%); }
+html[data-theme="dark"] h1 { color: #edf2fb; }
+html[data-theme="dark"] .future-actions button { border-color: #354158; background: rgb(19 27 45 / 65%); color: #6f7c90; }
+html[data-theme="dark"] .server-tabs button,
+html[data-theme="dark"] .sheet-tabs button { border-color: #2a3549; background: #141c2d; color: #9ca8ba; }
+html[data-theme="dark"] .server-tabs button:hover,
+html[data-theme="dark"] .sheet-tabs button:hover { border-color: #5066a0; color: #9eb1ff; box-shadow: 0 9px 24px rgb(0 0 0 / 22%); }
+html[data-theme="dark"] .server-tabs button.active,
+html[data-theme="dark"] .sheet-tabs button.active { border-color: #607be0; background: linear-gradient(135deg, #496bdc, #334ba5); color: #fff; box-shadow: 0 10px 26px rgb(30 54 139 / 36%); }
+html[data-theme="dark"] .table-wrap,
+html[data-theme="dark"] .statistics-view { border-color: #29354a; background: #141c2d; }
+html[data-theme="dark"] th { background: #182235; color: #94a1b5; }
+html[data-theme="dark"] th,
+html[data-theme="dark"] td { border-color: #253044; }
+html[data-theme="dark"] tbody tr:nth-child(even) { background: #111929; }
+html[data-theme="dark"] tbody tr:hover { background: #1b2740; }
+html[data-theme="dark"] .row-key { color: #9db0ff; }
+html[data-theme="dark"] .empty { color: #778398; }
+html[data-theme="dark"] .status-pending { border-color: #3c485b; background: #252f40; color: #c4cddd; }
+html[data-theme="dark"] .status-violation { border-color: #713846; background: #3a1f29; color: #ff9bab; }
+html[data-theme="dark"] .status-clear { border-color: #285c48; background: #17372c; color: #82dfb6; }
+html[data-theme="dark"] .status-help { border-color: #315c7a; background: #18344a; color: #8dcef7; }
+html[data-theme="dark"] .status-processed { border-color: #665427; background: #3a311c; color: #f0ca6b; }
+html[data-theme="dark"] .sheet-tabs { border-color: rgb(44 56 77 / 90%); background: rgb(15 22 37 / 88%); box-shadow: 0 17px 48px rgb(0 0 0 / 34%); }
+html[data-theme="dark"] .sheet-tabs button { border-color: transparent; background: transparent; }
+html[data-theme="dark"] .sheet-tabs button.active { background: linear-gradient(135deg, #496bdc, #334ba5); }
+html[data-theme="dark"] .stat-card { border-color: #2a354a; background: #111929; }
+html[data-theme="dark"] .stat-card span { color: #909db1; }
+html[data-theme="dark"] .stat-card strong { color: #edf2fb; }
+html[data-theme="dark"] .progress { background: #273246; }
+
 @keyframes reveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
 @media (max-width: 900px) {
@@ -206,6 +254,8 @@ tbody tr:hover { background: #f1f5ff; }
   .statistics-view { padding: 17px; }
   .stats-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
   .stat-card { padding: 14px; }
+  html[data-theme="dark"] tbody tr { background: #141c2d !important; box-shadow: 0 10px 28px rgb(0 0 0 / 24%); }
+  html[data-theme="dark"] tbody td { border-color: #253044; }
 }
 
 @media (max-width: 420px) {

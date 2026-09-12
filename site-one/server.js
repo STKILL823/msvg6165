@@ -41,6 +41,7 @@ const publicRoutes = {
   '/': ['index.html', 'text/html; charset=utf-8'],
   '/styles.css': ['styles.css', 'text/css; charset=utf-8'],
   '/app.js': ['app.js', 'text/javascript; charset=utf-8'],
+  '/theme.js': ['theme.js', 'text/javascript; charset=utf-8'],
   '/workspace.css': ['workspace.css', 'text/css; charset=utf-8'],
   '/workspace.js': ['workspace.js', 'text/javascript; charset=utf-8'],
   '/admin.css': ['admin.css', 'text/css; charset=utf-8'],
