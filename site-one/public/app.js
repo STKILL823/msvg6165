@@ -2,7 +2,7 @@
 
 const translations = {
   ru: {
-    welcome: 'Добро пожаловать в технический отдел ',
+    welcome: 'Добро пожаловать, технический специалист!',
     languageTitle: 'Язык — Language',
     languageLabel: 'Выберите язык',
     authorization: 'Авторизация',
@@ -15,25 +15,25 @@ const translations = {
     loading: 'Проверка…',
   },
   en: {
-    welcome: 'Welcome to Technical Department ', languageTitle: 'Language',
+    welcome: 'Welcome, technical specialist!', languageTitle: 'Language',
     languageLabel: 'Choose a language', authorization: 'Authentication', username: 'Nick_Name:',
     password: 'Password:', signIn: 'Sign in', invalid: 'Invalid Nick_Name or password.',
     limited: 'Too many attempts. Try again later.', error: 'Unable to reach the server.', loading: 'Checking…',
   },
   uk: {
-    welcome: 'Ласкаво просимо до технічного відділу ', languageTitle: 'Мова — Language',
+    welcome: 'Ласкаво просимо, технічний спеціалісте!', languageTitle: 'Мова — Language',
     languageLabel: 'Виберіть мову', authorization: 'Авторизація', username: 'Nick_Name:',
     password: 'Пароль:', signIn: 'Увійти', invalid: 'Невірний Nick_Name або пароль.',
     limited: 'Забагато спроб. Спробуйте пізніше.', error: 'Не вдалося з’єднатися із сервером.', loading: 'Перевірка…',
   },
   de: {
-    welcome: 'Willkommen in der technischen Abteilung ', languageTitle: 'Sprache — Language',
+    welcome: 'Willkommen, technische Fachkraft!', languageTitle: 'Sprache — Language',
     languageLabel: 'Sprache auswählen', authorization: 'Anmeldung', username: 'Nick_Name:',
     password: 'Passwort:', signIn: 'Anmelden', invalid: 'Nick_Name oder Passwort ist falsch.',
     limited: 'Zu viele Versuche. Bitte später erneut versuchen.', error: 'Server nicht erreichbar.', loading: 'Prüfung…',
   },
   fr: {
-    welcome: 'Bienvenue au service technique ', languageTitle: 'Langue — Language',
+    welcome: 'Bienvenue, spécialiste technique !', languageTitle: 'Langue — Language',
     languageLabel: 'Choisir une langue', authorization: 'Authentification', username: 'Nick_Name :',
     password: 'Mot de passe :', signIn: 'Connexion', invalid: 'Nick_Name ou mot de passe incorrect.',
     limited: 'Trop de tentatives. Réessayez plus tard.', error: 'Serveur inaccessible.', loading: 'Vérification…',

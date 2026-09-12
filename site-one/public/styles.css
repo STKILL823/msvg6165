@@ -37,14 +37,14 @@ button, input, select { font: inherit; }
 .wordmark {
   position: relative;
   color: #293e72;
-  font-size: 29px;
+  font-size: 24px;
   font-style: italic;
   font-weight: 700;
-  letter-spacing: -1.8px;
+  letter-spacing: -.8px;
   text-shadow: 0 1px 0 #fff, 0 2px 2px #999;
 }
 
-.wordmark strong { color: #ed9413; }
+.wordmark strong { color: #ed9413; white-space: nowrap; }
 
 h1 {
   margin: 12px 0 26px;

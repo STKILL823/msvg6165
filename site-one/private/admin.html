@@ -3,46 +3,58 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PhpMyTech — Admin panel</title>
+    <title>Массовая выгрузка — Admin panel</title>
     <link rel="stylesheet" href="/admin.css">
     <script src="/admin.js" defer></script>
   </head>
   <body>
     <header class="topbar">
-      <div><strong>PhpMyTech</strong><span>Admin panel</span></div>
-      <nav><a href="/app">Рабочая область</a><button id="logout" type="button">Выйти</button></nav>
+      <div class="brand">⛵ <strong>Массовая выгрузка 61-65</strong><span>Admin panel</span></div>
+      <nav><a href="/app">Рабочая зона</a><button id="logout" type="button">Выйти</button></nav>
     </header>
     <main class="admin-shell">
-      <section class="intro">
-        <h1>Управление пользователями</h1>
-        <p id="current-user">Загрузка прав…</p>
+      <section class="intro"><h1>Панель управления</h1><p id="current-user">Загрузка прав…</p></section>
+      <nav class="section-tabs" aria-label="Разделы панели">
+        <button class="active" data-section="users" type="button">Пользователи</button>
+        <button data-section="help" type="button">Требуется помощь <span id="help-count" class="counter">0</span></button>
+        <button data-section="statistics" type="button">Статистика</button>
+        <button data-section="logs" type="button">Логирование</button>
+      </nav>
+
+      <section id="section-users" class="section active-section">
+        <article class="card">
+          <h2>Создать аккаунт</h2>
+          <form id="create-form">
+            <label>Nick_Name<input name="username" required minlength="3" maxlength="80" autocomplete="off"></label>
+            <label>Пароль<input name="password" type="password" required minlength="12" maxlength="256" autocomplete="new-password"></label>
+            <label>Права<select name="role" id="create-role"></select></label>
+            <label id="create-server-label">Сервер<select name="serverId" id="create-server"></select></label>
+            <button type="submit">Создать</button>
+          </form>
+          <p class="hint">Сервер обязателен для обычного пользователя. Пароль сохраняется только как scrypt-хеш.</p>
+          <p id="message" class="message" role="alert" aria-live="polite"></p>
+        </article>
+        <article class="card">
+          <div class="section-title"><h2>Пользователи</h2><button id="refresh-users" type="button">Обновить</button></div>
+          <div class="table-wrap"><table><thead><tr><th>Nick_Name</th><th>Права</th><th>Сервер</th><th>Создал</th><th>Дата</th><th>Действия</th></tr></thead><tbody id="users-body"><tr><td colspan="6">Загрузка…</td></tr></tbody></table></div>
+        </article>
       </section>
 
-      <section class="card">
-        <h2>Создать аккаунт</h2>
-        <form id="create-form">
-          <label>Nick_Name<input name="username" required minlength="3" maxlength="80" autocomplete="off"></label>
-          <label>Пароль<input name="password" type="password" required minlength="12" maxlength="256" autocomplete="new-password"></label>
-          <label>Права
-            <select name="role" id="role-select">
-              <option value="user">Пользователь</option>
-              <option value="admin" id="admin-role-option">Зам. куратора (Admin)</option>
-            </select>
-          </label>
-          <button type="submit">Создать пользователя</button>
-        </form>
-        <p class="hint">Пароль должен содержать не менее 12 символов. В базе сохраняется только его защищённый хеш.</p>
-        <p id="message" class="message" role="alert" aria-live="polite"></p>
+      <section id="section-help" class="section">
+        <article class="card"><div class="section-title"><div><h2>Требуется помощь руководства</h2><p>Строки сразу появляются здесь после выбора синего статуса.</p></div><button class="refresh-overview" type="button">Обновить</button></div>
+          <div class="table-wrap"><table><thead><tr><th>Сервер</th><th>Лист</th><th>Строка</th><th>Данные</th><th>Исполнитель</th><th>Изменил</th><th>Время</th></tr></thead><tbody id="help-body"></tbody></table></div>
+        </article>
       </section>
 
-      <section class="card users-card">
-        <div class="section-title"><h2>Пользователи базы данных</h2><button id="refresh" type="button">Обновить</button></div>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Nick_Name</th><th>Права</th><th>Создал</th><th>Дата создания</th><th>Действие</th></tr></thead>
-            <tbody id="users-body"><tr><td colspan="5">Загрузка…</td></tr></tbody>
-          </table>
-        </div>
+      <section id="section-statistics" class="section">
+        <article class="card"><div class="section-title"><div><h2>Статистика по всем серверам</h2><p>Количество обработанных строк и распределение статусов.</p></div><button class="refresh-overview" type="button">Обновить</button></div><div id="stats-grid" class="stats-grid"></div></article>
+      </section>
+
+      <section id="section-logs" class="section">
+        <article class="card"><div class="section-title"><div><h2>Логирование</h2><p>Последние 500 действий пользователей и IP-адреса.</p></div><button class="refresh-overview" type="button">Обновить</button></div>
+          <div class="log-filters"><input id="log-search" type="search" placeholder="Поиск по логину / IP / действию…"><select id="log-action"><option value="">Все действия</option></select></div>
+          <div id="log-summary" class="log-summary"></div><div id="logs" class="logs"></div>
+        </article>
       </section>
     </main>
   </body>

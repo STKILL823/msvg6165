@@ -3,20 +3,51 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PhpMyTech — Технический отдел 61-65</title>
-    <link rel="stylesheet" href="/private.css">
-    <script src="/protected.js" defer></script>
+    <title>Массовая выгрузка 61-65</title>
+    <link rel="stylesheet" href="/workspace.css">
+    <script src="/workspace.js" defer></script>
   </head>
   <body>
-    <main>
-      <h1>PhpMyTech</h1>
-      <p>Авторизация выполнена. Добро пожаловать в технический отдел 61-65.</p>
-      <p id="user" class="user-line"></p>
-      <p id="role" class="role-line"></p>
-      <div class="actions">
+    <header class="topbar">
+      <div class="brand"><span class="boat">⛵</span><strong>Массовая выгрузка 61-65</strong></div>
+      <div class="account">
+        <span id="account-label">Загрузка…</span>
         <a id="admin-link" class="button hidden" href="/admin">Admin panel</a>
         <button id="logout" type="button">Выйти</button>
       </div>
+    </header>
+
+    <main>
+      <section class="toolbar">
+        <div>
+          <h1 id="sheet-title">Обмен дом на дом</h1>
+          <p id="scope-label">Сервер</p>
+        </div>
+        <div class="future-actions" aria-label="Загрузка будет реализована позже">
+          <button type="button" disabled title="Будет добавлено на следующем этапе">Загрузить данные — позже</button>
+          <button type="button" disabled title="Будет добавлено на следующем этапе">Очистить — позже</button>
+        </div>
+      </section>
+
+      <nav id="server-tabs" class="server-tabs" aria-label="Выбор сервера"></nav>
+
+      <section id="table-view">
+        <div class="result-line"><span id="row-count">Найдено записей: 0</span><span id="save-message" role="status"></span></div>
+        <div class="table-wrap">
+          <table>
+            <thead id="rows-head"></thead>
+            <tbody id="rows-body"><tr><td>Загрузка…</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="statistics-view" class="statistics-view hidden">
+        <h2>Статистика сервера <span id="stats-server"></span></h2>
+        <div id="stats-cards" class="stats-cards"></div>
+        <div class="progress"><span id="stats-progress"></span></div>
+      </section>
     </main>
+
+    <nav id="sheet-tabs" class="sheet-tabs" aria-label="Листы данных"></nav>
   </body>
 </html>
