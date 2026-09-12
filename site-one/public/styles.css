@@ -181,11 +181,19 @@ button:disabled { cursor: wait; opacity: .58; transform: none; box-shadow: none;
 @keyframes drift { to { transform: translate(18px, 24px) rotate(38deg); border-radius: 58% 42% 35% 65%; } }
 
 @media (max-width: 520px) {
-  .login-shell { padding-block: 34px; }
+  .login-shell { width: calc(100% - 22px); padding: max(28px, env(safe-area-inset-top)) 0 max(24px, env(safe-area-inset-bottom)); }
+  .brand { margin-bottom: 27px; }
+  .sailboat { width: 92px; height: 76px; }
   .panel { padding-inline: 20px; border-radius: 17px; }
   .auth-panel { padding-bottom: 0; }
   .field-row { grid-template-columns: 1fr; gap: 6px; }
   .form-footer { margin-inline: -20px; padding-inline: 20px; }
+  input, select, button { min-height: 46px; }
+}
+
+@media (max-width: 380px) {
+  .wordmark { font-size: 22px; }
+  .form-footer button { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
