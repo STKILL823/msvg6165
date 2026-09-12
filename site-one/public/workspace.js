@@ -15,8 +15,8 @@ initialize();
 
 async function initialize() {
   try {
-    const response = await fetch('/api/me');
-    if (!response.ok) return location.replace('/');
+    const response = await apiFetch('/api/me');
+    if (!response.ok) return showFatal('Не удалось проверить доступ.');
     currentUser = await response.json();
     currentServer = currentUser.globalServerAccess ? '61' : currentUser.serverId;
     if (!currentServer) return showFatal('Для аккаунта не назначен сервер. Обратитесь к администратору.');
@@ -24,7 +24,7 @@ async function initialize() {
     if (currentUser.canAdminister) document.querySelector('#admin-link').classList.remove('hidden');
     renderNavigation();
     await loadWorkspace();
-  } catch { showFatal('Сервер недоступен.'); }
+  } catch (error) { if (error.message !== 'session_expired') showFatal('Сервер недоступен. Попробуйте обновить страницу.'); }
 }
 
 function renderNavigation() {
@@ -46,8 +46,7 @@ function renderNavigation() {
 }
 
 async function loadWorkspace() {
-  const response = await fetch(`/api/workspace?server=${encodeURIComponent(currentServer)}&sheet=${encodeURIComponent(currentSheet)}`);
-  if (response.status===401) return location.replace('/');
+  const response = await apiFetch(`/api/workspace?server=${encodeURIComponent(currentServer)}&sheet=${encodeURIComponent(currentSheet)}`);
   if (!response.ok) return showFatal('Не удалось загрузить рабочую зону.');
   const payload=await response.json();
   document.querySelector('#sheet-title').textContent=SHEETS.find(([key])=>key===currentSheet)[1];
@@ -70,11 +69,12 @@ function renderRows(rows) {
   for(const row of rows){const tr=document.createElement('tr');tr.append(cell(currentServer),cell(row.rowKey,'row-key'));for(const key of dataColumns)tr.append(cell(formatValue(row.data[key])));tr.append(cell(row.assignedUsername||'Общий доступ'));const td=document.createElement('td');td.append(statusSelect(row));tr.append(td);body.append(tr)}
 }
 
-function statusSelect(row){const select=document.createElement('select');select.className=`status-select status-${row.status}`;for(const [value,label] of Object.entries(STATUS_LABELS)){const option=document.createElement('option');option.value=value;option.textContent=label;option.selected=value===row.status;select.append(option)}select.addEventListener('change',async()=>{const previous=row.status;const next=select.value;select.disabled=true;const response=await fetch(`/api/rows/${encodeURIComponent(row.id)}/status`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:next})}).catch(()=>null);if(!response||!response.ok){select.value=previous;flash('Не удалось сохранить статус',false)}else{row.status=next;select.className=`status-select status-${next}`;flash('Статус сохранён',true)}select.disabled=false});return select}
+function statusSelect(row){const select=document.createElement('select');select.className=`status-select status-${row.status}`;for(const [value,label] of Object.entries(STATUS_LABELS)){const option=document.createElement('option');option.value=value;option.textContent=label;option.selected=value===row.status;select.append(option)}select.addEventListener('change',async()=>{const previous=row.status;const next=select.value;select.disabled=true;const response=await apiFetch(`/api/rows/${encodeURIComponent(row.id)}/status`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status:next})}).catch(()=>null);if(!response||!response.ok){select.value=previous;flash('Не удалось сохранить статус',false)}else{row.status=next;select.className=`status-select status-${next}`;flash('Статус сохранён',true)}select.disabled=false});return select}
 function renderStatistics(statistics,serverId){const stats=statistics.find(item=>item.serverId===serverId)||{};document.querySelector('#stats-server').textContent=serverId;const cards=[['Всего',stats.total,''],['Отработано',stats.completed,''],['Нарушения',stats.violation,'violation'],['Без нарушений',stats.clear,'clear'],['Требуется помощь',stats.help,'help'],['Ранее отработано',stats.processed,'processed']];const container=document.querySelector('#stats-cards');container.replaceChildren(...cards.map(([label,value,type])=>{const card=document.createElement('div');card.className=`stat-card ${type?`stat-${type}`:''}`;const span=document.createElement('span');span.textContent=label;const strong=document.createElement('strong');strong.textContent=value||0;card.append(span,strong);return card}));const percent=stats.total?Math.round(stats.completed/stats.total*100):0;document.querySelector('#stats-progress').style.width=`${percent}%`;document.querySelector('#stats-progress').title=`Отработано ${percent}%`}
 function cell(value,className=''){const td=document.createElement('td');td.textContent=value;td.className=className;return td}
 function formatValue(value){if(value===null||value===undefined)return '';return typeof value==='object'?JSON.stringify(value):String(value)}
 function roleLabel(role){return {user:'Пользователь',admin:'Admin',superadmin:'Superadmin',developer:'Developer'}[role]||role}
 function flash(text,ok){const message=document.querySelector('#save-message');message.textContent=text;message.style.color=ok?'#267448':'#a42525';setTimeout(()=>{message.textContent=''},2500)}
 function showFatal(text){document.querySelector('main').textContent=text}
+async function apiFetch(url,options={}){const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),10000);try{const response=await fetch(url,{...options,signal:controller.signal});if(response.status===401){sessionStorage.setItem('auth_notice','session_expired');location.replace('/');throw new Error('session_expired')}return response}finally{clearTimeout(timeout)}}
 document.querySelector('#logout').addEventListener('click',async()=>{await fetch('/api/logout',{method:'POST'}).catch(()=>{});location.replace('/')});

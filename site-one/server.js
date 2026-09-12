@@ -60,7 +60,7 @@ const server = http.createServer(async (req, res) => {
 
     const session = await getSession(req);
     if (req.method === 'GET' && url.pathname === '/api/me') {
-      return session ? sendJson(res, 200, publicUser(session)) : sendJson(res, 401, { error: 'unauthorized' });
+      return session ? sendJson(res, 200, publicUser(session)) : sendUnauthorized(res);
     }
     if (req.method === 'GET' && url.pathname === '/app') {
       if (!session) return redirect(res, '/');
@@ -143,7 +143,7 @@ async function handleLogout(req, res) {
 }
 
 async function handleWorkspace(res, session, url) {
-  if (!session) return sendJson(res, 401, { error: 'unauthorized' });
+  if (!session) return sendUnauthorized(res);
   const serverId = resolveServer(session, url.searchParams.get('server'));
   if (!serverId) return sendJson(res, 400, { error: 'invalid_server' });
   const sheetKey = url.searchParams.get('sheet') || SHEETS[0].key;
@@ -162,7 +162,7 @@ async function handleWorkspace(res, session, url) {
 }
 
 async function handleRowStatus(req, res, session, rowId) {
-  if (!session) return sendJson(res, 401, { error: 'unauthorized' });
+  if (!session) return sendUnauthorized(res);
   if (!sameOrigin(req)) return sendJson(res, 403, { error: 'invalid_origin' });
   const body = await getRequestBody(req, res);
   if (!body) return;
@@ -185,7 +185,7 @@ async function handleRowStatus(req, res, session, rowId) {
 }
 
 async function handleListUsers(res, session) {
-  if (!session) return sendJson(res, 401, { error: 'unauthorized' });
+  if (!session) return sendUnauthorized(res);
   if (!canAdminister(session.role)) return sendJson(res, 403, { error: 'forbidden' });
   const users = await db.listUsers();
   return sendJson(res, 200, { users: users.map((user) => ({
@@ -198,7 +198,7 @@ async function handleListUsers(res, session) {
 }
 
 async function handleCreateUser(req, res, session) {
-  if (!session) return sendJson(res, 401, { error: 'unauthorized' });
+  if (!session) return sendUnauthorized(res);
   if (!sameOrigin(req)) return sendJson(res, 403, { error: 'invalid_origin' });
   if (!canAdminister(session.role)) return sendJson(res, 403, { error: 'forbidden' });
   const body = await getRequestBody(req, res);
@@ -225,7 +225,7 @@ async function handleCreateUser(req, res, session) {
 }
 
 async function handleUpdateUser(req, res, session, targetId) {
-  if (!session) return sendJson(res, 401, { error: 'unauthorized' });
+  if (!session) return sendUnauthorized(res);
   if (!sameOrigin(req)) return sendJson(res, 403, { error: 'invalid_origin' });
   if (String(session.userId) === String(targetId)) return sendJson(res, 403, { error: 'cannot_edit_self' });
   const target = await db.findUserById(targetId);
@@ -247,7 +247,7 @@ async function handleUpdateUser(req, res, session, targetId) {
 }
 
 async function handleDeleteUser(req, res, session, targetId) {
-  if (!session) return sendJson(res, 401, { error: 'unauthorized' });
+  if (!session) return sendUnauthorized(res);
   if (!sameOrigin(req)) return sendJson(res, 403, { error: 'invalid_origin' });
   if (String(session.userId) === String(targetId)) return sendJson(res, 403, { error: 'cannot_delete_self' });
   const target = await db.findUserById(targetId);
@@ -263,7 +263,7 @@ async function handleDeleteUser(req, res, session, targetId) {
 }
 
 async function handleAdminOverview(res, session) {
-  if (!session) return sendJson(res, 401, { error: 'unauthorized' });
+  if (!session) return sendUnauthorized(res);
   if (!canAdminister(session.role)) return sendJson(res, 403, { error: 'forbidden' });
   const [statistics, helpRequests, logs] = await Promise.all([
     db.listStatistics(), db.listHelpRequests(), db.listAuditLogs(500),
@@ -401,6 +401,10 @@ function setSecurityHeaders(res) {
   res.setHeader('Cache-Control', 'no-store'); if (PRODUCTION) res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
 }
 async function sendFile(res, file, contentType) { const contents = await readFile(file); res.writeHead(200, { 'Content-Type': contentType }); res.end(contents); }
+function sendUnauthorized(res) {
+  res.setHeader('Set-Cookie', makeSessionCookie('', 0));
+  return sendJson(res, 401, { error: 'session_expired' });
+}
 function sendJson(res, statusCode, payload) { res.writeHead(statusCode, { 'Content-Type': 'application/json; charset=utf-8' }); res.end(JSON.stringify(payload)); }
 function redirect(res, location) { res.writeHead(303, { Location: location }); res.end(); }
 function hashToken(token) { return createHash('sha256').update(token).digest('hex'); }

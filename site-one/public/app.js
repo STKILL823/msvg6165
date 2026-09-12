@@ -13,30 +13,35 @@ const translations = {
     limited: 'Слишком много попыток. Попробуйте позже.',
     error: 'Не удалось связаться с сервером.',
     loading: 'Проверка…',
+    sessionExpired: 'Сессия завершена: аккаунт был удалён или доступ отозван. Войдите под действующей учётной записью.',
   },
   en: {
     welcome: 'Welcome, technical specialist!', languageTitle: 'Language',
     languageLabel: 'Choose a language', authorization: 'Authentication', username: 'Nick_Name:',
     password: 'Password:', signIn: 'Sign in', invalid: 'Invalid Nick_Name or password.',
     limited: 'Too many attempts. Try again later.', error: 'Unable to reach the server.', loading: 'Checking…',
+    sessionExpired: 'Your session ended because the account was deleted or access was revoked. Sign in with an active account.',
   },
   uk: {
     welcome: 'Ласкаво просимо, технічний спеціалісте!', languageTitle: 'Мова — Language',
     languageLabel: 'Виберіть мову', authorization: 'Авторизація', username: 'Nick_Name:',
     password: 'Пароль:', signIn: 'Увійти', invalid: 'Невірний Nick_Name або пароль.',
     limited: 'Забагато спроб. Спробуйте пізніше.', error: 'Не вдалося з’єднатися із сервером.', loading: 'Перевірка…',
+    sessionExpired: 'Сеанс завершено: обліковий запис видалено або доступ відкликано. Увійдіть за допомогою активного облікового запису.',
   },
   de: {
     welcome: 'Willkommen, technische Fachkraft!', languageTitle: 'Sprache — Language',
     languageLabel: 'Sprache auswählen', authorization: 'Anmeldung', username: 'Nick_Name:',
     password: 'Passwort:', signIn: 'Anmelden', invalid: 'Nick_Name oder Passwort ist falsch.',
     limited: 'Zu viele Versuche. Bitte später erneut versuchen.', error: 'Server nicht erreichbar.', loading: 'Prüfung…',
+    sessionExpired: 'Die Sitzung wurde beendet, weil das Konto gelöscht oder der Zugriff entzogen wurde. Melden Sie sich mit einem aktiven Konto an.',
   },
   fr: {
     welcome: 'Bienvenue, spécialiste technique !', languageTitle: 'Langue — Language',
     languageLabel: 'Choisir une langue', authorization: 'Authentification', username: 'Nick_Name :',
     password: 'Mot de passe :', signIn: 'Connexion', invalid: 'Nick_Name ou mot de passe incorrect.',
     limited: 'Trop de tentatives. Réessayez plus tard.', error: 'Serveur inaccessible.', loading: 'Vérification…',
+    sessionExpired: 'La session est terminée car le compte a été supprimé ou son accès révoqué. Connectez-vous avec un compte actif.',
   },
 };
 
@@ -45,6 +50,8 @@ const language = document.querySelector('#language');
 const message = document.querySelector('#message');
 const submitButton = document.querySelector('#submit-button');
 let locale = localStorage.getItem('pmt_language') || 'ru';
+let authNotice = sessionStorage.getItem('auth_notice');
+sessionStorage.removeItem('auth_notice');
 if (!translations[locale]) locale = 'ru';
 language.value = locale;
 applyLanguage(locale);
@@ -59,11 +66,12 @@ language.addEventListener('change', () => {
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   message.className = 'message';
+  authNotice = null;
   message.textContent = translations[locale].loading;
   submitButton.disabled = true;
 
   try {
-    const response = await fetch('/api/login', {
+    const response = await fetchWithTimeout('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -97,4 +105,12 @@ function applyLanguage(selectedLocale) {
   for (const element of document.querySelectorAll('[data-i18n]')) {
     element.textContent = dictionary[element.dataset.i18n];
   }
+  if (authNotice === 'session_expired') message.textContent = dictionary.sessionExpired;
+}
+
+async function fetchWithTimeout(url, options = {}) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+  try { return await fetch(url, { ...options, signal: controller.signal }); }
+  finally { clearTimeout(timeout); }
 }
