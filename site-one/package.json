@@ -1,0 +1,14 @@
+{
+  "name": "phpmytech-61-65-auth",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Защищённая авторизация для технического отдела 61-65",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check public/app.js && node --check public/protected.js && node --check scripts/hash-password.js",
+    "hash-password": "node scripts/hash-password.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
