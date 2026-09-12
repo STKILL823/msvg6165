@@ -53,6 +53,8 @@ h1 {
   line-height: 1.35;
 }
 
+.nowrap { white-space: nowrap; }
+
 .panel {
   position: relative;
   margin: 0 0 42px;
